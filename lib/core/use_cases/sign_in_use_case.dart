@@ -14,7 +14,6 @@ class SignInUseCase extends BaseFutureUseCase<SignInUseCaseParams, void> {
   SignInUseCase(this._sessionRepository);
 
   @override
-  Future<void> execute(SignInUseCaseParams params) async {
-    await _sessionRepository.signInUser(params.email, params.password);
-  }
+  Future<void> execute(SignInUseCaseParams params) =>
+      _sessionRepository.signInUser(params.email, params.password);
 }

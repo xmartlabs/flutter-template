@@ -31,7 +31,8 @@ class NetworkExceptions extends Object with _$NetworkExceptions {
 
   const factory NetworkExceptions.unableToProcess() = UnableToProcess;
 
-  const factory NetworkExceptions.defaultError(int? code, String error) = DefaultError;
+  const factory NetworkExceptions.defaultError(int? code, String error) =
+      DefaultError;
 
   const factory NetworkExceptions.unexpectedError() = UnexpectedError;
 

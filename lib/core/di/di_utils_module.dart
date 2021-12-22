@@ -4,8 +4,7 @@ import 'package:get_it/get_it.dart';
 class UtilsDiModule {
   UtilsDiModule._privateConstructor();
 
-  static final UtilsDiModule _instance =
-      UtilsDiModule._privateConstructor();
+  static final UtilsDiModule _instance = UtilsDiModule._privateConstructor();
 
   factory UtilsDiModule() {
     return _instance;

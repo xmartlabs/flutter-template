@@ -10,7 +10,6 @@ class GetUserInfoUseCase extends BaseFutureUseCase<void, User> {
 
   @override
   Future<User> execute(void params) async {
-    var user = await _sessionRepository.getUserInfo();
-    return (user)!;
+    return (await _sessionRepository.getUserInfo())!;
   }
 }

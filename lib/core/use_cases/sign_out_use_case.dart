@@ -9,7 +9,6 @@ class SignOutUseCase extends BaseFutureUseCase<SignOutUseCaseParams, void> {
   SignOutUseCase(this._sessionRepository);
 
   @override
-  Future<void> execute(SignOutUseCaseParams params) async {
-    await _sessionRepository.logOut();
-  }
+  Future<void> execute(SignOutUseCaseParams params) =>
+      _sessionRepository.logOut();
 }
