@@ -19,8 +19,8 @@ jobs:
       - name: Check code format
         run: flutter format --set-exit-if-changed .
       - name: Run linter
-      - run: flutter analyze .
+        run: flutter analyze .
       - name: Run tests
-      - run: flutter test
+        run: flutter test
       - name: Generate android APK
-      - run: flutter build apk
+        run: flutter build apk
