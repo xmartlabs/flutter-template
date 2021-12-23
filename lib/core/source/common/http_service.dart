@@ -51,12 +51,7 @@ class HttpServiceDio implements HttpService {
     final options =
         BaseOptions(baseUrl: 'http://restapi.adequateshop.com/api/');
     _dio = Dio(options);
-    // dio.interceptors.add(DioCacheManager(
-    //   CacheConfig(
-    //     baseUrl: baseUrl,
-    //   ),
-    // ).interceptor);
-    // dio.interceptors.add(AuthInterceptor());
+    // TODO: Create AuthInterceptor to send the auth token
   }
 
   @override
