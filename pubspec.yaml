@@ -45,6 +45,7 @@ dependencies:
   json_annotation: 4.4.0
   logger: 1.1.0
   meta:
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
