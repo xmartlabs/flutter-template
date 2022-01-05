@@ -5,8 +5,12 @@ import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/model/authentication_status.dart';
 import 'package:flutter_template/ui/app_router.dart';
 import 'package:flutter_template/ui/splash/splash_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -28,7 +32,15 @@ class _SplashContentScreen extends StatelessWidget {
               routes: (_) => provideRoutes(state),
             ),
             routeInformationParser:
-                router.defaultRouteParser(includePrefixMatches: true));
+                router.defaultRouteParser(includePrefixMatches: true),
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales
+        );
       });
 
   List<PageRouteInfo<dynamic>> provideRoutes(SplashBaseState state) {
