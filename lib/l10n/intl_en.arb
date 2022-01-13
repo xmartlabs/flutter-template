@@ -1,0 +1,29 @@
+{
+  "sign_in": "Sign In",
+  "mail" : "Mail",
+  "password" : "Password",
+  "error" : "Error: {text}",
+
+  "logged_in": "Logged in",
+  "log_out" : "Log out",
+  "user_message" : "Hi {name}",
+
+  "@error": {
+          "description": "Gives the user an error explanation",
+          "placeholders": {
+              "name": {
+                  "type": "String",
+                  "example": "Something went wrong try again"
+              }
+          }
+  },
+  "@user_message": {
+          "description": "Greet the user by their name.",
+          "placeholders": {
+              "name": {
+                  "type": "String",
+                  "example": "Jane"
+              }
+          }
+  }
+}
