@@ -9,7 +9,7 @@ Future main() async {
   final environment =
       enumFromString(Environments.values, const String.fromEnvironment('ENV')) ??
           Environments.development;
-  await dotenv.load(fileName: '${environment.toString().split('.').last}.env');
+  await dotenv.load(fileName: 'assets/${environment.toString().split('.').last}.env');
   runApp(const MyApp());
 }
 
