@@ -7,9 +7,9 @@ import 'core/services/config_service.dart';
 
 Future main() async {
   final environment =
-      enumFromString(Environments.values, String.fromEnvironment('ENV')) ??
+      enumFromString(Environments.values, const String.fromEnvironment('ENV')) ??
           Environments.development;
-  await DotEnv().load(fileName: '${environment.toString().split('.').last}.env');
+  await dotenv.load(fileName: '${environment.toString().split('.').last}.env');
   runApp(const MyApp());
 }
 
