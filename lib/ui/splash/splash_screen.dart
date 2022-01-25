@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/model/authentication_status.dart';
 import 'package:flutter_template/ui/app_router.dart';
 import 'package:flutter_template/ui/splash/splash_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -39,8 +39,7 @@ class _SplashContentScreen extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: AppLocalizations.supportedLocales
-        );
+            supportedLocales: AppLocalizations.supportedLocales);
       });
 
   List<PageRouteInfo<dynamic>> provideRoutes(SplashBaseState state) {
