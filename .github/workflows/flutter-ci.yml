@@ -24,4 +24,4 @@ jobs:
       - name: Run tests
         run: flutter test
       - name: Generate android APK
-        run: flutter build apk
+        run: flutter build apk --profile
