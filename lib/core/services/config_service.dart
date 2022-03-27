@@ -5,6 +5,7 @@ enum Environments {
   staging,
   production,
 }
+
 extension EnviromentPath on Environments {
   String get fileName {
     switch (this) {
