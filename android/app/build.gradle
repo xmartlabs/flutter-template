@@ -59,27 +59,23 @@ android {
 
     flavorDimensions "app"
     productFlavors {
-
         development {
             dimension "app"
-            resValue "string", "app_name", "flutter_template dev"
-            versionNameSuffix "-dev"
-            applicationId "com.xmartlabs.flutter_template.dev"
+            resValue "string", "app_name", "Template dev"
+            versionNameSuffix ".dev"
         }
 
         staging {
             dimension "app"
-            resValue "string", "app_name", "flutter_template staging"
-            versionNameSuffix "-staging"
-            applicationId "com.xmartlabs.flutter_template.staging"
+            resValue "string", "app_name", "Template staging"
+            versionNameSuffix ".staging"
         }
-
         prod {
             dimension "app"
         }
-        lintOptions {
-            checkReleaseBuilds false
-        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
     }
 }
 
