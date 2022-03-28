@@ -9,7 +9,7 @@ class SessionRepository {
   final AuthLocalSource _authLocalSource;
   final AuthRemoteSource _authRemoteSource;
 
-  final _authController = StreamController<AuthenticationStatus>();
+  final _authController = StreamController<AuthenticationStatus>.broadcast();
 
   SessionRepository(this._authLocalSource, this._authRemoteSource);
 
@@ -29,7 +29,8 @@ class SessionRepository {
   Future<void> signInUser(String email, String password) async {
     final response = await _authRemoteSource.signIn(email, password);
     await _authLocalSource.saveUserToken(response.token);
-    await _authLocalSource.saveUserInfo(User(response.name, response.email));
+    await _authLocalSource
+        .saveUserInfo(User(name: response.name, email: response.email));
     _authController.add(AuthenticationStatus.authenticated);
   }
 

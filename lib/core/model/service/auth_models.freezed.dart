@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_models.dart';
@@ -21,11 +22,12 @@ SignInResponse _$SignInResponseFromJson(Map<String, dynamic> json) {
 class _$SignInResponseTearOff {
   const _$SignInResponseTearOff();
 
-  _SignInResponse call(String token, String name, String email) {
+  _SignInResponse call(
+      {required String token, required String name, required String email}) {
     return _SignInResponse(
-      token,
-      name,
-      email,
+      token: token,
+      name: name,
+      email: email,
     );
   }
 
@@ -117,15 +119,15 @@ class __$SignInResponseCopyWithImpl<$Res>
     Object? email = freezed,
   }) {
     return _then(_SignInResponse(
-      token == freezed
+      token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
-      name == freezed
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email == freezed
+      email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
@@ -135,9 +137,10 @@ class __$SignInResponseCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.pascal)
+@JsonSerializable()
 class _$_SignInResponse implements _SignInResponse {
-  _$_SignInResponse(this.token, this.name, this.email);
+  _$_SignInResponse(
+      {required this.token, required this.name, required this.email});
 
   factory _$_SignInResponse.fromJson(Map<String, dynamic> json) =>
       _$$_SignInResponseFromJson(json);
@@ -183,8 +186,10 @@ class _$_SignInResponse implements _SignInResponse {
 }
 
 abstract class _SignInResponse implements SignInResponse {
-  factory _SignInResponse(String token, String name, String email) =
-      _$_SignInResponse;
+  factory _SignInResponse(
+      {required String token,
+      required String name,
+      required String email}) = _$_SignInResponse;
 
   factory _SignInResponse.fromJson(Map<String, dynamic> json) =
       _$_SignInResponse.fromJson;
@@ -209,11 +214,12 @@ SignInRequest _$SignInRequestFromJson(Map<String, dynamic> json) {
 class _$SignInRequestTearOff {
   const _$SignInRequestTearOff();
 
-  _SignInRequest call(@JsonKey(name: 'email') String email,
-      @JsonKey(name: 'password') String password) {
+  _SignInRequest call(
+      {@JsonKey(name: 'email') required String email,
+      @JsonKey(name: 'password') required String password}) {
     return _SignInRequest(
-      email,
-      password,
+      email: email,
+      password: password,
     );
   }
 
@@ -304,11 +310,11 @@ class __$SignInRequestCopyWithImpl<$Res>
     Object? password = freezed,
   }) {
     return _then(_SignInRequest(
-      email == freezed
+      email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      password == freezed
+      password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
@@ -320,8 +326,9 @@ class __$SignInRequestCopyWithImpl<$Res>
 
 @JsonSerializable()
 class _$_SignInRequest implements _SignInRequest {
-  _$_SignInRequest(@JsonKey(name: 'email') this.email,
-      @JsonKey(name: 'password') this.password);
+  _$_SignInRequest(
+      {@JsonKey(name: 'email') required this.email,
+      @JsonKey(name: 'password') required this.password});
 
   factory _$_SignInRequest.fromJson(Map<String, dynamic> json) =>
       _$$_SignInRequestFromJson(json);
@@ -365,8 +372,9 @@ class _$_SignInRequest implements _SignInRequest {
 }
 
 abstract class _SignInRequest implements SignInRequest {
-  factory _SignInRequest(@JsonKey(name: 'email') String email,
-      @JsonKey(name: 'password') String password) = _$_SignInRequest;
+  factory _SignInRequest(
+      {@JsonKey(name: 'email') required String email,
+      @JsonKey(name: 'password') required String password}) = _$_SignInRequest;
 
   factory _SignInRequest.fromJson(Map<String, dynamic> json) =
       _$_SignInRequest.fromJson;

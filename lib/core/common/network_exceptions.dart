@@ -31,12 +31,12 @@ class NetworkExceptions extends Object with _$NetworkExceptions {
 
   const factory NetworkExceptions.unableToProcess() = UnableToProcess;
 
-  const factory NetworkExceptions.defaultError(int? code, String error) =
+  const factory NetworkExceptions.defaultError(int? code, String? error) =
       DefaultError;
 
   const factory NetworkExceptions.unexpectedError() = UnexpectedError;
 
-  static NetworkExceptions handleResponse(int statusCode) {
+  static NetworkExceptions handleResponse(int? statusCode, dynamic body) {
     switch (statusCode) {
       case 400:
       case 401:
@@ -56,7 +56,7 @@ class NetworkExceptions extends Object with _$NetworkExceptions {
         var responseCode = statusCode;
         return NetworkExceptions.defaultError(
           responseCode,
-          'Received invalid status code: $responseCode',
+          'Received invalid status code. body: $body',
         );
     }
   }
@@ -75,8 +75,10 @@ class NetworkExceptions extends Object with _$NetworkExceptions {
               networkExceptions = NetworkExceptions.noInternetConnection();
               break;
             case DioErrorType.response:
-              networkExceptions =
-                  NetworkExceptions.handleResponse(error.response!.statusCode!);
+              networkExceptions = NetworkExceptions.handleResponse(
+                error.response?.statusCode,
+                error.response?.data,
+              );
               break;
           }
         } else if (error is SocketException) {
@@ -123,8 +125,8 @@ class NetworkExceptions extends Object with _$NetworkExceptions {
       errorMessage = 'Error due to a conflict';
     }, unableToProcess: () {
       errorMessage = 'Unable to process the data';
-    }, defaultError: (int? code, String error) {
-      errorMessage = error;
+    }, defaultError: (int? code, String? error) {
+      errorMessage = error ?? 'Unexpected error occurred';
     }, formatException: () {
       errorMessage = 'Unexpected error occurred';
     }, notAcceptable: () {

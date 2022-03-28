@@ -7,6 +7,8 @@
 // **************************************************************************
 // AutoRouteGenerator
 // **************************************************************************
+//
+// ignore_for_file: type=lint
 
 part of 'app_router.dart';
 
@@ -17,11 +19,11 @@ class _$AppRouter extends RootStackRouter {
   final Map<String, PageFactory> pagesMap = {
     SplashScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: SplashScreen());
+          routeData: routeData, child: const SplashScreen());
     },
     SignInScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: SignInScreen());
+          routeData: routeData, child: const SignInScreen());
     },
     WelcomeScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(

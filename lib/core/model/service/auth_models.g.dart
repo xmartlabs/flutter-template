@@ -8,9 +8,9 @@ part of 'auth_models.dart';
 
 _$_SignInResponse _$$_SignInResponseFromJson(Map<String, dynamic> json) =>
     _$_SignInResponse(
-      json['Token'] as String,
-      json['Name'] as String,
-      json['Email'] as String,
+      token: json['Token'] as String,
+      name: json['Name'] as String,
+      email: json['Email'] as String,
     );
 
 Map<String, dynamic> _$$_SignInResponseToJson(_$_SignInResponse instance) =>
@@ -22,8 +22,8 @@ Map<String, dynamic> _$$_SignInResponseToJson(_$_SignInResponse instance) =>
 
 _$_SignInRequest _$$_SignInRequestFromJson(Map<String, dynamic> json) =>
     _$_SignInRequest(
-      json['email'] as String,
-      json['password'] as String,
+      email: json['email'] as String,
+      password: json['password'] as String,
     );
 
 Map<String, dynamic> _$$_SignInRequestToJson(_$_SignInRequest instance) =>

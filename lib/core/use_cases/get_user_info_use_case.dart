@@ -3,13 +3,11 @@ import 'package:flutter_template/core/repository/session_repository.dart';
 
 import 'base_use_case.dart';
 
-class GetUserInfoUseCase extends BaseFutureUseCase<void, User> {
+class GetUserInfoUseCase extends BaseVoidFutureUseCase<User> {
   final SessionRepository _sessionRepository;
 
   GetUserInfoUseCase(this._sessionRepository);
 
   @override
-  Future<User> execute(void params) async {
-    return (await _sessionRepository.getUserInfo())!;
-  }
+  Future<User> execute() async => (await _sessionRepository.getUserInfo())!;
 }

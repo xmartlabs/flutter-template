@@ -13,7 +13,7 @@ part 'splash_event.dart';
 part 'splash_state.dart';
 
 class SplashBloc extends Bloc<SplashBaseEvent, SplashBaseState> {
-  final TrackAuthUseCase _trackAuthUseCase = DiProvider.instance.get();
+  final TrackAuthUseCase _trackAuthUseCase = DiProvider.get();
 
   late StreamSubscription<AuthenticationStatus>
       _authenticationStatusSubscription;
@@ -25,15 +25,14 @@ class SplashBloc extends Bloc<SplashBaseEvent, SplashBaseState> {
       emitter.call(
           state.copyWith(authenticationStatus: event.authenticationStatus));
     });
-    _authenticationStatusSubscription = _trackAuthUseCase
-        .stream(TrackAuthUseCaseParam())
-        .listen((status) =>
+    _authenticationStatusSubscription = _trackAuthUseCase.stream().listen(
+        (status) =>
             add(SplashBaseEvent.changeAuth(authenticationStatus: status)));
   }
 
   @override
-  Future<void> close() {
-    _authenticationStatusSubscription.cancel();
-    return super.close();
+  Future<void> close() async {
+    await _authenticationStatusSubscription.cancel();
+    await super.close();
   }
 }
