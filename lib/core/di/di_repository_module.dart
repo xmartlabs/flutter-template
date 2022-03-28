@@ -23,7 +23,8 @@ class RepositoryDiModule {
 
   void _setupProvidersAndUtils(GetIt locator) {
     locator.registerLazySingleton(() => FlutterSecureStorage());
-    locator.registerLazySingleton(() => HttpServiceDio());
+    // TODO: Add interceptors
+    locator.registerLazySingleton(() => HttpServiceDio([]));
   }
 
   void _setupRepositories(GetIt locator) {
@@ -33,7 +34,6 @@ class RepositoryDiModule {
 
   void _setupSources(GetIt locator) {
     locator.registerLazySingleton(() => AuthLocalSource(locator.get()));
-    locator.registerLazySingleton(
-        () => AuthRemoteSource(httpService: locator.get()));
+    locator.registerLazySingleton(() => AuthRemoteSource(locator.get()));
   }
 }

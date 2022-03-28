@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_template/core/common/network_exceptions.dart';
 
 class ServiceResponse<T> {
@@ -8,15 +9,16 @@ class ServiceResponse<T> {
 
   ServiceResponse({required this.code, required this.message, this.data});
 
-  factory ServiceResponse.fromJson(
-    Map<String, dynamic> json,
+  factory ServiceResponse.fromResponse(
+    Response response,
     T Function(Map<String, dynamic> json) fromJsonT,
   ) {
+    final json = response.data;
     final dataMap = json['data'] as Map<String, dynamic>?;
     final data = (dataMap == null) ? null : fromJsonT(dataMap);
     return ServiceResponse<T>(
-      code: json['code'] as int,
-      message: json['message'] as String,
+      code: json['code'] ?? response.statusCode,
+      message: json['message'] ?? response.statusMessage,
       data: data,
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/ui/splash/splash_screen.dart';
 
-import 'core/services/config.dart';
+import 'core/common/config.dart';
 
 Future main() async {
   await Config.initialize();
