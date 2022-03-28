@@ -18,12 +18,11 @@ class WelcomeCubit extends Cubit<WelcomeBaseState> {
     unawaited(_setUserInfo());
   }
 
-  Future<void> logOut() =>
-      _signOutUseCase.executeAsResult(SignOutUseCaseParams());
+  Future<void> logOut() => _signOutUseCase.executeAsResult();
 
   Future<void> _setUserInfo() async {
     // TODO: Handle errors
-    final user = (await _getUserInfoUseCase.executeAsResult(null)).data;
+    final user = (await _getUserInfoUseCase.executeAsResult()).data;
     if (user != null) {
       emit(state.copyWith(name: user.name));
     }
