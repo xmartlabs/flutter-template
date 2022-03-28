@@ -13,7 +13,7 @@ part 'splash_event.dart';
 part 'splash_state.dart';
 
 class SplashBloc extends Bloc<SplashBaseEvent, SplashBaseState> {
-  final TrackAuthUseCase _trackAuthUseCase = DiProvider.instance.get();
+  final TrackAuthUseCase _trackAuthUseCase = DiProvider.get();
 
   late StreamSubscription<AuthenticationStatus>
       _authenticationStatusSubscription;

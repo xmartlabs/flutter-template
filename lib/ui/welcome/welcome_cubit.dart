@@ -11,8 +11,8 @@ part 'welcome_cubit.freezed.dart';
 part 'welcome_state.dart';
 
 class WelcomeCubit extends Cubit<WelcomeBaseState> {
-  final GetUserInfoUseCase _getUserInfoUseCase = DiProvider.instance.get();
-  final SignOutUseCase _signOutUseCase = DiProvider.instance.get();
+  final GetUserInfoUseCase _getUserInfoUseCase = DiProvider.get();
+  final SignOutUseCase _signOutUseCase = DiProvider.get();
 
   WelcomeCubit() : super(WelcomeBaseState.state(name: '')) {
     unawaited(_setUserInfo());

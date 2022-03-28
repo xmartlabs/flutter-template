@@ -12,7 +12,7 @@ class AuthRemoteSource {
 
   Future<SignInResponse> signIn(String email, String password) async {
     final response = await _httpService.post(_URL_LOGIN,
-        data: SignInRequest(email, password).toJson());
+        data: SignInRequest(email: email, password: password).toJson());
 
     return ServiceResponse<SignInResponse>.fromJson(
             response.data, (data) => SignInResponse.fromJson(data))

@@ -21,25 +21,26 @@ class SplashScreen extends StatelessWidget {
 }
 
 class _SplashContentScreen extends StatelessWidget {
-  final router = DiProvider.instance<AppRouter>();
+  final router = DiProvider.get<AppRouter>();
 
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<SplashBloc, SplashBaseState>(builder: (context, state) {
         return MaterialApp.router(
-            routerDelegate: AutoRouterDelegate.declarative(
-              router,
-              routes: (_) => provideRoutes(state),
-            ),
-            routeInformationParser:
-                router.defaultRouteParser(includePrefixMatches: true),
-            localizationsDelegates: [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: AppLocalizations.supportedLocales);
+          routerDelegate: AutoRouterDelegate.declarative(
+            router,
+            routes: (_) => provideRoutes(state),
+          ),
+          routeInformationParser:
+              router.defaultRouteParser(includePrefixMatches: true),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+        );
       });
 
   List<PageRouteInfo<dynamic>> provideRoutes(SplashBaseState state) {

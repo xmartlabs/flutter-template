@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_template/core/common/network_exceptions.dart';
+import 'package:flutter_template/core/services/config.dart';
 
 abstract class HttpService {
   Future<Response> get(
@@ -48,8 +49,7 @@ class HttpServiceDio implements HttpService {
   late Dio _dio;
 
   HttpServiceDio() {
-    final options =
-        BaseOptions(baseUrl: 'http://restapi.adequateshop.com/api/');
+    final options = BaseOptions(baseUrl: Config.apiBaseUrl);
     _dio = Dio(options);
     // TODO: Create AuthInterceptor to send the auth token
   }

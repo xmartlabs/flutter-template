@@ -6,7 +6,7 @@ class ServiceResponse<T> {
   final String message;
   final T? data;
 
-  ServiceResponse(this.code, this.message, this.data);
+  ServiceResponse({required this.code, required this.message, this.data});
 
   factory ServiceResponse.fromJson(
     Map<String, dynamic> json,
@@ -15,7 +15,10 @@ class ServiceResponse<T> {
     final dataMap = json['data'] as Map<String, dynamic>?;
     final data = (dataMap == null) ? null : fromJsonT(dataMap);
     return ServiceResponse<T>(
-        json['code'] as int, json['message'] as String, data);
+      code: json['code'] as int,
+      message: json['message'] as String,
+      data: data,
+    );
   }
 
   T getDataOrThrow() {

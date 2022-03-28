@@ -13,7 +13,7 @@ part 'signin_event.dart';
 part 'signin_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  final SignInUseCase _signInUseCase = DiProvider.instance.get();
+  final SignInUseCase _signInUseCase = DiProvider.get();
 
   SignInBloc()
       : super(const SignInState(
