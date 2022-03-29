@@ -22,7 +22,7 @@ class RepositoryDiModule {
   }
 
   void _setupProvidersAndUtils(GetIt locator) {
-    locator.registerLazySingleton(() => FlutterSecureStorage());
+    locator.registerLazySingleton(FlutterSecureStorage.new);
     // TODO: Add interceptors
     locator.registerLazySingleton(() => HttpServiceDio([]));
   }
