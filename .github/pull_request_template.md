@@ -1,6 +1,8 @@
+<!---
 Generic PR Template
 
-(Leave one the following titles if applies)
+Leave one the following titles if applies
+-->
 
 # :wrench: Bugfixes
 
