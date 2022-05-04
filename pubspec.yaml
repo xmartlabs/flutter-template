@@ -32,7 +32,7 @@ dependencies:
   freezed_annotation: 1.1.0
   get_it: 7.2.0
   intl: 0.17.0
-  json_annotation: 4.4.0
+  json_annotation: 4.5.0
   logger: 1.1.0
   meta:
 
