@@ -12,31 +12,7 @@ part of 'signin_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SignInEventTearOff {
-  const _$SignInEventTearOff();
-
-  ChangeEmailSignInEvent changeEmail({required String email}) {
-    return ChangeEmailSignInEvent(
-      email: email,
-    );
-  }
-
-  ChangePasswordSignInEvent changePassword({required String password}) {
-    return ChangePasswordSignInEvent(
-      password: password,
-    );
-  }
-
-  LoginSignInEvent login() {
-    return const LoginSignInEvent();
-  }
-}
-
-/// @nodoc
-const $SignInEvent = _$SignInEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SignInEvent {
@@ -235,10 +211,10 @@ class _$ChangeEmailSignInEvent implements ChangeEmailSignInEvent {
 }
 
 abstract class ChangeEmailSignInEvent implements SignInEvent {
-  const factory ChangeEmailSignInEvent({required String email}) =
+  const factory ChangeEmailSignInEvent({required final String email}) =
       _$ChangeEmailSignInEvent;
 
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ChangeEmailSignInEventCopyWith<ChangeEmailSignInEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -378,10 +354,10 @@ class _$ChangePasswordSignInEvent implements ChangePasswordSignInEvent {
 }
 
 abstract class ChangePasswordSignInEvent implements SignInEvent {
-  const factory ChangePasswordSignInEvent({required String password}) =
+  const factory ChangePasswordSignInEvent({required final String password}) =
       _$ChangePasswordSignInEvent;
 
-  String get password;
+  String get password => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ChangePasswordSignInEventCopyWith<ChangePasswordSignInEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -499,30 +475,10 @@ abstract class LoginSignInEvent implements SignInEvent {
 }
 
 /// @nodoc
-class _$SignInBaseStateTearOff {
-  const _$SignInBaseStateTearOff();
-
-  SignInState state(
-      {required String? email,
-      required String? password,
-      required String error}) {
-    return SignInState(
-      email: email,
-      password: password,
-      error: error,
-    );
-  }
-}
-
-/// @nodoc
-const $SignInBaseState = _$SignInBaseStateTearOff();
-
-/// @nodoc
 mixin _$SignInBaseState {
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   String get error => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? email, String? password, String error)
@@ -746,16 +702,16 @@ class _$SignInState implements SignInState {
 
 abstract class SignInState implements SignInBaseState {
   const factory SignInState(
-      {required String? email,
-      required String? password,
-      required String error}) = _$SignInState;
+      {required final String? email,
+      required final String? password,
+      required final String error}) = _$SignInState;
 
   @override
-  String? get email;
+  String? get email => throw _privateConstructorUsedError;
   @override
-  String? get password;
+  String? get password => throw _privateConstructorUsedError;
   @override
-  String get error;
+  String get error => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $SignInStateCopyWith<SignInState> get copyWith =>

@@ -12,27 +12,12 @@ part of 'splash_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SplashBaseEventTearOff {
-  const _$SplashBaseEventTearOff();
-
-  SplashEvent changeAuth({required AuthenticationStatus authenticationStatus}) {
-    return SplashEvent(
-      authenticationStatus: authenticationStatus,
-    );
-  }
-}
-
-/// @nodoc
-const $SplashBaseEvent = _$SplashBaseEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SplashBaseEvent {
   AuthenticationStatus get authenticationStatus =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthenticationStatus authenticationStatus)
@@ -227,10 +212,12 @@ class _$SplashEvent implements SplashEvent {
 
 abstract class SplashEvent implements SplashBaseEvent {
   const factory SplashEvent(
-      {required AuthenticationStatus authenticationStatus}) = _$SplashEvent;
+          {required final AuthenticationStatus authenticationStatus}) =
+      _$SplashEvent;
 
   @override
-  AuthenticationStatus get authenticationStatus;
+  AuthenticationStatus get authenticationStatus =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $SplashEventCopyWith<SplashEvent> get copyWith =>
@@ -238,24 +225,9 @@ abstract class SplashEvent implements SplashBaseEvent {
 }
 
 /// @nodoc
-class _$SplashBaseStateTearOff {
-  const _$SplashBaseStateTearOff();
-
-  SplashState state({required AuthenticationStatus authenticationStatus}) {
-    return SplashState(
-      authenticationStatus: authenticationStatus,
-    );
-  }
-}
-
-/// @nodoc
-const $SplashBaseState = _$SplashBaseStateTearOff();
-
-/// @nodoc
 mixin _$SplashBaseState {
   AuthenticationStatus get authenticationStatus =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthenticationStatus authenticationStatus) state,
@@ -448,10 +420,12 @@ class _$SplashState implements SplashState {
 
 abstract class SplashState implements SplashBaseState {
   const factory SplashState(
-      {required AuthenticationStatus authenticationStatus}) = _$SplashState;
+          {required final AuthenticationStatus authenticationStatus}) =
+      _$SplashState;
 
   @override
-  AuthenticationStatus get authenticationStatus;
+  AuthenticationStatus get authenticationStatus =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $SplashStateCopyWith<SplashState> get copyWith =>

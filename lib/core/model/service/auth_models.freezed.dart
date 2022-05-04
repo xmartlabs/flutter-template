@@ -12,32 +12,11 @@ part of 'auth_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SignInResponse _$SignInResponseFromJson(Map<String, dynamic> json) {
   return _SignInResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$SignInResponseTearOff {
-  const _$SignInResponseTearOff();
-
-  _SignInResponse call(
-      {required String token, required String name, required String email}) {
-    return _SignInResponse(
-      token: token,
-      name: name,
-      email: email,
-    );
-  }
-
-  SignInResponse fromJson(Map<String, Object?> json) {
-    return SignInResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SignInResponse = _$SignInResponseTearOff();
 
 /// @nodoc
 mixin _$SignInResponse {
@@ -167,6 +146,7 @@ class _$_SignInResponse implements _SignInResponse {
             const DeepCollectionEquality().equals(other.email, email));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -187,19 +167,19 @@ class _$_SignInResponse implements _SignInResponse {
 
 abstract class _SignInResponse implements SignInResponse {
   factory _SignInResponse(
-      {required String token,
-      required String name,
-      required String email}) = _$_SignInResponse;
+      {required final String token,
+      required final String name,
+      required final String email}) = _$_SignInResponse;
 
   factory _SignInResponse.fromJson(Map<String, dynamic> json) =
       _$_SignInResponse.fromJson;
 
   @override
-  String get token;
+  String get token => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SignInResponseCopyWith<_SignInResponse> get copyWith =>
@@ -209,27 +189,6 @@ abstract class _SignInResponse implements SignInResponse {
 SignInRequest _$SignInRequestFromJson(Map<String, dynamic> json) {
   return _SignInRequest.fromJson(json);
 }
-
-/// @nodoc
-class _$SignInRequestTearOff {
-  const _$SignInRequestTearOff();
-
-  _SignInRequest call(
-      {@JsonKey(name: 'email') required String email,
-      @JsonKey(name: 'password') required String password}) {
-    return _SignInRequest(
-      email: email,
-      password: password,
-    );
-  }
-
-  SignInRequest fromJson(Map<String, Object?> json) {
-    return SignInRequest.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SignInRequest = _$SignInRequestTearOff();
 
 /// @nodoc
 mixin _$SignInRequest {
@@ -354,6 +313,7 @@ class _$_SignInRequest implements _SignInRequest {
             const DeepCollectionEquality().equals(other.password, password));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -373,18 +333,19 @@ class _$_SignInRequest implements _SignInRequest {
 
 abstract class _SignInRequest implements SignInRequest {
   factory _SignInRequest(
-      {@JsonKey(name: 'email') required String email,
-      @JsonKey(name: 'password') required String password}) = _$_SignInRequest;
+          {@JsonKey(name: 'email') required final String email,
+          @JsonKey(name: 'password') required final String password}) =
+      _$_SignInRequest;
 
   factory _SignInRequest.fromJson(Map<String, dynamic> json) =
       _$_SignInRequest.fromJson;
 
   @override
   @JsonKey(name: 'email')
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'password')
-  String get password;
+  String get password => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SignInRequestCopyWith<_SignInRequest> get copyWith =>

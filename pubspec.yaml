@@ -29,7 +29,7 @@ dependencies:
   flutter_bloc: 8.0.1
   flutter_dotenv: 5.0.2
   flutter_secure_storage: 5.0.2
-  freezed_annotation: 1.1.0
+  freezed_annotation: 2.0.1
   get_it: 7.2.0
   intl: 0.17.0
   json_annotation: 4.4.0
@@ -43,7 +43,7 @@ dev_dependencies:
   auto_route_generator: 3.2.3
   build_runner: 2.1.10
   flutter_lints: 1.0.4
-  freezed: 1.1.1
+  freezed: 2.0.2
   json_serializable: 6.1.5
   pedantic: 1.11.1
 

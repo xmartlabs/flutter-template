@@ -12,76 +12,7 @@ part of 'network_exceptions.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$NetworkExceptionsTearOff {
-  const _$NetworkExceptionsTearOff();
-
-  UnauthorizedRequest unauthorizedRequest() {
-    return const UnauthorizedRequest();
-  }
-
-  BadRequest badRequest() {
-    return const BadRequest();
-  }
-
-  NotFound notFound(String reason) {
-    return NotFound(
-      reason,
-    );
-  }
-
-  MethodNotAllowed methodNotAllowed() {
-    return const MethodNotAllowed();
-  }
-
-  NotAcceptable notAcceptable() {
-    return const NotAcceptable();
-  }
-
-  Conflict conflict() {
-    return const Conflict();
-  }
-
-  InternalServerError internalServerError() {
-    return const InternalServerError();
-  }
-
-  NotImplemented notImplemented() {
-    return const NotImplemented();
-  }
-
-  ServiceUnavailable serviceUnavailable() {
-    return const ServiceUnavailable();
-  }
-
-  NoInternetConnection noInternetConnection() {
-    return const NoInternetConnection();
-  }
-
-  FormatException formatException() {
-    return const FormatException();
-  }
-
-  UnableToProcess unableToProcess() {
-    return const UnableToProcess();
-  }
-
-  DefaultError defaultError(int? code, String? error) {
-    return DefaultError(
-      code,
-      error,
-    );
-  }
-
-  UnexpectedError unexpectedError() {
-    return const UnexpectedError();
-  }
-}
-
-/// @nodoc
-const $NetworkExceptions = _$NetworkExceptionsTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$NetworkExceptions {
@@ -762,9 +693,9 @@ class _$NotFound implements NotFound {
 }
 
 abstract class NotFound implements NetworkExceptions {
-  const factory NotFound(String reason) = _$NotFound;
+  const factory NotFound(final String reason) = _$NotFound;
 
-  String get reason;
+  String get reason => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $NotFoundCopyWith<NotFound> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2568,10 +2499,11 @@ class _$DefaultError implements DefaultError {
 }
 
 abstract class DefaultError implements NetworkExceptions {
-  const factory DefaultError(int? code, String? error) = _$DefaultError;
+  const factory DefaultError(final int? code, final String? error) =
+      _$DefaultError;
 
-  int? get code;
-  String? get error;
+  int? get code => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DefaultErrorCopyWith<DefaultError> get copyWith =>
       throw _privateConstructorUsedError;
