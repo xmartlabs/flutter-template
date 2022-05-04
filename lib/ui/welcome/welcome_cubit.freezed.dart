@@ -12,26 +12,11 @@ part of 'welcome_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$WelcomeBaseStateTearOff {
-  const _$WelcomeBaseStateTearOff();
-
-  WelcomeState state({required String? name}) {
-    return WelcomeState(
-      name: name,
-    );
-  }
-}
-
-/// @nodoc
-const $WelcomeBaseState = _$WelcomeBaseStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$WelcomeBaseState {
   String? get name => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? name) state,
@@ -222,10 +207,10 @@ class _$WelcomeState implements WelcomeState {
 }
 
 abstract class WelcomeState implements WelcomeBaseState {
-  const factory WelcomeState({required String? name}) = _$WelcomeState;
+  const factory WelcomeState({required final String? name}) = _$WelcomeState;
 
   @override
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $WelcomeStateCopyWith<WelcomeState> get copyWith =>
