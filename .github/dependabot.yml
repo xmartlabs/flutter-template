@@ -1,0 +1,15 @@
+# Support for pub is in beta, and thus, we are aware of some limitations. For example, security updates are not supported in this release but will be in the future.
+#
+# Other known limitations:
+#
+# - No support for updating git-dependencies
+# - If the version found is ignored (by dependabot config) no update will happen (even if, an earlier version could be used)
+# - No support for private package repositories
+
+version: 2
+enable-beta-ecosystems: true
+updates:
+  - package-ecosystem: 'pub'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
