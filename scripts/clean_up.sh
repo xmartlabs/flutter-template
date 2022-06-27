@@ -1,9 +1,9 @@
 #!/bin/bash
 echo ':: flutter clean ::'
-flutter clean
+fvm flutter clean
 
 echo ':: flutter pub get ::'
-flutter pub get
+fvm flutter pub get
 
 echo ':: flutter pub run build_runner build --delete-conflicting-outputs ::'
-flutter pub run build_runner build --delete-conflicting-outputs
+fvm flutter pub run build_runner build --delete-conflicting-outputs
