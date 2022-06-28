@@ -1,11 +1,23 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_template/core/common/config.dart';
+import 'package:flutter_template/core/common/logger.dart';
 import 'package:flutter_template/ui/splash/splash_screen.dart';
 
-import 'core/common/config.dart';
-
 Future main() async {
+  await runZonedGuarded(() async {
+    await _initSdks();
+    runApp(const MyApp());
+  }, (exception, stackTrace) async {
+    await Logger.fatal(error: exception, stackTrace: stackTrace);
+  });
+}
+
+Future _initSdks() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Logger.init();
   await Config.initialize();
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

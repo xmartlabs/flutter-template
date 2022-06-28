@@ -1,5 +1,5 @@
 import 'package:flutter_template/core/common/result.dart';
-import 'package:flutter_template/core/source/common/logger.dart';
+import 'package:flutter_template/core/common/logger.dart';
 
 abstract class BaseUseCase {}
 
@@ -21,7 +21,7 @@ abstract class BaseStreamUseCase<P, R> extends BaseUseCase {
 
   Stream<Result<R>> resultStream(P params) =>
       stream(params).map(Result.success).handleError((error, stacktrace) {
-        Logger.instance.w('Use case error', error, stacktrace);
+        Logger.w('Use case error', error, stacktrace);
         return Result.failure<R>(error);
       });
 }
@@ -31,7 +31,7 @@ abstract class BaseVoidStreamUseCase<R> extends BaseUseCase {
 
   Stream<Result<R>> resultStream() =>
       stream().map(Result.success).handleError((error, stacktrace) {
-        Logger.instance.w('Use case error', error, stacktrace);
+        Logger.w('Use case error', error, stacktrace);
         return Result.failure<R>(error);
       });
 }
@@ -40,7 +40,7 @@ Future<Result<R>> _toResult<R>(Future<R> Function() callback) async {
   try {
     return await callback().then(Result.success);
   } catch (error, stacktrace) {
-    Logger.instance.w('Use case error', error, stacktrace);
+    Logger.w('Use case error', error, stacktrace);
     return Result.failure<R>(error);
   }
 }
