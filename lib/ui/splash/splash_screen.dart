@@ -48,9 +48,9 @@ class _SplashContentScreen extends StatelessWidget {
       case AuthenticationStatus.unknown:
         return [];
       case AuthenticationStatus.authenticated:
-        return [WelcomeScreenRoute()];
+        return [AuthenticatedRouter()];
       case AuthenticationStatus.unauthenticated:
-        return [SignInScreenRoute()];
+        return [UnauthenticatedRouter()];
     }
   }
 }
