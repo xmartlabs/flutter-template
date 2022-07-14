@@ -17,9 +17,13 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    SplashScreenRoute.name: (routeData) {
+    UnauthenticatedRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const SplashScreen());
+          routeData: routeData, child: const EmptyRouterPage());
+    },
+    AuthenticatedRouter.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const EmptyRouterPage());
     },
     SignInScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -33,24 +37,52 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashScreenRoute.name, path: '/'),
-        RouteConfig(SignInScreenRoute.name, path: '/signin'),
-        RouteConfig(WelcomeScreenRoute.name, path: '/welcome')
+        RouteConfig(UnauthenticatedRouter.name, path: '/', children: [
+          RouteConfig('#redirect',
+              path: '',
+              parent: UnauthenticatedRouter.name,
+              redirectTo: 'signin',
+              fullMatch: true),
+          RouteConfig(SignInScreenRoute.name,
+              path: 'signin', parent: UnauthenticatedRouter.name)
+        ]),
+        RouteConfig(AuthenticatedRouter.name,
+            path: '/empty-router-page',
+            children: [
+              RouteConfig('#redirect',
+                  path: '',
+                  parent: AuthenticatedRouter.name,
+                  redirectTo: 'welcome',
+                  fullMatch: true),
+              RouteConfig(WelcomeScreenRoute.name,
+                  path: 'welcome', parent: AuthenticatedRouter.name)
+            ])
       ];
 }
 
 /// generated route for
-/// [SplashScreen]
-class SplashScreenRoute extends PageRouteInfo<void> {
-  const SplashScreenRoute() : super(SplashScreenRoute.name, path: '/');
+/// [EmptyRouterPage]
+class UnauthenticatedRouter extends PageRouteInfo<void> {
+  const UnauthenticatedRouter({List<PageRouteInfo>? children})
+      : super(UnauthenticatedRouter.name, path: '/', initialChildren: children);
 
-  static const String name = 'SplashScreenRoute';
+  static const String name = 'UnauthenticatedRouter';
+}
+
+/// generated route for
+/// [EmptyRouterPage]
+class AuthenticatedRouter extends PageRouteInfo<void> {
+  const AuthenticatedRouter({List<PageRouteInfo>? children})
+      : super(AuthenticatedRouter.name,
+            path: '/empty-router-page', initialChildren: children);
+
+  static const String name = 'AuthenticatedRouter';
 }
 
 /// generated route for
 /// [SignInScreen]
 class SignInScreenRoute extends PageRouteInfo<void> {
-  const SignInScreenRoute() : super(SignInScreenRoute.name, path: '/signin');
+  const SignInScreenRoute() : super(SignInScreenRoute.name, path: 'signin');
 
   static const String name = 'SignInScreenRoute';
 }
@@ -58,7 +90,7 @@ class SignInScreenRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [WelcomeScreen]
 class WelcomeScreenRoute extends PageRouteInfo<void> {
-  const WelcomeScreenRoute() : super(WelcomeScreenRoute.name, path: '/welcome');
+  const WelcomeScreenRoute() : super(WelcomeScreenRoute.name, path: 'welcome');
 
   static const String name = 'WelcomeScreenRoute';
 }
