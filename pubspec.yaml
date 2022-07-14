@@ -23,7 +23,7 @@ dependencies:
 
   auto_route: 3.2.4
   bloc: 8.0.3
-  cupertino_icons: 1.0.4
+  cupertino_icons: ^1.0.5
   dio: 4.0.6 # networking
   equatable: 2.0.3
   flutter_bloc: 8.0.1
