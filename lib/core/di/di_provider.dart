@@ -19,6 +19,8 @@ abstract class DiProvider {
     return instance;
   }
 
+  static Future<void> init() => _instance.allReady();
+
   static T get<T extends Object>({
     String? instanceName,
     dynamic param1,

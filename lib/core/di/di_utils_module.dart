@@ -6,11 +6,15 @@ class UtilsDiModule {
 
   static final UtilsDiModule _instance = UtilsDiModule._privateConstructor();
 
-  factory UtilsDiModule() {
-    return _instance;
-  }
+  factory UtilsDiModule() => _instance;
 
   void setupModule(GetIt locator) {
-    locator.registerSingleton(AppRouter());
+    locator._setupModule();
+  }
+}
+
+extension _GetItUseCaseDiModuleExtensions on GetIt {
+  void _setupModule() {
+    registerSingleton(AppRouter());
   }
 }

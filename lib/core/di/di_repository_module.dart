@@ -11,29 +11,28 @@ class RepositoryDiModule {
   static final RepositoryDiModule _instance =
       RepositoryDiModule._privateConstructor();
 
-  factory RepositoryDiModule() {
-    return _instance;
-  }
+  factory RepositoryDiModule() => _instance;
 
   void setupModule(GetIt locator) {
-    _setupProvidersAndUtils(locator);
-    _setupSources(locator);
-    _setupRepositories(locator);
+    locator._setupProvidersAndUtils();
+    locator._setupSources();
+    locator._setupRepositories();
   }
+}
 
-  void _setupProvidersAndUtils(GetIt locator) {
-    locator.registerLazySingleton(FlutterSecureStorage.new);
+extension _GetItUseCaseDiModuleExtensions on GetIt {
+  void _setupProvidersAndUtils() {
+    registerLazySingleton(FlutterSecureStorage.new);
     // TODO: Add interceptors
-    locator.registerLazySingleton(() => HttpServiceDio([]));
+    registerLazySingleton(() => HttpServiceDio([]));
   }
 
-  void _setupRepositories(GetIt locator) {
-    locator.registerLazySingleton(
-        () => SessionRepository(locator.get(), locator.get()));
+  void _setupRepositories() {
+    registerLazySingleton(() => SessionRepository(get(), get()));
   }
 
-  void _setupSources(GetIt locator) {
-    locator.registerLazySingleton(() => AuthLocalSource(locator.get()));
-    locator.registerLazySingleton(() => AuthRemoteSource(locator.get()));
+  void _setupSources() {
+    registerLazySingleton(() => AuthLocalSource(get()));
+    registerLazySingleton(() => AuthRemoteSource(get()));
   }
 }
