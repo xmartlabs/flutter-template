@@ -71,25 +71,25 @@ class _$SignInResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SignInResponseCopyWith<$Res>
+abstract class _$$_SignInResponseCopyWith<$Res>
     implements $SignInResponseCopyWith<$Res> {
-  factory _$SignInResponseCopyWith(
-          _SignInResponse value, $Res Function(_SignInResponse) then) =
-      __$SignInResponseCopyWithImpl<$Res>;
+  factory _$$_SignInResponseCopyWith(
+          _$_SignInResponse value, $Res Function(_$_SignInResponse) then) =
+      __$$_SignInResponseCopyWithImpl<$Res>;
   @override
   $Res call({String token, String name, String email});
 }
 
 /// @nodoc
-class __$SignInResponseCopyWithImpl<$Res>
+class __$$_SignInResponseCopyWithImpl<$Res>
     extends _$SignInResponseCopyWithImpl<$Res>
-    implements _$SignInResponseCopyWith<$Res> {
-  __$SignInResponseCopyWithImpl(
-      _SignInResponse _value, $Res Function(_SignInResponse) _then)
-      : super(_value, (v) => _then(v as _SignInResponse));
+    implements _$$_SignInResponseCopyWith<$Res> {
+  __$$_SignInResponseCopyWithImpl(
+      _$_SignInResponse _value, $Res Function(_$_SignInResponse) _then)
+      : super(_value, (v) => _then(v as _$_SignInResponse));
 
   @override
-  _SignInResponse get _value => super._value as _SignInResponse;
+  _$_SignInResponse get _value => super._value as _$_SignInResponse;
 
   @override
   $Res call({
@@ -97,7 +97,7 @@ class __$SignInResponseCopyWithImpl<$Res>
     Object? name = freezed,
     Object? email = freezed,
   }) {
-    return _then(_SignInResponse(
+    return _then(_$_SignInResponse(
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ class _$_SignInResponse implements _SignInResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SignInResponse &&
+            other is _$_SignInResponse &&
             const DeepCollectionEquality().equals(other.token, token) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.email, email));
@@ -156,12 +156,14 @@ class _$_SignInResponse implements _SignInResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$SignInResponseCopyWith<_SignInResponse> get copyWith =>
-      __$SignInResponseCopyWithImpl<_SignInResponse>(this, _$identity);
+  _$$_SignInResponseCopyWith<_$_SignInResponse> get copyWith =>
+      __$$_SignInResponseCopyWithImpl<_$_SignInResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SignInResponseToJson(this);
+    return _$$_SignInResponseToJson(
+      this,
+    );
   }
 }
 
@@ -175,14 +177,14 @@ abstract class _SignInResponse implements SignInResponse {
       _$_SignInResponse.fromJson;
 
   @override
-  String get token => throw _privateConstructorUsedError;
+  String get token;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
   @JsonKey(ignore: true)
-  _$SignInResponseCopyWith<_SignInResponse> get copyWith =>
+  _$$_SignInResponseCopyWith<_$_SignInResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -241,11 +243,11 @@ class _$SignInRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SignInRequestCopyWith<$Res>
+abstract class _$$_SignInRequestCopyWith<$Res>
     implements $SignInRequestCopyWith<$Res> {
-  factory _$SignInRequestCopyWith(
-          _SignInRequest value, $Res Function(_SignInRequest) then) =
-      __$SignInRequestCopyWithImpl<$Res>;
+  factory _$$_SignInRequestCopyWith(
+          _$_SignInRequest value, $Res Function(_$_SignInRequest) then) =
+      __$$_SignInRequestCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'email') String email,
@@ -253,22 +255,22 @@ abstract class _$SignInRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SignInRequestCopyWithImpl<$Res>
+class __$$_SignInRequestCopyWithImpl<$Res>
     extends _$SignInRequestCopyWithImpl<$Res>
-    implements _$SignInRequestCopyWith<$Res> {
-  __$SignInRequestCopyWithImpl(
-      _SignInRequest _value, $Res Function(_SignInRequest) _then)
-      : super(_value, (v) => _then(v as _SignInRequest));
+    implements _$$_SignInRequestCopyWith<$Res> {
+  __$$_SignInRequestCopyWithImpl(
+      _$_SignInRequest _value, $Res Function(_$_SignInRequest) _then)
+      : super(_value, (v) => _then(v as _$_SignInRequest));
 
   @override
-  _SignInRequest get _value => super._value as _SignInRequest;
+  _$_SignInRequest get _value => super._value as _$_SignInRequest;
 
   @override
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
   }) {
-    return _then(_SignInRequest(
+    return _then(_$_SignInRequest(
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -308,7 +310,7 @@ class _$_SignInRequest implements _SignInRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SignInRequest &&
+            other is _$_SignInRequest &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.password, password));
   }
@@ -322,12 +324,14 @@ class _$_SignInRequest implements _SignInRequest {
 
   @JsonKey(ignore: true)
   @override
-  _$SignInRequestCopyWith<_SignInRequest> get copyWith =>
-      __$SignInRequestCopyWithImpl<_SignInRequest>(this, _$identity);
+  _$$_SignInRequestCopyWith<_$_SignInRequest> get copyWith =>
+      __$$_SignInRequestCopyWithImpl<_$_SignInRequest>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SignInRequestToJson(this);
+    return _$$_SignInRequestToJson(
+      this,
+    );
   }
 }
 
@@ -342,12 +346,12 @@ abstract class _SignInRequest implements SignInRequest {
 
   @override
   @JsonKey(name: 'email')
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
   @JsonKey(name: 'password')
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @override
   @JsonKey(ignore: true)
-  _$SignInRequestCopyWith<_SignInRequest> get copyWith =>
+  _$$_SignInRequestCopyWith<_$_SignInRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
