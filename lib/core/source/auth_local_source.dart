@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_template/core/common/store/secure_storage_cached_source.dart';
+import 'package:flutter_template/core/common/store/store.dart';
 import 'package:flutter_template/core/model/user.dart';
 
 class AuthLocalSource {
@@ -9,18 +11,28 @@ class AuthLocalSource {
   static const _keyUser = '$_storageAuthPrefix.user';
   final FlutterSecureStorage _storage;
 
-  AuthLocalSource(this._storage);
+  final SourceOfTruth<String> _userTokenStorage;
+  final SourceOfTruth<User> _userStorage;
 
-  Future<String?> getUserToken() => _storage.read(key: _keyToken);
+  AuthLocalSource(this._storage)
+      : _userTokenStorage = SecuredStorageSourceOfTruth(
+            _keyToken, _storage, StringSerializer()),
+        _userStorage =
+            SecuredStorageSourceOfTruth(_keyUser, _storage, UserSerializer());
 
-  Future<User?> getUser() async {
-    final userJson = await _storage.read(key: _keyUser);
-    return (userJson == null) ? null : User.fromJson(json.decode(userJson));
-  }
+  Stream<String?> getUserToken() => _userTokenStorage.reader();
 
-  Future<void> saveUserToken(String? token) =>
-      _storage.write(key: _keyToken, value: token);
+  Stream<User?> getUser() => _userStorage.reader();
 
-  Future<void> saveUserInfo(User? user) =>
-      _storage.write(key: _keyUser, value: json.encode(user?.toJson()));
+  Future<void> saveUserToken(String? token) => _userTokenStorage.writer(token);
+
+  Future<void> saveUserInfo(User? user) => _userStorage.writer(user);
+}
+
+class UserSerializer extends Serializer<User> {
+  @override
+  User decode(String userJson) => User.fromJson(json.decode(userJson));
+
+  @override
+  String encode(User user) => json.encode(user.toJson());
 }

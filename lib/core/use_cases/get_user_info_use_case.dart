@@ -9,5 +9,6 @@ class GetUserInfoUseCase extends BaseVoidFutureUseCase<User> {
   GetUserInfoUseCase(this._sessionRepository);
 
   @override
-  Future<User> execute() async => (await _sessionRepository.getUserInfo())!;
+  Future<User> execute() async =>
+      (await _sessionRepository.getUserInfo().first)!;
 }

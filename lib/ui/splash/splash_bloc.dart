@@ -18,9 +18,7 @@ class SplashBloc extends Bloc<SplashBaseEvent, SplashBaseState> {
   late StreamSubscription<AuthenticationStatus>
       _authenticationStatusSubscription;
 
-  SplashBloc()
-      : super(SplashBaseState.state(
-            authenticationStatus: AuthenticationStatus.unknown)) {
+  SplashBloc() : super(SplashBaseState.state()) {
     on<SplashBaseEvent>((event, emitter) {
       emitter.call(
           state.copyWith(authenticationStatus: event.authenticationStatus));
