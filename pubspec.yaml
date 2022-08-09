@@ -21,18 +21,18 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  auto_route: 3.2.4
-  bloc: 8.0.3
-  cupertino_icons: 1.0.4
+  auto_route: 4.2.1
+  bloc: 8.1.0
+  cupertino_icons: 1.0.5
   dio: 4.0.6 # networking
   equatable: 2.0.3
   flutter_bloc: 8.0.1
   flutter_dotenv: 5.0.2
-  flutter_secure_storage: 5.0.2
-  freezed_annotation: 2.0.1
+  flutter_secure_storage: 5.1.0
+  freezed_annotation: 2.1.0
   get_it: 7.2.0
   intl: 0.17.0
-  json_annotation: 4.5.0
+  json_annotation: 4.6.0
   logger: 1.1.0
   meta:
 
@@ -40,11 +40,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  auto_route_generator: 3.2.3
-  build_runner: 2.1.10
-  flutter_lints: 1.0.4
-  freezed: 2.0.2
-  json_serializable: 6.2.0
+  auto_route_generator: 4.2.1
+  build_runner: 2.2.0
+  flutter_lints: 2.0.1
+  freezed: 2.1.0+1
+  json_serializable: 6.3.1
   pedantic: 1.11.1
 
 flutter:

@@ -86,31 +86,31 @@ class _$WelcomeBaseStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $WelcomeStateCopyWith<$Res>
+abstract class _$$WelcomeStateCopyWith<$Res>
     implements $WelcomeBaseStateCopyWith<$Res> {
-  factory $WelcomeStateCopyWith(
-          WelcomeState value, $Res Function(WelcomeState) then) =
-      _$WelcomeStateCopyWithImpl<$Res>;
+  factory _$$WelcomeStateCopyWith(
+          _$WelcomeState value, $Res Function(_$WelcomeState) then) =
+      __$$WelcomeStateCopyWithImpl<$Res>;
   @override
   $Res call({String? name});
 }
 
 /// @nodoc
-class _$WelcomeStateCopyWithImpl<$Res>
+class __$$WelcomeStateCopyWithImpl<$Res>
     extends _$WelcomeBaseStateCopyWithImpl<$Res>
-    implements $WelcomeStateCopyWith<$Res> {
-  _$WelcomeStateCopyWithImpl(
-      WelcomeState _value, $Res Function(WelcomeState) _then)
-      : super(_value, (v) => _then(v as WelcomeState));
+    implements _$$WelcomeStateCopyWith<$Res> {
+  __$$WelcomeStateCopyWithImpl(
+      _$WelcomeState _value, $Res Function(_$WelcomeState) _then)
+      : super(_value, (v) => _then(v as _$WelcomeState));
 
   @override
-  WelcomeState get _value => super._value as WelcomeState;
+  _$WelcomeState get _value => super._value as _$WelcomeState;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(WelcomeState(
+    return _then(_$WelcomeState(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ class _$WelcomeState implements WelcomeState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is WelcomeState &&
+            other is _$WelcomeState &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -146,8 +146,8 @@ class _$WelcomeState implements WelcomeState {
 
   @JsonKey(ignore: true)
   @override
-  $WelcomeStateCopyWith<WelcomeState> get copyWith =>
-      _$WelcomeStateCopyWithImpl<WelcomeState>(this, _$identity);
+  _$$WelcomeStateCopyWith<_$WelcomeState> get copyWith =>
+      __$$WelcomeStateCopyWithImpl<_$WelcomeState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -210,9 +210,9 @@ abstract class WelcomeState implements WelcomeBaseState {
   const factory WelcomeState({required final String? name}) = _$WelcomeState;
 
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
   @JsonKey(ignore: true)
-  $WelcomeStateCopyWith<WelcomeState> get copyWith =>
+  _$$WelcomeStateCopyWith<_$WelcomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
