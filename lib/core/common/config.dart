@@ -1,5 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_template/core/common/enum_helpers.dart';
+import 'package:flutter_template/core/common/helper/enum_helpers.dart';
 
 enum Environments {
   development,
