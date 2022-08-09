@@ -10,14 +10,18 @@ class UseCaseDiModule {
   static final UseCaseDiModule _instance =
       UseCaseDiModule._privateConstructor();
 
-  factory UseCaseDiModule() {
-    return _instance;
-  }
+  factory UseCaseDiModule() => _instance;
 
   void setupModule(GetIt locator) {
-    locator.registerFactory(() => GetUserInfoUseCase(locator.get()));
-    locator.registerFactory(() => SignInUseCase(locator.get()));
-    locator.registerFactory(() => SignOutUseCase(locator.get()));
-    locator.registerFactory(() => TrackAuthUseCase(locator.get()));
+    locator._setupModule();
+  }
+}
+
+extension _GetItUseCaseDiModuleExtensions on GetIt {
+  void _setupModule() {
+    registerFactory(() => GetUserInfoUseCase(get()));
+    registerFactory(() => SignInUseCase(get()));
+    registerFactory(() => SignOutUseCase(get()));
+    registerFactory(() => TrackAuthUseCase(get()));
   }
 }
