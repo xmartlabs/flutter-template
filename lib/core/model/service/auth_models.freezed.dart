@@ -21,8 +21,7 @@ SignInResponse _$SignInResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SignInResponse {
   String get token => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  User get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,9 @@ abstract class $SignInResponseCopyWith<$Res> {
   factory $SignInResponseCopyWith(
           SignInResponse value, $Res Function(SignInResponse) then) =
       _$SignInResponseCopyWithImpl<$Res>;
-  $Res call({String token, String name, String email});
+  $Res call({String token, User user});
+
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -50,23 +51,25 @@ class _$SignInResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? token = freezed,
-    Object? name = freezed,
-    Object? email = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
@@ -77,7 +80,10 @@ abstract class _$$_SignInResponseCopyWith<$Res>
           _$_SignInResponse value, $Res Function(_$_SignInResponse) then) =
       __$$_SignInResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String token, String name, String email});
+  $Res call({String token, User user});
+
+  @override
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -94,22 +100,17 @@ class __$$_SignInResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? token = freezed,
-    Object? name = freezed,
-    Object? email = freezed,
+    Object? user = freezed,
   }) {
     return _then(_$_SignInResponse(
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ));
   }
 }
@@ -118,8 +119,7 @@ class __$$_SignInResponseCopyWithImpl<$Res>
 
 @JsonSerializable()
 class _$_SignInResponse implements _SignInResponse {
-  _$_SignInResponse(
-      {required this.token, required this.name, required this.email});
+  _$_SignInResponse({required this.token, required this.user});
 
   factory _$_SignInResponse.fromJson(Map<String, dynamic> json) =>
       _$$_SignInResponseFromJson(json);
@@ -127,13 +127,11 @@ class _$_SignInResponse implements _SignInResponse {
   @override
   final String token;
   @override
-  final String name;
-  @override
-  final String email;
+  final User user;
 
   @override
   String toString() {
-    return 'SignInResponse(token: $token, name: $name, email: $email)';
+    return 'SignInResponse(token: $token, user: $user)';
   }
 
   @override
@@ -142,8 +140,7 @@ class _$_SignInResponse implements _SignInResponse {
         (other.runtimeType == runtimeType &&
             other is _$_SignInResponse &&
             const DeepCollectionEquality().equals(other.token, token) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.email, email));
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @JsonKey(ignore: true)
@@ -151,8 +148,7 @@ class _$_SignInResponse implements _SignInResponse {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(token),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(email));
+      const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override
@@ -170,8 +166,7 @@ class _$_SignInResponse implements _SignInResponse {
 abstract class _SignInResponse implements SignInResponse {
   factory _SignInResponse(
       {required final String token,
-      required final String name,
-      required final String email}) = _$_SignInResponse;
+      required final User user}) = _$_SignInResponse;
 
   factory _SignInResponse.fromJson(Map<String, dynamic> json) =
       _$_SignInResponse.fromJson;
@@ -179,9 +174,7 @@ abstract class _SignInResponse implements SignInResponse {
   @override
   String get token;
   @override
-  String get name;
-  @override
-  String get email;
+  User get user;
   @override
   @JsonKey(ignore: true)
   _$$_SignInResponseCopyWith<_$_SignInResponse> get copyWith =>

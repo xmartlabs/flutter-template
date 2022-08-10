@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$NetworkExceptions {
+mixin _$NetworkException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
@@ -129,20 +129,20 @@ mixin _$NetworkExceptions {
 }
 
 /// @nodoc
-abstract class $NetworkExceptionsCopyWith<$Res> {
-  factory $NetworkExceptionsCopyWith(
-          NetworkExceptions value, $Res Function(NetworkExceptions) then) =
-      _$NetworkExceptionsCopyWithImpl<$Res>;
+abstract class $NetworkExceptionCopyWith<$Res> {
+  factory $NetworkExceptionCopyWith(
+          NetworkException value, $Res Function(NetworkException) then) =
+      _$NetworkExceptionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NetworkExceptionsCopyWithImpl<$Res>
-    implements $NetworkExceptionsCopyWith<$Res> {
-  _$NetworkExceptionsCopyWithImpl(this._value, this._then);
+class _$NetworkExceptionCopyWithImpl<$Res>
+    implements $NetworkExceptionCopyWith<$Res> {
+  _$NetworkExceptionCopyWithImpl(this._value, this._then);
 
-  final NetworkExceptions _value;
+  final NetworkException _value;
   // ignore: unused_field
-  final $Res Function(NetworkExceptions) _then;
+  final $Res Function(NetworkException) _then;
 }
 
 /// @nodoc
@@ -154,7 +154,7 @@ abstract class _$$UnauthorizedRequestCopyWith<$Res> {
 
 /// @nodoc
 class __$$UnauthorizedRequestCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$UnauthorizedRequestCopyWith<$Res> {
   __$$UnauthorizedRequestCopyWithImpl(
       _$UnauthorizedRequest _value, $Res Function(_$UnauthorizedRequest) _then)
@@ -171,7 +171,7 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
 
   @override
   String toString() {
-    return 'NetworkExceptions.unauthorizedRequest()';
+    return 'NetworkException.unauthorizedRequest()';
   }
 
   @override
@@ -318,7 +318,7 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
   }
 }
 
-abstract class UnauthorizedRequest implements NetworkExceptions {
+abstract class UnauthorizedRequest implements NetworkException {
   const factory UnauthorizedRequest() = _$UnauthorizedRequest;
 }
 
@@ -331,7 +331,7 @@ abstract class _$$BadRequestCopyWith<$Res> {
 
 /// @nodoc
 class __$$BadRequestCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$BadRequestCopyWith<$Res> {
   __$$BadRequestCopyWithImpl(
       _$BadRequest _value, $Res Function(_$BadRequest) _then)
@@ -348,7 +348,7 @@ class _$BadRequest implements BadRequest {
 
   @override
   String toString() {
-    return 'NetworkExceptions.badRequest()';
+    return 'NetworkException.badRequest()';
   }
 
   @override
@@ -495,7 +495,7 @@ class _$BadRequest implements BadRequest {
   }
 }
 
-abstract class BadRequest implements NetworkExceptions {
+abstract class BadRequest implements NetworkException {
   const factory BadRequest() = _$BadRequest;
 }
 
@@ -509,7 +509,7 @@ abstract class _$$NotFoundCopyWith<$Res> {
 
 /// @nodoc
 class __$$NotFoundCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$NotFoundCopyWith<$Res> {
   __$$NotFoundCopyWithImpl(_$NotFound _value, $Res Function(_$NotFound) _then)
       : super(_value, (v) => _then(v as _$NotFound));
@@ -540,7 +540,7 @@ class _$NotFound implements NotFound {
 
   @override
   String toString() {
-    return 'NetworkExceptions.notFound(reason: $reason)';
+    return 'NetworkException.notFound(reason: $reason)';
   }
 
   @override
@@ -695,7 +695,7 @@ class _$NotFound implements NotFound {
   }
 }
 
-abstract class NotFound implements NetworkExceptions {
+abstract class NotFound implements NetworkException {
   const factory NotFound(final String reason) = _$NotFound;
 
   String get reason;
@@ -713,7 +713,7 @@ abstract class _$$MethodNotAllowedCopyWith<$Res> {
 
 /// @nodoc
 class __$$MethodNotAllowedCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$MethodNotAllowedCopyWith<$Res> {
   __$$MethodNotAllowedCopyWithImpl(
       _$MethodNotAllowed _value, $Res Function(_$MethodNotAllowed) _then)
@@ -730,7 +730,7 @@ class _$MethodNotAllowed implements MethodNotAllowed {
 
   @override
   String toString() {
-    return 'NetworkExceptions.methodNotAllowed()';
+    return 'NetworkException.methodNotAllowed()';
   }
 
   @override
@@ -877,7 +877,7 @@ class _$MethodNotAllowed implements MethodNotAllowed {
   }
 }
 
-abstract class MethodNotAllowed implements NetworkExceptions {
+abstract class MethodNotAllowed implements NetworkException {
   const factory MethodNotAllowed() = _$MethodNotAllowed;
 }
 
@@ -890,7 +890,7 @@ abstract class _$$NotAcceptableCopyWith<$Res> {
 
 /// @nodoc
 class __$$NotAcceptableCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$NotAcceptableCopyWith<$Res> {
   __$$NotAcceptableCopyWithImpl(
       _$NotAcceptable _value, $Res Function(_$NotAcceptable) _then)
@@ -907,7 +907,7 @@ class _$NotAcceptable implements NotAcceptable {
 
   @override
   String toString() {
-    return 'NetworkExceptions.notAcceptable()';
+    return 'NetworkException.notAcceptable()';
   }
 
   @override
@@ -1054,7 +1054,7 @@ class _$NotAcceptable implements NotAcceptable {
   }
 }
 
-abstract class NotAcceptable implements NetworkExceptions {
+abstract class NotAcceptable implements NetworkException {
   const factory NotAcceptable() = _$NotAcceptable;
 }
 
@@ -1067,7 +1067,7 @@ abstract class _$$ConflictCopyWith<$Res> {
 
 /// @nodoc
 class __$$ConflictCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$ConflictCopyWith<$Res> {
   __$$ConflictCopyWithImpl(_$Conflict _value, $Res Function(_$Conflict) _then)
       : super(_value, (v) => _then(v as _$Conflict));
@@ -1083,7 +1083,7 @@ class _$Conflict implements Conflict {
 
   @override
   String toString() {
-    return 'NetworkExceptions.conflict()';
+    return 'NetworkException.conflict()';
   }
 
   @override
@@ -1230,7 +1230,7 @@ class _$Conflict implements Conflict {
   }
 }
 
-abstract class Conflict implements NetworkExceptions {
+abstract class Conflict implements NetworkException {
   const factory Conflict() = _$Conflict;
 }
 
@@ -1243,7 +1243,7 @@ abstract class _$$InternalServerErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$InternalServerErrorCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$InternalServerErrorCopyWith<$Res> {
   __$$InternalServerErrorCopyWithImpl(
       _$InternalServerError _value, $Res Function(_$InternalServerError) _then)
@@ -1260,7 +1260,7 @@ class _$InternalServerError implements InternalServerError {
 
   @override
   String toString() {
-    return 'NetworkExceptions.internalServerError()';
+    return 'NetworkException.internalServerError()';
   }
 
   @override
@@ -1407,7 +1407,7 @@ class _$InternalServerError implements InternalServerError {
   }
 }
 
-abstract class InternalServerError implements NetworkExceptions {
+abstract class InternalServerError implements NetworkException {
   const factory InternalServerError() = _$InternalServerError;
 }
 
@@ -1420,7 +1420,7 @@ abstract class _$$NotImplementedCopyWith<$Res> {
 
 /// @nodoc
 class __$$NotImplementedCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$NotImplementedCopyWith<$Res> {
   __$$NotImplementedCopyWithImpl(
       _$NotImplemented _value, $Res Function(_$NotImplemented) _then)
@@ -1437,7 +1437,7 @@ class _$NotImplemented implements NotImplemented {
 
   @override
   String toString() {
-    return 'NetworkExceptions.notImplemented()';
+    return 'NetworkException.notImplemented()';
   }
 
   @override
@@ -1584,7 +1584,7 @@ class _$NotImplemented implements NotImplemented {
   }
 }
 
-abstract class NotImplemented implements NetworkExceptions {
+abstract class NotImplemented implements NetworkException {
   const factory NotImplemented() = _$NotImplemented;
 }
 
@@ -1597,7 +1597,7 @@ abstract class _$$ServiceUnavailableCopyWith<$Res> {
 
 /// @nodoc
 class __$$ServiceUnavailableCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$ServiceUnavailableCopyWith<$Res> {
   __$$ServiceUnavailableCopyWithImpl(
       _$ServiceUnavailable _value, $Res Function(_$ServiceUnavailable) _then)
@@ -1614,7 +1614,7 @@ class _$ServiceUnavailable implements ServiceUnavailable {
 
   @override
   String toString() {
-    return 'NetworkExceptions.serviceUnavailable()';
+    return 'NetworkException.serviceUnavailable()';
   }
 
   @override
@@ -1761,7 +1761,7 @@ class _$ServiceUnavailable implements ServiceUnavailable {
   }
 }
 
-abstract class ServiceUnavailable implements NetworkExceptions {
+abstract class ServiceUnavailable implements NetworkException {
   const factory ServiceUnavailable() = _$ServiceUnavailable;
 }
 
@@ -1774,7 +1774,7 @@ abstract class _$$NoInternetConnectionCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoInternetConnectionCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$NoInternetConnectionCopyWith<$Res> {
   __$$NoInternetConnectionCopyWithImpl(_$NoInternetConnection _value,
       $Res Function(_$NoInternetConnection) _then)
@@ -1791,7 +1791,7 @@ class _$NoInternetConnection implements NoInternetConnection {
 
   @override
   String toString() {
-    return 'NetworkExceptions.noInternetConnection()';
+    return 'NetworkException.noInternetConnection()';
   }
 
   @override
@@ -1938,7 +1938,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   }
 }
 
-abstract class NoInternetConnection implements NetworkExceptions {
+abstract class NoInternetConnection implements NetworkException {
   const factory NoInternetConnection() = _$NoInternetConnection;
 }
 
@@ -1951,7 +1951,7 @@ abstract class _$$FormatExceptionCopyWith<$Res> {
 
 /// @nodoc
 class __$$FormatExceptionCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$FormatExceptionCopyWith<$Res> {
   __$$FormatExceptionCopyWithImpl(
       _$FormatException _value, $Res Function(_$FormatException) _then)
@@ -1968,7 +1968,7 @@ class _$FormatException implements FormatException {
 
   @override
   String toString() {
-    return 'NetworkExceptions.formatException()';
+    return 'NetworkException.formatException()';
   }
 
   @override
@@ -2115,7 +2115,7 @@ class _$FormatException implements FormatException {
   }
 }
 
-abstract class FormatException implements NetworkExceptions {
+abstract class FormatException implements NetworkException {
   const factory FormatException() = _$FormatException;
 }
 
@@ -2128,7 +2128,7 @@ abstract class _$$UnableToProcessCopyWith<$Res> {
 
 /// @nodoc
 class __$$UnableToProcessCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$UnableToProcessCopyWith<$Res> {
   __$$UnableToProcessCopyWithImpl(
       _$UnableToProcess _value, $Res Function(_$UnableToProcess) _then)
@@ -2145,7 +2145,7 @@ class _$UnableToProcess implements UnableToProcess {
 
   @override
   String toString() {
-    return 'NetworkExceptions.unableToProcess()';
+    return 'NetworkException.unableToProcess()';
   }
 
   @override
@@ -2292,7 +2292,7 @@ class _$UnableToProcess implements UnableToProcess {
   }
 }
 
-abstract class UnableToProcess implements NetworkExceptions {
+abstract class UnableToProcess implements NetworkException {
   const factory UnableToProcess() = _$UnableToProcess;
 }
 
@@ -2306,7 +2306,7 @@ abstract class _$$DefaultErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$DefaultErrorCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$DefaultErrorCopyWith<$Res> {
   __$$DefaultErrorCopyWithImpl(
       _$DefaultError _value, $Res Function(_$DefaultError) _then)
@@ -2345,7 +2345,7 @@ class _$DefaultError implements DefaultError {
 
   @override
   String toString() {
-    return 'NetworkExceptions.defaultError(code: $code, error: $error)';
+    return 'NetworkException.defaultError(code: $code, error: $error)';
   }
 
   @override
@@ -2503,7 +2503,7 @@ class _$DefaultError implements DefaultError {
   }
 }
 
-abstract class DefaultError implements NetworkExceptions {
+abstract class DefaultError implements NetworkException {
   const factory DefaultError(final int? code, final String? error) =
       _$DefaultError;
 
@@ -2523,7 +2523,7 @@ abstract class _$$UnexpectedErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$UnexpectedErrorCopyWithImpl<$Res>
-    extends _$NetworkExceptionsCopyWithImpl<$Res>
+    extends _$NetworkExceptionCopyWithImpl<$Res>
     implements _$$UnexpectedErrorCopyWith<$Res> {
   __$$UnexpectedErrorCopyWithImpl(
       _$UnexpectedError _value, $Res Function(_$UnexpectedError) _then)
@@ -2540,7 +2540,7 @@ class _$UnexpectedError implements UnexpectedError {
 
   @override
   String toString() {
-    return 'NetworkExceptions.unexpectedError()';
+    return 'NetworkException.unexpectedError()';
   }
 
   @override
@@ -2687,6 +2687,6 @@ class _$UnexpectedError implements UnexpectedError {
   }
 }
 
-abstract class UnexpectedError implements NetworkExceptions {
+abstract class UnexpectedError implements NetworkException {
   const factory UnexpectedError() = _$UnexpectedError;
 }

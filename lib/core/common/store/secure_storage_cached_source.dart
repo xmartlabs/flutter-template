@@ -29,6 +29,8 @@ class SecuredStorageSourceOfTruth<T> implements SourceOfTruth<T> {
     writer = (value) async {
       _cachedValue = value;
       _streamController.add(value);
+      await secureStorage.write(
+          key: key, value: value == null ? null : serializer.encode(value));
     };
   }
 }
