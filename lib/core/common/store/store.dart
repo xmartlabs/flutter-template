@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:rxdart/transformers.dart';
 
 class Store<T> {
@@ -53,7 +54,9 @@ class StreamFetcher<T> extends Fetcher<T> {
 }
 
 class SourceOfTruth<T> {
+  @protected
   Stream<T?> Function() reader;
+  @protected
   Future<void> Function(T?) writer;
 
   SourceOfTruth({required this.reader, required this.writer});
@@ -70,13 +73,22 @@ class CachedSourceOfTruth<T> implements SourceOfTruth<T> {
   late Future<void> Function(T?) writer;
 
   CachedSourceOfTruth() {
-    reader = () async* {
-      yield _cachedValue;
-      yield* _streamController.stream;
-    };
-    writer = (value) async {
-      _cachedValue = value;
-      _streamController.add(value);
-    };
+    reader = generateReader;
+    writer = generateWriter;
+  }
+
+  @protected
+  void setCachedValue(T? t) => _cachedValue = t;
+
+  @protected
+  Stream<T?> generateReader() async* {
+    yield _cachedValue;
+    yield* _streamController.stream;
+  }
+
+  @protected
+  Future<void> generateWriter(T? value) async {
+    _cachedValue = value;
+    _streamController.add(value);
   }
 }
