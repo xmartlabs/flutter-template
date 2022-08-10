@@ -13,7 +13,8 @@ class ListResponse<T> with _$ListResponse<T> {
       T Function(Map<String, dynamic>) fromJsonModel) {
     final items = json['data'] as List<Map<String, dynamic>>;
     return ListResponse(
-        count: json['count'],
-        data: List<T>.from(items.map((itemsJson) => fromJsonModel(itemsJson))));
+      count: json['count'],
+      data: items.map(fromJsonModel).toList(),
+    );
   }
 }

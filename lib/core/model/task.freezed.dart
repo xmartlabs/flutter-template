@@ -20,7 +20,10 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Task {
-  bool get completed => throw _privateConstructorUsedError;
+  @JsonKey(name: '_id')
+  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'completed')
+  bool get isCompleted => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -32,7 +35,10 @@ mixin _$Task {
 abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res>;
-  $Res call({bool completed, String description});
+  $Res call(
+      {@JsonKey(name: '_id') String id,
+      @JsonKey(name: 'completed') bool isCompleted,
+      String description});
 }
 
 /// @nodoc
@@ -45,13 +51,18 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? completed = freezed,
+    Object? id = freezed,
+    Object? isCompleted = freezed,
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
-      completed: completed == freezed
-          ? _value.completed
-          : completed // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      isCompleted: isCompleted == freezed
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
       description: description == freezed
           ? _value.description
@@ -66,7 +77,10 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
   factory _$$_TaskCopyWith(_$_Task value, $Res Function(_$_Task) then) =
       __$$_TaskCopyWithImpl<$Res>;
   @override
-  $Res call({bool completed, String description});
+  $Res call(
+      {@JsonKey(name: '_id') String id,
+      @JsonKey(name: 'completed') bool isCompleted,
+      String description});
 }
 
 /// @nodoc
@@ -80,13 +94,18 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? completed = freezed,
+    Object? id = freezed,
+    Object? isCompleted = freezed,
     Object? description = freezed,
   }) {
     return _then(_$_Task(
-      completed: completed == freezed
-          ? _value.completed
-          : completed // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      isCompleted: isCompleted == freezed
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
       description: description == freezed
           ? _value.description
@@ -100,18 +119,25 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
 @JsonSerializable()
 class _$_Task implements _Task {
-  _$_Task({required this.completed, required this.description});
+  _$_Task(
+      {@JsonKey(name: '_id') required this.id,
+      @JsonKey(name: 'completed') required this.isCompleted,
+      required this.description});
 
   factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
 
   @override
-  final bool completed;
+  @JsonKey(name: '_id')
+  final String id;
+  @override
+  @JsonKey(name: 'completed')
+  final bool isCompleted;
   @override
   final String description;
 
   @override
   String toString() {
-    return 'Task(completed: $completed, description: $description)';
+    return 'Task(id: $id, isCompleted: $isCompleted, description: $description)';
   }
 
   @override
@@ -119,7 +145,9 @@ class _$_Task implements _Task {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Task &&
-            const DeepCollectionEquality().equals(other.completed, completed) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.isCompleted, isCompleted) &&
             const DeepCollectionEquality()
                 .equals(other.description, description));
   }
@@ -128,7 +156,8 @@ class _$_Task implements _Task {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(completed),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(isCompleted),
       const DeepCollectionEquality().hash(description));
 
   @JsonKey(ignore: true)
@@ -146,13 +175,18 @@ class _$_Task implements _Task {
 
 abstract class _Task implements Task {
   factory _Task(
-      {required final bool completed,
+      {@JsonKey(name: '_id') required final String id,
+      @JsonKey(name: 'completed') required final bool isCompleted,
       required final String description}) = _$_Task;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
 
   @override
-  bool get completed;
+  @JsonKey(name: '_id')
+  String get id;
+  @override
+  @JsonKey(name: 'completed')
+  bool get isCompleted;
   @override
   String get description;
   @override

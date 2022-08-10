@@ -26,6 +26,7 @@ dependencies:
   cupertino_icons: 1.0.5
   dio: 4.0.6 # networking
   equatable: 2.0.3
+  floor: 1.3.0
   flutter_bloc: 8.0.1
   flutter_dotenv: 5.0.2
   flutter_secure_storage: 5.1.0
@@ -43,6 +44,7 @@ dev_dependencies:
 
   auto_route_generator: 4.2.1
   build_runner: 2.2.0
+  floor_generator: 1.3.0
   flutter_lints: 2.0.1
   freezed: 2.1.0+1
   json_serializable: 6.3.1

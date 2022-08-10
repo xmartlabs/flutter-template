@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/transformers.dart';
@@ -54,9 +55,7 @@ class StreamFetcher<T> extends Fetcher<T> {
 }
 
 class SourceOfTruth<T> {
-  @protected
   Stream<T?> Function() reader;
-  @protected
   Future<void> Function(T?) writer;
 
   SourceOfTruth({required this.reader, required this.writer});
@@ -92,3 +91,5 @@ class CachedSourceOfTruth<T> implements SourceOfTruth<T> {
     _streamController.add(value);
   }
 }
+
+
