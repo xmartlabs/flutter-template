@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_template/core/common/extension/stream_future_extensions.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
-import 'package:flutter_template/core/use_cases/get_user_info_use_case.dart';
-import 'package:flutter_template/core/use_cases/sign_out_use_case.dart';
+import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'welcome_cubit.freezed.dart';
@@ -11,18 +11,17 @@ part 'welcome_cubit.freezed.dart';
 part 'welcome_state.dart';
 
 class WelcomeCubit extends Cubit<WelcomeBaseState> {
-  final GetUserInfoUseCase _getUserInfoUseCase = DiProvider.get();
-  final SignOutUseCase _signOutUseCase = DiProvider.get();
+  final SessionRepository _sessionRepository = DiProvider.get();
 
   WelcomeCubit() : super(WelcomeBaseState.state(name: '')) {
     unawaited(_setUserInfo());
   }
 
-  Future<void> logOut() => _signOutUseCase.executeAsResult();
+  Future<void> logOut() => _sessionRepository.logOut().mapToResult();
 
   Future<void> _setUserInfo() async {
     // TODO: Handle errors
-    final user = (await _getUserInfoUseCase.executeAsResult()).data;
+    final user = await _sessionRepository.getUserInfo().filterSuccess();
     if (user != null) {
       emit(state.copyWith(name: user.name));
     }
