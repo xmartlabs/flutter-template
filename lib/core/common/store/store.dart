@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/transformers.dart';
@@ -91,5 +90,3 @@ class CachedSourceOfTruth<T> implements SourceOfTruth<T> {
     _streamController.add(value);
   }
 }
-
-

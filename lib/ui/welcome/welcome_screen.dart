@@ -21,16 +21,40 @@ class _WelcomeContentScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text(AppLocalizations.of(context)!.logged_in),
           ),
-          body: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Stack(
               children: [
-                Text(AppLocalizations.of(context)!.user_message(state.name!),
-                    style: TextStyle(fontSize: 18)),
-                TextButton(
-                    onPressed: () => context.read<WelcomeCubit>().logOut(),
-                    child: Text(AppLocalizations.of(context)!.log_out,
-                        style: TextStyle(fontSize: 18)))
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                        AppLocalizations.of(context)!
+                            .user_message(state.userName ?? ''),
+                        style: TextStyle(fontSize: 18)),
+                    SizedBox(height: 15),
+                    Text(
+                      AppLocalizations.of(context)!.pending_tasks,
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    SizedBox(height: 10),
+                    ...state.tasks.map(
+                      (task) => Text(
+                        '- ${task.description}',
+                        style: TextStyle(fontSize: 13),
+                      ),
+                    ),
+                  ],
+                ),
+                Positioned(
+                    child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: TextButton(
+                      onPressed: () => context.read<WelcomeCubit>().logOut(),
+                      child: Text(AppLocalizations.of(context)!.log_out,
+                          style: TextStyle(fontSize: 18))),
+                ))
               ],
             ),
           ),

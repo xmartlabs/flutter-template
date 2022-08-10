@@ -1,5 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
+import 'package:flutter_template/core/repository/task_repository.dart';
 import 'package:flutter_template/core/source/auth_local_source.dart';
 import 'package:flutter_template/core/source/auth_remote_source.dart';
 import 'package:flutter_template/core/source/common/app_database.dart';
@@ -33,6 +34,7 @@ extension _GetItUseCaseDiModuleExtensions on GetIt {
 
   void _setupRepositories() {
     registerLazySingleton(() => SessionRepository(get(), get()));
+    registerLazySingleton(() => TaskRepository(get(), get()));
   }
 
   void _setupSources() {

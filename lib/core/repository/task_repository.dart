@@ -6,7 +6,10 @@ import 'package:flutter_template/core/source/task_local_source.dart';
 import 'package:flutter_template/core/source/task_remote_source.dart';
 
 class TaskRepository {
+  // ignore: unused_field
   final TaskLocalSource _taskLocalSource;
+
+  // ignore: unused_field
   final TaskRemoteSource _taskRemoteSource;
 
   final Store<List<Task>> _store;

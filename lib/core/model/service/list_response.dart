@@ -11,7 +11,8 @@ class ListResponse<T> with _$ListResponse<T> {
 
   factory ListResponse.fromJson(Map<String, dynamic> json,
       T Function(Map<String, dynamic>) fromJsonModel) {
-    final items = json['data'] as List<Map<String, dynamic>>;
+    // ignore: omit_local_variable_types
+    List<Map<String, dynamic>> items = (json['data'] as List).cast();
     return ListResponse(
       count: json['count'],
       data: items.map(fromJsonModel).toList(),

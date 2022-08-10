@@ -4,9 +4,9 @@ import 'package:flutter_template/core/model/task.dart';
 import 'package:flutter_template/core/source/common/http_service.dart';
 
 class TaskRemoteSource {
-  final HttpServiceDio _httpService;
+  static const _urlGetTasks = 'task';
 
-  static const _urlGetTasks = 'user/login';
+  final HttpServiceDio _httpService;
 
   TaskRemoteSource(this._httpService);
 

@@ -7,6 +7,7 @@
   "logged_in": "Logged in",
   "log_out" : "Log out",
   "user_message" : "Hi {name}",
+  "pending_tasks" : "Pending tasks:",
 
   "@error": {
           "description": "Gives the user an error explanation",

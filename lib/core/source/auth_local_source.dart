@@ -9,16 +9,15 @@ class AuthLocalSource {
   static const _storageAuthPrefix = 'AuthLocalSource';
   static const _keyToken = '$_storageAuthPrefix.token';
   static const _keyUser = '$_storageAuthPrefix.user';
-  final FlutterSecureStorage _storage;
 
   final SourceOfTruth<String> _userTokenStorage;
   final SourceOfTruth<User> _userStorage;
 
-  AuthLocalSource(this._storage)
-      : _userTokenStorage = SecuredStorageSourceOfTruth(
-            _keyToken, _storage, StringSerializer()),
+  AuthLocalSource(FlutterSecureStorage storage)
+      : _userTokenStorage =
+            SecuredStorageSourceOfTruth(_keyToken, storage, StringSerializer()),
         _userStorage =
-            SecuredStorageSourceOfTruth(_keyUser, _storage, UserSerializer());
+            SecuredStorageSourceOfTruth(_keyUser, storage, UserSerializer());
 
   Stream<String?> getUserToken() => _userTokenStorage.reader();
 
