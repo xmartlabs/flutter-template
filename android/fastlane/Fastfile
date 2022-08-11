@@ -1,0 +1,68 @@
+import "../../fastlane/Fastfile"
+
+default_platform(:android)
+platform :android do
+  desc "Build app"
+  lane :build_apk do |options|
+    env = options[:env]
+    flutter_command(command: "build apk --flavor #{env} --dart-define=ENV=#{env}")
+  end
+
+  lane :build_appbundle do |options|
+    env = options[:env]
+    flutter_command(command: "build appbundle --flavor #{env} --dart-define=ENV=#{env} --release")
+  end
+
+  desc "Build dev debug app"
+  lane :build_dev_debug_apk do |options|
+    flutter_command(command: "build apk --flavor dev --dart-define=ENV=dev --debug")
+  end
+
+  desc "Assemble prod apk release version"
+  lane :build_prod do
+    build_apk(env: "prod")
+  end
+
+  desc "Assemble dev apk release version"
+  lane :build_dev do
+    build_apk(env: "dev")
+  end
+
+  desc "Submit a new Beta Build to Firebase app distribution"
+  private_lane :deploy_firebase_app_distribution do |options|
+    env = options[:env]
+    firebase_app_id = options[:firebase_app_id]
+    ENV["VERSION_NAME_SUFFIX"] = "-#{last_git_commit[:abbreviated_commit_hash]}"
+    clean
+    build_apk(env: env)
+    firebase_app_distribution(
+      app: firebase_app_id,
+      service_credentials_file: ENV["FIREBASE_SERVICE_ACCOUNT_FILE"],
+      testers: ENV["FIREBASE_TESTERS"],
+      groups: ENV["FIREBASE_TESTER_GROUPS"],
+      release_notes: generate_snapshot_changelog,
+      apk_path: "../build/app/outputs/flutter-apk/app-#{env}-release.apk",
+    )
+  end
+
+  desc "Deploy a new dev version to the Firebase App Distribution"
+  lane :deploy_firebase_dev do
+    deploy_firebase_app_distribution(env: 'dev', firebase_app_id: ENV["FIREBASE_APP_ID_DEV"])
+  end
+
+  desc "Deploy a new prod version to the Firebase App Distribution"
+  lane :deploy_firebase_prod do
+    deploy_firebase_app_distribution(env: 'prod', firebase_app_id: ENV["FIREBASE_APP_ID_PROD"])
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy_prod do
+    build_appbundle(env: 'prod')
+    upload_to_play_store(
+      track: 'internal',
+      json_key: ENV['GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE'],
+      json_key_data: ENV['GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_CONTENT'],
+      aab_paths: ["#{root_path}/build/app/outputs/bundle/prodRelease/app-prod-release.aab"],
+    )
+  end
+end

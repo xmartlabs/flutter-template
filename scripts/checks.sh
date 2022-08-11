@@ -14,4 +14,4 @@ echo ':: Run tests ::'
 fvm flutter test || { echo -e "${RED}Test error" ; exit 1; }
 
 echo ':: Build flutter android ::'
-fvm flutter build apk --flavor development || { echo -e "${RED}Android building error" ; exit 1; }
+fvm flutter build apk --flavor dev --debug || { echo -e "${RED}Android building error" ; exit 1; }
