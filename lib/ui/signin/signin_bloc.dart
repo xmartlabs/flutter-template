@@ -17,6 +17,8 @@ part 'signin_state.dart';
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final SessionRepository _sessionRepository = DiProvider.get();
 
+  // TODO: use it
+  // ignore: unused_field
   final GeneralErrorHandler _errorHandler;
 
   SignInBloc(this._errorHandler)
