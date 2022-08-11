@@ -6,15 +6,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/model/authentication_status.dart';
 import 'package:flutter_template/ui/app_router.dart';
-import 'package:flutter_template/ui/splash/splash_bloc.dart';
+import 'package:flutter_template/ui/resources.dart';
+import 'package:flutter_template/ui/splash/main_cubit.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class MainScreen extends StatelessWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => SplashBloc(),
+      create: (_) => MainCubit(),
       child: _SplashContentScreen(),
     );
   }
@@ -25,7 +26,7 @@ class _SplashContentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      BlocBuilder<SplashBloc, SplashBaseState>(builder: (context, state) {
+      BlocBuilder<MainCubit, MainBaseState>(builder: (context, state) {
         return MaterialApp.router(
           routerDelegate: AutoRouterDelegate.declarative(
             router,
@@ -40,10 +41,14 @@ class _SplashContentScreen extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
+          builder: (context, child) {
+            Resources.setup(context);
+            return child!;
+          },
         );
       });
 
-  List<PageRouteInfo<dynamic>> provideRoutes(SplashBaseState state) {
+  List<PageRouteInfo<dynamic>> provideRoutes(MainBaseState state) {
     switch (state.authenticationStatus) {
       case AuthenticationStatus.unknown:
         return [];

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/core/common/config.dart';
 import 'package:flutter_template/core/common/logger.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
-import 'package:flutter_template/ui/splash/splash_screen.dart';
+import 'package:flutter_template/ui/splash/main_screen.dart';
 
 Future main() async {
   await runZonedGuarded(() async {
@@ -34,7 +34,5 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return SplashScreen();
-  }
+  Widget build(BuildContext context) => MainScreen();
 }

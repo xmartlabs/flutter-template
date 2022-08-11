@@ -5,6 +5,7 @@ import 'package:flutter_template/core/common/extension/stream_future_extensions.
 import 'package:flutter_template/core/common/helper/future_helpers.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
+import 'package:flutter_template/ui/section/error_handler/error_handler_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'signin_bloc.freezed.dart';
@@ -16,7 +17,9 @@ part 'signin_state.dart';
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final SessionRepository _sessionRepository = DiProvider.get();
 
-  SignInBloc()
+  final GeneralErrorHandler _errorHandler;
+
+  SignInBloc(this._errorHandler)
       : super(const SignInState(
             email: 'testuser@xmartlabs.com', password: 'password', error: '')) {
     on<SignInEvent>(eventHandler);

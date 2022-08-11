@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/ui/section/section_router.dart';
 import 'package:flutter_template/ui/signin/signin_screen.dart';
 import 'package:flutter_template/ui/welcome/welcome_screen.dart';
 
@@ -10,7 +11,7 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AutoRoute(
       name: 'UnauthenticatedRouter',
-      page: EmptyRouterPage,
+      page: SectionRouter,
       initial: true,
       children: [
         AutoRoute(
@@ -22,7 +23,7 @@ part 'app_router.gr.dart';
     ),
     AutoRoute(
       name: 'AuthenticatedRouter',
-      page: EmptyRouterPage,
+      page: SectionRouter,
       children: [
         AutoRoute(
           path: AppRouter.WELCOME_PATH,
