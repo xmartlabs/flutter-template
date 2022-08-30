@@ -6,7 +6,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: '>=2.17.0 <3.0.0'
   flutter: 3.0.3
 
 # Dependencies specify other packages that your package needs in order to work.
@@ -36,6 +36,7 @@ dependencies:
   logger: 1.1.0
   meta:
   rxdart: 0.27.5
+  arb_utils: ^0.2.0
 
 dev_dependencies:
   flutter_test:
