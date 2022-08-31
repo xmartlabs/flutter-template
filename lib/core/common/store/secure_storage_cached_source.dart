@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:stock/stock.dart';
 
 class SecuredStorageSourceOfTruth extends CachedSourceOfTruth<String, String> {
-  FlutterSecureStorage _secureStorage;
+  final FlutterSecureStorage _secureStorage;
 
   SecuredStorageSourceOfTruth(this._secureStorage);
 

@@ -16,21 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$WelcomeBaseState {
-  String? get userName => throw _privateConstructorUsedError;
-  List<Task> get tasks => throw _privateConstructorUsedError;
+  List<Project> get projects => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? userName, List<Task> tasks) state,
+    required TResult Function(List<Project> projects) state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? userName, List<Task> tasks)? state,
+    TResult Function(List<Project> projects)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? userName, List<Task> tasks)? state,
+    TResult Function(List<Project> projects)? state,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +60,7 @@ abstract class $WelcomeBaseStateCopyWith<$Res> {
   factory $WelcomeBaseStateCopyWith(
           WelcomeBaseState value, $Res Function(WelcomeBaseState) then) =
       _$WelcomeBaseStateCopyWithImpl<$Res>;
-  $Res call({String? userName, List<Task> tasks});
+  $Res call({List<Project> projects});
 }
 
 /// @nodoc
@@ -75,18 +74,13 @@ class _$WelcomeBaseStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userName = freezed,
-    Object? tasks = freezed,
+    Object? projects = freezed,
   }) {
     return _then(_value.copyWith(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      tasks: tasks == freezed
-          ? _value.tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<Task>,
+      projects: projects == freezed
+          ? _value.projects
+          : projects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
     ));
   }
 }
@@ -98,7 +92,7 @@ abstract class _$$WelcomeStateCopyWith<$Res>
           _$WelcomeState value, $Res Function(_$WelcomeState) then) =
       __$$WelcomeStateCopyWithImpl<$Res>;
   @override
-  $Res call({String? userName, List<Task> tasks});
+  $Res call({List<Project> projects});
 }
 
 /// @nodoc
@@ -114,18 +108,13 @@ class __$$WelcomeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userName = freezed,
-    Object? tasks = freezed,
+    Object? projects = freezed,
   }) {
     return _then(_$WelcomeState(
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      tasks: tasks == freezed
-          ? _value._tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<Task>,
+      projects: projects == freezed
+          ? _value._projects
+          : projects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
     ));
   }
 }
@@ -133,24 +122,20 @@ class __$$WelcomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$WelcomeState implements WelcomeState {
-  const _$WelcomeState(
-      {this.userName = null, final List<Task> tasks = const []})
-      : _tasks = tasks;
+  const _$WelcomeState({final List<Project> projects = const []})
+      : _projects = projects;
 
+  final List<Project> _projects;
   @override
   @JsonKey()
-  final String? userName;
-  final List<Task> _tasks;
-  @override
-  @JsonKey()
-  List<Task> get tasks {
+  List<Project> get projects {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tasks);
+    return EqualUnmodifiableListView(_projects);
   }
 
   @override
   String toString() {
-    return 'WelcomeBaseState.state(userName: $userName, tasks: $tasks)';
+    return 'WelcomeBaseState.state(projects: $projects)';
   }
 
   @override
@@ -158,15 +143,12 @@ class _$WelcomeState implements WelcomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WelcomeState &&
-            const DeepCollectionEquality().equals(other.userName, userName) &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks));
+            const DeepCollectionEquality().equals(other._projects, _projects));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userName),
-      const DeepCollectionEquality().hash(_tasks));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_projects));
 
   @JsonKey(ignore: true)
   @override
@@ -176,27 +158,27 @@ class _$WelcomeState implements WelcomeState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? userName, List<Task> tasks) state,
+    required TResult Function(List<Project> projects) state,
   }) {
-    return state(userName, tasks);
+    return state(projects);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? userName, List<Task> tasks)? state,
+    TResult Function(List<Project> projects)? state,
   }) {
-    return state?.call(userName, tasks);
+    return state?.call(projects);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? userName, List<Task> tasks)? state,
+    TResult Function(List<Project> projects)? state,
     required TResult orElse(),
   }) {
     if (state != null) {
-      return state(userName, tasks);
+      return state(projects);
     }
     return orElse();
   }
@@ -231,13 +213,10 @@ class _$WelcomeState implements WelcomeState {
 }
 
 abstract class WelcomeState implements WelcomeBaseState {
-  const factory WelcomeState({final String? userName, final List<Task> tasks}) =
-      _$WelcomeState;
+  const factory WelcomeState({final List<Project> projects}) = _$WelcomeState;
 
   @override
-  String? get userName;
-  @override
-  List<Task> get tasks;
+  List<Project> get projects;
   @override
   @JsonKey(ignore: true)
   _$$WelcomeStateCopyWith<_$WelcomeState> get copyWith =>

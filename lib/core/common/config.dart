@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_template/core/common/extension/string_extensions.dart';
 import 'package:flutter_template/core/common/helper/enum_helpers.dart';
 import 'package:flutter_template/core/common/helper/env_helper.dart';
@@ -28,9 +27,6 @@ extension EnviromentPath on Environments {
 }
 
 abstract class Config {
-  static final _envDotEnv = DotEnv();
-  final _defaultDotEnv = DotEnv();
-
   static late String apiBaseUrl;
   static late String supabaseApiKey;
 
@@ -47,11 +43,6 @@ abstract class Config {
     apiBaseUrl = _EnvConfig.getEnvVariable(_EnvConfig.ENV_KEY_API_BASE_URL)!;
     supabaseApiKey =
         _EnvConfig.getEnvVariable(_EnvConfig.ENV_KEY_SUPABASE_API_KEY)!;
-  }
-
-  static Future<void> _setupEnv() async {
-    _EnvConfig.getEnvVariable(_EnvConfig.ENV_KEY_API_BASE_URL);
-    await _envDotEnv.load(fileName: Assets.environments.env);
   }
 }
 
@@ -70,7 +61,6 @@ abstract class _EnvConfig {
       _EnvConfig.systemEnv[key].ifNullOrBlank(() => _envFileEnv[key]);
 
   static Future<void> _setupEnv(Environments env) async {
-    final a = '${env.path}.env';
     _envFileEnv
       ..addAll(await loadEnvs(Assets.environments.env))
       ..addAll(await loadEnvs('${env.path}.env'))

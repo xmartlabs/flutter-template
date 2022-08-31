@@ -3,21 +3,19 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_template/core/common/extension/stream_future_extensions.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
-import 'package:flutter_template/core/model/task.dart';
+import 'package:flutter_template/core/model/project.dart';
+import 'package:flutter_template/core/repository/project_repository.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
-import 'package:flutter_template/core/repository/task_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'welcome_cubit.freezed.dart';
-
 part 'welcome_state.dart';
 
 class WelcomeCubit extends Cubit<WelcomeBaseState> {
   final SessionRepository _sessionRepository = DiProvider.get();
-  final TaskRepository _taskRepository = DiProvider.get();
+  final ProjectRepository _projectRepository = DiProvider.get();
 
-  StreamSubscription? _userSubscription;
-  StreamSubscription? _tasksSubscription;
+  StreamSubscription? _projectsSubscription;
 
   WelcomeCubit() : super(WelcomeBaseState.state()) {
     _initStreams();
@@ -25,20 +23,15 @@ class WelcomeCubit extends Cubit<WelcomeBaseState> {
 
   void _initStreams() {
     // TODO: Handle errors
-    _userSubscription = _sessionRepository
-        .getUserInfo()
+    _projectsSubscription = _projectRepository
+        .getProjects()
         .filterSuccess()
-        .listen((user) => emit(state.copyWith(userName: user?.name)));
-    _tasksSubscription = _taskRepository
-        .getTasks()
-        .filterSuccess()
-        .listen((tasks) => emit(state.copyWith(tasks: tasks ?? [])));
+        .listen((projects) => emit(state.copyWith(projects: projects ?? [])));
   }
 
   @override
   Future<void> close() async {
-    await _userSubscription?.cancel();
-    await _tasksSubscription?.cancel();
+    await _projectsSubscription?.cancel();
     await super.close();
   }
 
