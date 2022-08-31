@@ -6,8 +6,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/model/authentication_status.dart';
 import 'package:flutter_template/ui/app_router.dart';
+import 'package:flutter_template/ui/main/main_cubit.dart';
 import 'package:flutter_template/ui/resources.dart';
-import 'package:flutter_template/ui/splash/main_cubit.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
