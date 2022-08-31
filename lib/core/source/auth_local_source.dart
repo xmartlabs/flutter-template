@@ -2,36 +2,37 @@ import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/core/common/store/secure_storage_cached_source.dart';
-import 'package:flutter_template/core/common/store/store.dart';
 import 'package:flutter_template/core/model/user.dart';
+import 'package:stock/stock.dart';
 
 class AuthLocalSource {
   static const _storageAuthPrefix = 'AuthLocalSource';
   static const _keyToken = '$_storageAuthPrefix.token';
   static const _keyUser = '$_storageAuthPrefix.user';
 
-  final SourceOfTruth<String> _userTokenStorage;
-  final SourceOfTruth<User> _userStorage;
+  late SourceOfTruth<String, String> _userTokenStorage;
+  late SourceOfTruth<String, User> _userStorage;
 
-  AuthLocalSource(FlutterSecureStorage storage)
-      : _userTokenStorage =
-            SecuredStorageSourceOfTruth(_keyToken, storage, StringSerializer()),
-        _userStorage =
-            SecuredStorageSourceOfTruth(_keyUser, storage, UserSerializer());
+  AuthLocalSource(FlutterSecureStorage storage) {
+    final secureStorage = SecuredStorageSourceOfTruth(storage);
+    _userTokenStorage = secureStorage;
+    _userStorage = secureStorage.mapToUsingMapper(UserStockTypeMapper());
+  }
 
-  Stream<String?> getUserToken() => _userTokenStorage.reader();
+  Stream<String?> getUserToken() => _userTokenStorage.reader(_keyToken);
 
-  Stream<User?> getUser() => _userStorage.reader();
+  Stream<User?> getUser() => _userStorage.reader(_keyUser);
 
-  Future<void> saveUserToken(String? token) => _userTokenStorage.writer(token);
+  Future<void> saveUserToken(String? token) =>
+      _userTokenStorage.write(_keyToken, token);
 
-  Future<void> saveUserInfo(User? user) => _userStorage.writer(user);
+  Future<void> saveUserInfo(User? user) => _userStorage.write(_keyUser, user);
 }
 
-class UserSerializer extends Serializer<User> {
+class UserStockTypeMapper extends StockTypeMapper<String, User> {
   @override
-  User decode(String userJson) => User.fromJson(json.decode(userJson));
+  User fromInput(String userJson) => User.fromJson(json.decode(userJson));
 
   @override
-  String encode(User user) => json.encode(user.toJson());
+  String fromOutput(User user) => json.encode(user.toJson());
 }

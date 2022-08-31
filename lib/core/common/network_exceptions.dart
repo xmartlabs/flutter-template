@@ -7,7 +7,8 @@ part 'network_exceptions.freezed.dart';
 
 @freezed
 class NetworkException extends Object with _$NetworkException {
-  const factory NetworkException.unauthorizedRequest() = UnauthorizedRequest;
+  const factory NetworkException.unauthorizedRequest(body) =
+      UnauthorizedRequest;
 
   const factory NetworkException.badRequest() = BadRequest;
 
@@ -41,7 +42,7 @@ class NetworkException extends Object with _$NetworkException {
       case 400:
       case 401:
       case 403:
-        return const NetworkException.unauthorizedRequest();
+        return NetworkException.unauthorizedRequest(body);
       case 404:
         return const NetworkException.notFound('Not found');
       case 409:
@@ -115,8 +116,8 @@ class NetworkException extends Object with _$NetworkException {
       errorMessage = 'Method Allowed';
     }, badRequest: () {
       errorMessage = 'Bad request';
-    }, unauthorizedRequest: () {
-      errorMessage = 'Unauthorized request';
+    }, unauthorizedRequest: (body) {
+      errorMessage = 'Unauthorized request - $body';
     }, unexpectedError: () {
       errorMessage = 'Unexpected error occurred';
     }, noInternetConnection: () {

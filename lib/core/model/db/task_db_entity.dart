@@ -3,7 +3,7 @@ import 'package:floor/floor.dart';
 @Entity(tableName: 'tasks')
 class TaskDbEntity {
   @primaryKey
-  final String id;
+  final int id;
   final String description;
   final bool isCompleted;
 

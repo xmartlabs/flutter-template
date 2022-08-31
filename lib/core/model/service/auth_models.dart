@@ -9,7 +9,7 @@ part 'auth_models.g.dart';
 class SignInResponse with _$SignInResponse {
   @JsonSerializable()
   factory SignInResponse({
-    required String token,
+    required String accessToken,
     required User user,
   }) = _SignInResponse;
 

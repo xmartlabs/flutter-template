@@ -1,46 +1,25 @@
 import 'dart:async';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_template/core/common/store/store.dart';
 import 'package:meta/meta.dart';
+import 'package:stock/stock.dart';
 
-class SecuredStorageSourceOfTruth<T> extends CachedSourceOfTruth<T> {
-  FlutterSecureStorage secureStorage;
+class SecuredStorageSourceOfTruth extends CachedSourceOfTruth<String, String> {
+  FlutterSecureStorage _secureStorage;
 
-  final String key;
-  final Serializer<T> serializer;
-
-  SecuredStorageSourceOfTruth(this.key, this.secureStorage, this.serializer);
+  SecuredStorageSourceOfTruth(this._secureStorage);
 
   @override
-  @protected
-  Stream<T?> generateReader() async* {
-    final stringValue = await secureStorage.read(key: key);
-    setCachedValue(stringValue == null ? null : serializer.decode(stringValue));
-    yield* super.generateReader();
+  Stream<String?> reader(String key) async* {
+    final stringValue = await _secureStorage.read(key: key);
+    setCachedValue(key, stringValue);
+    yield* super.reader(key);
   }
 
   @override
   @protected
-  Future<void> generateWriter(T? value) async {
-    await super.generateWriter(value);
-    await secureStorage.write(
-      key: key,
-      value: value == null ? null : serializer.encode(value),
-    );
+  Future<void> write(String key, String? value) async {
+    await super.write(key, value);
+    await _secureStorage.write(key: key, value: value);
   }
-}
-
-abstract class Serializer<T> {
-  String encode(T t);
-
-  T decode(String value);
-}
-
-class StringSerializer<T> implements Serializer<String> {
-  @override
-  String encode(String t) => t;
-
-  @override
-  String decode(String value) => value;
 }

@@ -21,7 +21,7 @@ class SessionRepository {
   Future<void> signInUser(
       {required String email, required String password}) async {
     final response = await _authRemoteSource.signIn(email, password);
-    await _authLocalSource.saveUserToken(response.token);
+    await _authLocalSource.saveUserToken(response.accessToken);
     await _authLocalSource.saveUserInfo(response.user);
   }
 

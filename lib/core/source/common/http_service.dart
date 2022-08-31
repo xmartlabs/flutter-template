@@ -49,7 +49,11 @@ class HttpServiceDio implements HttpService {
   late Dio _dio;
 
   HttpServiceDio(List<Interceptor> interceptors) {
-    final options = BaseOptions(baseUrl: Config.apiBaseUrl);
+    final options = BaseOptions(
+      baseUrl: Config.apiBaseUrl,
+      // TODO: Remove api key. It's only needed for Supabase
+      headers: {'apikey': Config.supabaseApiKey},
+    );
     _dio = Dio(options);
     _dio.interceptors.addAll(interceptors);
   }

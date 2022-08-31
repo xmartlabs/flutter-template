@@ -8,13 +8,13 @@ part of 'auth_models.dart';
 
 _$_SignInResponse _$$_SignInResponseFromJson(Map<String, dynamic> json) =>
     _$_SignInResponse(
-      token: json['token'] as String,
+      accessToken: json['access_token'] as String,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_SignInResponseToJson(_$_SignInResponse instance) =>
     <String, dynamic>{
-      'token': instance.token,
+      'access_token': instance.accessToken,
       'user': instance.user.toJson(),
     };
 

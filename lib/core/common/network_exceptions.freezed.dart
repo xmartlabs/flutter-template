@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NetworkException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -36,7 +36,7 @@ mixin _$NetworkException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -54,7 +54,7 @@ mixin _$NetworkException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -150,6 +150,7 @@ abstract class _$$UnauthorizedRequestCopyWith<$Res> {
   factory _$$UnauthorizedRequestCopyWith(_$UnauthorizedRequest value,
           $Res Function(_$UnauthorizedRequest) then) =
       __$$UnauthorizedRequestCopyWithImpl<$Res>;
+  $Res call({dynamic body});
 }
 
 /// @nodoc
@@ -162,31 +163,52 @@ class __$$UnauthorizedRequestCopyWithImpl<$Res>
 
   @override
   _$UnauthorizedRequest get _value => super._value as _$UnauthorizedRequest;
+
+  @override
+  $Res call({
+    Object? body = freezed,
+  }) {
+    return _then(_$UnauthorizedRequest(
+      body == freezed ? _value.body : body,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$UnauthorizedRequest implements UnauthorizedRequest {
-  const _$UnauthorizedRequest();
+  const _$UnauthorizedRequest(this.body);
+
+  @override
+  final dynamic body;
 
   @override
   String toString() {
-    return 'NetworkException.unauthorizedRequest()';
+    return 'NetworkException.unauthorizedRequest(body: $body)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UnauthorizedRequest);
+        (other.runtimeType == runtimeType &&
+            other is _$UnauthorizedRequest &&
+            const DeepCollectionEquality().equals(other.body, body));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(body));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$UnauthorizedRequestCopyWith<_$UnauthorizedRequest> get copyWith =>
+      __$$UnauthorizedRequestCopyWithImpl<_$UnauthorizedRequest>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -201,13 +223,13 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
     required TResult Function(int? code, String? error) defaultError,
     required TResult Function() unexpectedError,
   }) {
-    return unauthorizedRequest();
+    return unauthorizedRequest(body);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -222,13 +244,13 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
     TResult Function(int? code, String? error)? defaultError,
     TResult Function()? unexpectedError,
   }) {
-    return unauthorizedRequest?.call();
+    return unauthorizedRequest?.call(body);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -245,7 +267,7 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
     required TResult orElse(),
   }) {
     if (unauthorizedRequest != null) {
-      return unauthorizedRequest();
+      return unauthorizedRequest(body);
     }
     return orElse();
   }
@@ -319,7 +341,12 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
 }
 
 abstract class UnauthorizedRequest implements NetworkException {
-  const factory UnauthorizedRequest() = _$UnauthorizedRequest;
+  const factory UnauthorizedRequest(final dynamic body) = _$UnauthorizedRequest;
+
+  dynamic get body;
+  @JsonKey(ignore: true)
+  _$$UnauthorizedRequestCopyWith<_$UnauthorizedRequest> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -363,7 +390,7 @@ class _$BadRequest implements BadRequest {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -384,7 +411,7 @@ class _$BadRequest implements BadRequest {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -405,7 +432,7 @@ class _$BadRequest implements BadRequest {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -563,7 +590,7 @@ class _$NotFound implements NotFound {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -584,7 +611,7 @@ class _$NotFound implements NotFound {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -605,7 +632,7 @@ class _$NotFound implements NotFound {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -745,7 +772,7 @@ class _$MethodNotAllowed implements MethodNotAllowed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -766,7 +793,7 @@ class _$MethodNotAllowed implements MethodNotAllowed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -787,7 +814,7 @@ class _$MethodNotAllowed implements MethodNotAllowed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -922,7 +949,7 @@ class _$NotAcceptable implements NotAcceptable {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -943,7 +970,7 @@ class _$NotAcceptable implements NotAcceptable {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -964,7 +991,7 @@ class _$NotAcceptable implements NotAcceptable {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1098,7 +1125,7 @@ class _$Conflict implements Conflict {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -1119,7 +1146,7 @@ class _$Conflict implements Conflict {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1140,7 +1167,7 @@ class _$Conflict implements Conflict {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1275,7 +1302,7 @@ class _$InternalServerError implements InternalServerError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -1296,7 +1323,7 @@ class _$InternalServerError implements InternalServerError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1317,7 +1344,7 @@ class _$InternalServerError implements InternalServerError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1452,7 +1479,7 @@ class _$NotImplemented implements NotImplemented {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -1473,7 +1500,7 @@ class _$NotImplemented implements NotImplemented {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1494,7 +1521,7 @@ class _$NotImplemented implements NotImplemented {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1629,7 +1656,7 @@ class _$ServiceUnavailable implements ServiceUnavailable {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -1650,7 +1677,7 @@ class _$ServiceUnavailable implements ServiceUnavailable {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1671,7 +1698,7 @@ class _$ServiceUnavailable implements ServiceUnavailable {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1806,7 +1833,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -1827,7 +1854,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1848,7 +1875,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -1983,7 +2010,7 @@ class _$FormatException implements FormatException {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -2004,7 +2031,7 @@ class _$FormatException implements FormatException {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2025,7 +2052,7 @@ class _$FormatException implements FormatException {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2160,7 +2187,7 @@ class _$UnableToProcess implements UnableToProcess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -2181,7 +2208,7 @@ class _$UnableToProcess implements UnableToProcess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2202,7 +2229,7 @@ class _$UnableToProcess implements UnableToProcess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2371,7 +2398,7 @@ class _$DefaultError implements DefaultError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -2392,7 +2419,7 @@ class _$DefaultError implements DefaultError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2413,7 +2440,7 @@ class _$DefaultError implements DefaultError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2555,7 +2582,7 @@ class _$UnexpectedError implements UnexpectedError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() unauthorizedRequest,
+    required TResult Function(dynamic body) unauthorizedRequest,
     required TResult Function() badRequest,
     required TResult Function(String reason) notFound,
     required TResult Function() methodNotAllowed,
@@ -2576,7 +2603,7 @@ class _$UnexpectedError implements UnexpectedError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,
@@ -2597,7 +2624,7 @@ class _$UnexpectedError implements UnexpectedError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unauthorizedRequest,
+    TResult Function(dynamic body)? unauthorizedRequest,
     TResult Function()? badRequest,
     TResult Function(String reason)? notFound,
     TResult Function()? methodNotAllowed,

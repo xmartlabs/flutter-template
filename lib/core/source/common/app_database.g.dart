@@ -82,7 +82,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `tasks` (`id` TEXT NOT NULL, `description` TEXT NOT NULL, `isCompleted` INTEGER NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `tasks` (`id` INTEGER NOT NULL, `description` TEXT NOT NULL, `isCompleted` INTEGER NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -122,7 +122,7 @@ class _$TaskLocalSource extends TaskLocalSource {
   Stream<List<TaskDbEntity>> getTasks() {
     return _queryAdapter.queryListStream('SELECT * FROM tasks',
         mapper: (Map<String, Object?> row) => TaskDbEntity(
-            id: row['id'] as String,
+            id: row['id'] as int,
             description: row['description'] as String,
             isCompleted: (row['isCompleted'] as int) != 0),
         queryableName: 'tasks',

@@ -20,8 +20,7 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Task {
-  @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'completed')
   bool get isCompleted => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -36,7 +35,7 @@ abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: '_id') String id,
+      {int id,
       @JsonKey(name: 'completed') bool isCompleted,
       String description});
 }
@@ -59,7 +58,7 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       isCompleted: isCompleted == freezed
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
@@ -78,7 +77,7 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       __$$_TaskCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: '_id') String id,
+      {int id,
       @JsonKey(name: 'completed') bool isCompleted,
       String description});
 }
@@ -102,7 +101,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       isCompleted: isCompleted == freezed
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
@@ -120,15 +119,14 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Task implements _Task {
   _$_Task(
-      {@JsonKey(name: '_id') required this.id,
+      {required this.id,
       @JsonKey(name: 'completed') required this.isCompleted,
       required this.description});
 
   factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
 
   @override
-  @JsonKey(name: '_id')
-  final String id;
+  final int id;
   @override
   @JsonKey(name: 'completed')
   final bool isCompleted;
@@ -175,15 +173,14 @@ class _$_Task implements _Task {
 
 abstract class _Task implements Task {
   factory _Task(
-      {@JsonKey(name: '_id') required final String id,
+      {required final int id,
       @JsonKey(name: 'completed') required final bool isCompleted,
       required final String description}) = _$_Task;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
 
   @override
-  @JsonKey(name: '_id')
-  String get id;
+  int get id;
   @override
   @JsonKey(name: 'completed')
   bool get isCompleted;

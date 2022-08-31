@@ -8,7 +8,7 @@ part 'task.g.dart';
 class Task with _$Task {
   @JsonSerializable()
   factory Task({
-    @JsonKey(name: '_id') required String id,
+    required int id,
     @JsonKey(name: 'completed') required bool isCompleted,
     required String description,
   }) = _Task;

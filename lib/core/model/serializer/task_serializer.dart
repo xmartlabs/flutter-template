@@ -1,32 +1,32 @@
 import 'package:flutter_template/core/model/db/task_db_entity.dart';
-import 'package:flutter_template/core/model/serializer/entity_serializer.dart';
 import 'package:flutter_template/core/model/task.dart';
+import 'package:stock/stock.dart';
 
-class TaskSerializer extends SimpleEntitySerializer<Task, TaskDbEntity> {
+class TaskStockTypeMapper extends StockTypeMapper<TaskDbEntity, Task> {
   @override
-  TaskDbEntity commonToDatabaseModel(Task commonModel) => TaskDbEntity(
+  TaskDbEntity fromOutput(Task commonModel) => TaskDbEntity(
         id: commonModel.id,
         description: commonModel.description,
         isCompleted: commonModel.isCompleted,
       );
 
   @override
-  Task databaseToCommonModel(TaskDbEntity serviceModel) => Task(
+  Task fromInput(TaskDbEntity serviceModel) => Task(
         id: serviceModel.id,
         description: serviceModel.description,
         isCompleted: serviceModel.isCompleted,
       );
 }
 
-class TaskListSerializer
-    extends SimpleEntitySerializer<List<Task>, List<TaskDbEntity>> {
-  final _taskSerializer = TaskSerializer();
+class TaskListStockTypeMapper
+    extends StockTypeMapper<List<TaskDbEntity>, List<Task>> {
+  final _taskSerializer = TaskStockTypeMapper();
 
   @override
-  List<TaskDbEntity> commonToDatabaseModel(List<Task> commonModel) =>
-      commonModel.map(_taskSerializer.commonToDatabaseModel).toList();
+  List<Task> fromInput(List<TaskDbEntity> databaseModel) =>
+      databaseModel.map(_taskSerializer.fromInput).toList();
 
   @override
-  List<Task> databaseToCommonModel(List<TaskDbEntity> databaseModel) =>
-      databaseModel.map(_taskSerializer.databaseToCommonModel).toList();
+  List<TaskDbEntity> fromOutput(List<Task> commonModel) =>
+      commonModel.map(_taskSerializer.fromOutput).toList();
 }
