@@ -16,7 +16,8 @@ class ProjectRepository {
 
   ProjectRepository(this._projectLocalSource, this._projectRemoteSource)
       : _store = Stock(
-            fetcher: Fetcher.ofFuture((_) => _projectRemoteSource.getProjects()),
+            fetcher:
+                Fetcher.ofFuture((_) => _projectRemoteSource.getProjects()),
             sourceOfTruth: SourceOfTruth<dynamic, List<ProjectDbEntity>>(
               reader: (_) => _projectLocalSource.getProjects(),
               writer: (_, value) async {

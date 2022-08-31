@@ -2,8 +2,7 @@ import 'package:flutter_template/core/model/db/repository_db_entity.dart';
 import 'package:flutter_template/core/model/project.dart';
 import 'package:stock/stock.dart';
 
-class ProjectStockTypeMapper
-    extends StockTypeMapper<ProjectDbEntity, Project> {
+class ProjectStockTypeMapper extends StockTypeMapper<ProjectDbEntity, Project> {
   @override
   ProjectDbEntity fromOutput(Project commonModel) => ProjectDbEntity(
         id: commonModel.id,
