@@ -16,21 +16,21 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainBaseState {
-  AuthenticationStatus get authenticationStatus =>
+  AuthenticationStatus? get authenticationStatus =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus authenticationStatus) state,
+    required TResult Function(AuthenticationStatus? authenticationStatus) state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus)? state,
+    TResult Function(AuthenticationStatus? authenticationStatus)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus)? state,
+    TResult Function(AuthenticationStatus? authenticationStatus)? state,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ abstract class $MainBaseStateCopyWith<$Res> {
   factory $MainBaseStateCopyWith(
           MainBaseState value, $Res Function(MainBaseState) then) =
       _$MainBaseStateCopyWithImpl<$Res>;
-  $Res call({AuthenticationStatus authenticationStatus});
+  $Res call({AuthenticationStatus? authenticationStatus});
 }
 
 /// @nodoc
@@ -81,7 +81,7 @@ class _$MainBaseStateCopyWithImpl<$Res>
       authenticationStatus: authenticationStatus == freezed
           ? _value.authenticationStatus
           : authenticationStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
+              as AuthenticationStatus?,
     ));
   }
 }
@@ -93,7 +93,7 @@ abstract class _$$_MainStateCopyWith<$Res>
           _$_MainState value, $Res Function(_$_MainState) then) =
       __$$_MainStateCopyWithImpl<$Res>;
   @override
-  $Res call({AuthenticationStatus authenticationStatus});
+  $Res call({AuthenticationStatus? authenticationStatus});
 }
 
 /// @nodoc
@@ -114,7 +114,7 @@ class __$$_MainStateCopyWithImpl<$Res> extends _$MainBaseStateCopyWithImpl<$Res>
       authenticationStatus: authenticationStatus == freezed
           ? _value.authenticationStatus
           : authenticationStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
+              as AuthenticationStatus?,
     ));
   }
 }
@@ -122,10 +122,11 @@ class __$$_MainStateCopyWithImpl<$Res> extends _$MainBaseStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MainState implements _MainState {
-  const _$_MainState({required this.authenticationStatus});
+  const _$_MainState({this.authenticationStatus = null});
 
   @override
-  final AuthenticationStatus authenticationStatus;
+  @JsonKey()
+  final AuthenticationStatus? authenticationStatus;
 
   @override
   String toString() {
@@ -153,7 +154,7 @@ class _$_MainState implements _MainState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus authenticationStatus) state,
+    required TResult Function(AuthenticationStatus? authenticationStatus) state,
   }) {
     return state(authenticationStatus);
   }
@@ -161,7 +162,7 @@ class _$_MainState implements _MainState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus)? state,
+    TResult Function(AuthenticationStatus? authenticationStatus)? state,
   }) {
     return state?.call(authenticationStatus);
   }
@@ -169,7 +170,7 @@ class _$_MainState implements _MainState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus)? state,
+    TResult Function(AuthenticationStatus? authenticationStatus)? state,
     required TResult orElse(),
   }) {
     if (state != null) {
@@ -208,12 +209,11 @@ class _$_MainState implements _MainState {
 }
 
 abstract class _MainState implements MainBaseState {
-  const factory _MainState(
-          {required final AuthenticationStatus authenticationStatus}) =
+  const factory _MainState({final AuthenticationStatus? authenticationStatus}) =
       _$_MainState;
 
   @override
-  AuthenticationStatus get authenticationStatus;
+  AuthenticationStatus? get authenticationStatus;
   @override
   @JsonKey(ignore: true)
   _$$_MainStateCopyWith<_$_MainState> get copyWith =>
