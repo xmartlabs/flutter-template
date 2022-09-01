@@ -28,12 +28,19 @@ jobs:
       - name: Install FVM && Flutter
         run: dart pub global activate fvm --verbose && fvm install --verbose && fvm use --force --verbose
       - name: Get dependencies
-        run: fvm flutter pub get
-      - name: Check code format
-        run: fvm flutter format --set-exit-if-changed .
-      - name: Run linter
-        run: fvm flutter analyze .
-      - name: Run tests
-        run: fvm flutter test
-      - name: Generate android APK
-        run: fvm flutter build apk --flavor staging
+        uses: maierj/fastlane-action@v2.2.0
+        with:
+          lane: 'fetch_dependencies'
+      - name: 'Run lints'
+        uses: maierj/fastlane-action@v2.2.0
+        with:
+          lane: 'lints'
+      - name: 'Run tests'
+        uses: maierj/fastlane-action@v2.2.0
+        with:
+          lane: 'tests'
+      - name: 'Build android app'
+        uses: maierj/fastlane-action@v2.2.0
+        with:
+          lane: 'android build_dev_debug_apk'
+          subdirectory: 'android'

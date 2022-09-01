@@ -52,12 +52,12 @@ class _SplashContentScreen extends StatelessWidget {
 
   List<PageRouteInfo<dynamic>> provideRoutes(MainBaseState state) {
     switch (state.authenticationStatus) {
-      case AuthenticationStatus.unknown:
-        return [];
       case AuthenticationStatus.authenticated:
         return [AuthenticatedRouter()];
       case AuthenticationStatus.unauthenticated:
         return [UnauthenticatedRouter()];
+      case null:
+        return [];
     }
   }
 }

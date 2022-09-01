@@ -4,9 +4,8 @@
   "password" : "Password",
   "error" : "Error: {text}",
 
-  "logged_in": "Logged in",
   "log_out" : "Log out",
-  "user_message" : "Hi {name}",
+  "xmartlabs_projects" : "Xmartlabs' projects",
   "error_unknown_error_title" : "Ops!",
   "error_unknown_error_description" : "Something went wrong!",
   "error_no_internet_connection_error_title" : "Error",
