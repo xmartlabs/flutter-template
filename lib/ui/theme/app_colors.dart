@@ -5,6 +5,8 @@ import 'package:material_color_generator/material_color_generator.dart';
 @immutable
 class AppColors extends ColorScheme {
   @override
+  final Color onPrimary;
+  @override
   final MaterialColor primary;
   @override
   final MaterialColor surface;
@@ -12,7 +14,7 @@ class AppColors extends ColorScheme {
   AppColors({
     required Brightness brightness,
     required this.primary,
-    required Color onPrimary,
+    required this.onPrimary,
     required Color secondary,
     required Color onSecondary,
     required Color error,
@@ -38,7 +40,7 @@ class AppColors extends ColorScheme {
   static AppColors getColorScheme() => AppColors(
         brightness: Brightness.light,
         primary: generateMaterialColor(color: Color(0xffee1a64)),
-        onPrimary: Colors.black,
+        onPrimary: Colors.white,
         secondary: generateMaterialColor(color: Color(0xffffd81d)),
         onSecondary: Colors.black,
         error: generateMaterialColor(color: Color(0xffF4642C)),
