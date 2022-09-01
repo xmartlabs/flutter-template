@@ -95,6 +95,8 @@ flavorizr:
     - ios:buildTargets
     - ios:schema
     - ios:plist
+
+# Run command: flutter pub run flutter_launcher_icons:main
 flutter_icons:
   android: true
   ios: true
