@@ -6,65 +6,66 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'network_exceptions.freezed.dart';
 
 @freezed
-class NetworkExceptions extends Object with _$NetworkExceptions {
-  const factory NetworkExceptions.unauthorizedRequest() = UnauthorizedRequest;
+class NetworkException extends Object with _$NetworkException {
+  const factory NetworkException.unauthorizedRequest(body) =
+      UnauthorizedRequest;
 
-  const factory NetworkExceptions.badRequest() = BadRequest;
+  const factory NetworkException.badRequest() = BadRequest;
 
-  const factory NetworkExceptions.notFound(String reason) = NotFound;
+  const factory NetworkException.notFound(String reason) = NotFound;
 
-  const factory NetworkExceptions.methodNotAllowed() = MethodNotAllowed;
+  const factory NetworkException.methodNotAllowed() = MethodNotAllowed;
 
-  const factory NetworkExceptions.notAcceptable() = NotAcceptable;
+  const factory NetworkException.notAcceptable() = NotAcceptable;
 
-  const factory NetworkExceptions.conflict() = Conflict;
+  const factory NetworkException.conflict() = Conflict;
 
-  const factory NetworkExceptions.internalServerError() = InternalServerError;
+  const factory NetworkException.internalServerError() = InternalServerError;
 
-  const factory NetworkExceptions.notImplemented() = NotImplemented;
+  const factory NetworkException.notImplemented() = NotImplemented;
 
-  const factory NetworkExceptions.serviceUnavailable() = ServiceUnavailable;
+  const factory NetworkException.serviceUnavailable() = ServiceUnavailable;
 
-  const factory NetworkExceptions.noInternetConnection() = NoInternetConnection;
+  const factory NetworkException.noInternetConnection() = NoInternetConnection;
 
-  const factory NetworkExceptions.formatException() = FormatException;
+  const factory NetworkException.formatException() = FormatException;
 
-  const factory NetworkExceptions.unableToProcess() = UnableToProcess;
+  const factory NetworkException.unableToProcess() = UnableToProcess;
 
-  const factory NetworkExceptions.defaultError(int? code, String? error) =
+  const factory NetworkException.defaultError(int? code, String? error) =
       DefaultError;
 
-  const factory NetworkExceptions.unexpectedError() = UnexpectedError;
+  const factory NetworkException.unexpectedError() = UnexpectedError;
 
-  static NetworkExceptions handleResponse(int? statusCode, dynamic body) {
+  static NetworkException handleResponse(int? statusCode, dynamic body) {
     switch (statusCode) {
       case 400:
       case 401:
       case 403:
-        return const NetworkExceptions.unauthorizedRequest();
+        return NetworkException.unauthorizedRequest(body);
       case 404:
-        return const NetworkExceptions.notFound('Not found');
+        return const NetworkException.notFound('Not found');
       case 409:
-        return const NetworkExceptions.conflict();
+        return const NetworkException.conflict();
       case 408:
-        return const NetworkExceptions.noInternetConnection();
+        return const NetworkException.noInternetConnection();
       case 500:
-        return const NetworkExceptions.internalServerError();
+        return const NetworkException.internalServerError();
       case 503:
-        return const NetworkExceptions.serviceUnavailable();
+        return const NetworkException.serviceUnavailable();
       default:
         var responseCode = statusCode;
-        return NetworkExceptions.defaultError(
+        return NetworkException.defaultError(
           responseCode,
           'Received invalid status code. body: $body',
         );
     }
   }
 
-  static NetworkExceptions getDioException(error) {
+  static NetworkException getDioException(error) {
     if (error is Exception) {
       try {
-        NetworkExceptions networkExceptions;
+        NetworkException networkExceptions;
         if (error is DioError) {
           switch (error.type) {
             case DioErrorType.cancel:
@@ -72,36 +73,36 @@ class NetworkExceptions extends Object with _$NetworkExceptions {
             case DioErrorType.other:
             case DioErrorType.receiveTimeout:
             case DioErrorType.sendTimeout:
-              networkExceptions = NetworkExceptions.noInternetConnection();
+              networkExceptions = NetworkException.noInternetConnection();
               break;
             case DioErrorType.response:
-              networkExceptions = NetworkExceptions.handleResponse(
+              networkExceptions = NetworkException.handleResponse(
                 error.response?.statusCode,
                 error.response?.data,
               );
               break;
           }
         } else if (error is SocketException) {
-          networkExceptions = const NetworkExceptions.noInternetConnection();
+          networkExceptions = const NetworkException.noInternetConnection();
         } else {
-          networkExceptions = const NetworkExceptions.unexpectedError();
+          networkExceptions = const NetworkException.unexpectedError();
         }
         return networkExceptions;
       } on FormatException catch (_) {
-        return const NetworkExceptions.formatException();
+        return const NetworkException.formatException();
       } catch (_) {
-        return const NetworkExceptions.unexpectedError();
+        return const NetworkException.unexpectedError();
       }
     } else {
       if (error.toString().contains('is not a subtype of')) {
-        return const NetworkExceptions.unableToProcess();
+        return const NetworkException.unableToProcess();
       } else {
-        return const NetworkExceptions.unexpectedError();
+        return const NetworkException.unexpectedError();
       }
     }
   }
 
-  static String getErrorMessage(NetworkExceptions networkExceptions) {
+  static String getErrorMessage(NetworkException networkExceptions) {
     var errorMessage = '';
     networkExceptions.when(notImplemented: () {
       errorMessage = 'Not Implemented';
@@ -115,8 +116,8 @@ class NetworkExceptions extends Object with _$NetworkExceptions {
       errorMessage = 'Method Allowed';
     }, badRequest: () {
       errorMessage = 'Bad request';
-    }, unauthorizedRequest: () {
-      errorMessage = 'Unauthorized request';
+    }, unauthorizedRequest: (body) {
+      errorMessage = 'Unauthorized request - $body';
     }, unexpectedError: () {
       errorMessage = 'Unexpected error occurred';
     }, noInternetConnection: () {

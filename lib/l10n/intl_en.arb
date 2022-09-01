@@ -4,9 +4,8 @@
   "password" : "Password",
   "error" : "Error: {text}",
 
-  "logged_in": "Logged in",
   "log_out" : "Log out",
-  "user_message" : "Hi {name}",
+  "xmartlabs_projects" : "Xmartlabs' projects",
 
   "@error": {
           "description": "Gives the user an error explanation",

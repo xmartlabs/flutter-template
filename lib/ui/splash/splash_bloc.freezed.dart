@@ -225,21 +225,21 @@ abstract class SplashEvent implements SplashBaseEvent {
 
 /// @nodoc
 mixin _$SplashBaseState {
-  AuthenticationStatus get authenticationStatus =>
+  AuthenticationStatus? get authenticationStatus =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus authenticationStatus) state,
+    required TResult Function(AuthenticationStatus? authenticationStatus) state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus)? state,
+    TResult Function(AuthenticationStatus? authenticationStatus)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus)? state,
+    TResult Function(AuthenticationStatus? authenticationStatus)? state,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -270,7 +270,7 @@ abstract class $SplashBaseStateCopyWith<$Res> {
   factory $SplashBaseStateCopyWith(
           SplashBaseState value, $Res Function(SplashBaseState) then) =
       _$SplashBaseStateCopyWithImpl<$Res>;
-  $Res call({AuthenticationStatus authenticationStatus});
+  $Res call({AuthenticationStatus? authenticationStatus});
 }
 
 /// @nodoc
@@ -290,7 +290,7 @@ class _$SplashBaseStateCopyWithImpl<$Res>
       authenticationStatus: authenticationStatus == freezed
           ? _value.authenticationStatus
           : authenticationStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
+              as AuthenticationStatus?,
     ));
   }
 }
@@ -302,7 +302,7 @@ abstract class _$$SplashStateCopyWith<$Res>
           _$SplashState value, $Res Function(_$SplashState) then) =
       __$$SplashStateCopyWithImpl<$Res>;
   @override
-  $Res call({AuthenticationStatus authenticationStatus});
+  $Res call({AuthenticationStatus? authenticationStatus});
 }
 
 /// @nodoc
@@ -324,7 +324,7 @@ class __$$SplashStateCopyWithImpl<$Res>
       authenticationStatus: authenticationStatus == freezed
           ? _value.authenticationStatus
           : authenticationStatus // ignore: cast_nullable_to_non_nullable
-              as AuthenticationStatus,
+              as AuthenticationStatus?,
     ));
   }
 }
@@ -332,10 +332,11 @@ class __$$SplashStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SplashState implements SplashState {
-  const _$SplashState({required this.authenticationStatus});
+  const _$SplashState({this.authenticationStatus = null});
 
   @override
-  final AuthenticationStatus authenticationStatus;
+  @JsonKey()
+  final AuthenticationStatus? authenticationStatus;
 
   @override
   String toString() {
@@ -363,7 +364,7 @@ class _$SplashState implements SplashState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(AuthenticationStatus authenticationStatus) state,
+    required TResult Function(AuthenticationStatus? authenticationStatus) state,
   }) {
     return state(authenticationStatus);
   }
@@ -371,7 +372,7 @@ class _$SplashState implements SplashState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus)? state,
+    TResult Function(AuthenticationStatus? authenticationStatus)? state,
   }) {
     return state?.call(authenticationStatus);
   }
@@ -379,7 +380,7 @@ class _$SplashState implements SplashState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AuthenticationStatus authenticationStatus)? state,
+    TResult Function(AuthenticationStatus? authenticationStatus)? state,
     required TResult orElse(),
   }) {
     if (state != null) {
@@ -419,11 +420,10 @@ class _$SplashState implements SplashState {
 
 abstract class SplashState implements SplashBaseState {
   const factory SplashState(
-          {required final AuthenticationStatus authenticationStatus}) =
-      _$SplashState;
+      {final AuthenticationStatus? authenticationStatus}) = _$SplashState;
 
   @override
-  AuthenticationStatus get authenticationStatus;
+  AuthenticationStatus? get authenticationStatus;
   @override
   @JsonKey(ignore: true)
   _$$SplashStateCopyWith<_$SplashState> get copyWith =>

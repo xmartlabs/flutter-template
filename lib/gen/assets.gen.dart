@@ -12,6 +12,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsEnvironmentsGen {
   const $AssetsEnvironmentsGen();
 
+  /// File path: assets/environments/.env
+  String get env => 'assets/environments/.env';
+
   /// File path: assets/environments/development.env
   String get development => 'assets/environments/development.env';
 }

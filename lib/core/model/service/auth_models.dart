@@ -1,3 +1,4 @@
+import 'package:flutter_template/core/model/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_models.freezed.dart';
@@ -8,9 +9,8 @@ part 'auth_models.g.dart';
 class SignInResponse with _$SignInResponse {
   @JsonSerializable()
   factory SignInResponse({
-    required String token,
-    required String name,
-    required String email,
+    required String accessToken,
+    required User user,
   }) = _SignInResponse;
 
   factory SignInResponse.fromJson(Map<String, dynamic> json) =>

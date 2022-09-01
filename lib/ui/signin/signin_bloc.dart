@@ -18,7 +18,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   SignInBloc()
       : super(const SignInState(
-            email: 'testuser@xmartlabs.com', password: 'password', error: '')) {
+            email: 'hi@xmartlabs.com', password: 'xmartlabs', error: '')) {
     on<SignInEvent>(eventHandler);
   }
 
