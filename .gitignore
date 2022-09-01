@@ -50,3 +50,9 @@ app.*.map.json
 
 # Fvm
 .fvm/flutter_sdk
+
+# fastlane specific
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output

@@ -19,11 +19,11 @@ class _$AppRouter extends RootStackRouter {
   final Map<String, PageFactory> pagesMap = {
     UnauthenticatedRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const EmptyRouterPage());
+          routeData: routeData, child: SectionRouter());
     },
     AuthenticatedRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const EmptyRouterPage());
+          routeData: routeData, child: SectionRouter());
     },
     SignInScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -47,7 +47,7 @@ class _$AppRouter extends RootStackRouter {
               path: 'signin', parent: UnauthenticatedRouter.name)
         ]),
         RouteConfig(AuthenticatedRouter.name,
-            path: '/empty-router-page',
+            path: '/section-router',
             children: [
               RouteConfig('#redirect',
                   path: '',
@@ -61,7 +61,7 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [EmptyRouterPage]
+/// [SectionRouter]
 class UnauthenticatedRouter extends PageRouteInfo<void> {
   const UnauthenticatedRouter({List<PageRouteInfo>? children})
       : super(UnauthenticatedRouter.name, path: '/', initialChildren: children);
@@ -70,11 +70,11 @@ class UnauthenticatedRouter extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [EmptyRouterPage]
+/// [SectionRouter]
 class AuthenticatedRouter extends PageRouteInfo<void> {
   const AuthenticatedRouter({List<PageRouteInfo>? children})
       : super(AuthenticatedRouter.name,
-            path: '/empty-router-page', initialChildren: children);
+            path: '/section-router', initialChildren: children);
 
   static const String name = 'AuthenticatedRouter';
 }

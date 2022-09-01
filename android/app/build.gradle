@@ -1,3 +1,5 @@
+apply from: rootProject.file('read_properties.gradle')
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -49,17 +51,24 @@ android {
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        release {
+            storeFile getEnvVariable('KEYSTORE_FILE') == null ? null : file(getEnvVariable('KEYSTORE_FILE'))
+            storePassword getEnvVariable('KEYSTORE_PASSWORD')
+            keyAlias getEnvVariable('KEYSTORE_KEY_ALIAS')
+            keyPassword getEnvVariable('KEYSTORE_KEY_PASSWORD')
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 
     flavorDimensions "app"
     productFlavors {
-        development {
+        dev {
             dimension "app"
             resValue "string", "app_name", "Template dev"
             versionNameSuffix ".dev"

@@ -11,6 +11,4 @@ fvm flutter format --set-exit-if-changed . || {
 }
 
 echo ':: Run linter ::'
-fvm flutter analyze . || { 
-  echo -e "${RED}Linter error" ; exit 1; 
-}
+fvm flutter analyze . || { echo -e "${RED}Linter error" ; exit 1; }
