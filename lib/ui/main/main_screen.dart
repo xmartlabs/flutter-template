@@ -8,6 +8,7 @@ import 'package:flutter_template/core/model/authentication_status.dart';
 import 'package:flutter_template/ui/app_router.dart';
 import 'package:flutter_template/ui/main/main_cubit.dart';
 import 'package:flutter_template/ui/resources.dart';
+import 'package:flutter_template/ui/theme/app_theme.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -28,6 +29,7 @@ class _SplashContentScreen extends StatelessWidget {
   Widget build(BuildContext context) =>
       BlocBuilder<MainCubit, MainBaseState>(builder: (context, state) {
         return MaterialApp.router(
+          theme: AppTheme.provideAppTheme(context),
           routerDelegate: AutoRouterDelegate.declarative(
             router,
             routes: (_) => provideRoutes(state),
