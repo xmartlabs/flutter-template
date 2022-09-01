@@ -49,7 +49,11 @@ class HttpServiceDio implements HttpService {
   late Dio _dio;
 
   HttpServiceDio(List<Interceptor> interceptors) {
-    final options = BaseOptions(baseUrl: Config.apiBaseUrl);
+    final options = BaseOptions(
+      baseUrl: Config.apiBaseUrl,
+      // TODO: Remove api key. It's only needed for Supabase
+      headers: {'apikey': Config.supabaseApiKey},
+    );
     _dio = Dio(options);
     _dio.interceptors.addAll(interceptors);
   }
@@ -121,8 +125,7 @@ class HttpServiceDio implements HttpService {
 
   Future<Response> _processNetworkCall(
           Future<Response> Function() call) async =>
-      await call()
-          .catchError((e) => throw NetworkExceptions.getDioException(e));
+      await call().catchError((e) => throw NetworkException.getDioException(e));
 }
 
 extension HttpServiceCommon on HttpService {
@@ -132,7 +135,7 @@ extension HttpServiceCommon on HttpService {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-    required T Function(Map<String, dynamic> json) serializer,
+    required T Function(dynamic json) serializer,
   }) async {
     final response = await get(
       uri,
@@ -141,7 +144,7 @@ extension HttpServiceCommon on HttpService {
       cancelToken: cancelToken,
       onReceiveProgress: onReceiveProgress,
     );
-    return ServiceResponse<T>.fromResponse(response, serializer);
+    return response.processServiceResponse(serializer);
   }
 
   Future<ServiceResponse<T>> postAndProcessResponse<T>(
@@ -152,7 +155,7 @@ extension HttpServiceCommon on HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-    required T Function(Map<String, dynamic> json) serializer,
+    required T Function(dynamic json) serializer,
   }) async {
     final response = await post(
       uri,
@@ -163,7 +166,7 @@ extension HttpServiceCommon on HttpService {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
-    return ServiceResponse<T>.fromResponse(response, serializer);
+    return response.processServiceResponse(serializer);
   }
 
   Future<ServiceResponse<T>> putAndProcessResponse<T>(
@@ -174,7 +177,7 @@ extension HttpServiceCommon on HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-    required T Function(Map<String, dynamic> json) serializer,
+    required T Function(dynamic json) serializer,
   }) async {
     final response = await put(
       uri,
@@ -185,7 +188,7 @@ extension HttpServiceCommon on HttpService {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
-    return ServiceResponse<T>.fromResponse(response, serializer);
+    return response.processServiceResponse(serializer);
   }
 
   Future<ServiceResponse<T>> deleteAndProcessResponse<T>(
@@ -196,7 +199,7 @@ extension HttpServiceCommon on HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-    required T Function(Map<String, dynamic> json) serializer,
+    required T Function(dynamic json) serializer,
   }) async {
     final response = await delete(
       uri,
@@ -207,6 +210,20 @@ extension HttpServiceCommon on HttpService {
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
-    return ServiceResponse<T>.fromResponse(response, serializer);
+    return response.processServiceResponse(serializer);
+  }
+}
+
+extension ResponseExtensions<T> on Response<T> {
+  bool get isSuccess => statusCode == 200;
+
+  ServiceResponse<R> processServiceResponse<R>(
+      R Function(dynamic json) serializer) {
+    if (isSuccess) {
+      return ServiceResponse<R>.data(serializer(data));
+    }
+    return ServiceResponse<R>.error(
+      NetworkException.handleResponse(statusCode, data),
+    );
   }
 }

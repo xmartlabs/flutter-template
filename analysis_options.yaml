@@ -22,7 +22,6 @@ linter:
     - unnecessary_this
     - unnecessary_const
     - unnecessary_overrides
-    - unnecessary_lambdas
     - unnecessary_brace_in_string_interps
     - lines_longer_than_80_chars
     - curly_braces_in_flow_control_structures
@@ -32,5 +31,7 @@ linter:
 # https://dart.dev/guides/language/analysis-options
 analyzer:
   exclude:
+    - '**/*.g.dart'
+    - '**/*.gen.dart'
   errors:
     invalid_annotation_target: ignore
