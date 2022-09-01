@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_template/ui/resources.dart';
+import 'package:flutter_template/ui/section/error_handler/error_handler_cubit.dart';
 import 'package:flutter_template/ui/signin/signin_bloc.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -9,9 +10,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) {
-        return SignInBloc();
-      },
+      create: (context) => SignInBloc(context.read<ErrorHandlerCubit>()),
       child: _SignInContentScreen(),
     );
   }
@@ -24,19 +23,19 @@ class _SignInContentScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.sign_in),
+            title: Text(Resources.localizations.sign_in),
           ),
           body: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(child: _SignInForm()),
               if (context.read<SignInBloc>().state.error.isNotEmpty)
-                Text(AppLocalizations.of(context)!
+                Text(Resources.localizations
                     .error(context.read<SignInBloc>().state.error)),
               TextButton(
                   onPressed: () =>
                       context.read<SignInBloc>().add(SignInEvent.login()),
-                  child: Text(AppLocalizations.of(context)!.sign_in))
+                  child: Text(Resources.localizations.sign_in))
             ],
           ),
         );
@@ -85,7 +84,7 @@ class _SignInFormState extends State<_SignInForm> {
                   _signInBlock.add(SignInEvent.changeEmail(email: text)),
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: AppLocalizations.of(context)!.mail,
+                labelText: Resources.localizations.mail,
               ),
             ),
           ),
@@ -100,7 +99,7 @@ class _SignInFormState extends State<_SignInForm> {
                 .add(SignInEvent.changePassword(password: password)),
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: AppLocalizations.of(context)!.password,
+              labelText: Resources.localizations.password,
             ),
           )),
         ),

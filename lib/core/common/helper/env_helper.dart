@@ -12,7 +12,7 @@ Future<Map<String, String>> loadEnvs(String path,
     await dotEnv.load(fileName: path);
     completer.complete(dotEnv.env);
   }, (e, s) {
-    Logger.d('$path file is not used.', e);
+    Logger.d('$path file is not valid.', e);
     if (ignoreErrors) {
       completer.complete({});
     } else {
