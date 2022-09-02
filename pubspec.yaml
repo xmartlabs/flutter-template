@@ -65,6 +65,7 @@ flutter:
     - assets/
     - assets/environments/
 
+# Run command: flutter pub run flutter_flavorizr
 flavorizr:
   flavors:
     dev:
