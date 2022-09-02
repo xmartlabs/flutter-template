@@ -345,7 +345,7 @@ packages:
     description:
       path: "."
       ref: "fix/android-12-issue"
-      resolved-ref: dd705467ea66ff996f29f76b841b08736edb538a
+      resolved-ref: b10546d534df2d9ff74e846349a8f2de6044a4e1
       url: "https://github.com/mirland/flutter_native_splash.git"
     source: git
     version: "2.2.8"
