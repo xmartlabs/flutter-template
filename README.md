@@ -26,7 +26,7 @@ You can do that by executing `flutter pub run flutter_flavorizr`.
 
 More information in [flavorizr] page.
 
-## App icons
+### App icons
 
 Icons are generated using [flutter_launcher_icons] plugin.
 To change it go to flutter_icons section in the [pubspec](./pubspec.yaml) file.

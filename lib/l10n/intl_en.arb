@@ -1,34 +1,23 @@
 {
-  "sign_in": "Sign In",
-  "mail" : "Mail",
-  "password" : "Password",
-  "error" : "Error: {text}",
-
-  "log_out" : "Log out",
-  "xmartlabs_projects" : "Xmartlabs' projects",
-  "error_unknown_error_title" : "Ops!",
-  "error_unknown_error_description" : "Something went wrong!",
-  "error_no_internet_connection_error_title" : "Error",
-  "error_no_internet_connection_error_description" : "You have no internet connection",
-  "error_button_retry" : "Retry",
-  "error_button_ok" : "Ok",
-
+  "error": "Error: {text}",
   "@error": {
-          "description": "Gives the user an error explanation",
-          "placeholders": {
-              "name": {
-                  "type": "String",
-                  "example": "Something went wrong try again"
-              }
-          }
+    "description": "Gives the user an error explanation",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Something went wrong try again"
+      }
+    }
   },
-  "@user_message": {
-          "description": "Greet the user by their name.",
-          "placeholders": {
-              "name": {
-                  "type": "String",
-                  "example": "Jane"
-              }
-          }
-  }
+  "error_button_ok": "Ok",
+  "error_button_retry": "Retry",
+  "error_no_internet_connection_error_description": "You have no internet connection",
+  "error_no_internet_connection_error_title": "Error",
+  "error_unknown_error_description": "Something went wrong!",
+  "error_unknown_error_title": "Ops!",
+  "log_out": "Log out",
+  "mail": "Mail",
+  "password": "Password",
+  "sign_in": "Sign In",
+  "xmartlabs_projects": "Xmartlabs' projects"
 }
