@@ -1,6 +1,6 @@
 # flutter-template
 
-### Project Setup
+## Project Setup
 
 The project setup is based on some of plugins which generates the required native code.
 
@@ -34,9 +34,22 @@ To change it go to flutter_icons section in the [pubspec](./pubspec.yaml) file.
 After a change is made, you need to regenerate your native files.
 You can do that by executing `flutter pub run flutter_launcher_icons:main`.
 
+
+### Splash screen
+
+Splash screen is generated using [flutter_native_splash].
+To change it go to flutter_native_splash section in the [pubspec](./pubspec.yaml) file.
+
+After a change is made, you need to regenerate your native files.
+You can do that by executing `flutter pub run flutter_native_splash:create`.
+
+Although you can setup a bunch of features in this library, it doesn't provide a way to display animations.
+If you need a more personalized splash screen, you can edit the native code or just remove this library. 
+
 ### Pre Push config
 
 In order to setup pre-push hook you need to go to the root of the project and run `git config core.hooksPath .github/hooks`
 
 [flavorizr]: https://pub.dev/packages/flutter_flavorizr
 [flutter_launcher_icons]: https://pub.dev/packages/flutter_launcher_icons
+[flutter_native_splash]: https://pub.dev/packages/flutter_native_splash
