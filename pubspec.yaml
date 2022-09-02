@@ -104,6 +104,7 @@ flutter_icons:
   android: true
   ios: true
   image_path: "icons/ic_launcher.png"
+  image_path_ios: "icons/ic_launcher_ios.png" # Transparency not supported on IOS
   adaptive_icon_foreground: 'icons/ic_launcher_foreground.png'
   adaptive_icon_background: '#ee1a64'
   remove_alpha_ios: true
