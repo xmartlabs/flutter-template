@@ -4,6 +4,8 @@
 
 The project setup is based on some of plugins which generates the required native code.
 
+You can use [project_setup.sh](scripts/project_setup.sh) to reload all project setups.
+
 ### Flavor setup: Project name, properties BundleId & Application id
 This information is set using [flavorizr], a flutter utility to easily create flavors in your flutter application. 
 To change it go to flavorizr section in the [pubspec](./pubspec.yaml) file.
