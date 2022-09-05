@@ -15,13 +15,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.3.1"
-  arb_utils:
-    dependency: "direct main"
-    description:
-      name: arb_utils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0"
   archive:
     dependency: transitive
     description:
@@ -197,6 +190,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -340,13 +340,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_native_splash:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "fix/android-12-issue"
+      resolved-ref: b10546d534df2d9ff74e846349a8f2de6044a4e1
+      url: "https://github.com/mirland/flutter_native_splash.git"
+    source: git
+    version: "2.2.8"
   flutter_screenutil:
     dependency: "direct main"
     description:
       name: flutter_screenutil
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.5.3+2"
+    version: "5.5.4"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -455,6 +464,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  html:
+    dependency: transitive
+    description:
+      name: html
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.15.0"
   http:
     dependency: transitive
     description:
@@ -490,13 +506,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
-  intl_utils:
-    dependency: transitive
-    description:
-      name: intl_utils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.7.0"
   io:
     dependency: transitive
     description:
@@ -525,6 +534,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.3.1"
+  lint:
+    dependency: transitive
+    description:
+      name: lint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.10.0"
   lints:
     dependency: transitive
     description:
@@ -901,6 +917,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.1"
+  universal_io:
+    dependency: transitive
+    description:
+      name: universal_io
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.4"
   vector_math:
     dependency: transitive
     description:

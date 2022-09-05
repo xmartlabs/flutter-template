@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_template/core/common/config.dart';
 import 'package:flutter_template/core/common/logger.dart';
@@ -9,8 +10,11 @@ import 'package:flutter_template/ui/main/main_screen.dart';
 
 Future main() async {
   await runZonedGuarded(() async {
+    final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     await _initSdks();
     runApp(const MyApp());
+    FlutterNativeSplash.remove();
   }, (exception, stackTrace) async {
     await Logger.fatal(error: exception, stackTrace: stackTrace);
   });
