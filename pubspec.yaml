@@ -21,6 +21,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  arb_utils: 0.2.0
   auto_route: 5.0.1
   bloc: 8.1.0
   cupertino_icons: 1.0.5
@@ -44,7 +45,7 @@ dependencies:
   logger: 1.1.0
   material_color_generator: 1.1.0
   rxdart: 0.27.5
-  stock: 0.0.1
+  stock: 0.0.2
 
 dev_dependencies:
   flutter_test:
