@@ -93,8 +93,4 @@ platform :ios do
      UI.important('Keystore not found')
    end
  end
-
-  after_all do |lane, options|
-    safe_delete_keychain
-  end
 end
