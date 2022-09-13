@@ -50,7 +50,7 @@ platform :ios do
         issuer_id: ENV["APPSTORE_CONNECT_API_KEY_ISSUER_ID"],
         key_content: ENV['APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT'],
         is_key_content_base64: true,
-        in_house: false
+        in_house: false,
       )
 
       # Generate provisioning Profiles
