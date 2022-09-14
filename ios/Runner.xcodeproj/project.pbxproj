@@ -342,7 +342,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6F2G55XL63;
 				PRODUCT_NAME = Runner;
-				PROVISIONING_PROFILE_SPECIFIER = "com.xmartlabs.template AppStore";
+				PROVISIONING_PROFILE_SPECIFIER = "com.xmartlabs.template AppStore 1663192076";
 			};
 			name = "Debug-prod";
 		};
@@ -354,7 +354,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6F2G55XL63;
 				PRODUCT_NAME = Runner;
-				PROVISIONING_PROFILE_SPECIFIER = "com.xmartlabs.template AppStore";
+				PROVISIONING_PROFILE_SPECIFIER = "com.xmartlabs.template AppStore 1663192076";
 			};
 			name = "Profile-prod";
 		};
@@ -366,7 +366,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6F2G55XL63;
 				PRODUCT_NAME = Runner;
-				PROVISIONING_PROFILE_SPECIFIER = "com.xmartlabs.template AppStore";
+				PROVISIONING_PROFILE_SPECIFIER = "com.xmartlabs.template AppStore 1663192076";
 			};
 			name = "Release-prod";
 		};

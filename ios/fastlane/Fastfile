@@ -17,25 +17,18 @@ platform :ios do
   lane :set_signing do
     safe_delete_keychain
     create_keychain(
-      keychain_name: ENV['TEMP_KEYCHAIN_NAME'],
-      keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
+      name: ENV['TEMP_KEYCHAIN_NAME'],
+      password: ENV['TEMP_KEYCHAIN_PASSWORD'],
       default_keychain: true,
       unlock: true,
       timeout: 3600,
       lock_when_sleeps: true
     )
-
-    import_certificate(
-      keychain_name: ENV['TEMP_KEYCHAIN_NAME'],
-      keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
-      certificate_path: ENV['DEV_CERTIFICATE_PATH'],
-      certificate_password: ENV["DEV_CERTIFICATE_PASSWORD"]
-    )
-
     import_certificate(
       keychain_name: ENV['TEMP_KEYCHAIN_NAME'],
       keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
       certificate_path: ENV['DIST_CERTIFICATE_PATH'],
+      certificate_password: ENV['DIST_CERTIFICATE_PASSWORD'],
     )
   end
 
@@ -46,6 +39,7 @@ platform :ios do
     if sign_enabled
        set_signing
     end
+    set_signing
     begin
       # Connect to AppStore - Generates an
       app_store_connect_api_key(
@@ -57,6 +51,7 @@ platform :ios do
       )
 
       # Generate provisioning Profiles
+      cert
       sigh
       update_code_signing_settings(
         use_automatic_signing: false,
@@ -77,9 +72,6 @@ platform :ios do
           uploadBitcode: false,
           uploadSymbols: true,
           method: "app-store",
-          provisioningProfiles: {
-            "com.xmartlabs.template": "com.xmartlabs.template AppStore"
-          }
         }
       )
       upload_to_testflight(skip_waiting_for_build_processing: true)
