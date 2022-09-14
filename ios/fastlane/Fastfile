@@ -50,7 +50,6 @@ platform :ios do
       )
 
       # Generate provisioning Profiles
-      cert
       sigh
       update_code_signing_settings(
         use_automatic_signing: false,
