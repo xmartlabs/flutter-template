@@ -14,11 +14,11 @@ platform :ios do
     sh_on_root(command: "flutter build ios --no-pub --suppress-analytics --release #{sign_param} #{config_param} --flavor #{flavor}")
   end
 
-  private_lane :set_signing do
+  lane :set_signing do
     safe_delete_keychain
     create_keychain(
-      name: "fastlane-keychain",
-      password: "fastlane-keychain-password",
+      keychain_name: ENV['TEMP_KEYCHAIN_NAME'],
+      keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
       default_keychain: true,
       unlock: true,
       timeout: 3600,
@@ -41,9 +41,12 @@ platform :ios do
 
 
   desc "Push a new beta build to TestFlight"
-  lane :publish_prod_testflight do
+  lane :publish_prod_testflight do |options|
+    sign_enabled = options[:setup_signing] || false
+    if sign_enabled
+       set_signing
+    end
     begin
-      set_signing
       # Connect to AppStore - Generates an
       app_store_connect_api_key(
         key_id: ENV['APPSTORE_CONNECT_API_KEY_ID'],

@@ -82,6 +82,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### ios set_signing
+
+```sh
+[bundle exec] fastlane ios set_signing
+```
+
+
+
 ### ios publish_prod_testflight
 
 ```sh
