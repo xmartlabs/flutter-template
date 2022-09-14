@@ -39,7 +39,6 @@ platform :ios do
     if sign_enabled
        set_signing
     end
-    set_signing
     begin
       # Connect to AppStore - Generates an
       app_store_connect_api_key(
