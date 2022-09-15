@@ -90,6 +90,30 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### ios get_my_provisioning
+
+```sh
+[bundle exec] fastlane ios get_my_provisioning
+```
+
+
+
+### ios update_my_provisioning
+
+```sh
+[bundle exec] fastlane ios update_my_provisioning
+```
+
+
+
+### ios build_my_app
+
+```sh
+[bundle exec] fastlane ios build_my_app
+```
+
+
+
 ### ios publish_prod_testflight
 
 ```sh

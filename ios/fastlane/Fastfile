@@ -2,6 +2,9 @@ import "../../fastlane/Fastfile"
 
 default_platform(:ios)
 
+provisioning_name=  "Appstore_com.xmartlabs.template.mobileprovision"
+
+
 platform :ios do
   lane :build_flutter do |options|
     sign_enabled = options[:sign_enabled] || false
@@ -32,6 +35,46 @@ platform :ios do
     )
   end
 
+lane :get_my_provisioning do
+
+		get_provisioning_profile( # invokes sigh
+			team_id: ENV['APPLE_TEAM_ID'],
+			development: false,
+			provisioning_name: provisioning_name
+			# platform: "ios"
+		)
+	end
+
+
+	lane :update_my_provisioning do
+
+		update_code_signing_settings(
+			use_automatic_signing: false,
+			path: "Runner.xcodeproj",
+			team_id: ENV['APPLE_TEAM_ID'],
+			code_sign_identity: "iPhone Distribution",
+			profile_name: provisioning_name
+		)
+
+		update_project_provisioning(
+			xcodeproj: "Runner.xcodeproj",
+			profile: provisioning_name,
+			# build_configuration: "Release",
+			code_signing_identity: "iPhone Distribution"
+		)
+
+		update_project_team(
+			path: "Runner.xcodeproj",
+			teamid: ENV['APPLE_TEAM_ID']
+		)
+	end
+lane :build_my_app do
+
+		build_app(
+			export_method: "app-store", #app-store, ad-hoc, package, enterprise, development, developer-id
+			scheme: 'prod',
+		)
+	end
 
   desc "Push a new beta build to TestFlight"
   lane :publish_prod_testflight do |options|
@@ -39,9 +82,10 @@ platform :ios do
     if sign_enabled
        set_signing
     end
+
     begin
       # Connect to AppStore - Generates an
-      app_store_connect_api_key(
+      api_key = app_store_connect_api_key(
         key_id: ENV['APPSTORE_CONNECT_API_KEY_ID'],
         issuer_id: ENV["APPSTORE_CONNECT_API_KEY_ISSUER_ID"],
         key_content: ENV['APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT'],
@@ -49,25 +93,12 @@ platform :ios do
         in_house: false,
       )
 
-      # Generate provisioning Profiles
-      get_provisioning_profile
-      ## Build App
-      gym(
-        workspace: "Runner.xcworkspace",
-        scheme: "prod",
-        export_method: "app-store",
-        export_xcargs: "-allowProvisioningUpdates",
-        clean: true,
-        include_bitcode: true,
-        include_symbols: true,
-        export_options: {
-          compileBitcode: false,
-          uploadBitcode: false,
-          uploadSymbols: true,
-          method: "app-store",
-        }
-      )
-      upload_to_testflight(skip_waiting_for_build_processing: true)
+    # Generate provisioning Profiles
+    get_my_provisioning
+    update_my_provisioning
+    build_my_app
+
+   #   upload_to_testflight(skip_waiting_for_build_processing: true)
     ensure
       safe_delete_keychain
     end
@@ -76,7 +107,7 @@ platform :ios do
  private_lane :safe_delete_keychain do
    begin
      FastlaneCore::Helper.keychain_path(ENV['TEMP_KEYCHAIN_NAME'])
-     delete_keychain(name: ENV['TEMP_KEYCHAIN_NAME'])
+     #delete_keychain(name: ENV['TEMP_KEYCHAIN_NAME'])
    rescue => ex
      UI.important('Keystore not found')
    end
