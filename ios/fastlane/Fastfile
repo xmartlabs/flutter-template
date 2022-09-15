@@ -50,12 +50,7 @@ platform :ios do
       )
 
       # Generate provisioning Profiles
-      sigh
-      update_code_signing_settings(
-        use_automatic_signing: false,
-        path: "Runner.xcodeproj",
-      )
-
+      get_provisioning_profile
       ## Build App
       gym(
         workspace: "Runner.xcworkspace",
