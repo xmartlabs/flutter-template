@@ -338,11 +338,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 21BC3E4201BD6DDEC1196AA9 /* Pods-Runner.debug-prod.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6F2G55XL63;
 				PRODUCT_NAME = Runner;
-				PROVISIONING_PROFILE_SPECIFIER = "com.xmartlabs.template AppStore 1663192076";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Debug-prod";
 		};
@@ -350,11 +350,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E65075458592F9F001F344C1 /* Pods-Runner.profile-prod.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6F2G55XL63;
 				PRODUCT_NAME = Runner;
-				PROVISIONING_PROFILE_SPECIFIER = "com.xmartlabs.template AppStore 1663192076";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Profile-prod";
 		};
@@ -362,11 +362,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B82596BB830AA758A68457E /* Pods-Runner.release-prod.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 6F2G55XL63;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				PRODUCT_NAME = Runner;
-				PROVISIONING_PROFILE_SPECIFIER = "com.xmartlabs.template AppStore 1663192076";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-prod";
 		};
