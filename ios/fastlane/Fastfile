@@ -45,6 +45,7 @@ platform :ios do
 	  path: "Runner.xcodeproj",
 	  team_id: ENV['APPLE_TEAM_ID'],
 	  build_configurations: "Release-prod",
+	  code_sign_identity: 'Apple Distribution',
 	)
 
 	  update_project_provisioning(
@@ -98,6 +99,7 @@ platform :ios do
             team_id: ENV['APPLE_TEAM_ID'],
             profile_name: '',
             profile_uuid: '',
+            code_sign_identity: 'Apple Distribution',
         )
       safe_delete_keychain
     end
