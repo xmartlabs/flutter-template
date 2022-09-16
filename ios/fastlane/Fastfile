@@ -45,7 +45,6 @@ platform :ios do
 	  path: "Runner.xcodeproj",
 	  team_id: ENV['APPLE_TEAM_ID'],
 	  build_configurations: "Release-prod",
-	  code_sign_identity: 'Apple Distribution',
 	)
 
 	  update_project_provisioning(
@@ -91,7 +90,7 @@ platform :ios do
         }
       )
 
-      upload_to_testflight(skip_waiting_for_build_processing: true)
+      #upload_to_testflight(skip_waiting_for_build_processing: true)
     ensure
         update_code_signing_settings(
             use_automatic_signing: true,
@@ -99,7 +98,7 @@ platform :ios do
             team_id: ENV['APPLE_TEAM_ID'],
             profile_name: '',
             profile_uuid: '',
-            code_sign_identity: 'Apple Distribution',
+            code_sign_identity: 'Apple Development',
         )
       safe_delete_keychain
     end
