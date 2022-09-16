@@ -81,6 +81,7 @@ get_my_provisioning
 update_my_provisioning
 
 fetch_dependencies
+build_ios(flavor: 'prod')
 gym(
  clean: false,
  scheme: 'prod',
