@@ -49,21 +49,13 @@ lane :get_my_provisioning do
 			use_automatic_signing: false,
 			path: "Runner.xcodeproj",
 			team_id: ENV['APPLE_TEAM_ID'],
-			profile_name: provisioning_name
+			build_configurations: "Release-prod",
 		)
 
 		update_project_provisioning(
 			xcodeproj: "Runner.xcodeproj",
-			#profile: provisioning_name,
 			build_configuration: "Release-prod",
 			code_signing_identity: "Apple Distribution"
-		)
-	end
-lane :build_my_app do
-
-		build_app(
-			export_method: "app-store", #app-store, ad-hoc, package, enterprise, development, developer-id
-			scheme: 'prod',
 		)
 	end
 
@@ -73,7 +65,7 @@ lane :build_my_app do
     if sign_enabled
        set_signing
     end
-set_signing
+
     begin
       # Connect to AppStore - Generates an
       api_key = app_store_connect_api_key(
