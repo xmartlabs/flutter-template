@@ -96,6 +96,8 @@ platform :ios do
             use_automatic_signing: true,
             path: "Runner.xcodeproj",
             team_id: ENV['APPLE_TEAM_ID'],
+            profile_name: '',
+            profile_uuid: '',
         )
       safe_delete_keychain
     end
