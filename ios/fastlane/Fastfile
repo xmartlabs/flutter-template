@@ -1,0 +1,118 @@
+import "../../fastlane/Fastfile"
+
+default_platform(:ios)
+
+profileName=  "xl"
+provisioning_name = 'FastlaneXL'
+
+platform :ios do
+  lane :build_flutter do |options|
+    sign_enabled = options[:sign_enabled] || false
+    sign_param = sign_enabled ? '' : '--no-codesign'
+
+    config_only = options[:config_only] || false
+    flavor = options[:flavor] || 'dev'
+    config_param = config_only ? '--config-only' : ''
+
+    sh_on_root(command: "flutter build ios --no-pub --suppress-analytics --release #{sign_param} #{config_param} --flavor #{flavor}")
+  end
+
+  lane :set_signing do
+    safe_delete_keychain
+    create_keychain(
+      name: ENV['TEMP_KEYCHAIN_NAME'],
+      password: ENV['TEMP_KEYCHAIN_PASSWORD'],
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: true
+    )
+    import_certificate(
+      keychain_name: ENV['TEMP_KEYCHAIN_NAME'],
+      keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
+      certificate_path: ENV['DIST_CERTIFICATE_PATH'],
+      certificate_password: ENV['DIST_CERTIFICATE_PASSWORD'],
+    )
+  end
+
+lane :get_my_provisioning do
+    get_provisioning_profile( # invokes sigh
+        team_id: ENV['APPLE_TEAM_ID'],
+        provisioning_name: provisioning_name,
+        force: true,
+    )
+	end
+
+
+	lane :update_my_provisioning do
+		update_code_signing_settings(
+			use_automatic_signing: false,
+			path: "Runner.xcodeproj",
+			team_id: ENV['APPLE_TEAM_ID'],
+			profile_name: provisioning_name
+		)
+
+		update_project_provisioning(
+			xcodeproj: "Runner.xcodeproj",
+			#profile: provisioning_name,
+			build_configuration: "Release-prod",
+			code_signing_identity: "Apple Distribution"
+		)
+	end
+lane :build_my_app do
+
+		build_app(
+			export_method: "app-store", #app-store, ad-hoc, package, enterprise, development, developer-id
+			scheme: 'prod',
+		)
+	end
+
+  desc "Push a new beta build to TestFlight"
+  lane :publish_prod_testflight do |options|
+    sign_enabled = options[:setup_signing] || false
+    if sign_enabled
+       set_signing
+    end
+set_signing
+    begin
+      # Connect to AppStore - Generates an
+      api_key = app_store_connect_api_key(
+        key_id: ENV['APPSTORE_CONNECT_API_KEY_ID'],
+        issuer_id: ENV["APPSTORE_CONNECT_API_KEY_ISSUER_ID"],
+        key_content: ENV['APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT'],
+        is_key_content_base64: true,
+        in_house: false,
+      )
+
+get_my_provisioning
+update_my_provisioning
+
+gym(
+ clean: false,
+ scheme: 'prod',
+ silent: true,
+ export_team_id: ENV['APPLE_TEAM_ID'],
+ export_method: "app-store", # use for iOS
+ export_options: {
+    provisioningProfiles: {
+      'com.xmartlabs.template' => provisioning_name
+    },
+   "signingStyle": "manual"
+ }
+)
+
+   #   upload_to_testflight(skip_waiting_for_build_processing: true)
+    ensure
+      safe_delete_keychain
+    end
+  end
+
+ private_lane :safe_delete_keychain do
+   begin
+     FastlaneCore::Helper.keychain_path(ENV['TEMP_KEYCHAIN_NAME'])
+     delete_keychain(name: ENV['TEMP_KEYCHAIN_NAME'])
+   rescue => ex
+     UI.important('Keystore not found')
+   end
+ end
+end
