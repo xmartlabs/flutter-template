@@ -95,6 +95,11 @@ gym(
 
    #   upload_to_testflight(skip_waiting_for_build_processing: true)
     ensure
+        update_code_signing_settings(
+            use_automatic_signing: true,
+            path: "Runner.xcodeproj",
+            team_id: ENV['APPLE_TEAM_ID'],
+        )
       safe_delete_keychain
     end
   end
