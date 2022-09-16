@@ -2,7 +2,7 @@ import "../../fastlane/Fastfile"
 
 default_platform(:ios)
 
-provisioning_name=  "Appstore_com.xmartlabs.template.mobileprovision"
+profileName=  "xl"
 
 
 platform :ios do
@@ -27,12 +27,12 @@ platform :ios do
       timeout: 3600,
       lock_when_sleeps: true
     )
-    import_certificate(
-      keychain_name: ENV['TEMP_KEYCHAIN_NAME'],
-      keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
-      certificate_path: ENV['DIST_CERTIFICATE_PATH'],
-      certificate_password: ENV['DIST_CERTIFICATE_PASSWORD'],
-    )
+#     import_certificate(
+#       keychain_name: ENV['TEMP_KEYCHAIN_NAME'],
+#       keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
+#       certificate_path: ENV['DIST_CERTIFICATE_PATH'],
+#       certificate_password: ENV['DIST_CERTIFICATE_PASSWORD'],
+#     )
   end
 
 lane :get_my_provisioning do
@@ -59,7 +59,7 @@ lane :get_my_provisioning do
 		update_project_provisioning(
 			xcodeproj: "Runner.xcodeproj",
 			profile: provisioning_name,
-			# build_configuration: "Release",
+			build_configuration: "Release",
 			code_signing_identity: "iPhone Distribution"
 		)
 
@@ -82,7 +82,7 @@ lane :build_my_app do
     if sign_enabled
        set_signing
     end
-
+set_signing
     begin
       # Connect to AppStore - Generates an
       api_key = app_store_connect_api_key(
@@ -94,9 +94,50 @@ lane :build_my_app do
       )
 
     # Generate provisioning Profiles
-    get_my_provisioning
-    update_my_provisioning
-    build_my_app
+    get_certificates(
+       keychain_path: FastlaneCore::Helper.keychain_path(ENV['TEMP_KEYCHAIN_NAME']),
+       keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
+       team_id: ENV['APPLE_TEAM_ID'],
+       output_path: "provision",
+      )
+
+      get_provisioning_profile(
+        filename: "#{profileName}.mobileprovision",
+        #app_identifier:'com.xmartlabs.template',
+        #team_id: '6F2G55XL63',
+        development: false,
+        #output_path:"provision",
+        cert_id: lane_context[SharedValues::CERT_CERTIFICATE_ID]
+      )
+        #install_provisioning_profile(path: "#{profileName}.mobileprovision")
+
+       update_code_signing_settings(
+            path: "Runner.xcworkspace",
+            team_id: ENV["APPLE_TEAM_ID"],
+            targets: 'Release-prod',
+            #code_sign_identity: "Ios Distribution",
+            #profile_name: "com.xmartlabs.template AppStore",
+            #bundle_identifier: 'com.xmartlabs.template',
+         	use_automatic_signing: false,
+            )
+
+          build_app(
+            workspace: "Runner.xcworkspace",
+            scheme: 'prod',
+            export_method: "app-store",
+#             clean: true,
+                xcargs: "-allowProvisioningUpdates",
+                   export_options: {
+                    compileBitcode: false,
+                    uploadBitcode: false,
+                    uploadSymbols: true,
+#                     signingStyle: "manual",
+                    teamID: ENV['APPLE_TEAM_ID'],
+#                      provisioningProfiles: {
+#                        'com.xmartlabs.template': 'Appstore_com.xmartlabs.template.mobileprovision'
+#                      }
+                  }
+          )
 
    #   upload_to_testflight(skip_waiting_for_build_processing: true)
     ensure
