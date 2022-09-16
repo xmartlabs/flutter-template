@@ -6,15 +6,16 @@ profileName=  "xl"
 provisioning_name = 'FastlaneXL'
 
 platform :ios do
-  lane :build_flutter do |options|
+  lane :build_ios do |options|
     sign_enabled = options[:sign_enabled] || false
+    build_type = options[:build_type] || '--debug'
     sign_param = sign_enabled ? '' : '--no-codesign'
 
     config_only = options[:config_only] || false
     flavor = options[:flavor] || 'dev'
     config_param = config_only ? '--config-only' : ''
 
-    sh_on_root(command: "flutter build ios --no-pub --suppress-analytics --release #{sign_param} #{config_param} --flavor #{flavor}")
+    sh_on_root(command: "flutter build ios --no-pub --suppress-analytics #{build_type} #{sign_param} #{config_param} --flavor #{flavor}")
   end
 
   lane :set_signing do
@@ -79,6 +80,7 @@ lane :get_my_provisioning do
 get_my_provisioning
 update_my_provisioning
 
+build_ios(flavor: 'prod')
 gym(
  clean: false,
  scheme: 'prod',

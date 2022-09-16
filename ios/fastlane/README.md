@@ -74,10 +74,10 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios build_flutter
+### ios build_ios
 
 ```sh
-[bundle exec] fastlane ios build_flutter
+[bundle exec] fastlane ios build_ios
 ```
 
 
