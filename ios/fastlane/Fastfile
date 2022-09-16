@@ -2,7 +2,6 @@ import "../../fastlane/Fastfile"
 
 default_platform(:ios)
 
-profileName=  "xl"
 provisioning_name = 'FastlaneXL'
 
 platform :ios do
@@ -36,28 +35,23 @@ platform :ios do
     )
   end
 
-lane :get_my_provisioning do
+  private_lane :setup_provisioning do
     get_provisioning_profile( # invokes sigh
-        team_id: ENV['APPLE_TEAM_ID'],
-        provisioning_name: provisioning_name,
-        force: true,
+      team_id: ENV['APPLE_TEAM_ID'],
+      provisioning_name: provisioning_name,
     )
-	end
+    update_code_signing_settings(
+	  use_automatic_signing: false,
+	  path: "Runner.xcodeproj",
+	  team_id: ENV['APPLE_TEAM_ID'],
+	  build_configurations: "Release-prod",
+	)
 
-
-	lane :update_my_provisioning do
-		update_code_signing_settings(
-			use_automatic_signing: false,
-			path: "Runner.xcodeproj",
-			team_id: ENV['APPLE_TEAM_ID'],
-			build_configurations: "Release-prod",
-		)
-
-		update_project_provisioning(
-			xcodeproj: "Runner.xcodeproj",
-			build_configuration: "Release-prod",
-			code_signing_identity: "Apple Distribution"
-		)
+	  update_project_provisioning(
+	    xcodeproj: "Runner.xcodeproj",
+		build_configuration: "Release-prod",
+		code_signing_identity: "Apple Distribution"
+	  )
 	end
 
   desc "Push a new beta build to TestFlight"
@@ -77,26 +71,26 @@ lane :get_my_provisioning do
         in_house: false,
       )
 
-get_my_provisioning
-update_my_provisioning
+      setup_provisioning
 
-fetch_dependencies
-build_ios(flavor: 'prod')
-gym(
- clean: false,
- scheme: 'prod',
- silent: true,
- export_team_id: ENV['APPLE_TEAM_ID'],
- export_method: "app-store", # use for iOS
- export_options: {
-    provisioningProfiles: {
-      'com.xmartlabs.template' => provisioning_name
-    },
-   "signingStyle": "manual"
- }
-)
+      fetch_dependencies
+      build_ios(flavor: 'prod')
 
-   #   upload_to_testflight(skip_waiting_for_build_processing: true)
+      build_app(
+        clean: true,
+        scheme: 'prod',
+        silent: true,
+        export_team_id: ENV['APPLE_TEAM_ID'],
+        export_method: "app-store", # use for iOS
+        export_options: {
+          provisioningProfiles: {
+            'com.xmartlabs.template' => provisioning_name
+          },
+          "signingStyle": "manual"
+        }
+      )
+
+      upload_to_testflight(skip_waiting_for_build_processing: true)
     ensure
         update_code_signing_settings(
             use_automatic_signing: true,
