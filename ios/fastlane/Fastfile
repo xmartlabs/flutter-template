@@ -47,12 +47,12 @@ platform :ios do
 	  build_configurations: "Release-prod",
 	)
 
-	  update_project_provisioning(
-	    xcodeproj: "Runner.xcodeproj",
-		build_configuration: "Release-prod",
-		code_signing_identity: "Apple Distribution"
-	  )
-	end
+	update_project_provisioning(
+	  xcodeproj: "Runner.xcodeproj",
+	  build_configuration: "Release-prod",
+      code_signing_identity: "Apple Distribution"
+	)
+  end
 
   desc "Push a new beta build to TestFlight"
   lane :publish_prod_testflight do |options|
@@ -62,8 +62,7 @@ platform :ios do
     end
 
     begin
-      # Connect to AppStore - Generates an
-      api_key = app_store_connect_api_key(
+      app_store_connect_api_key(
         key_id: ENV['APPSTORE_CONNECT_API_KEY_ID'],
         issuer_id: ENV["APPSTORE_CONNECT_API_KEY_ISSUER_ID"],
         key_content: ENV['APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT'],
@@ -90,26 +89,26 @@ platform :ios do
         }
       )
 
-      #upload_to_testflight(skip_waiting_for_build_processing: true)
+      upload_to_testflight(skip_waiting_for_build_processing: true)
     ensure
-        update_code_signing_settings(
-            use_automatic_signing: true,
-            path: "Runner.xcodeproj",
-            team_id: ENV['APPLE_TEAM_ID'],
-            profile_name: '',
-            profile_uuid: '',
-            code_sign_identity: 'Apple Development',
-        )
+      update_code_signing_settings(
+        use_automatic_signing: true,
+        path: "Runner.xcodeproj",
+        team_id: ENV['APPLE_TEAM_ID'],
+        profile_name: '',
+        profile_uuid: '',
+        code_sign_identity: 'Apple Development',
+      )
       safe_delete_keychain
     end
   end
 
- private_lane :safe_delete_keychain do
-   begin
-     FastlaneCore::Helper.keychain_path(ENV['TEMP_KEYCHAIN_NAME'])
-     delete_keychain(name: ENV['TEMP_KEYCHAIN_NAME'])
-   rescue => ex
-     UI.important('Keystore not found')
-   end
- end
+  private_lane :safe_delete_keychain do
+    begin
+      FastlaneCore::Helper.keychain_path(ENV['TEMP_KEYCHAIN_NAME'])
+      delete_keychain(name: ENV['TEMP_KEYCHAIN_NAME'])
+    rescue => ex
+      UI.important('Keystore not found')
+    end
+  end
 end
