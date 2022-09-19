@@ -76,7 +76,7 @@ platform :ios do
       build_ios(flavor: 'prod')
 
       build_app(
-        clean: true,
+        clean: false,
         scheme: 'prod',
         silent: true,
         export_team_id: ENV['APPLE_TEAM_ID'],
