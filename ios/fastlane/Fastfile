@@ -95,7 +95,7 @@ platform :ios do
         use_automatic_signing: true,
         path: "Runner.xcodeproj",
         team_id: ENV['APPLE_TEAM_ID'],
-        profile_name: '',
+        build_configurations: "Release-prod",
         profile_uuid: '',
         code_sign_identity: 'Apple Development',
       )
