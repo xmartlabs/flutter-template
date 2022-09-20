@@ -36,7 +36,7 @@ platform :ios do
   end
 
   private_lane :setup_provisioning do
-    get_provisioning_profile( # invokes sigh
+    get_provisioning_profile(
       team_id: ENV['APPLE_TEAM_ID'],
       provisioning_name: provisioning_name,
     )
@@ -52,6 +52,17 @@ platform :ios do
 	  build_configuration: "Release-prod",
       code_signing_identity: "Apple Distribution"
 	)
+  end
+
+  private_lane :rollback_provisioning_setup do
+    update_code_signing_settings(
+      use_automatic_signing: true,
+      path: "Runner.xcodeproj",
+      team_id: ENV['APPLE_TEAM_ID'],
+      build_configurations: "Release-prod",
+      profile_uuid: '',
+      code_sign_identity: 'Apple Development',
+    )
   end
 
   desc "Push a new beta build to TestFlight"
@@ -72,33 +83,19 @@ platform :ios do
 
       setup_provisioning
 
-      fetch_dependencies
       build_ios(flavor: 'prod')
 
-      build_app(
+      build_ios_app(
         clean: false,
         scheme: 'prod',
         silent: true,
         export_team_id: ENV['APPLE_TEAM_ID'],
-        export_method: "app-store", # use for iOS
-        export_options: {
-          provisioningProfiles: {
-            'com.xmartlabs.template' => provisioning_name
-          },
-          "signingStyle": "manual"
-        }
+        export_method: "app-store",
       )
 
       upload_to_testflight(skip_waiting_for_build_processing: true)
     ensure
-      update_code_signing_settings(
-        use_automatic_signing: true,
-        path: "Runner.xcodeproj",
-        team_id: ENV['APPLE_TEAM_ID'],
-        build_configurations: "Release-prod",
-        profile_uuid: '',
-        code_sign_identity: 'Apple Development',
-      )
+      rollback_provisioning_setup
       safe_delete_keychain
     end
   end
