@@ -1,0 +1,42 @@
+name: Flutter CI
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - fastlane-ios-v3
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: dart-lang/setup-dart@v1.3
+      - name: Cache FVM & Flutter
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/fvm/versions/
+          key: ${{ runner.os }}-${{ hashFiles('**/fvm_config.json') }}
+      - name: Cache pub cache
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/.pub-cache/
+          key: ${{ runner.os }}-pub-cache
+      - name: Install FVM && Flutter
+        run: dart pub global activate fvm --verbose &&
+          fvm install --verbose && fvm use --force --verbose
+      - name: Get dependencies
+        run: fvm flutter pub get
+      - name: Check code format
+        run: fvm flutter format --set-exit-if-changed .
+      - name: Run linter
+        run: fvm flutter analyze .
+      - name: Run tests
+        run: fvm flutter test
+      - name: Build IOS
+        run: fvm flutter build ios --flavor dev --debug --no-pub --no-codesign
+      - name: Build Android
+        run: fvm flutter build apk --flavor dev --debug
