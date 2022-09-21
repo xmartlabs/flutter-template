@@ -6,18 +6,6 @@ provisioning_name = 'FastlaneXL'
 SPACESHIP_CONNECT_API_IN_HOUSE=false
 
 platform :ios do
-  lane :build_flutter_ios do |options|
-    sign_enabled = options[:sign_enabled] || false
-    build_type = options[:build_type] || '--debug'
-    sign_param = sign_enabled ? '' : '--no-codesign'
-
-    config_only = options[:config_only] || false
-    flavor = options[:flavor] || 'dev'
-    config_param = config_only ? '--config-only' : ''
-
-    sh_on_root(command: "flutter build ios --suppress-analytics #{build_type} #{sign_param} #{config_param} --flavor #{flavor}")
-  end
-
   lane :set_signing do
     safe_delete_keychain
     create_keychain(
@@ -84,7 +72,7 @@ platform :ios do
 
       setup_provisioning
 
-      build_flutter_ios(flavor: 'prod')
+      build_flutter(build_platform: 'ios', flavor: 'prod')
 
       build_ios_app(
         clean: false,

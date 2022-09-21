@@ -69,6 +69,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 **Clean up project**
 
+### build_flutter
+
+```sh
+[bundle exec] fastlane build_flutter
+```
+
+
+
 ----
 
 
@@ -119,6 +127,21 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 ```
 
 **Assemble dev apk release version**
+
+### android deploy_firebase_app_distribution
+
+```sh
+[bundle exec] fastlane android deploy_firebase_app_distribution
+```
+
+**Submit a new Beta Build to Firebase app distribution**
+
+#### Envs
+ * **`firebase_app_id`**: Firebase app id.
+ * **`FIREBASE_SERVICE_ACCOUNT_FILE`**: The path to your Google service account json file.
+ * **`FIREBASE_TESTERS`**: The email addresses of the testers you want to invite.
+ You can specify the testers as a comma-separated list of email addresses: "ali@example.com, bri@example.com, cal@example.com"
+
 
 ### android deploy_firebase_dev
 

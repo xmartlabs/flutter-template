@@ -69,18 +69,18 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 **Clean up project**
 
+### build_flutter
+
+```sh
+[bundle exec] fastlane build_flutter
+```
+
+
+
 ----
 
 
 ## iOS
-
-### ios build_ios
-
-```sh
-[bundle exec] fastlane ios build_ios
-```
-
-
 
 ### ios set_signing
 
