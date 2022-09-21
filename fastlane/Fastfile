@@ -69,6 +69,9 @@ end
 
 lane :build_flutter do |options|
   build_type = options[:build_type] || ''
+  if !build_type.empty?
+    build_type = "--#{build_type}"
+  end
 
   sign_enabled = options[:sign_enabled] || true
   sign_param = sign_enabled ? '' : '--no-codesign'
