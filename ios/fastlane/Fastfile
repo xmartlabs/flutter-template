@@ -3,7 +3,6 @@ import "../../fastlane/Fastfile"
 default_platform(:ios)
 
 provisioning_name = 'FastlaneXL'
-SPACESHIP_CONNECT_API_IN_HOUSE=false
 
 platform :ios do
   lane :set_signing do
