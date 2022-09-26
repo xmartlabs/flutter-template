@@ -1,0 +1,99 @@
+import "../../fastlane/Fastfile"
+
+default_platform(:ios)
+
+provisioning_name = 'FastlaneXL'
+
+platform :ios do
+  lane :set_signing do
+    safe_delete_keychain
+    create_keychain(
+      name: ENV['TEMP_KEYCHAIN_NAME'],
+      password: ENV['TEMP_KEYCHAIN_PASSWORD'],
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: true
+    )
+    import_certificate(
+      keychain_name: ENV['TEMP_KEYCHAIN_NAME'],
+      keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
+      certificate_path: ENV['DIST_CERTIFICATE_PATH'],
+      certificate_password: ENV['DIST_CERTIFICATE_PASSWORD'],
+    )
+  end
+
+  private_lane :setup_provisioning do
+    get_provisioning_profile(
+      team_id: ENV['APPLE_TEAM_ID'],
+      provisioning_name: provisioning_name,
+    )
+    update_code_signing_settings(
+	  use_automatic_signing: false,
+	  path: "Runner.xcodeproj",
+	  team_id: ENV['APPLE_TEAM_ID'],
+	  build_configurations: "Release-prod",
+	)
+
+	update_project_provisioning(
+	  xcodeproj: "Runner.xcodeproj",
+	  build_configuration: "Release-prod",
+      code_signing_identity: "Apple Distribution"
+	)
+  end
+
+  private_lane :rollback_provisioning_setup do
+    update_code_signing_settings(
+      use_automatic_signing: true,
+      path: "Runner.xcodeproj",
+      team_id: ENV['APPLE_TEAM_ID'],
+      build_configurations: "Release-prod",
+      profile_uuid: '',
+      code_sign_identity: 'Apple Development',
+    )
+  end
+
+  desc "Push a new beta build to TestFlight"
+  lane :publish_prod_testflight do |options|
+    sign_enabled = options[:setup_signing] || false
+    if sign_enabled
+       set_signing
+    end
+
+    begin
+      api_key = app_store_connect_api_key(
+        key_id: ENV['APPSTORE_CONNECT_API_KEY_ID'],
+        issuer_id: ENV["APPSTORE_CONNECT_API_KEY_ISSUER_ID"],
+        key_content: ENV['APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT'],
+        is_key_content_base64: true,
+        in_house: false,
+      )
+
+      setup_provisioning
+
+      build_flutter(build_platform: 'ios', flavor: 'prod')
+
+      build_ios_app(
+        clean: false,
+        scheme: 'prod',
+        silent: true,
+        export_team_id: ENV['APPLE_TEAM_ID'],
+        export_method: "app-store",
+      )
+
+      upload_to_testflight(skip_waiting_for_build_processing: true)
+    ensure
+      rollback_provisioning_setup
+      safe_delete_keychain
+    end
+  end
+
+  private_lane :safe_delete_keychain do
+    begin
+      FastlaneCore::Helper.keychain_path(ENV['TEMP_KEYCHAIN_NAME'])
+      delete_keychain(name: ENV['TEMP_KEYCHAIN_NAME'])
+    rescue => ex
+      UI.important('Keystore not found')
+    end
+  end
+end
