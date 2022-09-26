@@ -1,0 +1,3 @@
+app_identifier("com.xmartlabs.template") # The bundle identifier of your app
+
+team_id(ENV['TEAM_ID']) # Developer Portal Team ID
