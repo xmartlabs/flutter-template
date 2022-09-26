@@ -7,8 +7,7 @@ platform :android do
   " * **`env`**: Sets the env. It sets the flavour and the dart env. " +
   "The executed command is `build apk --flavor env --dart-define=ENV=env --debug`"
   lane :build_apk do |options|
-    env = options[:env]
-    flutter_command(command: "build apk --flavor #{env} --dart-define=ENV=#{env} --debug")
+    build_flutter(options.merge(build_platform: 'apk') )
   end
 
   desc "**Generates a release app bundle build**"
@@ -16,13 +15,12 @@ platform :android do
   " * **`env`**: Sets the env. It sets the flavour and the dart env. " +
   "The executed command is `flutter build appbundle --flavor env --dart-define=ENV=env --release`"
   lane :build_appbundle do |options|
-    env = options[:env]
-    flutter_command(command: "build appbundle --flavor #{env} --dart-define=ENV=#{env} --release")
+    build_flutter(build_platform: 'appbundle', build_type: 'release', flavor: options[:env])
   end
 
   desc "**Build dev debug app**"
   lane :build_dev_debug_apk do |options|
-    flutter_command(command: "build apk --flavor dev --dart-define=ENV=dev --debug")
+    build_flutter(build_platform: 'apk',  build_type: 'debug')
   end
 
   desc "**Assemble prod apk release version**"
@@ -43,12 +41,11 @@ platform :android do
   " You can specify the testers as a comma-separated list of email addresses: \"ali@example.com, bri@example.com, cal@example.com\"\n"
   " * **`FIREBASE_TESTER_GROUPS`**: The tester groups you want to invite." +
   " You can specify the groups as a comma-separated list: \"qa-team, trusted-testers\"\n"
- private_lane :deploy_firebase_app_distribution do |options|
+ lane :deploy_firebase_app_distribution do |options|
     env = options[:env]
     firebase_app_id = options[:firebase_app_id]
-    ENV["VERSION_NAME_SUFFIX"] = "-#{last_git_commit[:abbreviated_commit_hash]}"
     clean
-    build_apk(env: env)
+    build_apk(env: env, include_git_version_suffix: true, build_type: 'release')
     firebase_app_distribution(
       app: firebase_app_id,
       service_credentials_file: ENV["FIREBASE_SERVICE_ACCOUNT_FILE"],

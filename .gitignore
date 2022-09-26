@@ -47,6 +47,7 @@ app.*.map.json
 
 # Environment files
 *.env
+*.env.default
 
 # Fvm
 .fvm/flutter_sdk
@@ -56,3 +57,4 @@ app.*.map.json
 **/fastlane/Preview.html
 **/fastlane/screenshots
 **/fastlane/test_output
+
