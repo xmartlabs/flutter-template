@@ -1,4 +1,4 @@
-# flutter-template
+# Xmartlabs' Flutter template
 
 ## Arch Overview 
 
@@ -92,4 +92,3 @@ In order to setup pre-push hook you need to go to the root of the project and ru
 [repository_folder]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/repository
 [data_source_folder]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/source
 [get_it]: https://pub.dev/packages/get_it
-
