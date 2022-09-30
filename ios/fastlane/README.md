@@ -88,7 +88,13 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios set_signing
 ```
 
+Creates a temporal keystore and import the distribution certificate
 
+#### Envs
+* **`TEMP_KEYCHAIN_NAME`**: The temporal keychain name
+* **`TEMP_KEYCHAIN_PASSWORD`**: The temporal keychain password
+* **`DIST_CERTIFICATE_PATH`**: The distribution certificate file path.
+* **`DIST_CERTIFICATE_PASSWORD`**: The distribution certificate file password. If you are using a cert file this file is not necessary.
 
 ### ios publish_prod_testflight
 
@@ -97,6 +103,13 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 ```
 
 Push a new beta build to TestFlight
+
+#### Envs:
+* **`setup_signing`**: if true, `set_signing` is called.
+* **`APPLE_TEAM_ID`**: The apple team id
+* **`APPSTORE_CONNECT_API_KEY_ID`**: The connect api key id
+* **`APPSTORE_CONNECT_API_KEY_ISSUER_ID`**: The connect api key issuer id
+* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content
 
 ----
 

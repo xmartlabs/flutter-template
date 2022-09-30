@@ -5,6 +5,13 @@ default_platform(:ios)
 provisioning_name = 'FastlaneXL'
 
 platform :ios do
+
+  desc "Creates a temporal keystore and import the distribution certificate"
+  desc "#### Envs\n" +
+  "* **`TEMP_KEYCHAIN_NAME`**: The temporal keychain name\n" +
+  "* **`TEMP_KEYCHAIN_PASSWORD`**: The temporal keychain password\n" +
+  "* **`DIST_CERTIFICATE_PATH`**: The distribution certificate file path.\n" +
+  "* **`DIST_CERTIFICATE_PASSWORD`**: The distribution certificate file password. If you are using a cert file this file is not necessary."
   lane :set_signing do
     safe_delete_keychain
     create_keychain(
@@ -23,6 +30,9 @@ platform :ios do
     )
   end
 
+  desc "Gets or creates the provisioning profiles and setup the project to use manual signing."
+  desc "#### Envs:\n" +
+  "* **`APPLE_TEAM_ID`**: The apple team id"
   private_lane :setup_provisioning do
     get_provisioning_profile(
       team_id: ENV['APPLE_TEAM_ID'],
@@ -54,6 +64,12 @@ platform :ios do
   end
 
   desc "Push a new beta build to TestFlight"
+  desc "#### Envs:\n" +
+    "* **`setup_signing`**: if true, `set_signing` is called.\n" +
+    "* **`APPLE_TEAM_ID`**: The apple team id\n" +
+    "* **`APPSTORE_CONNECT_API_KEY_ID`**: The connect api key id\n" +
+    "* **`APPSTORE_CONNECT_API_KEY_ISSUER_ID`**: The connect api key issuer id\n" +
+    "* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content"
   lane :publish_prod_testflight do |options|
     sign_enabled = options[:setup_signing] || false
     if sign_enabled
