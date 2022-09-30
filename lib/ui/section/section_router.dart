@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/ui/extensions/context_extensions.dart';
-import 'package:flutter_template/ui/resources.dart';
 import 'package:flutter_template/ui/section/error_handler/error_handler_cubit.dart';
 
 class SectionRouter extends StatelessWidget {
