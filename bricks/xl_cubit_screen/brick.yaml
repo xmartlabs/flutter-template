@@ -1,0 +1,14 @@
+name: xl_cubit_screen
+description: A screen which uses Cubit for state management, following Xmartlabs' standards.
+
+version: 0.1.0+1
+
+environment:
+  mason: ">=0.1.0-dev.26 <0.1.0"
+
+vars:
+  name:
+    type: string
+    description: Your screen/feature name
+    default: xl
+    prompt: What is your screen name?

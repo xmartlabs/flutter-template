@@ -1,0 +1,6 @@
+bricks:
+  hello: 0.1.0+1
+  xl_cubit_screen:
+    path: xl_cubit_screen
+  xl_freezed_model:
+    path: xl_freezed_model
