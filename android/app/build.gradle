@@ -36,12 +36,12 @@ android {
         dev {
             dimension "flavor-type"
             applicationId "com.xmartlabs.template.dev"
-            resValue "string", "app_name", "Template Prod"
+            resValue "string", "app_name", "Template Dev"
         }
         prod {
             dimension "flavor-type"
             applicationId "com.xmartlabs.template"
-            resValue "string", "app_name", "Template Dev"
+            resValue "string", "app_name", "Template"
         }
         staging {
             dimension "flavor-type"

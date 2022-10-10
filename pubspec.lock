@@ -7,14 +7,21 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "43.0.0"
+    version: "47.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.1"
+    version: "4.7.0"
+  arb_utils:
+    dependency: "direct main"
+    description:
+      name: arb_utils
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   archive:
     dependency: transitive
     description:
@@ -98,7 +105,7 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.1"
   build_runner_core:
     dependency: transitive
     description:
@@ -343,12 +350,10 @@ packages:
   flutter_native_splash:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "fix/android-12-issue"
-      resolved-ref: b10546d534df2d9ff74e846349a8f2de6044a4e1
-      url: "https://github.com/mirland/flutter_native_splash.git"
-    source: git
-    version: "2.2.8"
+      name: flutter_native_splash
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.9"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -506,6 +511,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
+  intl_utils:
+    dependency: transitive
+    description:
+      name: intl_utils
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.7.0"
   io:
     dependency: transitive
     description:
@@ -526,14 +538,14 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.6.0"
+    version: "4.7.0"
   json_serializable:
     dependency: "direct dev"
     description:
       name: json_serializable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.3.1"
+    version: "6.4.0"
   lint:
     dependency: transitive
     description:

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ui/resources.dart';
+import 'package:flutter_template/ui/extensions/context_extensions.dart';
 import 'package:flutter_template/ui/section/error_handler/error_handler_cubit.dart';
 
 class SectionRouter extends StatelessWidget {
@@ -21,14 +21,14 @@ class SectionRouter extends StatelessWidget {
         init: () => {},
         unknownError: (error, retry) => _showDialog(
               context,
-              Resources.localizations.error_unknown_error_title,
-              Resources.localizations.error_unknown_error_description,
+              context.localizations.error_unknown_error_title,
+              context.localizations.error_unknown_error_description,
               retry,
             ),
         internetError: (retry) => _showDialog(
               context,
-              Resources.localizations.error_no_internet_connection_error_title,
-              Resources
+              context.localizations.error_no_internet_connection_error_title,
+              context
                   .localizations.error_no_internet_connection_error_description,
               retry,
             ),
@@ -42,17 +42,17 @@ class SectionRouter extends StatelessWidget {
           context: context,
           builder: (context) => AlertDialog(
                 title: Text(
-                    title ?? Resources.localizations.error_unknown_error_title),
+                    title ?? context.localizations.error_unknown_error_title),
                 content: Text(description),
                 actions: <Widget>[
                   if (retry != null)
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: Text(Resources.localizations.error_button_retry),
+                      child: Text(context.localizations.error_button_retry),
                     ),
                   TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: Text(Resources.localizations.error_button_ok),
+                    child: Text(context.localizations.error_button_ok),
                   ),
                 ],
               ));

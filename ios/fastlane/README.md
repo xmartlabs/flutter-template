@@ -79,6 +79,27 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ----
 
+
+## iOS
+
+### ios set_signing
+
+```sh
+[bundle exec] fastlane ios set_signing
+```
+
+
+
+### ios publish_prod_testflight
+
+```sh
+[bundle exec] fastlane ios publish_prod_testflight
+```
+
+Push a new beta build to TestFlight
+
+----
+
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
 
 More information about _fastlane_ can be found on [fastlane.tools](https://fastlane.tools).
