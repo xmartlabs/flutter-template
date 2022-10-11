@@ -35,17 +35,6 @@ class AppStyles extends TextTheme {
           labelLarge: labelLarge,
           labelSmall: labelSmall,
         );
-           headline1: headline1,
-           headline2: headline2,
-           headline3: headline3,
-           headline4: headline4,
-           headline5: headline5,
-           headline6: headline6,
-           bodyText1: bodyText1,
-           bodyText2: bodyText2,
-           caption: caption,
-           overline: overline,
-         );
 
   factory AppStyles.fromTextTheme({
     required TextStyle customStyle,
