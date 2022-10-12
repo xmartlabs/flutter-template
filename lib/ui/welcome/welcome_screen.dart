@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/model/project.dart';
-import 'package:flutter_template/ui/resources.dart';
+import 'package:flutter_template/ui/extensions/context_extensions.dart';
 import 'package:flutter_template/ui/section/error_handler/error_handler_cubit.dart';
 import 'package:flutter_template/ui/theme/app_theme.dart';
 import 'package:flutter_template/ui/welcome/welcome_cubit.dart';
@@ -23,15 +23,15 @@ class _WelcomeContentScreen extends StatelessWidget {
       BlocBuilder<WelcomeCubit, WelcomeBaseState>(builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(Resources.localizations.xmartlabs_projects),
+            title: Text(context.localizations.xmartlabs_projects),
             actions: [
               TextButton(
                 style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all<Color>(
-                  Resources.theme.colors.onPrimary,
+                  context.theme.colors.onPrimary,
                 )),
                 onPressed: () => context.read<WelcomeCubit>().logOut(),
-                child: Text(Resources.localizations.log_out),
+                child: Text(context.localizations.log_out),
               ),
             ],
           ),
