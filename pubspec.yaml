@@ -22,7 +22,7 @@ dependencies:
     sdk: flutter
 
   arb_utils: 0.2.0
-  auto_route: 5.0.1
+  auto_route: 5.0.2
   bloc: 8.1.0
   cupertino_icons: 1.0.5
   dio: 4.0.6 # networking
