@@ -63,8 +63,11 @@ class _$AppDatabase extends AppDatabase {
 
   ProjectLocalSource? _projectLocalSourceInstance;
 
-  Future<sqflite.Database> open(String path, List<Migration> migrations,
-      [Callback? callback]) async {
+  Future<sqflite.Database> open(
+    String path,
+    List<Migration> migrations, [
+    Callback? callback,
+  ]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
       version: 1,
       onConfigure: (database) async {
@@ -98,8 +101,10 @@ class _$AppDatabase extends AppDatabase {
 }
 
 class _$ProjectLocalSource extends ProjectLocalSource {
-  _$ProjectLocalSource(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database, changeListener),
+  _$ProjectLocalSource(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database, changeListener),
         _projectDbEntityInsertionAdapter = InsertionAdapter(
             database,
             'projects',
