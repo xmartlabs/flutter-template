@@ -25,16 +25,6 @@ class SignInCubit extends Cubit<SignInBaseState> {
 
   void changePassword(String email) => emit(state.copyWith(email: email));
 
-  Future<void> login() async {
-    final result = await _sessionRepository
-        .signInUser(email: state.email!, password: state.password!)
-        .mapToResult();
-
-    if (result.isFailure) {
-      emit(
-        state.copyWith(error: 'Error ${result.error}'),
-      );
-      _errorHandler.handleError(result.error);
-    }
-  }
-}
+  Future<void> signIn() => _sessionRepository
+      .signInUser(email: state.email!, password: state.password!)
+      .filterSuccess(_errorHandler.handleError);
