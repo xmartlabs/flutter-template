@@ -28,3 +28,4 @@ class SignInCubit extends Cubit<SignInBaseState> {
   Future<void> signIn() => _sessionRepository
       .signInUser(email: state.email!, password: state.password!)
       .filterSuccess(_errorHandler.handleError);
+}

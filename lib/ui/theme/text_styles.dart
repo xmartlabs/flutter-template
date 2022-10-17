@@ -7,20 +7,30 @@ class AppStyles extends TextTheme {
 
   AppStyles({
     required this.customStyle,
-    headline1,
-    headline2,
-    headline3,
-    headline4,
-    headline5,
-    headline6,
+    headlineLarge,
+    headlineMedium,
+    headlineSmall,
     bodyLarge,
     bodyMedium,
     bodySmall,
-    bodyText1,
-    bodyText2,
-    caption,
-    overline,
-  });
+    titleLarge,
+    titleMedium,
+    titleSmall,
+    labelLarge,
+    labelMedium,
+    labelSmall,
+  }) : super(
+          bodyLarge: bodyLarge,
+          headlineMedium: headlineMedium,
+          headlineSmall: headlineSmall,
+          titleLarge: titleLarge,
+          titleMedium: titleMedium,
+          titleSmall: titleSmall,
+          bodyMedium: bodyMedium,
+          bodySmall: bodySmall,
+          labelLarge: labelLarge,
+          labelSmall: labelSmall,
+        );
 
   factory AppStyles.fromTextTheme({
     required TextStyle customStyle,
@@ -28,19 +38,18 @@ class AppStyles extends TextTheme {
   }) =>
       AppStyles(
         customStyle: customStyle,
-        headline1: textTheme.headline1,
-        headline2: textTheme.headline2,
-        headline3: textTheme.headline3,
-        headline4: textTheme.headline4,
-        headline5: textTheme.headline5,
-        headline6: textTheme.headline6,
+        headlineSmall: textTheme.headlineSmall,
+        headlineMedium: textTheme.headlineMedium,
+        headlineLarge: textTheme.headlineLarge,
         bodyLarge: textTheme.bodyLarge,
         bodyMedium: textTheme.bodyMedium,
         bodySmall: textTheme.bodySmall,
-        bodyText1: textTheme.bodyText1,
-        bodyText2: textTheme.bodyText2,
-        caption: textTheme.caption,
-        overline: textTheme.overline,
+        titleLarge: textTheme.titleLarge,
+        titleMedium: textTheme.titleMedium,
+        titleSmall: textTheme.titleSmall,
+        labelLarge: textTheme.labelLarge,
+        labelMedium: textTheme.labelMedium,
+        labelSmall: textTheme.labelSmall,
       );
 
   static AppStyles getAppStyles() => AppStyles.fromTextTheme(

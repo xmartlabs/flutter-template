@@ -34,7 +34,7 @@ class _SignInContentScreen extends StatelessWidget {
                 Text(context.localizations
                     .error(context.read<SignInCubit>().state.error)),
               TextButton(
-                  onPressed: () => context.read<SignInCubit>().login(),
+                  onPressed: () => context.read<SignInCubit>().signIn(),
                   child: Text(context.localizations.sign_in))
             ],
           ),
