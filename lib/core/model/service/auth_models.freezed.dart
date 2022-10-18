@@ -33,42 +33,46 @@ mixin _$SignInResponse {
 abstract class $SignInResponseCopyWith<$Res> {
   factory $SignInResponseCopyWith(
           SignInResponse value, $Res Function(SignInResponse) then) =
-      _$SignInResponseCopyWithImpl<$Res>;
+      _$SignInResponseCopyWithImpl<$Res, SignInResponse>;
+  @useResult
   $Res call({String accessToken, User user});
 
   $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$SignInResponseCopyWithImpl<$Res>
+class _$SignInResponseCopyWithImpl<$Res, $Val extends SignInResponse>
     implements $SignInResponseCopyWith<$Res> {
   _$SignInResponseCopyWithImpl(this._value, this._then);
 
-  final SignInResponse _value;
   // ignore: unused_field
-  final $Res Function(SignInResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? user = freezed,
+    Object? accessToken = null,
+    Object? user = null,
   }) {
     return _then(_value.copyWith(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      user: user == freezed
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get user {
     return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -80,6 +84,7 @@ abstract class _$$_SignInResponseCopyWith<$Res>
           _$_SignInResponse value, $Res Function(_$_SignInResponse) then) =
       __$$_SignInResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String accessToken, User user});
 
   @override
@@ -88,26 +93,24 @@ abstract class _$$_SignInResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_SignInResponseCopyWithImpl<$Res>
-    extends _$SignInResponseCopyWithImpl<$Res>
+    extends _$SignInResponseCopyWithImpl<$Res, _$_SignInResponse>
     implements _$$_SignInResponseCopyWith<$Res> {
   __$$_SignInResponseCopyWithImpl(
       _$_SignInResponse _value, $Res Function(_$_SignInResponse) _then)
-      : super(_value, (v) => _then(v as _$_SignInResponse));
+      : super(_value, _then);
 
-  @override
-  _$_SignInResponse get _value => super._value as _$_SignInResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? user = freezed,
+    Object? accessToken = null,
+    Object? user = null,
   }) {
     return _then(_$_SignInResponse(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      user: user == freezed
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
@@ -139,20 +142,18 @@ class _$_SignInResponse implements _SignInResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignInResponse &&
-            const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken) &&
-            const DeepCollectionEquality().equals(other.user, user));
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(accessToken),
-      const DeepCollectionEquality().hash(user));
+  int get hashCode => Object.hash(runtimeType, accessToken, user);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SignInResponseCopyWith<_$_SignInResponse> get copyWith =>
       __$$_SignInResponseCopyWithImpl<_$_SignInResponse>(this, _$identity);
 
@@ -203,36 +204,39 @@ mixin _$SignInRequest {
 abstract class $SignInRequestCopyWith<$Res> {
   factory $SignInRequestCopyWith(
           SignInRequest value, $Res Function(SignInRequest) then) =
-      _$SignInRequestCopyWithImpl<$Res>;
+      _$SignInRequestCopyWithImpl<$Res, SignInRequest>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'email') String email,
       @JsonKey(name: 'password') String password});
 }
 
 /// @nodoc
-class _$SignInRequestCopyWithImpl<$Res>
+class _$SignInRequestCopyWithImpl<$Res, $Val extends SignInRequest>
     implements $SignInRequestCopyWith<$Res> {
   _$SignInRequestCopyWithImpl(this._value, this._then);
 
-  final SignInRequest _value;
   // ignore: unused_field
-  final $Res Function(SignInRequest) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
+    Object? email = null,
+    Object? password = null,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -243,6 +247,7 @@ abstract class _$$_SignInRequestCopyWith<$Res>
           _$_SignInRequest value, $Res Function(_$_SignInRequest) then) =
       __$$_SignInRequestCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'email') String email,
       @JsonKey(name: 'password') String password});
@@ -250,26 +255,24 @@ abstract class _$$_SignInRequestCopyWith<$Res>
 
 /// @nodoc
 class __$$_SignInRequestCopyWithImpl<$Res>
-    extends _$SignInRequestCopyWithImpl<$Res>
+    extends _$SignInRequestCopyWithImpl<$Res, _$_SignInRequest>
     implements _$$_SignInRequestCopyWith<$Res> {
   __$$_SignInRequestCopyWithImpl(
       _$_SignInRequest _value, $Res Function(_$_SignInRequest) _then)
-      : super(_value, (v) => _then(v as _$_SignInRequest));
+      : super(_value, _then);
 
-  @override
-  _$_SignInRequest get _value => super._value as _$_SignInRequest;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
+    Object? email = null,
+    Object? password = null,
   }) {
     return _then(_$_SignInRequest(
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
@@ -305,19 +308,18 @@ class _$_SignInRequest implements _SignInRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignInRequest &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.password, password));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(password));
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SignInRequestCopyWith<_$_SignInRequest> get copyWith =>
       __$$_SignInRequestCopyWithImpl<_$_SignInRequest>(this, _$identity);
 
