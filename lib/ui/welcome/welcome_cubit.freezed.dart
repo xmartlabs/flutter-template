@@ -24,7 +24,7 @@ mixin _$WelcomeBaseState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<Project> projects)? state,
+    TResult? Function(List<Project> projects)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,7 +40,7 @@ mixin _$WelcomeBaseState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(WelcomeState value)? state,
+    TResult? Function(WelcomeState value)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,29 +59,32 @@ mixin _$WelcomeBaseState {
 abstract class $WelcomeBaseStateCopyWith<$Res> {
   factory $WelcomeBaseStateCopyWith(
           WelcomeBaseState value, $Res Function(WelcomeBaseState) then) =
-      _$WelcomeBaseStateCopyWithImpl<$Res>;
+      _$WelcomeBaseStateCopyWithImpl<$Res, WelcomeBaseState>;
+  @useResult
   $Res call({List<Project> projects});
 }
 
 /// @nodoc
-class _$WelcomeBaseStateCopyWithImpl<$Res>
+class _$WelcomeBaseStateCopyWithImpl<$Res, $Val extends WelcomeBaseState>
     implements $WelcomeBaseStateCopyWith<$Res> {
   _$WelcomeBaseStateCopyWithImpl(this._value, this._then);
 
-  final WelcomeBaseState _value;
   // ignore: unused_field
-  final $Res Function(WelcomeBaseState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projects = freezed,
+    Object? projects = null,
   }) {
     return _then(_value.copyWith(
-      projects: projects == freezed
+      projects: null == projects
           ? _value.projects
           : projects // ignore: cast_nullable_to_non_nullable
               as List<Project>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -92,26 +95,25 @@ abstract class _$$WelcomeStateCopyWith<$Res>
           _$WelcomeState value, $Res Function(_$WelcomeState) then) =
       __$$WelcomeStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<Project> projects});
 }
 
 /// @nodoc
 class __$$WelcomeStateCopyWithImpl<$Res>
-    extends _$WelcomeBaseStateCopyWithImpl<$Res>
+    extends _$WelcomeBaseStateCopyWithImpl<$Res, _$WelcomeState>
     implements _$$WelcomeStateCopyWith<$Res> {
   __$$WelcomeStateCopyWithImpl(
       _$WelcomeState _value, $Res Function(_$WelcomeState) _then)
-      : super(_value, (v) => _then(v as _$WelcomeState));
+      : super(_value, _then);
 
-  @override
-  _$WelcomeState get _value => super._value as _$WelcomeState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projects = freezed,
+    Object? projects = null,
   }) {
     return _then(_$WelcomeState(
-      projects: projects == freezed
+      projects: null == projects
           ? _value._projects
           : projects // ignore: cast_nullable_to_non_nullable
               as List<Project>,
@@ -152,6 +154,7 @@ class _$WelcomeState implements WelcomeState {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$WelcomeStateCopyWith<_$WelcomeState> get copyWith =>
       __$$WelcomeStateCopyWithImpl<_$WelcomeState>(this, _$identity);
 
@@ -166,7 +169,7 @@ class _$WelcomeState implements WelcomeState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<Project> projects)? state,
+    TResult? Function(List<Project> projects)? state,
   }) {
     return state?.call(projects);
   }
@@ -194,7 +197,7 @@ class _$WelcomeState implements WelcomeState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(WelcomeState value)? state,
+    TResult? Function(WelcomeState value)? state,
   }) {
     return state?.call(this);
   }

@@ -27,7 +27,7 @@ mixin _$SignInBaseState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? email, String? password, String error)? state,
+    TResult? Function(String? email, String? password, String error)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +43,7 @@ mixin _$SignInBaseState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SignInState value)? state,
+    TResult? Function(SignInState value)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,39 +62,42 @@ mixin _$SignInBaseState {
 abstract class $SignInBaseStateCopyWith<$Res> {
   factory $SignInBaseStateCopyWith(
           SignInBaseState value, $Res Function(SignInBaseState) then) =
-      _$SignInBaseStateCopyWithImpl<$Res>;
+      _$SignInBaseStateCopyWithImpl<$Res, SignInBaseState>;
+  @useResult
   $Res call({String? email, String? password, String error});
 }
 
 /// @nodoc
-class _$SignInBaseStateCopyWithImpl<$Res>
+class _$SignInBaseStateCopyWithImpl<$Res, $Val extends SignInBaseState>
     implements $SignInBaseStateCopyWith<$Res> {
   _$SignInBaseStateCopyWithImpl(this._value, this._then);
 
-  final SignInBaseState _value;
   // ignore: unused_field
-  final $Res Function(SignInBaseState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      password: password == freezed
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      error: error == freezed
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -105,36 +108,35 @@ abstract class _$$SignInStateCopyWith<$Res>
           _$SignInState value, $Res Function(_$SignInState) then) =
       __$$SignInStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? email, String? password, String error});
 }
 
 /// @nodoc
 class __$$SignInStateCopyWithImpl<$Res>
-    extends _$SignInBaseStateCopyWithImpl<$Res>
+    extends _$SignInBaseStateCopyWithImpl<$Res, _$SignInState>
     implements _$$SignInStateCopyWith<$Res> {
   __$$SignInStateCopyWithImpl(
       _$SignInState _value, $Res Function(_$SignInState) _then)
-      : super(_value, (v) => _then(v as _$SignInState));
+      : super(_value, _then);
 
-  @override
-  _$SignInState get _value => super._value as _$SignInState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$SignInState(
-      email: email == freezed
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      password: password == freezed
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      error: error == freezed
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
@@ -165,20 +167,18 @@ class _$SignInState implements SignInState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignInState &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, email, password, error);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$SignInStateCopyWith<_$SignInState> get copyWith =>
       __$$SignInStateCopyWithImpl<_$SignInState>(this, _$identity);
 
@@ -194,7 +194,7 @@ class _$SignInState implements SignInState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? email, String? password, String error)? state,
+    TResult? Function(String? email, String? password, String error)? state,
   }) {
     return state?.call(email, password, error);
   }
@@ -222,7 +222,7 @@ class _$SignInState implements SignInState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SignInState value)? state,
+    TResult? Function(SignInState value)? state,
   }) {
     return state?.call(this);
   }

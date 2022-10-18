@@ -29,38 +29,42 @@ mixin _$GeneralError {
 abstract class $GeneralErrorCopyWith<$Res> {
   factory $GeneralErrorCopyWith(
           GeneralError value, $Res Function(GeneralError) then) =
-      _$GeneralErrorCopyWithImpl<$Res>;
+      _$GeneralErrorCopyWithImpl<$Res, GeneralError>;
+  @useResult
   $Res call({String? title, String description, dynamic cause});
 }
 
 /// @nodoc
-class _$GeneralErrorCopyWithImpl<$Res> implements $GeneralErrorCopyWith<$Res> {
+class _$GeneralErrorCopyWithImpl<$Res, $Val extends GeneralError>
+    implements $GeneralErrorCopyWith<$Res> {
   _$GeneralErrorCopyWithImpl(this._value, this._then);
 
-  final GeneralError _value;
   // ignore: unused_field
-  final $Res Function(GeneralError) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? title = freezed,
-    Object? description = freezed,
-    Object? cause = freezed,
+    Object? description = null,
+    Object? cause = null,
   }) {
     return _then(_value.copyWith(
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      cause: cause == freezed
+      cause: null == cause
           ? _value.cause
           : cause // ignore: cast_nullable_to_non_nullable
               as dynamic,
-    ));
+    ) as $Val);
   }
 }
 
@@ -71,36 +75,35 @@ abstract class _$$_GeneralErrorCopyWith<$Res>
           _$_GeneralError value, $Res Function(_$_GeneralError) then) =
       __$$_GeneralErrorCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? title, String description, dynamic cause});
 }
 
 /// @nodoc
 class __$$_GeneralErrorCopyWithImpl<$Res>
-    extends _$GeneralErrorCopyWithImpl<$Res>
+    extends _$GeneralErrorCopyWithImpl<$Res, _$_GeneralError>
     implements _$$_GeneralErrorCopyWith<$Res> {
   __$$_GeneralErrorCopyWithImpl(
       _$_GeneralError _value, $Res Function(_$_GeneralError) _then)
-      : super(_value, (v) => _then(v as _$_GeneralError));
+      : super(_value, _then);
 
-  @override
-  _$_GeneralError get _value => super._value as _$_GeneralError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? title = freezed,
-    Object? description = freezed,
-    Object? cause = freezed,
+    Object? description = null,
+    Object? cause = null,
   }) {
     return _then(_$_GeneralError(
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      cause: cause == freezed
+      cause: null == cause
           ? _value.cause
           : cause // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -140,21 +143,19 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GeneralError &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             const DeepCollectionEquality().equals(other.cause, cause));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(description),
+  int get hashCode => Object.hash(runtimeType, title, description,
       const DeepCollectionEquality().hash(cause));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_GeneralErrorCopyWith<_$_GeneralError> get copyWith =>
       __$$_GeneralErrorCopyWithImpl<_$_GeneralError>(this, _$identity);
 }
