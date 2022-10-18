@@ -55,7 +55,7 @@ dev_dependencies:
   flutter_gen_runner: 5.0.2
   flutter_launcher_icons: 0.10.0
   flutter_lints: 2.0.1
-  freezed: 2.1.0+1
+  freezed: ^2.2.0
   json_serializable: 6.5.2
   pedantic: 1.11.1
 
