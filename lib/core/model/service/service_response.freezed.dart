@@ -24,8 +24,8 @@ mixin _$ServiceResponse<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? data,
-    TResult Function(NetworkException error)? error,
+    TResult? Function(T data)? data,
+    TResult? Function(NetworkException error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$ServiceResponse<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServiceResponseData<T> value)? data,
-    TResult Function(ServiceResponseError<T> value)? error,
+    TResult? Function(ServiceResponseData<T> value)? data,
+    TResult? Function(ServiceResponseError<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,17 +60,18 @@ mixin _$ServiceResponse<T> {
 abstract class $ServiceResponseCopyWith<T, $Res> {
   factory $ServiceResponseCopyWith(
           ServiceResponse<T> value, $Res Function(ServiceResponse<T>) then) =
-      _$ServiceResponseCopyWithImpl<T, $Res>;
+      _$ServiceResponseCopyWithImpl<T, $Res, ServiceResponse<T>>;
 }
 
 /// @nodoc
-class _$ServiceResponseCopyWithImpl<T, $Res>
+class _$ServiceResponseCopyWithImpl<T, $Res, $Val extends ServiceResponse<T>>
     implements $ServiceResponseCopyWith<T, $Res> {
   _$ServiceResponseCopyWithImpl(this._value, this._then);
 
-  final ServiceResponse<T> _value;
   // ignore: unused_field
-  final $Res Function(ServiceResponse<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -78,27 +79,25 @@ abstract class _$$ServiceResponseDataCopyWith<T, $Res> {
   factory _$$ServiceResponseDataCopyWith(_$ServiceResponseData<T> value,
           $Res Function(_$ServiceResponseData<T>) then) =
       __$$ServiceResponseDataCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({T data});
 }
 
 /// @nodoc
 class __$$ServiceResponseDataCopyWithImpl<T, $Res>
-    extends _$ServiceResponseCopyWithImpl<T, $Res>
+    extends _$ServiceResponseCopyWithImpl<T, $Res, _$ServiceResponseData<T>>
     implements _$$ServiceResponseDataCopyWith<T, $Res> {
   __$$ServiceResponseDataCopyWithImpl(_$ServiceResponseData<T> _value,
       $Res Function(_$ServiceResponseData<T>) _then)
-      : super(_value, (v) => _then(v as _$ServiceResponseData<T>));
+      : super(_value, _then);
 
-  @override
-  _$ServiceResponseData<T> get _value =>
-      super._value as _$ServiceResponseData<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_$ServiceResponseData<T>(
-      data == freezed
+      null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T,
@@ -133,6 +132,7 @@ class _$ServiceResponseData<T> implements ServiceResponseData<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ServiceResponseDataCopyWith<T, _$ServiceResponseData<T>> get copyWith =>
       __$$ServiceResponseDataCopyWithImpl<T, _$ServiceResponseData<T>>(
           this, _$identity);
@@ -149,8 +149,8 @@ class _$ServiceResponseData<T> implements ServiceResponseData<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? data,
-    TResult Function(NetworkException error)? error,
+    TResult? Function(T data)? data,
+    TResult? Function(NetworkException error)? error,
   }) {
     return data?.call(this.data);
   }
@@ -180,8 +180,8 @@ class _$ServiceResponseData<T> implements ServiceResponseData<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServiceResponseData<T> value)? data,
-    TResult Function(ServiceResponseError<T> value)? error,
+    TResult? Function(ServiceResponseData<T> value)? data,
+    TResult? Function(ServiceResponseError<T> value)? error,
   }) {
     return data?.call(this);
   }
@@ -214,6 +214,7 @@ abstract class _$$ServiceResponseErrorCopyWith<T, $Res> {
   factory _$$ServiceResponseErrorCopyWith(_$ServiceResponseError<T> value,
           $Res Function(_$ServiceResponseError<T>) then) =
       __$$ServiceResponseErrorCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({NetworkException error});
 
   $NetworkExceptionCopyWith<$Res> get error;
@@ -221,22 +222,19 @@ abstract class _$$ServiceResponseErrorCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$ServiceResponseErrorCopyWithImpl<T, $Res>
-    extends _$ServiceResponseCopyWithImpl<T, $Res>
+    extends _$ServiceResponseCopyWithImpl<T, $Res, _$ServiceResponseError<T>>
     implements _$$ServiceResponseErrorCopyWith<T, $Res> {
   __$$ServiceResponseErrorCopyWithImpl(_$ServiceResponseError<T> _value,
       $Res Function(_$ServiceResponseError<T>) _then)
-      : super(_value, (v) => _then(v as _$ServiceResponseError<T>));
+      : super(_value, _then);
 
-  @override
-  _$ServiceResponseError<T> get _value =>
-      super._value as _$ServiceResponseError<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$ServiceResponseError<T>(
-      error == freezed
+      null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as NetworkException,
@@ -244,6 +242,7 @@ class __$$ServiceResponseErrorCopyWithImpl<T, $Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $NetworkExceptionCopyWith<$Res> get error {
     return $NetworkExceptionCopyWith<$Res>(_value.error, (value) {
       return _then(_value.copyWith(error: value));
@@ -269,15 +268,15 @@ class _$ServiceResponseError<T> implements ServiceResponseError<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServiceResponseError<T> &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ServiceResponseErrorCopyWith<T, _$ServiceResponseError<T>> get copyWith =>
       __$$ServiceResponseErrorCopyWithImpl<T, _$ServiceResponseError<T>>(
           this, _$identity);
@@ -294,8 +293,8 @@ class _$ServiceResponseError<T> implements ServiceResponseError<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T data)? data,
-    TResult Function(NetworkException error)? error,
+    TResult? Function(T data)? data,
+    TResult? Function(NetworkException error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -325,8 +324,8 @@ class _$ServiceResponseError<T> implements ServiceResponseError<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ServiceResponseData<T> value)? data,
-    TResult Function(ServiceResponseError<T> value)? error,
+    TResult? Function(ServiceResponseData<T> value)? data,
+    TResult? Function(ServiceResponseError<T> value)? error,
   }) {
     return error?.call(this);
   }

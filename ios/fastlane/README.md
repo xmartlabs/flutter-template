@@ -53,6 +53,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 **Run linters**
 
+### ensure_no_change_in_generated_code
+
+```sh
+[bundle exec] fastlane ensure_no_change_in_generated_code
+```
+
+**Check generated code is fine**
+
 ### tests
 
 ```sh

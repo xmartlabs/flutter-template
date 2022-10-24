@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ui/resources.dart';
+import 'package:flutter_template/ui/extensions/context_extensions.dart';
 import 'package:flutter_template/ui/section/error_handler/error_handler_cubit.dart';
-import 'package:flutter_template/ui/signin/signin_bloc.dart';
+
+import 'package:flutter_template/ui/signin/signin_cubit.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignInBloc(context.read<ErrorHandlerCubit>()),
+      create: (context) => SignInCubit(context.read<ErrorHandlerCubit>()),
       child: _SignInContentScreen(),
     );
   }
@@ -19,23 +20,22 @@ class SignInScreen extends StatelessWidget {
 class _SignInContentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignInBloc, SignInState>(
+    return BlocBuilder<SignInCubit, SignInBaseState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(Resources.localizations.sign_in),
+            title: Text(context.localizations.sign_in),
           ),
           body: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(child: _SignInForm()),
-              if (context.read<SignInBloc>().state.error.isNotEmpty)
-                Text(Resources.localizations
-                    .error(context.read<SignInBloc>().state.error)),
+              if (context.read<SignInCubit>().state.error.isNotEmpty)
+                Text(context.localizations
+                    .error(context.read<SignInCubit>().state.error)),
               TextButton(
-                  onPressed: () =>
-                      context.read<SignInBloc>().add(SignInEvent.login()),
-                  child: Text(Resources.localizations.sign_in))
+                  onPressed: () => context.read<SignInCubit>().signIn(),
+                  child: Text(context.localizations.sign_in))
             ],
           ),
         );
@@ -52,7 +52,7 @@ class _SignInForm extends StatefulWidget {
 class _SignInFormState extends State<_SignInForm> {
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
-  late SignInBloc _signInBlock;
+  late SignInCubit _signInCubit;
 
   @override
   void dispose() {
@@ -64,10 +64,10 @@ class _SignInFormState extends State<_SignInForm> {
   @override
   void initState() {
     super.initState();
-    _signInBlock = context.read<SignInBloc>();
+    _signInCubit = context.read<SignInCubit>();
     // TODO: This should be bound
-    _emailTextController.text = _signInBlock.state.email ?? '';
-    _passwordTextController.text = _signInBlock.state.password ?? '';
+    _emailTextController.text = _signInCubit.state.email ?? '';
+    _passwordTextController.text = _signInCubit.state.password ?? '';
   }
 
   @override
@@ -80,11 +80,10 @@ class _SignInFormState extends State<_SignInForm> {
           child: Container(
             child: TextField(
               controller: _emailTextController,
-              onChanged: (String text) =>
-                  _signInBlock.add(SignInEvent.changeEmail(email: text)),
+              onChanged: (String text) => _signInCubit.changeEmail(text),
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: Resources.localizations.mail,
+                labelText: context.localizations.mail,
               ),
             ),
           ),
@@ -95,11 +94,11 @@ class _SignInFormState extends State<_SignInForm> {
               child: TextField(
             obscureText: true,
             controller: _passwordTextController,
-            onChanged: (String password) => _signInBlock
-                .add(SignInEvent.changePassword(password: password)),
+            onChanged: (String password) =>
+                _signInCubit.changePassword(password),
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: Resources.localizations.password,
+              labelText: context.localizations.password,
             ),
           )),
         ),
