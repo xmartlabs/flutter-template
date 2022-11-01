@@ -21,7 +21,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  arb_utils: 0.2.0
   auto_route: 5.0.2
   bloc: 8.1.0
   cupertino_icons: 1.0.5
@@ -48,6 +47,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  arb_utils: 0.4.0 # Used to sort strings in language files
   auto_route_generator: 5.0.2
   build_runner: 2.3.2
   floor_generator: 1.3.0
