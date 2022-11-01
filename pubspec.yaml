@@ -47,7 +47,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  arb_utils: 0.4.0 # Used to sort strings in language files
+  arb_utils: 0.2.0 # It cannot be updated, version 0.4.0 is not working fine https://github.com/Rodsevich/arb_utils/issues/14
   auto_route_generator: 5.0.2
   build_runner: 2.3.2
   floor_generator: 1.3.0

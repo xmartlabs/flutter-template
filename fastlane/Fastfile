@@ -44,6 +44,16 @@ lane :lint_format do
   flutter_command(command: "format --set-exit-if-changed .")
 end
 
+desc "**Lint: Check code format**"
+lane :lint_check_language_sorting do
+  current_md5 = sh_on_root(command: "md5 lib/l10n/intl_en.arb")
+  flutter_command(command: "pub run arb_utils:sort lib/l10n/intl_en.arb")
+  new_md5 = sh_on_root(command: "md5 lib/l10n/intl_en.arb")
+  unless current_md5 == new_md5
+    UI.user_error!("Language file is not sorted")
+  end
+end
+
 desc "**Lint: Analyze code**"
 lane :lint_analyze do
   flutter_command(command: "analyze .")
@@ -52,6 +62,7 @@ end
 desc "**Run linters**"
 lane :lints do
   lint_format
+  lint_check_language_sorting
   lint_analyze
 end
 
