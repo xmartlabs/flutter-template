@@ -60,7 +60,13 @@ class _CrashReportWrappedPrinter extends LogPrinter {
     var trace = Trace.current(4);
     var frames = trace.frames;
     final newFrames = frames.map(
-        (frame) => Frame(frame.uri, frame.line, frame.column, frame.member));
+      (frame) => Frame(
+        frame.uri,
+        frame.line,
+        frame.column,
+        frame.member,
+      ),
+    );
     return _PrintableTrace(newFrames);
   }
 
@@ -103,8 +109,10 @@ class _PrintableTrace extends Trace {
     return frames.map((frame) {
       var number = '#${i++}'.padRight(8);
       var member = frame.member!
-          .replaceAllMapped(RegExp(r'[^.]+\.<async>'),
-              (match) => '${match[1]}.<${match[1]}_async_body>')
+          .replaceAllMapped(
+            RegExp(r'[^.]+\.<async>'),
+            (match) => '${match[1]}.<${match[1]}_async_body>',
+          )
           .replaceAll('<fn>', '<anonymous closure>');
       var line = frame.line ?? 0;
       var column = frame.column ?? 0;

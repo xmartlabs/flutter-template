@@ -49,10 +49,24 @@ lane :lint_analyze do
   flutter_command(command: "analyze .")
 end
 
+desc "**Lint: Code metrics**"
+lane :lint_code_metrics do
+  result = flutter_command(command: "pub run dart_code_metrics:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings")
+  UI.message(result)
+  unless result.include? "✔ no issues found!"
+    UI.user_error!("Code metrics error happened")
+  end
+
+  flutter_command(command: "pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused")
+  flutter_command(command: "pub run dart_code_metrics:metrics check-unused-files lib --fatal-unused")
+end
+
+
 desc "**Run linters**"
 lane :lints do
   lint_format
   lint_analyze
+  lint_code_metrics
 end
 
 desc "**Check generated code is fine**"

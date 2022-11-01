@@ -27,11 +27,30 @@ linter:
     - curly_braces_in_flow_control_structures
     - slash_for_doc_comments
 
+dart_code_metrics:
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 20
+    maximum-nesting-level: 5
+    number-of-parameters: 4
+    source-lines-of-code: 50
+  metrics-exclude:
+    - test/**
+  rules:
+    - no-boolean-literal-compare
+    - no-empty-block
+    - prefer-trailing-comma
+    - prefer-conditional-expressions
+    - no-equal-then-else
+
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 analyzer:
   exclude:
     - '**/*.g.dart'
     - '**/*.gen.dart'
+    - '**/*.freezed.dart'
   errors:
     invalid_annotation_target: ignore

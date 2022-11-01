@@ -53,7 +53,9 @@ abstract class Result<S> extends Equatable {
   /// the matching function to the object type will be executed. For example,
   /// for a `SuccessResult` object only the [fnData] function will be executed.
   Result<T> either<T>(
-      Object Function(Object error) fnFailure, T Function(S data) fnData);
+    Object Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  );
 
   /// Transforms value of [data] allowing a new `DataResult` to be returned.
   /// A `SuccessResult` might return a `FailureResult` and vice versa.
@@ -67,7 +69,10 @@ abstract class Result<S> extends Equatable {
   /// Folds [error] and [data] into the value of one type. Only the matching
   /// function to the object type will be executed. For example, for a
   /// `SuccessResult` object only the [fnData] function will be executed.
-  T fold<T>(T Function(Object error) fnFailure, T Function(S data) fnData);
+  T fold<T>(
+    T Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  );
 
   @override
   List<Object?> get props => [if (isSuccess) data else error];
@@ -82,24 +87,24 @@ class _SuccessResult<S> extends Result<S> {
 
   @override
   _SuccessResult<T> either<T>(
-      Object Function(Object error) fnFailure, T Function(S data) fnData) {
-    return _SuccessResult<T>(fnData(_value));
-  }
+    Object Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  ) =>
+      _SuccessResult<T>(fnData(_value));
 
   @override
-  Result<T> then<T>(Result<T> Function(S data) fnData) {
-    return fnData(_value);
-  }
+  Result<T> then<T>(Result<T> Function(S data) fnData) => fnData(_value);
 
   @override
-  _SuccessResult<T> map<T>(T Function(S data) fnData) {
-    return _SuccessResult<T>(fnData(_value));
-  }
+  _SuccessResult<T> map<T>(T Function(S data) fnData) =>
+      _SuccessResult<T>(fnData(_value));
 
   @override
-  T fold<T>(T Function(Object error) fnFailure, T Function(S data) fnData) {
-    return fnData(_value);
-  }
+  T fold<T>(
+    T Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  ) =>
+      fnData(_value);
 }
 
 /// Failure implementation of `DataResult`. It contains `error`.  It's
@@ -111,22 +116,27 @@ class _FailureResult<S> extends Result<S> {
 
   @override
   _FailureResult<T> either<T>(
-      Object Function(Object error) fnFailure, T Function(S data) fnData) {
-    return _FailureResult<T>(fnFailure(_value));
-  }
+    Object Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  ) =>
+      _FailureResult<T>(fnFailure(_value));
 
   @override
-  _FailureResult<T> map<T>(T Function(S data) fnData) {
-    return _FailureResult<T>(_value);
-  }
+  _FailureResult<T> map<T>(
+    T Function(S data) fnData,
+  ) =>
+      _FailureResult<T>(_value);
 
   @override
-  _FailureResult<T> then<T>(Result<T> Function(S data) fnData) {
-    return _FailureResult<T>(_value);
-  }
+  _FailureResult<T> then<T>(
+    Result<T> Function(S data) fnData,
+  ) =>
+      _FailureResult<T>(_value);
 
   @override
-  T fold<T>(T Function(Object error) fnFailure, T Function(S data) fnData) {
-    return fnFailure(_value);
-  }
+  T fold<T>(
+    T Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  ) =>
+      fnFailure(_value);
 }

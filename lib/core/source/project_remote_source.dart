@@ -10,9 +10,11 @@ class ProjectRemoteSource {
   ProjectRemoteSource(this._httpService);
 
   Future<List<Project>> getProjects() async => _httpService
-      .getAndProcessResponse(_urlGetProjects,
-          serializer: (listResponse) => (listResponse as List)
-              .map((project) => Project.fromJson(project))
-              .toList())
+      .getAndProcessResponse(
+        _urlGetProjects,
+        serializer: (listResponse) => (listResponse as List)
+            .map((project) => Project.fromJson(project))
+            .toList(),
+      )
       .then((value) => value.getDataOrThrow());
 }

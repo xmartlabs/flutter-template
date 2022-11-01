@@ -94,45 +94,59 @@ class NetworkException extends Object with _$NetworkException {
         return const NetworkException.unexpectedError();
       }
     } else {
-      if (error.toString().contains('is not a subtype of')) {
-        return const NetworkException.unableToProcess();
-      } else {
-        return const NetworkException.unexpectedError();
-      }
+      return error.toString().contains('is not a subtype of')
+          ? const NetworkException.unableToProcess()
+          : const NetworkException.unexpectedError();
     }
   }
 
   static String getErrorMessage(NetworkException networkExceptions) {
     var errorMessage = '';
-    networkExceptions.when(notImplemented: () {
-      errorMessage = 'Not Implemented';
-    }, internalServerError: () {
-      errorMessage = 'Internal Server Error';
-    }, notFound: (String reason) {
-      errorMessage = reason;
-    }, serviceUnavailable: () {
-      errorMessage = 'Service unavailable';
-    }, methodNotAllowed: () {
-      errorMessage = 'Method Allowed';
-    }, badRequest: () {
-      errorMessage = 'Bad request';
-    }, unauthorizedRequest: (body) {
-      errorMessage = 'Unauthorized request - $body';
-    }, unexpectedError: () {
-      errorMessage = 'Unexpected error occurred';
-    }, noInternetConnection: () {
-      errorMessage = 'No internet connection';
-    }, conflict: () {
-      errorMessage = 'Error due to a conflict';
-    }, unableToProcess: () {
-      errorMessage = 'Unable to process the data';
-    }, defaultError: (int? code, String? error) {
-      errorMessage = error ?? 'Unexpected error occurred';
-    }, formatException: () {
-      errorMessage = 'Unexpected error occurred';
-    }, notAcceptable: () {
-      errorMessage = 'Not acceptable';
-    });
+    networkExceptions.when(
+      notImplemented: () {
+        errorMessage = 'Not Implemented';
+      },
+      internalServerError: () {
+        errorMessage = 'Internal Server Error';
+      },
+      notFound: (String reason) {
+        errorMessage = reason;
+      },
+      serviceUnavailable: () {
+        errorMessage = 'Service unavailable';
+      },
+      methodNotAllowed: () {
+        errorMessage = 'Method Allowed';
+      },
+      badRequest: () {
+        errorMessage = 'Bad request';
+      },
+      unauthorizedRequest: (body) {
+        errorMessage = 'Unauthorized request - $body';
+      },
+      unexpectedError: () {
+        errorMessage = 'Unexpected error occurred';
+      },
+      noInternetConnection: () {
+        errorMessage = 'No internet connection';
+      },
+      conflict: () {
+        errorMessage = 'Error due to a conflict';
+      },
+      unableToProcess: () {
+        errorMessage = 'Unable to process the data';
+      },
+      defaultError: (int? code, String? error) {
+        errorMessage = error ?? 'Unexpected error occurred';
+      },
+      formatException: () {
+        errorMessage = 'Unexpected error occurred';
+      },
+      notAcceptable: () {
+        errorMessage = 'Not acceptable';
+      },
+    );
+
     return errorMessage;
   }
 }
