@@ -47,7 +47,7 @@ end
 desc "**Lint: Check code format**"
 lane :lint_check_language_sorting do
   current_content = sh_on_root(command: "cat lib/l10n/intl_en.arb")
-  flutter_command(command: "pub run arb_utils:sort lib/l10n/intl_en.arb")
+  flutter_command(command: "pub run arb_utils sort lib/l10n/intl_en.arb")
   new_content = sh_on_root(command: "cat lib/l10n/intl_en.arb")
   unless current_content == new_content
     UI.user_error!("Language file is not sorted")
