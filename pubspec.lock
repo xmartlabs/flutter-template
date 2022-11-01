@@ -30,7 +30,7 @@ packages:
     source: hosted
     version: "2.0.1"
   arb_utils:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: arb_utils
       url: "https://pub.dartlang.org"

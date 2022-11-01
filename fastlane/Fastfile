@@ -44,6 +44,16 @@ lane :lint_format do
   flutter_command(command: "format --set-exit-if-changed .")
 end
 
+desc "**Lint: Check code format**"
+lane :lint_check_language_sorting do
+  current_content = sh_on_root(command: "cat lib/l10n/intl_en.arb")
+  flutter_command(command: "pub run arb_utils:sort lib/l10n/intl_en.arb")
+  new_content = sh_on_root(command: "cat lib/l10n/intl_en.arb")
+  unless current_content == new_content
+    UI.user_error!("Language file is not sorted")
+  end
+end
+
 desc "**Lint: Analyze code**"
 lane :lint_analyze do
   flutter_command(command: "analyze .")
@@ -65,6 +75,7 @@ end
 desc "**Run linters**"
 lane :lints do
   lint_format
+  lint_check_language_sorting
   lint_analyze
   lint_code_metrics
 end
