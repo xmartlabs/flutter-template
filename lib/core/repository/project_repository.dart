@@ -16,14 +16,14 @@ class ProjectRepository {
 
   ProjectRepository(this._projectLocalSource, this._projectRemoteSource)
       : _store = Stock(
-            fetcher:
-                Fetcher.ofFuture((_) => _projectRemoteSource.getProjects()),
-            sourceOfTruth: SourceOfTruth<dynamic, List<ProjectDbEntity>>(
-              reader: (_) => _projectLocalSource.getProjects(),
-              writer: (_, value) async {
-                await _projectLocalSource.replaceProjects(value);
-              },
-            ).mapToUsingMapper(ProjectListStockTypeMapper()));
+          fetcher: Fetcher.ofFuture(
+            (_) => _projectRemoteSource.getProjects(),
+          ),
+          sourceOfTruth: SourceOfTruth<dynamic, List<ProjectDbEntity>>(
+            reader: (_) => _projectLocalSource.getProjects(),
+            writer: (_, value) => _projectLocalSource.replaceProjects(value),
+          ).mapToUsingMapper(ProjectListStockTypeMapper()),
+        );
 
   Stream<List<Project>?> getProjects() => _store
       .stream(null)

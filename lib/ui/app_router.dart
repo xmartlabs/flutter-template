@@ -31,7 +31,7 @@ part 'app_router.gr.dart';
           initial: true,
         ),
       ],
-    )
+    ),
   ],
 )
 class AppRouter extends _$AppRouter {

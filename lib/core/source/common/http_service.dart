@@ -1,3 +1,4 @@
+// ignore_for_file: long-parameter-list
 import 'dart:core';
 
 import 'package:dio/dio.dart';
@@ -65,7 +66,7 @@ class HttpServiceDio implements HttpService {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-  }) async =>
+  }) =>
       _processNetworkCall(() => _dio.get(
             uri,
             queryParameters: queryParameters,
@@ -82,7 +83,7 @@ class HttpServiceDio implements HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-  }) async =>
+  }) =>
       _processNetworkCall(() => _dio.delete(
             uri,
             data: data,
@@ -92,13 +93,15 @@ class HttpServiceDio implements HttpService {
           ));
 
   @override
-  Future<Response> post(String uri,
-          {data,
-          Map<String, dynamic>? queryParameters,
-          Options? options,
-          CancelToken? cancelToken,
-          ProgressCallback? onSendProgress,
-          ProgressCallback? onReceiveProgress}) async =>
+  Future<Response> post(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) =>
       _processNetworkCall(() => _dio.post(
             uri,
             data: data,
@@ -108,13 +111,15 @@ class HttpServiceDio implements HttpService {
           ));
 
   @override
-  Future<Response> put(String uri,
-          {data,
-          Map<String, dynamic>? queryParameters,
-          Options? options,
-          CancelToken? cancelToken,
-          ProgressCallback? onSendProgress,
-          ProgressCallback? onReceiveProgress}) =>
+  Future<Response> put(
+    String uri, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) =>
       _processNetworkCall(() => _dio.put(
             uri,
             data: data,
@@ -124,8 +129,9 @@ class HttpServiceDio implements HttpService {
           ));
 
   Future<Response> _processNetworkCall(
-          Future<Response> Function() call) async =>
-      await call().catchError((e) => throw NetworkException.getDioException(e));
+    Future<Response> Function() call,
+  ) =>
+      call().catchError((e) => throw NetworkException.getDioException(e));
 }
 
 extension HttpServiceCommon on HttpService {
@@ -218,7 +224,8 @@ extension ResponseExtensions<T> on Response<T> {
   bool get isSuccess => statusCode == 200;
 
   ServiceResponse<R> processServiceResponse<R>(
-      R Function(dynamic json) serializer) {
+    R Function(dynamic json) serializer,
+  ) {
     if (isSuccess) {
       return ServiceResponse<R>.data(serializer(data));
     }

@@ -29,7 +29,8 @@ extension _GetItUseCaseDiModuleExtensions on GetIt {
     registerLazySingleton(FlutterSecureStorage.new);
     registerLazySingleton(() => HttpServiceDio([AuthInterceptor(get())]));
     registerSingletonAsync(
-        () => $FloorAppDatabase.databaseBuilder('app_database.db').build());
+      () => $FloorAppDatabase.databaseBuilder('app_database.db').build(),
+    );
   }
 
   void _setupRepositories() {
