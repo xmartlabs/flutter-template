@@ -8,6 +8,7 @@ abstract class CrashReportTool {
 
   Future logFatal(dynamic error, StackTrace? stackTrace);
 }
+
 class NoOpsCrashReportTool extends CrashReportTool {
   @override
   // ignore: no-empty-block, avoid-redundant-async
