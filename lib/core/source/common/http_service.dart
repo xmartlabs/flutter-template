@@ -66,7 +66,7 @@ class HttpServiceDio implements HttpService {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-  }) async =>
+  }) =>
       _processNetworkCall(() => _dio.get(
             uri,
             queryParameters: queryParameters,
@@ -83,7 +83,7 @@ class HttpServiceDio implements HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-  }) async =>
+  }) =>
       _processNetworkCall(() => _dio.delete(
             uri,
             data: data,
@@ -101,7 +101,7 @@ class HttpServiceDio implements HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-  }) async =>
+  }) =>
       _processNetworkCall(() => _dio.post(
             uri,
             data: data,

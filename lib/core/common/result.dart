@@ -1,3 +1,5 @@
+// ignore_for_file: no-object-declaration
+
 import 'package:equatable/equatable.dart';
 // Code: https://gist.githubusercontent.com/CassiusPacheco/409e66e220ce563440df00385f39ac98/raw/d0506e4b3dadbcf5a21d9cc23b300ecbcc8c57d6/data_result.dart
 

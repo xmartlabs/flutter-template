@@ -39,11 +39,24 @@ dart_code_metrics:
   metrics-exclude:
     - test/**
   rules:
+    - avoid-nested-conditional-expressions
+    - avoid-passing-async-when-sync-expected
+    - avoid-redundant-async
+    - no-boolean-literal-compare
     - no-boolean-literal-compare
     - no-empty-block
-    - prefer-trailing-comma
-    - prefer-conditional-expressions
     - no-equal-then-else
+    - no-object-declaration
+    - prefer-conditional-expressions
+    - prefer-conditional-expressions
+    - prefer-first
+    - prefer-immediate-return
+    - prefer-last
+    - prefer-moving-to-variable:
+        allowed-duplicated-chains: 3
+    - prefer-trailing-comma
+
+
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

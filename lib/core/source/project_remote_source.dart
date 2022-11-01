@@ -9,7 +9,7 @@ class ProjectRemoteSource {
 
   ProjectRemoteSource(this._httpService);
 
-  Future<List<Project>> getProjects() async => _httpService
+  Future<List<Project>> getProjects() => _httpService
       .getAndProcessResponse(
         _urlGetProjects,
         serializer: (listResponse) => (listResponse as List)

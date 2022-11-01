@@ -33,6 +33,7 @@ Future _initSdks() async {
   ]);
 }
 
+// ignore: avoid-redundant-async
 Future _initFirebaseSdks() async {
   // TODO: Add Craslytics, Analytics and other sdks that the project needs
 }
