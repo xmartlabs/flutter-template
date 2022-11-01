@@ -34,8 +34,9 @@ class _SignInContentScreen extends StatelessWidget {
                 Text(context.localizations
                     .error(context.read<SignInCubit>().state.error)),
               TextButton(
-                  onPressed: () => context.read<SignInCubit>().signIn(),
-                  child: Text(context.localizations.sign_in))
+                onPressed: () => context.read<SignInCubit>().signIn(),
+                child: Text(context.localizations.sign_in),
+              ),
             ],
           ),
         );
@@ -91,16 +92,17 @@ class _SignInFormState extends State<_SignInForm> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-              child: TextField(
-            obscureText: true,
-            controller: _passwordTextController,
-            onChanged: (String password) =>
-                _signInCubit.changePassword(password),
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: context.localizations.password,
+            child: TextField(
+              obscureText: true,
+              controller: _passwordTextController,
+              onChanged: (String password) =>
+                  _signInCubit.changePassword(password),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: context.localizations.password,
+              ),
             ),
-          )),
+          ),
         ),
       ],
     );

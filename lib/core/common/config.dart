@@ -31,7 +31,9 @@ abstract class Config {
   static late String supabaseApiKey;
 
   static final _environment = enumFromString(
-          Environments.values, const String.fromEnvironment('ENV')) ??
+        Environments.values,
+        const String.fromEnvironment('ENV'),
+      ) ??
       Environments.development;
 
   static Future<void> initialize() async {

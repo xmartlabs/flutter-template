@@ -27,9 +27,10 @@ class _WelcomeContentScreen extends StatelessWidget {
             actions: [
               TextButton(
                 style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(
-                  context.theme.colors.onPrimary,
-                )),
+                  foregroundColor: MaterialStateProperty.all<Color>(
+                    context.theme.colors.onPrimary,
+                  ),
+                ),
                 onPressed: () => context.read<WelcomeCubit>().logOut(),
                 child: Text(context.localizations.log_out),
               ),
@@ -64,16 +65,17 @@ class _ProjectWidget extends StatelessWidget {
           children: [
             Container(
               child: AspectRatio(
-                  aspectRatio: 16 / 6,
-                  child: Container(
-                    child: AspectRatio(
-                      aspectRatio: 16 / 6,
-                      child: Image.network(
-                        project.imageUrl,
-                        fit: BoxFit.fitHeight,
-                      ),
+                aspectRatio: 16 / 6,
+                child: Container(
+                  child: AspectRatio(
+                    aspectRatio: 16 / 6,
+                    child: Image.network(
+                      project.imageUrl,
+                      fit: BoxFit.fitHeight,
                     ),
-                  )),
+                  ),
+                ),
+              ),
             ),
             ListTile(
               title: Text(project.name),
