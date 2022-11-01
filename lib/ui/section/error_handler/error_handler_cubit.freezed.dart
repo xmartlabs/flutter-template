@@ -125,15 +125,6 @@ class _$_InitErrorHandlerState
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InitErrorHandlerState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
@@ -275,19 +266,6 @@ class _$_UnknownErrorHandlerState
       ..add(DiagnosticsProperty('error', error))
       ..add(DiagnosticsProperty('retry', retry));
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_UnknownErrorHandlerState &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.retry, retry) || other.retry == retry));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(error), retry);
 
   @JsonKey(ignore: true)
   @override
@@ -441,17 +419,6 @@ class _$_InternetErrorHandlerState
       ..add(DiagnosticsProperty('type', 'ErrorHandlerState.internetError'))
       ..add(DiagnosticsProperty('retry', retry));
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_InternetErrorHandlerState &&
-            (identical(other.retry, retry) || other.retry == retry));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, retry);
 
   @JsonKey(ignore: true)
   @override
@@ -619,20 +586,6 @@ class _$_GeneralErrorHandlerState
       ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('retry', retry));
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GeneralErrorHandlerState &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.retry, retry) || other.retry == retry));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, title, description, retry);
 
   @JsonKey(ignore: true)
   @override

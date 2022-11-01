@@ -6,6 +6,7 @@ import 'package:flutter_template/ui/section/error_handler/error_handler_cubit.da
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'signin_cubit.freezed.dart';
+
 part 'signin_state.dart';
 
 class SignInCubit extends Cubit<SignInBaseState> {

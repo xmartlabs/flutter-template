@@ -240,7 +240,7 @@ packages:
     source: hosted
     version: "2.2.3"
   dartx:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dartx
       url: "https://pub.dartlang.org"
@@ -341,14 +341,14 @@ packages:
       name: flutter_gen_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.3"
+    version: "5.1.0+1"
   flutter_gen_runner:
     dependency: "direct dev"
     description:
       name: flutter_gen_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.3"
+    version: "5.1.0+1"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -461,7 +461,7 @@ packages:
       name: frontend_server_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.1.0"
   get_it:
     dependency: "direct main"
     description:
@@ -566,7 +566,7 @@ packages:
       name: json_serializable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.5.3"
+    version: "6.5.4"
   lint:
     dependency: transitive
     description:

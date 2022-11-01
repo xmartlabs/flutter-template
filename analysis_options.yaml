@@ -11,6 +11,7 @@ include: package:pedantic/analysis_options.yaml
 
 linter:
   rules:
+    - always_use_package_imports
     - camel_case_types
     - library_names
     - avoid_catching_errors

@@ -1,6 +1,6 @@
 part of 'error_handler_cubit.dart';
 
-@freezed
+@Freezed(equal: false)
 class ErrorHandlerState with _$ErrorHandlerState {
   const factory ErrorHandlerState.init() = _InitErrorHandlerState;
 
