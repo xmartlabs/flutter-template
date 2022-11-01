@@ -16,7 +16,7 @@ packages:
     source: hosted
     version: "4.7.0"
   arb_utils:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: arb_utils
       url: "https://pub.dartlang.org"
