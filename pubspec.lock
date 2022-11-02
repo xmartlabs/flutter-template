@@ -35,7 +35,7 @@ packages:
       name: arb_utils
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0"
+    version: "0.4.1"
   archive:
     dependency: transitive
     description:
