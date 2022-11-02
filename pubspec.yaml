@@ -48,7 +48,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  arb_utils: 0.2.0 # It cannot be updated, version 0.4.0 is not working fine https://github.com/Rodsevich/arb_utils/issues/14
+  arb_utils: 0.4.0
   auto_route_generator: 5.0.2
   build_runner: 2.3.2
   dart_code_metrics: 4.19.1
