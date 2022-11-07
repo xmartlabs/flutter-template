@@ -4,23 +4,23 @@ import 'package:stock/stock.dart';
 
 class ProjectStockTypeMapper extends StockTypeMapper<ProjectDbEntity, Project> {
   @override
-  ProjectDbEntity fromOutput(Project commonModel) => ProjectDbEntity(
-        id: commonModel.id,
-        description: commonModel.description,
-        name: commonModel.name,
-        url: commonModel.url,
-        language: commonModel.language,
-        imageUrl: commonModel.imageUrl,
+  ProjectDbEntity fromOutput(Project value) => ProjectDbEntity(
+        id: value.id,
+        description: value.description,
+        name: value.name,
+        url: value.url,
+        language: value.language,
+        imageUrl: value.imageUrl,
       );
 
   @override
-  Project fromInput(ProjectDbEntity serviceModel) => Project(
-        id: serviceModel.id,
-        description: serviceModel.description,
-        name: serviceModel.name,
-        url: serviceModel.url,
-        language: serviceModel.language,
-        imageUrl: serviceModel.imageUrl,
+  Project fromInput(ProjectDbEntity value) => Project(
+        id: value.id,
+        description: value.description,
+        name: value.name,
+        url: value.url,
+        language: value.language,
+        imageUrl: value.imageUrl,
       );
 }
 
@@ -29,10 +29,10 @@ class ProjectListStockTypeMapper
   final _projectSerializer = ProjectStockTypeMapper();
 
   @override
-  List<Project> fromInput(List<ProjectDbEntity> databaseModel) =>
-      databaseModel.map(_projectSerializer.fromInput).toList();
+  List<Project> fromInput(List<ProjectDbEntity> value) =>
+      value.map(_projectSerializer.fromInput).toList();
 
   @override
-  List<ProjectDbEntity> fromOutput(List<Project> commonModel) =>
-      commonModel.map(_projectSerializer.fromOutput).toList();
+  List<ProjectDbEntity> fromOutput(List<Project> value) =>
+      value.map(_projectSerializer.fromOutput).toList();
 }

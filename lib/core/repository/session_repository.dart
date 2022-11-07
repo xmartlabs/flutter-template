@@ -18,9 +18,11 @@ class SessionRepository {
   );
 
   Stream<AuthenticationStatus> get status =>
-      _authLocalSource.getUserToken().map((token) => token == null
-          ? AuthenticationStatus.unauthenticated
-          : AuthenticationStatus.authenticated);
+      _authLocalSource.getUserToken().map(
+            (token) => token == null
+                ? AuthenticationStatus.unauthenticated
+                : AuthenticationStatus.authenticated,
+          );
 
   Stream<User?> getUserInfo() => _authLocalSource.getUser();
 

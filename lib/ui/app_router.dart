@@ -15,7 +15,7 @@ part 'app_router.gr.dart';
       initial: true,
       children: [
         AutoRoute(
-          path: AppRouter.SIGN_IN_PATH,
+          path: AppRouter.signInPath,
           page: SignInScreen,
           initial: true,
         ),
@@ -26,7 +26,7 @@ part 'app_router.gr.dart';
       page: SectionRouter,
       children: [
         AutoRoute(
-          path: AppRouter.WELCOME_PATH,
+          path: AppRouter.welcomePath,
           page: WelcomeScreen,
           initial: true,
         ),
@@ -35,6 +35,6 @@ part 'app_router.gr.dart';
   ],
 )
 class AppRouter extends _$AppRouter {
-  static const SIGN_IN_PATH = 'signin';
-  static const WELCOME_PATH = 'welcome';
+  static const signInPath = 'signin';
+  static const welcomePath = 'welcome';
 }

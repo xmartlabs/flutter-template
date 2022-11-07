@@ -19,7 +19,7 @@ abstract class Result<S> extends Equatable {
 
   static Result<S> success<S>(S data) => _SuccessResult(data);
 
-  Result._();
+  const Result._();
 
   factory Result(S Function() computation) {
     try {
@@ -85,7 +85,7 @@ abstract class Result<S> extends Equatable {
 class _SuccessResult<S> extends Result<S> {
   final S _value;
 
-  _SuccessResult(this._value) : super._();
+  const _SuccessResult(this._value) : super._();
 
   @override
   _SuccessResult<T> either<T>(
@@ -114,7 +114,7 @@ class _SuccessResult<S> extends Result<S> {
 class _FailureResult<S> extends Result<S> {
   final Object _value;
 
-  _FailureResult(this._value) : super._();
+  const _FailureResult(this._value) : super._();
 
   @override
   _FailureResult<T> either<T>(

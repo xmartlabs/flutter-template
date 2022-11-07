@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppStyles extends TextTheme {
   final TextStyle customStyle;
 
-  AppStyles({
+  const AppStyles({
     required this.customStyle,
     headlineLarge,
     headlineMedium,

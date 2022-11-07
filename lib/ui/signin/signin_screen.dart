@@ -9,20 +9,17 @@ class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignInCubit(context.read<ErrorHandlerCubit>()),
-      child: _SignInContentScreen(),
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider(
+        create: (context) => SignInCubit(context.read<ErrorHandlerCubit>()),
+        child: _SignInContentScreen(),
+      );
 }
 
 class _SignInContentScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignInCubit, SignInBaseState>(
-      builder: (context, state) {
-        return Scaffold(
+  Widget build(BuildContext context) =>
+      BlocBuilder<SignInCubit, SignInBaseState>(
+        builder: (context, state) => Scaffold(
           appBar: AppBar(
             title: Text(context.localizations.sign_in),
           ),
@@ -31,18 +28,18 @@ class _SignInContentScreen extends StatelessWidget {
             children: [
               Expanded(child: _SignInForm()),
               if (context.read<SignInCubit>().state.error.isNotEmpty)
-                Text(context.localizations
-                    .error(context.read<SignInCubit>().state.error)),
+                Text(
+                  context.localizations
+                      .error(context.read<SignInCubit>().state.error),
+                ),
               TextButton(
                 onPressed: () => context.read<SignInCubit>().signIn(),
                 child: Text(context.localizations.sign_in),
               ),
             ],
           ),
-        );
-      },
-    );
-  }
+        ),
+      );
 }
 
 class _SignInForm extends StatefulWidget {
@@ -72,39 +69,33 @@ class _SignInFormState extends State<_SignInForm> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: _emailTextController,
               onChanged: (String text) => _signInCubit.changeEmail(text),
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 labelText: context.localizations.mail,
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: TextField(
               obscureText: true,
               controller: _passwordTextController,
               onChanged: (String password) =>
                   _signInCubit.changePassword(password),
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 labelText: context.localizations.password,
               ),
             ),
           ),
-        ),
-      ],
-    );
-  }
+        ],
+      );
 }
