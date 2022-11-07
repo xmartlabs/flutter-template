@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GeneralError {
-  String? get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   dynamic get cause => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +31,7 @@ abstract class $GeneralErrorCopyWith<$Res> {
           GeneralError value, $Res Function(GeneralError) then) =
       _$GeneralErrorCopyWithImpl<$Res, GeneralError>;
   @useResult
-  $Res call({String? title, String description, dynamic cause});
+  $Res call({String description, String? title, dynamic cause});
 }
 
 /// @nodoc
@@ -47,19 +47,19 @@ class _$GeneralErrorCopyWithImpl<$Res, $Val extends GeneralError>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
     Object? description = null,
+    Object? title = freezed,
     Object? cause = null,
   }) {
     return _then(_value.copyWith(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
       cause: null == cause
           ? _value.cause
           : cause // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$_GeneralErrorCopyWith<$Res>
       __$$_GeneralErrorCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? title, String description, dynamic cause});
+  $Res call({String description, String? title, dynamic cause});
 }
 
 /// @nodoc
@@ -90,19 +90,19 @@ class __$$_GeneralErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
     Object? description = null,
+    Object? title = freezed,
     Object? cause = null,
   }) {
     return _then(_$_GeneralError(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
       cause: null == cause
           ? _value.cause
           : cause // ignore: cast_nullable_to_non_nullable
@@ -114,18 +114,18 @@ class __$$_GeneralErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
-  const _$_GeneralError({this.title, required this.description, this.cause});
+  const _$_GeneralError({required this.description, this.title, this.cause});
 
   @override
-  final String? title;
-  @override
   final String description;
+  @override
+  final String? title;
   @override
   final dynamic cause;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GeneralError(title: $title, description: $description, cause: $cause)';
+    return 'GeneralError(description: $description, title: $title, cause: $cause)';
   }
 
   @override
@@ -133,8 +133,8 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'GeneralError'))
-      ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('cause', cause));
   }
 
@@ -143,14 +143,14 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GeneralError &&
-            (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other.cause, cause));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, description,
+  int get hashCode => Object.hash(runtimeType, description, title,
       const DeepCollectionEquality().hash(cause));
 
   @JsonKey(ignore: true)
@@ -162,14 +162,14 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
 
 abstract class _GeneralError implements GeneralError {
   const factory _GeneralError(
-      {final String? title,
-      required final String description,
+      {required final String description,
+      final String? title,
       final dynamic cause}) = _$_GeneralError;
 
   @override
-  String? get title;
-  @override
   String get description;
+  @override
+  String? get title;
   @override
   dynamic get cause;
   @override
