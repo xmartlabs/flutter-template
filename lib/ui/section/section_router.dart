@@ -5,16 +5,16 @@ import 'package:flutter_template/ui/extensions/context_extensions.dart';
 import 'package:flutter_template/ui/section/error_handler/error_handler_cubit.dart';
 
 class SectionRouter extends StatelessWidget {
+  const SectionRouter({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => ErrorHandlerCubit(),
-      child: BlocListener<ErrorHandlerCubit, ErrorHandlerState>(
-        listener: showError,
-        child: AutoRouter(),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider(
+        create: (BuildContext context) => ErrorHandlerCubit(),
+        child: BlocListener<ErrorHandlerCubit, ErrorHandlerState>(
+          listener: showError,
+          child: const AutoRouter(),
+        ),
+      );
 
   void showError(BuildContext context, ErrorHandlerState error) {
     error.when(

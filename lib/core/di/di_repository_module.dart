@@ -18,9 +18,10 @@ class RepositoryDiModule {
   factory RepositoryDiModule() => _instance;
 
   void setupModule(GetIt locator) {
-    locator._setupProvidersAndUtils();
-    locator._setupSources();
-    locator._setupRepositories();
+    locator
+      .._setupProvidersAndUtils()
+      .._setupSources()
+      .._setupRepositories();
   }
 }
 

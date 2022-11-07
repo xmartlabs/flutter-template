@@ -20,13 +20,13 @@ class _$AppRouter extends RootStackRouter {
     UnauthenticatedRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: SectionRouter(),
+        child: const SectionRouter(),
       );
     },
     AuthenticatedRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: SectionRouter(),
+        child: const SectionRouter(),
       );
     },
     SignInScreenRoute.name: (routeData) {
@@ -38,7 +38,7 @@ class _$AppRouter extends RootStackRouter {
     WelcomeScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: WelcomeScreen(),
+        child: const WelcomeScreen(),
       );
     },
   };

@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:material_color_generator/material_color_generator.dart';
 
@@ -11,7 +13,7 @@ class AppColors extends ColorScheme {
   @override
   final MaterialColor surface;
 
-  AppColors({
+  const AppColors({
     required Brightness brightness,
     required this.primary,
     required this.onPrimary,
@@ -39,14 +41,14 @@ class AppColors extends ColorScheme {
 
   static AppColors getColorScheme() => AppColors(
         brightness: Brightness.light,
-        primary: generateMaterialColor(color: Color(0xffee1a64)),
+        primary: generateMaterialColor(color: const Color(0xffee1a64)),
         onPrimary: Colors.white,
-        secondary: generateMaterialColor(color: Color(0xffffd81d)),
+        secondary: generateMaterialColor(color: const Color(0xffffd81d)),
         onSecondary: Colors.black,
-        error: generateMaterialColor(color: Color(0xffF4642C)),
+        error: generateMaterialColor(color: const Color(0xffF4642C)),
         onError: Colors.black,
         onBackground: Colors.black,
-        surface: generateMaterialColor(color: Color(0xFFE6E9EC)),
+        surface: generateMaterialColor(color: const Color(0xFFE6E9EC)),
         onSurface: Colors.black,
         background: Colors.white,
       );

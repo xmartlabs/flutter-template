@@ -17,7 +17,7 @@ class MainCubit extends Cubit<MainBaseState> {
   late StreamSubscription<AuthenticationStatus>
       _authenticationStatusSubscription;
 
-  MainCubit() : super(MainBaseState.state()) {
+  MainCubit() : super(const MainBaseState.state()) {
     _authenticationStatusSubscription = _sessionRepository.status
         .filterSuccess()
         .listen((status) => emit(state.copyWith(authenticationStatus: status)));

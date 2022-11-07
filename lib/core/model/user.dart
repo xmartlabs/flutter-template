@@ -7,7 +7,10 @@ part 'user.g.dart';
 @freezed
 class User with _$User {
   @JsonSerializable()
-  factory User({String? name, required String email}) = _User;
+  factory User({
+    required String email,
+    String? name,
+  }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

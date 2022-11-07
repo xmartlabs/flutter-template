@@ -6,8 +6,8 @@ part 'general_error.freezed.dart';
 @freezed
 class GeneralError with _$GeneralError {
   const factory GeneralError({
-    String? title,
     required String description,
+    String? title,
     dynamic cause,
   }) = _GeneralError;
 }

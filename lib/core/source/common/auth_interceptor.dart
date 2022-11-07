@@ -22,12 +22,12 @@ class AuthInterceptor extends Interceptor {
 
   @override
   Future onError(
-    DioError error,
+    DioError err,
     ErrorInterceptorHandler handler,
   ) async {
-    if (error.response?.statusCode == HttpStatus.unauthorized) {
+    if (err.response?.statusCode == HttpStatus.unauthorized) {
       await _authLocalSource.saveUserToken(null);
     }
-    handler.next(error);
+    handler.next(err);
   }
 }

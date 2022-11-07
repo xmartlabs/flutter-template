@@ -1,4 +1,4 @@
-import 'package:collection/collection.dart';
+import 'package:dartx/dartx.dart';
 
 T? enumFromString<T>(Iterable<T> values, String value) =>
-    values.firstWhereOrNull((type) => type.toString().split('.').last == value);
+    values.firstOrNullWhere((type) => type.toString().split('.').last == value);

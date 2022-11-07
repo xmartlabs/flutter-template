@@ -67,12 +67,14 @@ class HttpServiceDio implements HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) =>
-      _processNetworkCall(() => _dio.get(
-            uri,
-            queryParameters: queryParameters,
-            options: options,
-            cancelToken: cancelToken,
-          ));
+      _processNetworkCall(
+        () => _dio.get(
+          uri,
+          queryParameters: queryParameters,
+          options: options,
+          cancelToken: cancelToken,
+        ),
+      );
 
   @override
   Future<Response> delete(
@@ -84,13 +86,15 @@ class HttpServiceDio implements HttpService {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) =>
-      _processNetworkCall(() => _dio.delete(
-            uri,
-            data: data,
-            queryParameters: queryParameters,
-            options: options,
-            cancelToken: cancelToken,
-          ));
+      _processNetworkCall(
+        () => _dio.delete(
+          uri,
+          data: data,
+          queryParameters: queryParameters,
+          options: options,
+          cancelToken: cancelToken,
+        ),
+      );
 
   @override
   Future<Response> post(
@@ -102,13 +106,15 @@ class HttpServiceDio implements HttpService {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) =>
-      _processNetworkCall(() => _dio.post(
-            uri,
-            data: data,
-            queryParameters: queryParameters,
-            options: options,
-            cancelToken: cancelToken,
-          ));
+      _processNetworkCall(
+        () => _dio.post(
+          uri,
+          data: data,
+          queryParameters: queryParameters,
+          options: options,
+          cancelToken: cancelToken,
+        ),
+      );
 
   @override
   Future<Response> put(
@@ -120,13 +126,15 @@ class HttpServiceDio implements HttpService {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) =>
-      _processNetworkCall(() => _dio.put(
-            uri,
-            data: data,
-            queryParameters: queryParameters,
-            options: options,
-            cancelToken: cancelToken,
-          ));
+      _processNetworkCall(
+        () => _dio.put(
+          uri,
+          data: data,
+          queryParameters: queryParameters,
+          options: options,
+          cancelToken: cancelToken,
+        ),
+      );
 
   Future<Response> _processNetworkCall(
     Future<Response> Function() call,
@@ -137,11 +145,11 @@ class HttpServiceDio implements HttpService {
 extension HttpServiceCommon on HttpService {
   Future<ServiceResponse<T>> getAndProcessResponse<T>(
     String uri, {
+    required T Function(dynamic json) serializer,
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-    required T Function(dynamic json) serializer,
   }) async {
     final response = await get(
       uri,
@@ -155,13 +163,13 @@ extension HttpServiceCommon on HttpService {
 
   Future<ServiceResponse<T>> postAndProcessResponse<T>(
     String uri, {
+    required T Function(dynamic json) serializer,
     data,
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-    required T Function(dynamic json) serializer,
   }) async {
     final response = await post(
       uri,
@@ -177,13 +185,13 @@ extension HttpServiceCommon on HttpService {
 
   Future<ServiceResponse<T>> putAndProcessResponse<T>(
     String uri, {
+    required T Function(dynamic json) serializer,
     data,
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-    required T Function(dynamic json) serializer,
   }) async {
     final response = await put(
       uri,
@@ -199,13 +207,13 @@ extension HttpServiceCommon on HttpService {
 
   Future<ServiceResponse<T>> deleteAndProcessResponse<T>(
     String uri, {
+    required T Function(dynamic json) serializer,
     data,
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-    required T Function(dynamic json) serializer,
   }) async {
     final response = await delete(
       uri,

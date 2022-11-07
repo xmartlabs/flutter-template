@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'network_exceptions.freezed.dart';
 
 @freezed
-class NetworkException extends Object with _$NetworkException {
+class NetworkException with _$NetworkException implements Exception {
   const factory NetworkException.unauthorizedRequest(body) =
       UnauthorizedRequest;
 
@@ -54,9 +54,8 @@ class NetworkException extends Object with _$NetworkException {
       case 503:
         return const NetworkException.serviceUnavailable();
       default:
-        var responseCode = statusCode;
         return NetworkException.defaultError(
-          responseCode,
+          statusCode,
           'Received invalid status code. body: $body',
         );
     }
@@ -73,7 +72,7 @@ class NetworkException extends Object with _$NetworkException {
             case DioErrorType.other:
             case DioErrorType.receiveTimeout:
             case DioErrorType.sendTimeout:
-              networkExceptions = NetworkException.noInternetConnection();
+              networkExceptions = const NetworkException.noInternetConnection();
               break;
             case DioErrorType.response:
               networkExceptions = NetworkException.handleResponse(

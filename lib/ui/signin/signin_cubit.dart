@@ -15,7 +15,7 @@ class SignInCubit extends Cubit<SignInBaseState> {
 
   SignInCubit(this._errorHandler)
       : super(
-          SignInBaseState.state(
+          const SignInBaseState.state(
             email: 'hi@xmartlabs.com',
             password: 'xmartlabs',
             error: '',

@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:meta/meta.dart';
 import 'package:stock/stock.dart';
 
 class SecuredStorageSourceOfTruth extends CachedSourceOfTruth<String, String> {
