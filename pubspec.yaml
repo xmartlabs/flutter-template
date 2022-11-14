@@ -41,7 +41,7 @@ dependencies:
   json_annotation: 4.7.0
   logger: 1.1.0
   material_color_generator: 1.1.0
-  rxdart: ^0.27.6
+  rxdart: 0.27.6
   sqflite: 2.2.0+3
   stack_trace: 1.10.0
   stock: 1.0.0
