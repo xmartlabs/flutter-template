@@ -68,7 +68,13 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/environments/
+    - environments/
+
+flutter_gen:
+  assets:
+    exclude:
+      - environments/*
+      - assets/README.md
 
 flavorizr:
   flavors:
