@@ -16,10 +16,10 @@ Future<Map<String, String>> loadEnvs(
       completer.complete(dotEnv.env);
     },
     (e, s) {
-      Logger.d('$path file is not valid.', e);
       if (ignoreErrors) {
         completer.complete({});
       } else {
+        Logger.d('$path file is not valid.', e);
         completer.completeError(e, s);
       }
     },

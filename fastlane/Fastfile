@@ -68,7 +68,7 @@ lane :lint_code_metrics do
   end
 
   flutter_command(command: "pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused")
-  flutter_command(command: "pub run dart_code_metrics:metrics check-unused-files lib --fatal-unused")
+  flutter_command(command: "pub run dart_code_metrics:metrics check-unused-files lib --fatal-unused --exclude=lib/gen/assets.gen.dart")
 end
 
 

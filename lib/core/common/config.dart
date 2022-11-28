@@ -2,33 +2,14 @@
 
 import 'dart:async';
 
+import 'package:flutter_template/core/common/environments.dart';
 import 'package:flutter_template/core/common/extension/string_extensions.dart';
 import 'package:flutter_template/core/common/helper/enum_helpers.dart';
 import 'package:flutter_template/core/common/helper/env_helper.dart';
-import 'package:flutter_template/gen/assets.gen.dart';
-
-enum Environments {
-  development,
-  staging,
-  production,
-}
-
-extension EnviromentPath on Environments {
-  String get fileName {
-    switch (this) {
-      case Environments.development:
-        return 'development';
-      case Environments.staging:
-        return 'staging';
-      case Environments.production:
-        return 'production';
-    }
-  }
-
-  String get path => 'assets/environments/$fileName';
-}
 
 abstract class Config {
+  static const String environmentFolder = 'environments';
+
   static late String apiBaseUrl;
   static late String supabaseApiKey;
 
@@ -36,7 +17,7 @@ abstract class Config {
         Environments.values,
         const String.fromEnvironment('ENV'),
       ) ??
-      Environments.development;
+      Environments.dev;
 
   static Future<void> initialize() async {
     await _EnvConfig._setupEnv(_environment);
@@ -66,7 +47,7 @@ abstract class _EnvConfig {
 
   static Future<void> _setupEnv(Environments env) async {
     _envFileEnv
-      ..addAll(await loadEnvs(Assets.environments.env))
+      ..addAll(await loadEnvs('${Config.environmentFolder}/default.env'))
       ..addAll(await loadEnvs('${env.path}.env'))
       ..addAll(await loadEnvs('${env.path}.private.env'));
   }
