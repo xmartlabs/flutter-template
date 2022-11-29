@@ -1,8 +1,9 @@
 opt_out_usage
+fastlane_require 'dotenv'
 
 def compilation_envs
-  if File.file?('../.env')
-    Dotenv.parse('../.env')
+  if File.file?("#{root_path}/.env")
+    Dotenv.parse("#{root_path}/.env")
       .map { |key, value| "--dart-define=#{key}=#{value}" }
       .join(' ')
   else
@@ -113,11 +114,22 @@ lane :build_flutter do |options|
   flavor = options[:flavor] || 'dev'
   config_param = config_only ? '--config-only' : ''
 
+  version_name = calculate_version_name(
+    include_git_version_suffix: options[:include_git_version_suffix] || false
+  )
+
+  export_method = options[:export_method] || ''
+  if !export_method.empty?
+    export_method = "--export-method #{export_method}"
+  end
+
+  flutter_command(command: "build #{build_platform} #{build_type} --suppress-analytics #{sign_param} #{config_param} --flavor #{flavor} --dart-define=ENV=#{flavor} --build-name #{version_name} #{export_method} #{compilation_envs}")
+end
+
+private_lane :calculate_version_name do |options|
   include_git_version_suffix = options[:include_git_version_suffix] || false
   version_suffix = include_git_version_suffix ? "-#{last_git_commit[:abbreviated_commit_hash]}" : ''
   version_name = flutter_version()["version_name"] + version_suffix
-
-  flutter_command(command: "build #{build_platform} --suppress-analytics #{build_type} #{sign_param} #{config_param} --flavor #{flavor} --dart-define=ENV=#{flavor} --build-name #{version_name}")
 end
 
 private_lane :generate_snapshot_changelog do
