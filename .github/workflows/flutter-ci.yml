@@ -28,23 +28,23 @@ jobs:
       - name: Install FVM && Flutter
         run: dart pub global activate fvm --verbose && fvm install --verbose && fvm use --force --verbose
       - name: Get dependencies
-        uses: maierj/fastlane-action@v2.3.0
+        uses: maierj/fastlane-action@v3.0.0
         with:
           lane: 'fetch_dependencies'
       - name: 'Run lints'
-        uses: maierj/fastlane-action@v2.3.0
+        uses: maierj/fastlane-action@v3.0.0
         with:
           lane: 'lints'
       - name: 'Check generated code'
-        uses: maierj/fastlane-action@v2.3.0
+        uses: maierj/fastlane-action@v3.0.0
         with:
           lane: 'ensure_no_change_in_generated_code'
       - name: 'Run tests'
-        uses: maierj/fastlane-action@v2.3.0
+        uses: maierj/fastlane-action@v3.0.0
         with:
           lane: 'tests'
       - name: 'Build android app'
-        uses: maierj/fastlane-action@v2.3.0
+        uses: maierj/fastlane-action@v3.0.0
         with:
           lane: 'android build_dev_debug_apk'
           subdirectory: 'android'
