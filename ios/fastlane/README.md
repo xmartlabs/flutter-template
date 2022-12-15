@@ -37,6 +37,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 **Lint: Check code format**
 
+### lint_check_language_sorting
+
+```sh
+[bundle exec] fastlane lint_check_language_sorting
+```
+
+**Lint: Check code format**
+
 ### lint_analyze
 
 ```sh
@@ -111,6 +119,38 @@ Creates a temporal keystore and import the distribution certificate
 * **`TEMP_KEYCHAIN_PASSWORD`**: The temporal keychain password
 * **`DIST_CERTIFICATE_PATH`**: The distribution certificate file path.
 * **`DIST_CERTIFICATE_PASSWORD`**: The distribution certificate file password. If you are using a cert file this file is not necessary.
+
+### ios generate_release_ipa
+
+```sh
+[bundle exec] fastlane ios generate_release_ipa
+```
+
+Build deploy version
+
+#### Envs:
+* **`env`**: Environment to build. Default 'prod'
+* **`build_export_method`**: Export metod to generate the ipa. Default 'app-store'.
+* **`setup_signing`**: if true, `set_signing` is called.
+* **`APPLE_TEAM_ID`**: The apple team id
+* **`APPSTORE_CONNECT_API_KEY_ID`**: The connect api key id
+* **`APPSTORE_CONNECT_API_KEY_ISSUER_ID`**: The connect api key issuer id
+* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content
+
+### ios publish_dev_firebase
+
+```sh
+[bundle exec] fastlane ios publish_dev_firebase
+```
+
+Push a new beta build to Firebase
+
+#### Envs:
+* **`setup_signing`**: if true, `set_signing` is called.
+* **`APPLE_TEAM_ID`**: The apple team id
+* **`APPSTORE_CONNECT_API_KEY_ID`**: The connect api key id
+* **`APPSTORE_CONNECT_API_KEY_ISSUER_ID`**: The connect api key issuer id
+* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content
 
 ### ios publish_prod_testflight
 
