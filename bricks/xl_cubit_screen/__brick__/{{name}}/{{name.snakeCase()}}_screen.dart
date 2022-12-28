@@ -6,5 +6,4 @@ class {{name.pascalCase()}}Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
      Container();
-  
 }
