@@ -9,6 +9,10 @@
 .history
 .svn/
 
+# Mason
+.mason/
+mason-lock.json
+
 # IntelliJ related
 *.iml
 *.ipr
@@ -57,4 +61,4 @@ app.*.map.json
 **/fastlane/Preview.html
 **/fastlane/screenshots
 **/fastlane/test_output
-.mason/
+

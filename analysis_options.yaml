@@ -33,5 +33,6 @@ analyzer:
   exclude:
     - '**/*.g.dart'
     - '**/*.gen.dart'
+    - 'bricks'
   errors:
     invalid_annotation_target: ignore
