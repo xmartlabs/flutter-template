@@ -18,9 +18,10 @@ class RepositoryDiModule {
   factory RepositoryDiModule() => _instance;
 
   void setupModule(GetIt locator) {
-    locator._setupProvidersAndUtils();
-    locator._setupSources();
-    locator._setupRepositories();
+    locator
+      .._setupProvidersAndUtils()
+      .._setupSources()
+      .._setupRepositories();
   }
 }
 
@@ -29,7 +30,8 @@ extension _GetItUseCaseDiModuleExtensions on GetIt {
     registerLazySingleton(FlutterSecureStorage.new);
     registerLazySingleton(() => HttpServiceDio([AuthInterceptor(get())]));
     registerSingletonAsync(
-        () => $FloorAppDatabase.databaseBuilder('app_database.db').build());
+      () => $FloorAppDatabase.databaseBuilder('app_database.db').build(),
+    );
   }
 
   void _setupRepositories() {

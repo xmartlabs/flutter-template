@@ -6,8 +6,8 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
-  flutter: 3.0.5
+  sdk: ">=2.18.0 <3.0.0"
+  flutter: 3.3.6
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -21,42 +21,46 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  arb_utils: 0.2.0
-  auto_route: 5.0.1
+  auto_route: 5.0.3
   bloc: 8.1.0
   cupertino_icons: 1.0.5
+  dartx: 1.1.0
   dio: 4.0.6 # networking
   equatable: 2.0.5
-  floor: 1.3.0
+  floor: 1.4.1
   flutter_bloc: 8.1.1
   flutter_dotenv: 5.0.2
-  flutter_native_splash: 2.2.9
-  flutter_screenutil: 5.5.4
+  flutter_native_splash: 2.2.14
+  flutter_screenutil: 5.6.0
   flutter_secure_storage: 6.0.0
   flutter_web_browser: 0.17.1 # This can be removed
-  freezed_annotation: 2.1.0
+  freezed_annotation: 2.2.0
   get_it: 7.2.0
   google_fonts: 3.0.1
   intl: 0.17.0
   json_annotation: 4.7.0
   logger: 1.1.0
   material_color_generator: 1.1.0
-  rxdart: 0.27.5
-  stock: 0.0.2
+  rxdart: 0.27.7
+  sqflite: 2.2.0+3
+  stack_trace: 1.10.0
+  stock: 1.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  auto_route_generator: 5.0.2
-  build_runner: 2.2.1
-  floor_generator: 1.3.0
-  flutter_flavorizr: 2.1.4
-  flutter_gen_runner: 4.3.0
+  arb_utils: 0.4.1
+  auto_route_generator: 5.0.3
+  build_runner: 2.3.2
+  dart_code_metrics: 5.3.0
+  floor_generator: 1.4.1
+  flutter_flavorizr: 2.1.5
+  flutter_gen_runner: 5.1.0+1
   flutter_launcher_icons: 0.10.0
   flutter_lints: 2.0.1
-  freezed: 2.1.0+1
-  json_serializable: 6.4.0
+  freezed: 2.2.0
+  json_serializable: 6.5.4
   pedantic: 1.11.1
 
 flutter:
@@ -64,7 +68,13 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/environments/
+    - environments/
+
+flutter_gen:
+  assets:
+    exclude:
+      - environments/*
+      - assets/README.md
 
 flavorizr:
   flavors:
@@ -77,7 +87,7 @@ flavorizr:
         bundleId: 'com.xmartlabs.template.dev'
         variables:
           FLUTTER_TARGET:
-            value: "lib/main.dart"
+            value: 'lib/main.dart'
     prod:
       app:
         name: 'Template'
@@ -87,7 +97,7 @@ flavorizr:
         bundleId: 'com.xmartlabs.template'
         variables:
           FLUTTER_TARGET:
-            value: "lib/main.dart"
+            value: 'lib/main.dart'
     staging:
       app:
         name: 'Template Sta'
@@ -97,7 +107,7 @@ flavorizr:
         bundleId: 'com.xmartlabs.template.sta'
         variables:
           FLUTTER_TARGET:
-            value: "lib/main.dart"
+            value: 'lib/main.dart'
   instructions:
     - assets:download
     - assets:extract

@@ -27,6 +27,16 @@ The repository pattern is used to manage the data layer.
 A [repository][repository_folder] uses different [data sources][data_source_folder] (for example a local cache or a REST API).
 These components are injected in the Cubits using [get_it][get_it].
 
+## Project Overview
+
+### Assets
+The [`/assets/`](./assets) folder contains the assets used by the application, such as images, fonts, and other files.
+
+### Environments
+
+The environment variables are defined in the `default.env` file located in [`/environments/`](./environments) folder.
+You can read more information about the environment variables in the [README.md](./environments/README.md) file.
+
 ## Project Setup
 
 The project setup is based on some plugins which generate the required native code.

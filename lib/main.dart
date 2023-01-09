@@ -9,15 +9,17 @@ import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/ui/main/main_screen.dart';
 
 Future main() async {
-  await runZonedGuarded(() async {
-    final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-    await _initSdks();
-    runApp(const MyApp());
-    FlutterNativeSplash.remove();
-  }, (exception, stackTrace) async {
-    await Logger.fatal(error: exception, stackTrace: stackTrace);
-  });
+  await runZonedGuarded(
+    () async {
+      final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+      FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+      await _initSdks();
+      runApp(const MyApp());
+      FlutterNativeSplash.remove();
+    },
+    (exception, stackTrace) =>
+        Logger.fatal(error: exception, stackTrace: stackTrace),
+  );
 }
 
 Future _initSdks() async {
@@ -31,6 +33,7 @@ Future _initSdks() async {
   ]);
 }
 
+// ignore: avoid-redundant-async
 Future _initFirebaseSdks() async {
   // TODO: Add Craslytics, Analytics and other sdks that the project needs
 }
@@ -40,9 +43,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
-        designSize: Size(360, 690),
+        designSize: const Size(360, 690),
         minTextAdapt: false,
         splitScreenMode: true,
-        builder: (_a, _b) => MainScreen(),
+        builder: (_, __) => const MainScreen(),
       );
 }

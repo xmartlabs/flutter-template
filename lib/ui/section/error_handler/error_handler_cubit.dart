@@ -10,14 +10,14 @@ part 'error_handler_state.dart';
 
 class ErrorHandlerCubit extends Cubit<ErrorHandlerState>
     with GeneralErrorHandler {
-  ErrorHandlerCubit() : super(ErrorHandlerState.init());
+  ErrorHandlerCubit() : super(const ErrorHandlerState.init());
 
   @override
   void handleError(Object? error, [VoidCallback? retry]) {
     if (error is DioError &&
         (error.type == DioErrorType.connectTimeout ||
             error.type == DioErrorType.receiveTimeout)) {
-      emit(ErrorHandlerState.internetError());
+      emit(const ErrorHandlerState.internetError());
     } else if (error is GeneralError) {
       emit(ErrorHandlerState.generalError(error.title, error.description));
     } else {

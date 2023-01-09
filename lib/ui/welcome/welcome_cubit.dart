@@ -20,7 +20,7 @@ class WelcomeCubit extends Cubit<WelcomeBaseState> {
 
   StreamSubscription? _projectsSubscription;
 
-  WelcomeCubit(this._errorHandler) : super(WelcomeBaseState.state()) {
+  WelcomeCubit(this._errorHandler) : super(const WelcomeBaseState.state()) {
     _initStreams();
   }
 

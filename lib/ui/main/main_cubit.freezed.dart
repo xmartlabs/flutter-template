@@ -25,7 +25,7 @@ mixin _$MainBaseState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationStatus? authenticationStatus)? state,
+    TResult? Function(AuthenticationStatus? authenticationStatus)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,7 +41,7 @@ mixin _$MainBaseState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_MainState value)? state,
+    TResult? Function(_MainState value)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,29 +60,32 @@ mixin _$MainBaseState {
 abstract class $MainBaseStateCopyWith<$Res> {
   factory $MainBaseStateCopyWith(
           MainBaseState value, $Res Function(MainBaseState) then) =
-      _$MainBaseStateCopyWithImpl<$Res>;
+      _$MainBaseStateCopyWithImpl<$Res, MainBaseState>;
+  @useResult
   $Res call({AuthenticationStatus? authenticationStatus});
 }
 
 /// @nodoc
-class _$MainBaseStateCopyWithImpl<$Res>
+class _$MainBaseStateCopyWithImpl<$Res, $Val extends MainBaseState>
     implements $MainBaseStateCopyWith<$Res> {
   _$MainBaseStateCopyWithImpl(this._value, this._then);
 
-  final MainBaseState _value;
   // ignore: unused_field
-  final $Res Function(MainBaseState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? authenticationStatus = freezed,
   }) {
     return _then(_value.copyWith(
-      authenticationStatus: authenticationStatus == freezed
+      authenticationStatus: freezed == authenticationStatus
           ? _value.authenticationStatus
           : authenticationStatus // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -93,25 +96,25 @@ abstract class _$$_MainStateCopyWith<$Res>
           _$_MainState value, $Res Function(_$_MainState) then) =
       __$$_MainStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({AuthenticationStatus? authenticationStatus});
 }
 
 /// @nodoc
-class __$$_MainStateCopyWithImpl<$Res> extends _$MainBaseStateCopyWithImpl<$Res>
+class __$$_MainStateCopyWithImpl<$Res>
+    extends _$MainBaseStateCopyWithImpl<$Res, _$_MainState>
     implements _$$_MainStateCopyWith<$Res> {
   __$$_MainStateCopyWithImpl(
       _$_MainState _value, $Res Function(_$_MainState) _then)
-      : super(_value, (v) => _then(v as _$_MainState));
+      : super(_value, _then);
 
-  @override
-  _$_MainState get _value => super._value as _$_MainState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? authenticationStatus = freezed,
   }) {
     return _then(_$_MainState(
-      authenticationStatus: authenticationStatus == freezed
+      authenticationStatus: freezed == authenticationStatus
           ? _value.authenticationStatus
           : authenticationStatus // ignore: cast_nullable_to_non_nullable
               as AuthenticationStatus?,
@@ -138,16 +141,16 @@ class _$_MainState implements _MainState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MainState &&
-            const DeepCollectionEquality()
-                .equals(other.authenticationStatus, authenticationStatus));
+            (identical(other.authenticationStatus, authenticationStatus) ||
+                other.authenticationStatus == authenticationStatus));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(authenticationStatus));
+  int get hashCode => Object.hash(runtimeType, authenticationStatus);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MainStateCopyWith<_$_MainState> get copyWith =>
       __$$_MainStateCopyWithImpl<_$_MainState>(this, _$identity);
 
@@ -162,7 +165,7 @@ class _$_MainState implements _MainState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(AuthenticationStatus? authenticationStatus)? state,
+    TResult? Function(AuthenticationStatus? authenticationStatus)? state,
   }) {
     return state?.call(authenticationStatus);
   }
@@ -190,7 +193,7 @@ class _$_MainState implements _MainState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_MainState value)? state,
+    TResult? Function(_MainState value)? state,
   }) {
     return state?.call(this);
   }

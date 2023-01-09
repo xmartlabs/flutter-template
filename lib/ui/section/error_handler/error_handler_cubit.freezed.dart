@@ -28,10 +28,10 @@ mixin _$ErrorHandlerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Object? error, VoidCallback? retry)? unknownError,
-    TResult Function(VoidCallback? retry)? internetError,
-    TResult Function(String? title, String description, VoidCallback? retry)?
+    TResult? Function()? init,
+    TResult? Function(Object? error, VoidCallback? retry)? unknownError,
+    TResult? Function(VoidCallback? retry)? internetError,
+    TResult? Function(String? title, String description, VoidCallback? retry)?
         generalError,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,10 +55,10 @@ mixin _$ErrorHandlerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitErrorHandlerState value)? init,
-    TResult Function(_UnknownErrorHandlerState value)? unknownError,
-    TResult Function(_InternetErrorHandlerState value)? internetError,
-    TResult Function(_GeneralErrorHandlerState value)? generalError,
+    TResult? Function(_InitErrorHandlerState value)? init,
+    TResult? Function(_UnknownErrorHandlerState value)? unknownError,
+    TResult? Function(_InternetErrorHandlerState value)? internetError,
+    TResult? Function(_GeneralErrorHandlerState value)? generalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,17 +76,18 @@ mixin _$ErrorHandlerState {
 abstract class $ErrorHandlerStateCopyWith<$Res> {
   factory $ErrorHandlerStateCopyWith(
           ErrorHandlerState value, $Res Function(ErrorHandlerState) then) =
-      _$ErrorHandlerStateCopyWithImpl<$Res>;
+      _$ErrorHandlerStateCopyWithImpl<$Res, ErrorHandlerState>;
 }
 
 /// @nodoc
-class _$ErrorHandlerStateCopyWithImpl<$Res>
+class _$ErrorHandlerStateCopyWithImpl<$Res, $Val extends ErrorHandlerState>
     implements $ErrorHandlerStateCopyWith<$Res> {
   _$ErrorHandlerStateCopyWithImpl(this._value, this._then);
 
-  final ErrorHandlerState _value;
   // ignore: unused_field
-  final $Res Function(ErrorHandlerState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -98,15 +99,11 @@ abstract class _$$_InitErrorHandlerStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitErrorHandlerStateCopyWithImpl<$Res>
-    extends _$ErrorHandlerStateCopyWithImpl<$Res>
+    extends _$ErrorHandlerStateCopyWithImpl<$Res, _$_InitErrorHandlerState>
     implements _$$_InitErrorHandlerStateCopyWith<$Res> {
   __$$_InitErrorHandlerStateCopyWithImpl(_$_InitErrorHandlerState _value,
       $Res Function(_$_InitErrorHandlerState) _then)
-      : super(_value, (v) => _then(v as _$_InitErrorHandlerState));
-
-  @override
-  _$_InitErrorHandlerState get _value =>
-      super._value as _$_InitErrorHandlerState;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -128,15 +125,6 @@ class _$_InitErrorHandlerState
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InitErrorHandlerState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
@@ -152,10 +140,10 @@ class _$_InitErrorHandlerState
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Object? error, VoidCallback? retry)? unknownError,
-    TResult Function(VoidCallback? retry)? internetError,
-    TResult Function(String? title, String description, VoidCallback? retry)?
+    TResult? Function()? init,
+    TResult? Function(Object? error, VoidCallback? retry)? unknownError,
+    TResult? Function(VoidCallback? retry)? internetError,
+    TResult? Function(String? title, String description, VoidCallback? retry)?
         generalError,
   }) {
     return init?.call();
@@ -191,10 +179,10 @@ class _$_InitErrorHandlerState
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitErrorHandlerState value)? init,
-    TResult Function(_UnknownErrorHandlerState value)? unknownError,
-    TResult Function(_InternetErrorHandlerState value)? internetError,
-    TResult Function(_GeneralErrorHandlerState value)? generalError,
+    TResult? Function(_InitErrorHandlerState value)? init,
+    TResult? Function(_UnknownErrorHandlerState value)? unknownError,
+    TResult? Function(_InternetErrorHandlerState value)? internetError,
+    TResult? Function(_GeneralErrorHandlerState value)? generalError,
   }) {
     return init?.call(this);
   }
@@ -225,29 +213,27 @@ abstract class _$$_UnknownErrorHandlerStateCopyWith<$Res> {
           _$_UnknownErrorHandlerState value,
           $Res Function(_$_UnknownErrorHandlerState) then) =
       __$$_UnknownErrorHandlerStateCopyWithImpl<$Res>;
+  @useResult
   $Res call({Object? error, VoidCallback? retry});
 }
 
 /// @nodoc
 class __$$_UnknownErrorHandlerStateCopyWithImpl<$Res>
-    extends _$ErrorHandlerStateCopyWithImpl<$Res>
+    extends _$ErrorHandlerStateCopyWithImpl<$Res, _$_UnknownErrorHandlerState>
     implements _$$_UnknownErrorHandlerStateCopyWith<$Res> {
   __$$_UnknownErrorHandlerStateCopyWithImpl(_$_UnknownErrorHandlerState _value,
       $Res Function(_$_UnknownErrorHandlerState) _then)
-      : super(_value, (v) => _then(v as _$_UnknownErrorHandlerState));
+      : super(_value, _then);
 
-  @override
-  _$_UnknownErrorHandlerState get _value =>
-      super._value as _$_UnknownErrorHandlerState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? error = freezed,
     Object? retry = freezed,
   }) {
     return _then(_$_UnknownErrorHandlerState(
-      error == freezed ? _value.error : error,
-      retry == freezed
+      freezed == error ? _value.error : error,
+      freezed == retry
           ? _value.retry
           : retry // ignore: cast_nullable_to_non_nullable
               as VoidCallback?,
@@ -281,21 +267,9 @@ class _$_UnknownErrorHandlerState
       ..add(DiagnosticsProperty('retry', retry));
   }
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_UnknownErrorHandlerState &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.retry, retry) || other.retry == retry));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(error), retry);
-
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UnknownErrorHandlerStateCopyWith<_$_UnknownErrorHandlerState>
       get copyWith => __$$_UnknownErrorHandlerStateCopyWithImpl<
           _$_UnknownErrorHandlerState>(this, _$identity);
@@ -316,10 +290,10 @@ class _$_UnknownErrorHandlerState
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Object? error, VoidCallback? retry)? unknownError,
-    TResult Function(VoidCallback? retry)? internetError,
-    TResult Function(String? title, String description, VoidCallback? retry)?
+    TResult? Function()? init,
+    TResult? Function(Object? error, VoidCallback? retry)? unknownError,
+    TResult? Function(VoidCallback? retry)? internetError,
+    TResult? Function(String? title, String description, VoidCallback? retry)?
         generalError,
   }) {
     return unknownError?.call(error, retry);
@@ -355,10 +329,10 @@ class _$_UnknownErrorHandlerState
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitErrorHandlerState value)? init,
-    TResult Function(_UnknownErrorHandlerState value)? unknownError,
-    TResult Function(_InternetErrorHandlerState value)? internetError,
-    TResult Function(_GeneralErrorHandlerState value)? generalError,
+    TResult? Function(_InitErrorHandlerState value)? init,
+    TResult? Function(_UnknownErrorHandlerState value)? unknownError,
+    TResult? Function(_InternetErrorHandlerState value)? internetError,
+    TResult? Function(_GeneralErrorHandlerState value)? generalError,
   }) {
     return unknownError?.call(this);
   }
@@ -396,28 +370,26 @@ abstract class _$$_InternetErrorHandlerStateCopyWith<$Res> {
           _$_InternetErrorHandlerState value,
           $Res Function(_$_InternetErrorHandlerState) then) =
       __$$_InternetErrorHandlerStateCopyWithImpl<$Res>;
+  @useResult
   $Res call({VoidCallback? retry});
 }
 
 /// @nodoc
 class __$$_InternetErrorHandlerStateCopyWithImpl<$Res>
-    extends _$ErrorHandlerStateCopyWithImpl<$Res>
+    extends _$ErrorHandlerStateCopyWithImpl<$Res, _$_InternetErrorHandlerState>
     implements _$$_InternetErrorHandlerStateCopyWith<$Res> {
   __$$_InternetErrorHandlerStateCopyWithImpl(
       _$_InternetErrorHandlerState _value,
       $Res Function(_$_InternetErrorHandlerState) _then)
-      : super(_value, (v) => _then(v as _$_InternetErrorHandlerState));
+      : super(_value, _then);
 
-  @override
-  _$_InternetErrorHandlerState get _value =>
-      super._value as _$_InternetErrorHandlerState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? retry = freezed,
   }) {
     return _then(_$_InternetErrorHandlerState(
-      retry == freezed
+      freezed == retry
           ? _value.retry
           : retry // ignore: cast_nullable_to_non_nullable
               as VoidCallback?,
@@ -448,19 +420,9 @@ class _$_InternetErrorHandlerState
       ..add(DiagnosticsProperty('retry', retry));
   }
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_InternetErrorHandlerState &&
-            (identical(other.retry, retry) || other.retry == retry));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, retry);
-
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_InternetErrorHandlerStateCopyWith<_$_InternetErrorHandlerState>
       get copyWith => __$$_InternetErrorHandlerStateCopyWithImpl<
           _$_InternetErrorHandlerState>(this, _$identity);
@@ -481,10 +443,10 @@ class _$_InternetErrorHandlerState
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Object? error, VoidCallback? retry)? unknownError,
-    TResult Function(VoidCallback? retry)? internetError,
-    TResult Function(String? title, String description, VoidCallback? retry)?
+    TResult? Function()? init,
+    TResult? Function(Object? error, VoidCallback? retry)? unknownError,
+    TResult? Function(VoidCallback? retry)? internetError,
+    TResult? Function(String? title, String description, VoidCallback? retry)?
         generalError,
   }) {
     return internetError?.call(retry);
@@ -520,10 +482,10 @@ class _$_InternetErrorHandlerState
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitErrorHandlerState value)? init,
-    TResult Function(_UnknownErrorHandlerState value)? unknownError,
-    TResult Function(_InternetErrorHandlerState value)? internetError,
-    TResult Function(_GeneralErrorHandlerState value)? generalError,
+    TResult? Function(_InitErrorHandlerState value)? init,
+    TResult? Function(_UnknownErrorHandlerState value)? unknownError,
+    TResult? Function(_InternetErrorHandlerState value)? internetError,
+    TResult? Function(_GeneralErrorHandlerState value)? generalError,
   }) {
     return internetError?.call(this);
   }
@@ -560,37 +522,35 @@ abstract class _$$_GeneralErrorHandlerStateCopyWith<$Res> {
           _$_GeneralErrorHandlerState value,
           $Res Function(_$_GeneralErrorHandlerState) then) =
       __$$_GeneralErrorHandlerStateCopyWithImpl<$Res>;
+  @useResult
   $Res call({String? title, String description, VoidCallback? retry});
 }
 
 /// @nodoc
 class __$$_GeneralErrorHandlerStateCopyWithImpl<$Res>
-    extends _$ErrorHandlerStateCopyWithImpl<$Res>
+    extends _$ErrorHandlerStateCopyWithImpl<$Res, _$_GeneralErrorHandlerState>
     implements _$$_GeneralErrorHandlerStateCopyWith<$Res> {
   __$$_GeneralErrorHandlerStateCopyWithImpl(_$_GeneralErrorHandlerState _value,
       $Res Function(_$_GeneralErrorHandlerState) _then)
-      : super(_value, (v) => _then(v as _$_GeneralErrorHandlerState));
+      : super(_value, _then);
 
-  @override
-  _$_GeneralErrorHandlerState get _value =>
-      super._value as _$_GeneralErrorHandlerState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? title = freezed,
-    Object? description = freezed,
+    Object? description = null,
     Object? retry = freezed,
   }) {
     return _then(_$_GeneralErrorHandlerState(
-      title == freezed
+      freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      description == freezed
+      null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      retry == freezed
+      freezed == retry
           ? _value.retry
           : retry // ignore: cast_nullable_to_non_nullable
               as VoidCallback?,
@@ -627,26 +587,9 @@ class _$_GeneralErrorHandlerState
       ..add(DiagnosticsProperty('retry', retry));
   }
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GeneralErrorHandlerState &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            (identical(other.retry, retry) || other.retry == retry));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(description),
-      retry);
-
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_GeneralErrorHandlerStateCopyWith<_$_GeneralErrorHandlerState>
       get copyWith => __$$_GeneralErrorHandlerStateCopyWithImpl<
           _$_GeneralErrorHandlerState>(this, _$identity);
@@ -667,10 +610,10 @@ class _$_GeneralErrorHandlerState
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Object? error, VoidCallback? retry)? unknownError,
-    TResult Function(VoidCallback? retry)? internetError,
-    TResult Function(String? title, String description, VoidCallback? retry)?
+    TResult? Function()? init,
+    TResult? Function(Object? error, VoidCallback? retry)? unknownError,
+    TResult? Function(VoidCallback? retry)? internetError,
+    TResult? Function(String? title, String description, VoidCallback? retry)?
         generalError,
   }) {
     return generalError?.call(title, description, retry);
@@ -706,10 +649,10 @@ class _$_GeneralErrorHandlerState
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_InitErrorHandlerState value)? init,
-    TResult Function(_UnknownErrorHandlerState value)? unknownError,
-    TResult Function(_InternetErrorHandlerState value)? internetError,
-    TResult Function(_GeneralErrorHandlerState value)? generalError,
+    TResult? Function(_InitErrorHandlerState value)? init,
+    TResult? Function(_UnknownErrorHandlerState value)? unknownError,
+    TResult? Function(_InternetErrorHandlerState value)? internetError,
+    TResult? Function(_GeneralErrorHandlerState value)? generalError,
   }) {
     return generalError?.call(this);
   }

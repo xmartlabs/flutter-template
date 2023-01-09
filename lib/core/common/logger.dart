@@ -57,10 +57,16 @@ class _CrashReportWrappedPrinter extends LogPrinter {
   StackTrace _currentStacktrace() {
     // Filter: FirebaseCrashlytics.record, _CrashReportWrappedPrinter
     // Logger.log, Logger.e
-    var trace = Trace.current(4);
-    var frames = trace.frames;
+    final trace = Trace.current(4);
+    final frames = trace.frames;
     final newFrames = frames.map(
-        (frame) => Frame(frame.uri, frame.line, frame.column, frame.member));
+      (frame) => Frame(
+        frame.uri,
+        frame.line,
+        frame.column,
+        frame.member,
+      ),
+    );
     return _PrintableTrace(newFrames);
   }
 
@@ -101,13 +107,15 @@ class _PrintableTrace extends Trace {
   String toString() {
     var i = 1;
     return frames.map((frame) {
-      var number = '#${i++}'.padRight(8);
-      var member = frame.member!
-          .replaceAllMapped(RegExp(r'[^.]+\.<async>'),
-              (match) => '${match[1]}.<${match[1]}_async_body>')
+      final number = '#${i++}'.padRight(8);
+      final member = frame.member!
+          .replaceAllMapped(
+            RegExp(r'[^.]+\.<async>'),
+            (match) => '${match[1]}.<${match[1]}_async_body>',
+          )
           .replaceAll('<fn>', '<anonymous closure>');
-      var line = frame.line ?? 0;
-      var column = frame.column ?? 0;
+      final line = frame.line ?? 0;
+      final column = frame.column ?? 0;
       return '$number$member (${frame.uri}:$line:$column)\n';
     }).join();
   }

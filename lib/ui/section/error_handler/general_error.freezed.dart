@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GeneralError {
-  String? get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   dynamic get cause => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,38 +29,42 @@ mixin _$GeneralError {
 abstract class $GeneralErrorCopyWith<$Res> {
   factory $GeneralErrorCopyWith(
           GeneralError value, $Res Function(GeneralError) then) =
-      _$GeneralErrorCopyWithImpl<$Res>;
-  $Res call({String? title, String description, dynamic cause});
+      _$GeneralErrorCopyWithImpl<$Res, GeneralError>;
+  @useResult
+  $Res call({String description, String? title, dynamic cause});
 }
 
 /// @nodoc
-class _$GeneralErrorCopyWithImpl<$Res> implements $GeneralErrorCopyWith<$Res> {
+class _$GeneralErrorCopyWithImpl<$Res, $Val extends GeneralError>
+    implements $GeneralErrorCopyWith<$Res> {
   _$GeneralErrorCopyWithImpl(this._value, this._then);
 
-  final GeneralError _value;
   // ignore: unused_field
-  final $Res Function(GeneralError) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? description = null,
     Object? title = freezed,
-    Object? description = freezed,
-    Object? cause = freezed,
+    Object? cause = null,
   }) {
     return _then(_value.copyWith(
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      cause: cause == freezed
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cause: null == cause
           ? _value.cause
           : cause // ignore: cast_nullable_to_non_nullable
               as dynamic,
-    ));
+    ) as $Val);
   }
 }
 
@@ -71,36 +75,35 @@ abstract class _$$_GeneralErrorCopyWith<$Res>
           _$_GeneralError value, $Res Function(_$_GeneralError) then) =
       __$$_GeneralErrorCopyWithImpl<$Res>;
   @override
-  $Res call({String? title, String description, dynamic cause});
+  @useResult
+  $Res call({String description, String? title, dynamic cause});
 }
 
 /// @nodoc
 class __$$_GeneralErrorCopyWithImpl<$Res>
-    extends _$GeneralErrorCopyWithImpl<$Res>
+    extends _$GeneralErrorCopyWithImpl<$Res, _$_GeneralError>
     implements _$$_GeneralErrorCopyWith<$Res> {
   __$$_GeneralErrorCopyWithImpl(
       _$_GeneralError _value, $Res Function(_$_GeneralError) _then)
-      : super(_value, (v) => _then(v as _$_GeneralError));
+      : super(_value, _then);
 
-  @override
-  _$_GeneralError get _value => super._value as _$_GeneralError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? description = null,
     Object? title = freezed,
-    Object? description = freezed,
-    Object? cause = freezed,
+    Object? cause = null,
   }) {
     return _then(_$_GeneralError(
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      cause: cause == freezed
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cause: null == cause
           ? _value.cause
           : cause // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -111,18 +114,18 @@ class __$$_GeneralErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
-  const _$_GeneralError({this.title, required this.description, this.cause});
+  const _$_GeneralError({required this.description, this.title, this.cause});
 
   @override
-  final String? title;
-  @override
   final String description;
+  @override
+  final String? title;
   @override
   final dynamic cause;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GeneralError(title: $title, description: $description, cause: $cause)';
+    return 'GeneralError(description: $description, title: $title, cause: $cause)';
   }
 
   @override
@@ -130,8 +133,8 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'GeneralError'))
-      ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('cause', cause));
   }
 
@@ -140,35 +143,33 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GeneralError &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other.cause, cause));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(description),
+  int get hashCode => Object.hash(runtimeType, description, title,
       const DeepCollectionEquality().hash(cause));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_GeneralErrorCopyWith<_$_GeneralError> get copyWith =>
       __$$_GeneralErrorCopyWithImpl<_$_GeneralError>(this, _$identity);
 }
 
 abstract class _GeneralError implements GeneralError {
   const factory _GeneralError(
-      {final String? title,
-      required final String description,
+      {required final String description,
+      final String? title,
       final dynamic cause}) = _$_GeneralError;
 
   @override
-  String? get title;
-  @override
   String get description;
+  @override
+  String? get title;
   @override
   dynamic get cause;
   @override

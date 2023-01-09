@@ -4,10 +4,10 @@ extension StringExtensions on String {
   bool get isNumber => contains(RegExp(r'^[0-9]+$'));
 
   String get camelCaseToSnakeCase {
-    var sb = StringBuffer();
+    final sb = StringBuffer();
     var first = true;
-    runes.forEach((int rune) {
-      var char = String.fromCharCode(rune);
+    for (final rune in runes) {
+      final char = String.fromCharCode(rune);
       if (char.isUpperCase && !first) {
         if (char != '_') {
           sb.write('_');
@@ -17,23 +17,23 @@ extension StringExtensions on String {
         first = false;
         sb.write(char.toLowerCase());
       }
-    });
+    }
     return sb.toString();
   }
 
   String get addUnderscoreBeforeNumbers {
-    var sb = StringBuffer();
+    final sb = StringBuffer();
     var first = true;
     var prev = '';
-    runes.forEach((int rune) {
-      var char = String.fromCharCode(rune);
+    for (final rune in runes) {
+      final char = String.fromCharCode(rune);
       if (char.isNumber && !first && !prev.isNumber) {
         sb.write('_');
       }
       first = false;
       sb.write(char);
       prev = char;
-    });
+    }
     return sb.toString();
   }
 

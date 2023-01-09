@@ -31,8 +31,8 @@ class AuthLocalSource {
 
 class UserStockTypeMapper extends StockTypeMapper<String, User> {
   @override
-  User fromInput(String userJson) => User.fromJson(json.decode(userJson));
+  User fromInput(String value) => User.fromJson(json.decode(value));
 
   @override
-  String fromOutput(User user) => json.encode(user.toJson());
+  String fromOutput(User value) => json.encode(value.toJson());
 }

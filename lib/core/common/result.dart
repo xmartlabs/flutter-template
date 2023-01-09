@@ -1,3 +1,5 @@
+// ignore_for_file: no-object-declaration
+
 import 'package:equatable/equatable.dart';
 // Code: https://gist.githubusercontent.com/CassiusPacheco/409e66e220ce563440df00385f39ac98/raw/d0506e4b3dadbcf5a21d9cc23b300ecbcc8c57d6/data_result.dart
 
@@ -17,7 +19,7 @@ abstract class Result<S> extends Equatable {
 
   static Result<S> success<S>(S data) => _SuccessResult(data);
 
-  Result._();
+  const Result._();
 
   factory Result(S Function() computation) {
     try {
@@ -53,7 +55,9 @@ abstract class Result<S> extends Equatable {
   /// the matching function to the object type will be executed. For example,
   /// for a `SuccessResult` object only the [fnData] function will be executed.
   Result<T> either<T>(
-      Object Function(Object error) fnFailure, T Function(S data) fnData);
+    Object Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  );
 
   /// Transforms value of [data] allowing a new `DataResult` to be returned.
   /// A `SuccessResult` might return a `FailureResult` and vice versa.
@@ -67,7 +71,10 @@ abstract class Result<S> extends Equatable {
   /// Folds [error] and [data] into the value of one type. Only the matching
   /// function to the object type will be executed. For example, for a
   /// `SuccessResult` object only the [fnData] function will be executed.
-  T fold<T>(T Function(Object error) fnFailure, T Function(S data) fnData);
+  T fold<T>(
+    T Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  );
 
   @override
   List<Object?> get props => [if (isSuccess) data else error];
@@ -78,28 +85,28 @@ abstract class Result<S> extends Equatable {
 class _SuccessResult<S> extends Result<S> {
   final S _value;
 
-  _SuccessResult(this._value) : super._();
+  const _SuccessResult(this._value) : super._();
 
   @override
   _SuccessResult<T> either<T>(
-      Object Function(Object error) fnFailure, T Function(S data) fnData) {
-    return _SuccessResult<T>(fnData(_value));
-  }
+    Object Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  ) =>
+      _SuccessResult<T>(fnData(_value));
 
   @override
-  Result<T> then<T>(Result<T> Function(S data) fnData) {
-    return fnData(_value);
-  }
+  Result<T> then<T>(Result<T> Function(S data) fnData) => fnData(_value);
 
   @override
-  _SuccessResult<T> map<T>(T Function(S data) fnData) {
-    return _SuccessResult<T>(fnData(_value));
-  }
+  _SuccessResult<T> map<T>(T Function(S data) fnData) =>
+      _SuccessResult<T>(fnData(_value));
 
   @override
-  T fold<T>(T Function(Object error) fnFailure, T Function(S data) fnData) {
-    return fnData(_value);
-  }
+  T fold<T>(
+    T Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  ) =>
+      fnData(_value);
 }
 
 /// Failure implementation of `DataResult`. It contains `error`.  It's
@@ -107,26 +114,31 @@ class _SuccessResult<S> extends Result<S> {
 class _FailureResult<S> extends Result<S> {
   final Object _value;
 
-  _FailureResult(this._value) : super._();
+  const _FailureResult(this._value) : super._();
 
   @override
   _FailureResult<T> either<T>(
-      Object Function(Object error) fnFailure, T Function(S data) fnData) {
-    return _FailureResult<T>(fnFailure(_value));
-  }
+    Object Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  ) =>
+      _FailureResult<T>(fnFailure(_value));
 
   @override
-  _FailureResult<T> map<T>(T Function(S data) fnData) {
-    return _FailureResult<T>(_value);
-  }
+  _FailureResult<T> map<T>(
+    T Function(S data) fnData,
+  ) =>
+      _FailureResult<T>(_value);
 
   @override
-  _FailureResult<T> then<T>(Result<T> Function(S data) fnData) {
-    return _FailureResult<T>(_value);
-  }
+  _FailureResult<T> then<T>(
+    Result<T> Function(S data) fnData,
+  ) =>
+      _FailureResult<T>(_value);
 
   @override
-  T fold<T>(T Function(Object error) fnFailure, T Function(S data) fnData) {
-    return fnFailure(_value);
-  }
+  T fold<T>(
+    T Function(Object error) fnFailure,
+    T Function(S data) fnData,
+  ) =>
+      fnFailure(_value);
 }

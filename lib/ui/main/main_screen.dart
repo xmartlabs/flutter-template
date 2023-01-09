@@ -14,21 +14,18 @@ class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => MainCubit(),
-      child: _SplashContentScreen(),
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider(
+        create: (_) => MainCubit(),
+        child: _SplashContentScreen(),
+      );
 }
 
 class _SplashContentScreen extends StatelessWidget {
   final router = DiProvider.get<AppRouter>();
 
   @override
-  Widget build(BuildContext context) =>
-      BlocBuilder<MainCubit, MainBaseState>(builder: (context, state) {
-        return MaterialApp.router(
+  Widget build(BuildContext context) => BlocBuilder<MainCubit, MainBaseState>(
+        builder: (context, state) => MaterialApp.router(
           theme: AppTheme.provideAppTheme(context),
           routerDelegate: AutoRouterDelegate.declarative(
             router,
@@ -36,7 +33,7 @@ class _SplashContentScreen extends StatelessWidget {
           ),
           routeInformationParser:
               router.defaultRouteParser(includePrefixMatches: true),
-          localizationsDelegates: [
+          localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
@@ -47,15 +44,15 @@ class _SplashContentScreen extends StatelessWidget {
             Resources.setup(context);
             return child!;
           },
-        );
-      });
+        ),
+      );
 
   List<PageRouteInfo<dynamic>> provideRoutes(MainBaseState state) {
     switch (state.authenticationStatus) {
       case AuthenticationStatus.authenticated:
-        return [AuthenticatedRouter()];
+        return [const AuthenticatedRouter()];
       case AuthenticationStatus.unauthenticated:
-        return [UnauthenticatedRouter()];
+        return [const UnauthenticatedRouter()];
       case null:
         return [];
     }

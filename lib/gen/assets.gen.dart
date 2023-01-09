@@ -5,24 +5,12 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal
 
 import 'package:flutter/widgets.dart';
 
-class $AssetsEnvironmentsGen {
-  const $AssetsEnvironmentsGen();
-
-  /// File path: assets/environments/.env
-  String get env => 'assets/environments/.env';
-
-  /// File path: assets/environments/development.env
-  String get development => 'assets/environments/development.env';
-}
-
 class Assets {
   Assets._();
-
-  static const $AssetsEnvironmentsGen environments = $AssetsEnvironmentsGen();
 }
 
 class AssetGenImage {
@@ -82,6 +70,8 @@ class AssetGenImage {
       cacheHeight: cacheHeight,
     );
   }
+
+  ImageProvider provider() => AssetImage(_assetName);
 
   String get path => _assetName;
 
