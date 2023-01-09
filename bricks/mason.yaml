@@ -1,0 +1,5 @@
+bricks:
+  xl_cubit_screen:
+    path: bricks/xl_cubit_screen
+  xl_model_freezed:
+    path: bricks/xl_model_freezed
