@@ -9,6 +9,10 @@
 .history
 .svn/
 
+# Mason
+.mason/
+mason-lock.json
+
 # IntelliJ related
 *.iml
 *.ipr

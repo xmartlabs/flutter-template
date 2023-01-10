@@ -134,6 +134,7 @@ analyzer:
     - '**/*.g.dart'
     - '**/*.gen.dart'
     - '**/*.gr.dart'
+    - 'bricks'
     - 'lib/generated_plugin_registrant.dart'
   errors:
     invalid_annotation_target: ignore
