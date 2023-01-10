@@ -1,8 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '{{name.snakeCase()}}_cubit.dart';
 
 class {{name.pascalCase()}}Screen extends StatelessWidget {
-  {{name.pascalCase()}}Screen({Key? key}) : super(key: key);
+  const {{name.pascalCase()}}Screen({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) => BlocProvider(
+    create: (_) => {{name.pascalCase()}}Cubit(),
+    child: _{{name.pascalCase()}}ContentScreen(),
+  );
+}
+
+class _{{name.pascalCase()}}ContentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
      Container();
