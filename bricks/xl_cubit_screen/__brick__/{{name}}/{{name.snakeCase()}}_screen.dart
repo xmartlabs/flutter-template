@@ -8,13 +8,12 @@ class {{name.pascalCase()}}Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-    create: (_) => {{name.pascalCase()}}Cubit(),
-    child: _{{name.pascalCase()}}ContentScreen(),
-  );
+        create: (_) => {{name.pascalCase()}}Cubit(),
+        child: _{{name.pascalCase()}}ContentScreen(),
+      );
 }
 
 class _{{name.pascalCase()}}ContentScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) =>
-     Container();
+  Widget build(BuildContext context) => Container();
 }
