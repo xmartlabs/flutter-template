@@ -3,20 +3,14 @@ import 'package:flutter_template/core/di/di_utils_module.dart';
 import 'package:get_it/get_it.dart';
 
 abstract class DiProvider {
-  static bool _initialized = false;
+  static GetIt get _instance => GetIt.instance;
 
-  static GetIt get _instance {
-    final instance = GetIt.instance;
-    if (!_initialized) {
-      RepositoryDiModule().setupModule(instance);
-      UtilsDiModule().setupModule(instance);
-      _initialized = true;
-    }
-
-    return instance;
+  static Future<void> init() async {
+    await UtilsDiModule().setupProviders(_instance);
+    RepositoryDiModule().setupModule(_instance);
+    UtilsDiModule().setupModule(_instance);
+    await _instance.allReady();
   }
-
-  static Future<void> init() => _instance.allReady();
 
   static T get<T extends Object>({
     String? instanceName,
