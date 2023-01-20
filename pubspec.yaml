@@ -21,7 +21,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  auto_route: 5.0.3
+  auto_route: 5.0.4
   bloc: 8.1.0
   cupertino_icons: 1.0.5
   dartx: 1.1.0
