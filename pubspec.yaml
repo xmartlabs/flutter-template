@@ -44,7 +44,7 @@ dependencies:
   rxdart: 0.27.7
   sqflite: 2.2.3
   stack_trace: 1.10.0
-  stock: ^1.0.1
+  stock: 1.0.1
 
 dev_dependencies:
   flutter_test:
