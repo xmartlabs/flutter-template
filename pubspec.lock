@@ -259,7 +259,14 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.3.0"
+    version: "5.4.0"
+  dart_code_metrics_presets:
+    dependency: transitive
+    description:
+      name: dart_code_metrics_presets
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   dart_console2:
     dependency: transitive
     description:
