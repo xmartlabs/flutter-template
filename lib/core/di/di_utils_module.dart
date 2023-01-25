@@ -8,10 +8,7 @@ class UtilsDiModule {
 
   factory UtilsDiModule() => _instance;
 
-  Future<void> setupModule(GetIt locator) async {
-    locator._setupModule();
-    await locator.allReady();
-  }
+  void setupModule(GetIt locator) => locator._setupModule();
 }
 
 extension _GetItDiModuleExtensions on GetIt {

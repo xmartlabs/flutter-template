@@ -7,9 +7,9 @@ abstract class DiProvider {
   static GetIt get _instance => GetIt.instance;
 
   static Future<void> init() async {
-    // Setup app providers should be done first
+    // Setup app providers have to be done first
     await AppProvidersModule().setupModule(_instance);
-    await UtilsDiModule().setupModule(_instance);
+    UtilsDiModule().setupModule(_instance);
     RepositoryDiModule().setupModule(_instance);
     await _instance.allReady();
   }
