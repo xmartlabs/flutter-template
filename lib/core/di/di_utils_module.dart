@@ -8,12 +8,10 @@ class UtilsDiModule {
 
   factory UtilsDiModule() => _instance;
 
-  void setupModule(GetIt locator) {
-    locator._setupModule();
-  }
+  void setupModule(GetIt locator) => locator._setupModule();
 }
 
-extension _GetItUseCaseDiModuleExtensions on GetIt {
+extension _GetItDiModuleExtensions on GetIt {
   void _setupModule() {
     registerSingleton(AppRouter());
   }
