@@ -42,7 +42,7 @@ dependencies:
   logger: 1.1.0
   material_color_generator: 1.1.0
   rxdart: 0.27.7
-  sqflite: 2.2.3
+  sqflite: 2.2.4+1
   stack_trace: 1.10.0
   stock: 1.0.1
 
