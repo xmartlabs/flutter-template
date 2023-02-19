@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/ui/router/app_status_router_guards.dart';
 import 'package:flutter_template/ui/section/section_router.dart';
 import 'package:flutter_template/ui/signin/signin_screen.dart';
 import 'package:flutter_template/ui/welcome/welcome_screen.dart';
@@ -13,9 +14,10 @@ part 'app_router.gr.dart';
       name: 'UnauthenticatedRouter',
       page: SectionRouter,
       initial: true,
+      guards: [UnauthenticatedGuard],
       children: [
         AutoRoute(
-          path: AppRouter.signInPath,
+          path: 'login',
           page: SignInScreen,
           initial: true,
         ),
@@ -24,9 +26,10 @@ part 'app_router.gr.dart';
     AutoRoute(
       name: 'AuthenticatedRouter',
       page: SectionRouter,
+      guards: [AuthenticatedGuard],
       children: [
         AutoRoute(
-          path: AppRouter.welcomePath,
+          path: 'welcome',
           page: WelcomeScreen,
           initial: true,
         ),
@@ -35,6 +38,11 @@ part 'app_router.gr.dart';
   ],
 )
 class AppRouter extends _$AppRouter {
-  static const signInPath = 'signin';
-  static const welcomePath = 'welcome';
+  AppRouter(
+    UnauthenticatedGuard unauthenticatedGuard,
+    AuthenticatedGuard authenticatedGuard,
+  ) : super(
+          unauthenticatedGuard: unauthenticatedGuard,
+          authenticatedGuard: authenticatedGuard,
+        );
 }
