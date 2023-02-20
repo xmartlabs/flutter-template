@@ -259,7 +259,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.5.0"
+    version: "5.6.0"
   dart_code_metrics_presets:
     dependency: transitive
     description:
@@ -1019,14 +1019,14 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.3"
+    version: "2.2.4+1"
   sqflite_common:
     dependency: transitive
     description:
       name: sqflite_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.1"
+    version: "2.4.2+2"
   sqflite_common_ffi:
     dependency: transitive
     description:
