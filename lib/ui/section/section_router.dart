@@ -19,11 +19,12 @@ class SectionRouter extends StatelessWidget {
   void _handleStateChanges(
     BuildContext context,
     GlobalEventHandlerState event,
-  ) => event.when(
-      idle: () => {},
-      error: (errorType) => _showError(errorType, context),
-      loading: () => {},
-    );
+  ) =>
+      event.when(
+        idle: () => {},
+        error: (errorType) => _showError(errorType, context),
+        loading: () => {},
+      );
 
   void _showError(
     GlobalEventHandlerStateError errorType,
