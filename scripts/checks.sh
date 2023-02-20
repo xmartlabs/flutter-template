@@ -17,7 +17,7 @@ fvm flutter analyze . || error "Linter error - Flutter Analyze error"
 
 result=$(fvm flutter pub run dart_code_metrics:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings)
 echo "$result"
-[[ $result == '✔ no issues found!' ]] || error "Linter error - Dart Code Metrics linter error"
+[[ $result == *'✔ no issues found!'* ]] || error "Linter error - Dart Code Metrics linter error"
 
 fvm flutter pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused || error "Linter error - Dart Code Metrics unused code error"
 
