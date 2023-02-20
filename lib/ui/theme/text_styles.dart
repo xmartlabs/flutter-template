@@ -59,8 +59,8 @@ class AppStyles extends TextTheme {
           fontStyle: FontStyle.normal,
         ),
         textTheme: GoogleFonts.interTextTheme().copyWith(
-          headline1: GoogleFonts.inter(
-            fontSize: 50.sp,
+          bodyLarge: GoogleFonts.inter(
+            fontSize: 18.sp,
             fontWeight: FontWeight.w300,
             fontStyle: FontStyle.normal,
           ),
