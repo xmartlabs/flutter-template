@@ -3,7 +3,7 @@
   "@error": {
     "description": "Gives the user an error explanation",
     "placeholders": {
-      "name": {
+      "text": {
         "type": "String",
         "example": "Something went wrong try again"
       }
