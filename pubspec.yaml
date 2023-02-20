@@ -7,7 +7,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
-  flutter: 3.3.6
+  flutter: 3.7.3
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -31,19 +31,19 @@ dependencies:
   flutter_bloc: 8.1.1
   flutter_dotenv: 5.0.2
   flutter_native_splash: 2.2.14
-  flutter_screenutil: 5.6.0
+  flutter_screenutil: 5.6.1
   flutter_secure_storage: 8.0.0
   flutter_web_browser: 0.17.1 # This can be removed
   freezed_annotation: 2.2.0
   get_it: 7.2.0
-  google_fonts: 4.0.1
+  google_fonts: 4.0.3
   intl: 0.17.0
   json_annotation: 4.8.0
   logger: 1.1.0
   material_color_generator: 1.1.0
   rxdart: 0.27.7
   sqflite: 2.2.4+1
-  stack_trace: 1.10.0
+  stack_trace: 1.11.0
   stock: 1.0.1
 
 dev_dependencies:
@@ -61,7 +61,7 @@ dev_dependencies:
   flutter_lints: 2.0.1
   freezed: 2.3.2
   json_serializable: 6.6.0
-  pedantic: 1.11.1
+  lints: 2.0.1
 
 flutter:
   generate: true
