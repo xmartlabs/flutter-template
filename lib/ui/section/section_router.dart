@@ -11,15 +11,27 @@ class SectionRouter extends StatelessWidget {
   Widget build(BuildContext context) => BlocProvider(
         create: (BuildContext context) => GlobalEventHandlerCubit(),
         child: BlocListener<GlobalEventHandlerCubit, GlobalEventHandlerState>(
-          listener: showError,
+          listener: _handleStateChanges,
           child: const AutoRouter(),
         ),
       );
 
-  void showError(BuildContext context, GlobalEventHandlerState event) {
+  void _handleStateChanges(
+    BuildContext context,
+    GlobalEventHandlerState event,
+  ) {
     event.when(
       idle: () => {},
-      error: (errorType) => errorType.when(
+      error: (errorType) => _showError(errorType, context),
+      loading: () => {},
+    );
+  }
+
+  void _showError(
+    GlobalEventHandlerStateError errorType,
+    BuildContext context,
+  ) =>
+      errorType.when(
         unknownError: (error, retry) => _showDialog(
           context,
           context.localizations.error_unknown_error_title,
@@ -34,10 +46,7 @@ class SectionRouter extends StatelessWidget {
         ),
         generalError: (title, description, retry) =>
             _showDialog(context, title, description, retry),
-      ),
-      loading: () => {},
-    );
-  }
+      );
 
   void _showDialog(
     BuildContext context,
