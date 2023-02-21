@@ -54,6 +54,7 @@ class HttpServiceDio implements HttpService {
       baseUrl: Config.apiBaseUrl,
       // TODO: Remove api key. It's only needed for Supabase
       headers: {'apikey': Config.supabaseApiKey},
+      contentType: Headers.jsonContentType,
     );
     _dio = Dio(options);
     _dio.interceptors.addAll(interceptors);
@@ -139,7 +140,9 @@ class HttpServiceDio implements HttpService {
   Future<Response> _processNetworkCall(
     Future<Response> Function() call,
   ) =>
-      call().catchError((e) => throw NetworkException.getDioException(e));
+      call().catchError(
+        (exception) => throw NetworkException.getDioException(exception),
+      );
 }
 
 extension HttpServiceCommon on HttpService {

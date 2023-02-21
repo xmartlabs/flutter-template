@@ -15,7 +15,8 @@ class GlobalEventHandlerCubit extends Cubit<GlobalEventHandlerState>
   @override
   void handleError(Object? error, [VoidCallback? retry]) {
     if (error is DioError &&
-        (error.type == DioErrorType.connectTimeout ||
+        (error.type == DioErrorType.connectionTimeout ||
+            error.type == DioErrorType.sendTimeout ||
             error.type == DioErrorType.receiveTimeout)) {
       emit(
         const GlobalEventHandlerState.error(
