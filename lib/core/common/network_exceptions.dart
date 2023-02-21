@@ -68,18 +68,19 @@ class NetworkException with _$NetworkException implements Exception {
         if (error is DioError) {
           switch (error.type) {
             case DioErrorType.cancel:
-            case DioErrorType.connectTimeout:
-            case DioErrorType.other:
-            case DioErrorType.receiveTimeout:
+            case DioErrorType.connectionTimeout:
             case DioErrorType.sendTimeout:
+            case DioErrorType.receiveTimeout:
+            case DioErrorType.connectionError:
+            case DioErrorType.unknown:
+            case DioErrorType.badCertificate:
               networkExceptions = const NetworkException.noInternetConnection();
               break;
-            case DioErrorType.response:
+            case DioErrorType.badResponse:
               networkExceptions = NetworkException.handleResponse(
                 error.response?.statusCode,
                 error.response?.data,
               );
-              break;
           }
         } else if (error is SocketException) {
           networkExceptions = const NetworkException.noInternetConnection();
