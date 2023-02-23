@@ -39,7 +39,7 @@ dependencies:
   google_fonts: 4.0.3
   intl: 0.17.0
   json_annotation: 4.8.0
-  logger: 1.1.0
+  logger: 1.2.2
   material_color_generator: 1.1.0
   rxdart: 0.27.7
   sqflite: 2.2.4+1
