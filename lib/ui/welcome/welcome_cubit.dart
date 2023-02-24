@@ -6,7 +6,7 @@ import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/model/project.dart';
 import 'package:flutter_template/core/repository/project_repository.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
-import 'package:flutter_template/ui/section/error_handler/error_handler_cubit.dart';
+import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'welcome_cubit.freezed.dart';
@@ -16,18 +16,19 @@ class WelcomeCubit extends Cubit<WelcomeBaseState> {
   final SessionRepository _sessionRepository = DiProvider.get();
   final ProjectRepository _projectRepository = DiProvider.get();
 
-  final GeneralErrorHandler _errorHandler;
+  final GlobalEventHandler _globalEventHandler;
 
   StreamSubscription? _projectsSubscription;
 
-  WelcomeCubit(this._errorHandler) : super(const WelcomeBaseState.state()) {
+  WelcomeCubit(this._globalEventHandler)
+      : super(const WelcomeBaseState.state()) {
     _initStreams();
   }
 
   void _initStreams() {
     _projectsSubscription = _projectRepository
         .getProjects()
-        .filterSuccess(_errorHandler.handleError)
+        .filterSuccess(_globalEventHandler.handleError)
         .listen((projects) => emit(state.copyWith(projects: projects ?? [])));
   }
 

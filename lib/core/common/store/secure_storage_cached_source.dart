@@ -19,7 +19,7 @@ class SecuredStorageSourceOfTruth extends CachedSourceOfTruth<String, String> {
   @override
   @protected
   Future<void> write(String key, String? value) async {
-    await super.write(key, value);
     await _secureStorage.write(key: key, value: value);
+    await super.write(key, value);
   }
 }

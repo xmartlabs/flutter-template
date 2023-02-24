@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_template/core/common/environments.dart';
 import 'package:flutter_template/core/common/extension/string_extensions.dart';
 import 'package:flutter_template/core/common/helper/enum_helpers.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_template/core/common/helper/env_helper.dart';
 
 abstract class Config {
   static const String environmentFolder = 'environments';
+
+  static const debugMode = kDebugMode;
 
   static late String apiBaseUrl;
   static late String supabaseApiKey;

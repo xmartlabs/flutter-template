@@ -25,6 +25,11 @@ private_lane :flutter_command do |options|
   sh_on_root(command: "fvm flutter #{command}")
 end
 
+private_lane :dart_command do |options|
+  command = options[:command]
+  sh_on_root(command: "fvm dart #{command}")
+end
+
 desc "**Clean project**"
 private_lane :clean do
   flutter_command(command: "clean")
@@ -43,7 +48,7 @@ end
 desc "**Lint: Check code format**"
 lane :lint_format do
   # https://github.com/dart-lang/dart_style/issues/864#issuecomment-1092199174
-  flutter_command(command: "format --set-exit-if-changed lib")
+  dart_command(command: "format --set-exit-if-changed lib")
 end
 
 desc "**Lint: Check code format**"

@@ -10,7 +10,7 @@ fvm flutter pub run arb_utils sort lib/l10n/intl_en.arb;
 
 echo ':: Check code format ::'
 # https://github.com/dart-lang/dart_style/issues/864#issuecomment-1092199174
-fvm flutter format --set-exit-if-changed lib || error "Linter error: Invalid format"
+fvm dart format --set-exit-if-changed lib || error "Linter error: Invalid format"
 
 echo ':: Run linter ::'
 fvm flutter analyze . || error "Linter error - Flutter Analyze error"
