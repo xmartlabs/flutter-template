@@ -50,7 +50,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  arb_utils: 0.4.1
+  arb_utils: ^0.5.0
   auto_route_generator: 5.0.3
   build_runner: 2.3.3
   dart_code_metrics: 5.6.0
