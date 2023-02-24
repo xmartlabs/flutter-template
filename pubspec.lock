@@ -110,7 +110,8 @@ packages:
     dependency: transitive
     description:
       name: build_daemon
-      url: "https://pub.dartlang.org"
+      sha256: "757153e5d9cd88253cb13f28c2fb55a537dc31fefd98137549895b5beb7c6169"
+      url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
   build_resolvers:
@@ -299,9 +300,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      url: "https://pub.dartlang.org"
+      sha256: "3709d74615bba5e443eb141f6a7f4bcc4788f8fae6f743edadfb79c2a8e6287e"
+      url: "https://pub.dev"
     source: hosted
-    version: "5.0.0"
+    version: "5.0.1"
   equatable:
     dependency: "direct main"
     description:
