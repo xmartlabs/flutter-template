@@ -13,7 +13,15 @@
 part of 'app_router.dart';
 
 class _$AppRouter extends RootStackRouter {
-  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+  _$AppRouter({
+    GlobalKey<NavigatorState>? navigatorKey,
+    required this.unauthenticatedGuard,
+    required this.authenticatedGuard,
+  }) : super(navigatorKey);
+
+  final UnauthenticatedGuard unauthenticatedGuard;
+
+  final AuthenticatedGuard authenticatedGuard;
 
   @override
   final Map<String, PageFactory> pagesMap = {
@@ -48,17 +56,18 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           UnauthenticatedRouter.name,
           path: '/',
+          guards: [unauthenticatedGuard],
           children: [
             RouteConfig(
               '#redirect',
               path: '',
               parent: UnauthenticatedRouter.name,
-              redirectTo: 'signin',
+              redirectTo: 'login',
               fullMatch: true,
             ),
             RouteConfig(
               SignInScreenRoute.name,
-              path: 'signin',
+              path: 'login',
               parent: UnauthenticatedRouter.name,
             ),
           ],
@@ -66,6 +75,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           AuthenticatedRouter.name,
           path: '/section-router',
+          guards: [authenticatedGuard],
           children: [
             RouteConfig(
               '#redirect',
@@ -116,7 +126,7 @@ class SignInScreenRoute extends PageRouteInfo<void> {
   const SignInScreenRoute()
       : super(
           SignInScreenRoute.name,
-          path: 'signin',
+          path: 'login',
         );
 
   static const String name = 'SignInScreenRoute';
