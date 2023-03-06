@@ -13,7 +13,11 @@ class GlobalEventHandlerCubit extends Cubit<GlobalEventHandlerState>
   GlobalEventHandlerCubit() : super(const GlobalEventHandlerState.idle());
 
   @override
-  void handleError(Object? error, [VoidCallback? retry]) {
+  void handleError(
+    Object? error, [
+    StackTrace? stackTrace,
+    VoidCallback? retry,
+  ]) {
     if (error is DioError &&
         (error.type == DioErrorType.connectionTimeout ||
             error.type == DioErrorType.sendTimeout ||
@@ -49,7 +53,11 @@ class GlobalEventHandlerCubit extends Cubit<GlobalEventHandlerState>
 }
 
 abstract class GlobalEventHandler {
-  void handleError(Object? error, [VoidCallback? retry]);
+  void handleError(
+    Object? error, [
+    StackTrace? stackTrace,
+    VoidCallback? retry,
+  ]);
   void startLoading();
   void stopLoading();
 }
