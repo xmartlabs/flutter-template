@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/core/common/store/secure_storage_cached_source.dart';
 import 'package:flutter_template/core/model/user.dart';
+import 'package:flutter_template/core/source/providers/local_shared_preferences_storage.dart';
 import 'package:stock/stock.dart';
 
 class AuthLocalSource {
@@ -13,8 +13,8 @@ class AuthLocalSource {
   late SourceOfTruth<String, String> _userTokenStorage;
   late SourceOfTruth<String, User> _userStorage;
 
-  AuthLocalSource(FlutterSecureStorage storage) {
-    final secureStorage = SecuredStorageSourceOfTruth(storage);
+  AuthLocalSource(LocalSharedPreferencesStorage storage) {
+    final secureStorage = SharedPreferencesSourceOfTruth(storage);
     _userTokenStorage = secureStorage;
     _userStorage = secureStorage.mapToUsingMapper(UserStockTypeMapper());
   }

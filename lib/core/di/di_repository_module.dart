@@ -1,4 +1,3 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/core/repository/project_repository.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:flutter_template/core/source/auth_local_source.dart';
@@ -27,7 +26,6 @@ class RepositoryDiModule {
 
 extension _GetItDiModuleExtensions on GetIt {
   void _setupProvidersAndUtils() {
-    registerLazySingleton(FlutterSecureStorage.new);
     registerLazySingleton(() => HttpServiceDio([AuthInterceptor(get())]));
   }
 
