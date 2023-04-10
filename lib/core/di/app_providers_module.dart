@@ -16,11 +16,6 @@ class AppProvidersModule {
     locator._setupModule();
     await locator.allReady();
   }
-
-  Future<void> setupProviders(GetIt locator) {
-    locator._setupProviders();
-    return locator.allReady();
-  }
 }
 
 extension _GetItDiModuleExtensions on GetIt {
@@ -28,9 +23,6 @@ extension _GetItDiModuleExtensions on GetIt {
     registerSingletonAsync(
       () => $FloorAppDatabase.databaseBuilder('app_database.db').build(),
     );
-  }
-
-  void _setupProviders() {
     registerLazySingleton(FlutterSecureStorage.new);
     registerSingletonAsync(() => SharedPreferences.getInstance());
 
