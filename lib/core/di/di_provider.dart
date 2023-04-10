@@ -8,7 +8,6 @@ abstract class DiProvider {
 
   static Future<void> init() async {
     // Setup app providers have to be done first
-    await UtilsDiModule().setupProviders(_instance);
     await AppProvidersModule().setupModule(_instance);
     UtilsDiModule().setupModule(_instance);
     RepositoryDiModule().setupModule(_instance);

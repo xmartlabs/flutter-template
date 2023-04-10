@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:stock/stock.dart';
-import 'package:flutter_template/core/source/providers/local_shared_preferences_storage.dart';
+import 'package:flutter_template/core/source/common/local_shared_preferences_storage.dart';
 
 class SharedPreferencesSourceOfTruth
     extends CachedSourceOfTruth<String, String> {

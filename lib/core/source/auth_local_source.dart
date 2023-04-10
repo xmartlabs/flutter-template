@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_template/core/common/store/secure_storage_cached_source.dart';
 import 'package:flutter_template/core/model/user.dart';
-import 'package:flutter_template/core/source/providers/local_shared_preferences_storage.dart';
+import 'package:flutter_template/core/source/common/local_shared_preferences_storage.dart';
 import 'package:stock/stock.dart';
 
 class AuthLocalSource {
