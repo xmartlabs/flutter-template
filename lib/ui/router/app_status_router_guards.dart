@@ -45,7 +45,7 @@ class UnauthenticatedGuard extends _AppAuthStatusGuard {
   UnauthenticatedGuard(SessionRepository sessionRepository)
       : super(
           requiredAppStatus: AuthenticationStatus.unauthenticated,
-          redirectPage: const AuthenticatedRouter(),
+          redirectPage: const AuthenticatedSectionRouterRoute(),
           sessionRepository: sessionRepository,
         );
 }
@@ -54,7 +54,7 @@ class AuthenticatedGuard extends _AppAuthStatusGuard {
   AuthenticatedGuard(SessionRepository sessionRepository)
       : super(
           requiredAppStatus: AuthenticationStatus.authenticated,
-          redirectPage: const UnauthenticatedRouter(),
+          redirectPage: const UnauthenticatedSectionRouterRoute(),
           sessionRepository: sessionRepository,
         );
 }
