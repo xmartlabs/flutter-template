@@ -35,7 +35,7 @@ dependencies:
   flutter_secure_storage: 8.0.0
   flutter_web_browser: 0.17.1 # This can be removed
   freezed_annotation: 2.2.0
-  get_it: 7.2.0
+  get_it: 7.3.0
   google_fonts: 4.0.3
   intl: 0.17.0
   json_annotation: 4.8.0
