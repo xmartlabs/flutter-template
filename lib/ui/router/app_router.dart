@@ -7,11 +7,9 @@ import 'package:flutter_template/ui/welcome/welcome_screen.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig(
-  replaceInRouteName: 'Page,Route,Screen',
+  replaceInRouteName: 'Page|Screen|Router,Route',
 )
 class AppRouter extends _$AppRouter {
-  @override
-  RouteType get defaultRouteType => const RouteType.material();
   @override
   final List<AutoRoute> routes;
 
@@ -20,21 +18,21 @@ class AppRouter extends _$AppRouter {
     AuthenticatedGuard authenticatedGuard,
   ) : routes = [
           AutoRoute(
-            page: UnauthenticatedSectionRouterRoute.page,
+            page: UnauthenticatedSectionRoute.page,
             path: '/',
             guards: [unauthenticatedGuard],
             children: [
               RedirectRoute(path: '', redirectTo: 'login'),
-              AutoRoute(path: 'login', page: SignInScreenRoute.page),
+              AutoRoute(path: 'login', page: SignInRoute.page),
             ],
           ),
           AutoRoute(
-            page: AuthenticatedSectionRouterRoute.page,
+            page: AuthenticatedSectionRoute.page,
             guards: [authenticatedGuard],
             path: '/',
             children: [
               RedirectRoute(path: '', redirectTo: 'welcome'),
-              AutoRoute(path: 'welcome', page: WelcomeScreenRoute.page),
+              AutoRoute(path: 'welcome', page: WelcomeRoute.page),
             ],
           ),
         ];

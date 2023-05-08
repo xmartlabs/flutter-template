@@ -15,25 +15,25 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    AuthenticatedSectionRouterRoute.name: (routeData) {
+    AuthenticatedSectionRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const AuthenticatedSectionRouter(),
       );
     },
-    UnauthenticatedSectionRouterRoute.name: (routeData) {
+    UnauthenticatedSectionRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const UnauthenticatedSectionRouter(),
       );
     },
-    WelcomeScreenRoute.name: (routeData) {
+    WelcomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const WelcomeScreen(),
       );
     },
-    SignInScreenRoute.name: (routeData) {
+    SignInRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SignInScreen(),
@@ -44,56 +44,56 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [AuthenticatedSectionRouter]
-class AuthenticatedSectionRouterRoute extends PageRouteInfo<void> {
-  const AuthenticatedSectionRouterRoute({List<PageRouteInfo>? children})
+class AuthenticatedSectionRoute extends PageRouteInfo<void> {
+  const AuthenticatedSectionRoute({List<PageRouteInfo>? children})
       : super(
-          AuthenticatedSectionRouterRoute.name,
+          AuthenticatedSectionRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'AuthenticatedSectionRouterRoute';
+  static const String name = 'AuthenticatedSectionRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [UnauthenticatedSectionRouter]
-class UnauthenticatedSectionRouterRoute extends PageRouteInfo<void> {
-  const UnauthenticatedSectionRouterRoute({List<PageRouteInfo>? children})
+class UnauthenticatedSectionRoute extends PageRouteInfo<void> {
+  const UnauthenticatedSectionRoute({List<PageRouteInfo>? children})
       : super(
-          UnauthenticatedSectionRouterRoute.name,
+          UnauthenticatedSectionRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'UnauthenticatedSectionRouterRoute';
+  static const String name = 'UnauthenticatedSectionRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [WelcomeScreen]
-class WelcomeScreenRoute extends PageRouteInfo<void> {
-  const WelcomeScreenRoute({List<PageRouteInfo>? children})
+class WelcomeRoute extends PageRouteInfo<void> {
+  const WelcomeRoute({List<PageRouteInfo>? children})
       : super(
-          WelcomeScreenRoute.name,
+          WelcomeRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'WelcomeScreenRoute';
+  static const String name = 'WelcomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [SignInScreen]
-class SignInScreenRoute extends PageRouteInfo<void> {
-  const SignInScreenRoute({List<PageRouteInfo>? children})
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute({List<PageRouteInfo>? children})
       : super(
-          SignInScreenRoute.name,
+          SignInRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'SignInScreenRoute';
+  static const String name = 'SignInRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
