@@ -1,7 +1,7 @@
 part of 'global_event_handler_cubit.dart';
 
 @freezed
-class GlobalEventHandlerState with _$GlobalEventHandlerState {
+sealed class GlobalEventHandlerState with _$GlobalEventHandlerState {
   const factory GlobalEventHandlerState.idle() = IdleGlobalEventHandlerState;
 
   const factory GlobalEventHandlerState.error(
@@ -13,7 +13,7 @@ class GlobalEventHandlerState with _$GlobalEventHandlerState {
 }
 
 @Freezed(equal: false)
-class GlobalEventHandlerStateError with _$GlobalEventHandlerStateError {
+sealed class GlobalEventHandlerStateError with _$GlobalEventHandlerStateError {
   const factory GlobalEventHandlerStateError.unknownError(
     Object? error, [
     VoidCallback? retry,

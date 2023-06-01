@@ -3,7 +3,7 @@ import 'package:logger/logger.dart' as dart_log;
 import 'package:logger/logger.dart';
 import 'package:stack_trace/stack_trace.dart';
 
-abstract class Logger {
+interface class Logger {
   // TODO: Setup the report tool
   static final CrashReportTool _crashReportTool = NoOpsCrashReportTool();
 

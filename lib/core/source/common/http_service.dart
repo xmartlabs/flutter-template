@@ -6,7 +6,7 @@ import 'package:flutter_template/core/common/config.dart';
 import 'package:flutter_template/core/common/network_exceptions.dart';
 import 'package:flutter_template/core/model/service/service_response.dart';
 
-abstract class HttpService {
+abstract interface class HttpService {
   Future<Response> get(
     String uri, {
     Map<String, dynamic>? queryParameters,
