@@ -15,6 +15,10 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
       - uses: dart-lang/setup-dart@v1.4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
       - name: Cache FVM & Flutter
         uses: actions/cache@v3
         with:
@@ -30,6 +34,9 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: Activate arb_utils
+        run: |
+          dart pub global activate arb_utils
       - name: Get dependencies
         uses: maierj/fastlane-action@v3.0.0
         with:
