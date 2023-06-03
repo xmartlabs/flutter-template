@@ -5,8 +5,11 @@ error () {
 }
 
 echo ':: Sorting translation files ::'
-
-fvm flutter pub run arb_utils sort lib/l10n/intl_en.arb;
+if ! command -v dart >/dev/null 2>&1 || ! dart pub global list | grep -q arb_utils; then
+  echo "arb_utils is missing. Installing..."
+  dart pub global activate arb_utils
+fi
+arb_utils sort lib/l10n/intl_en.arb
 
 echo ':: Check code format ::'
 # https://github.com/dart-lang/dart_style/issues/864#issuecomment-1092199174

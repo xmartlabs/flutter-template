@@ -108,7 +108,7 @@ class __$$ServiceResponseDataCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$ServiceResponseData<T> implements ServiceResponseData<T> {
-  _$ServiceResponseData(this.data);
+  const _$ServiceResponseData(this.data);
 
   @override
   final T data;
@@ -201,7 +201,7 @@ class _$ServiceResponseData<T> implements ServiceResponseData<T> {
 }
 
 abstract class ServiceResponseData<T> implements ServiceResponse<T> {
-  factory ServiceResponseData(final T data) = _$ServiceResponseData<T>;
+  const factory ServiceResponseData(final T data) = _$ServiceResponseData<T>;
 
   T get data;
   @JsonKey(ignore: true)
@@ -253,7 +253,7 @@ class __$$ServiceResponseErrorCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$ServiceResponseError<T> implements ServiceResponseError<T> {
-  _$ServiceResponseError(this.error);
+  const _$ServiceResponseError(this.error);
 
   @override
   final NetworkException error;
@@ -345,7 +345,7 @@ class _$ServiceResponseError<T> implements ServiceResponseError<T> {
 }
 
 abstract class ServiceResponseError<T> implements ServiceResponse<T> {
-  factory ServiceResponseError(final NetworkException error) =
+  const factory ServiceResponseError(final NetworkException error) =
       _$ServiceResponseError<T>;
 
   NetworkException get error;
