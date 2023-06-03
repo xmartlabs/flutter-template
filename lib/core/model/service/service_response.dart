@@ -4,10 +4,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'service_response.freezed.dart';
 
 @freezed
-class ServiceResponse<T> with _$ServiceResponse {
-  factory ServiceResponse.data(T data) = ServiceResponseData<T>;
+sealed class ServiceResponse<T> with _$ServiceResponse {
+  const factory ServiceResponse.data(T data) = ServiceResponseData<T>;
 
-  factory ServiceResponse.error(NetworkException error) = ServiceResponseError;
+  const factory ServiceResponse.error(NetworkException error) =
+      ServiceResponseError;
 }
 
 extension ServiceResponseExtensions<T> on ServiceResponse<T> {

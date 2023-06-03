@@ -1,7 +1,7 @@
 import 'package:logger/logger.dart';
 
 // An example of crashlytics impl can be found https://gist.github.com/mirland/70fa48154e56ae9b16279dcffc7ac4ba
-abstract class CrashReportTool {
+abstract interface class CrashReportTool {
   Future init();
 
   Future logNonFatal(LogEvent event);
@@ -9,7 +9,7 @@ abstract class CrashReportTool {
   Future logFatal(dynamic error, StackTrace? stackTrace);
 }
 
-class NoOpsCrashReportTool extends CrashReportTool {
+final class NoOpsCrashReportTool extends CrashReportTool {
   @override
   // ignore: no-empty-block, avoid-redundant-async
   Future init() async {}

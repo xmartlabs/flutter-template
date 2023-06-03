@@ -9,7 +9,7 @@ part 'global_event_handler_cubit.freezed.dart';
 part 'global_event_handler_state.dart';
 
 class GlobalEventHandlerCubit extends Cubit<GlobalEventHandlerState>
-    with GlobalEventHandler {
+    implements GlobalEventHandler {
   GlobalEventHandlerCubit() : super(const GlobalEventHandlerState.idle());
 
   @override
@@ -52,7 +52,7 @@ class GlobalEventHandlerCubit extends Cubit<GlobalEventHandlerState>
   void stopLoading() => emit(const GlobalEventHandlerState.idle());
 }
 
-abstract class GlobalEventHandler {
+abstract interface class GlobalEventHandler {
   void handleError(
     Object? error, [
     StackTrace? stackTrace,
