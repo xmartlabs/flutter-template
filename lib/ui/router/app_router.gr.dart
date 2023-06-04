@@ -1,145 +1,99 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 part of 'app_router.dart';
 
-class _$AppRouter extends RootStackRouter {
-  _$AppRouter({
-    GlobalKey<NavigatorState>? navigatorKey,
-    required this.unauthenticatedGuard,
-    required this.authenticatedGuard,
-  }) : super(navigatorKey);
-
-  final UnauthenticatedGuard unauthenticatedGuard;
-
-  final AuthenticatedGuard authenticatedGuard;
+abstract class _$AppRouter extends RootStackRouter {
+  // ignore: unused_element
+  _$AppRouter({super.navigatorKey});
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    UnauthenticatedRouter.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    AuthenticatedSectionRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SectionRouter(),
+        child: const AuthenticatedSectionRouter(),
       );
     },
-    AuthenticatedRouter.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    UnauthenticatedSectionRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SectionRouter(),
+        child: const UnauthenticatedSectionRouter(),
       );
     },
-    SignInScreenRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const SignInScreen(),
-      );
-    },
-    WelcomeScreenRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    WelcomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const WelcomeScreen(),
       );
     },
+    SignInRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignInScreen(),
+      );
+    },
   };
-
-  @override
-  List<RouteConfig> get routes => [
-        RouteConfig(
-          UnauthenticatedRouter.name,
-          path: '/',
-          guards: [unauthenticatedGuard],
-          children: [
-            RouteConfig(
-              '#redirect',
-              path: '',
-              parent: UnauthenticatedRouter.name,
-              redirectTo: 'login',
-              fullMatch: true,
-            ),
-            RouteConfig(
-              SignInScreenRoute.name,
-              path: 'login',
-              parent: UnauthenticatedRouter.name,
-            ),
-          ],
-        ),
-        RouteConfig(
-          AuthenticatedRouter.name,
-          path: '/section-router',
-          guards: [authenticatedGuard],
-          children: [
-            RouteConfig(
-              '#redirect',
-              path: '',
-              parent: AuthenticatedRouter.name,
-              redirectTo: 'welcome',
-              fullMatch: true,
-            ),
-            RouteConfig(
-              WelcomeScreenRoute.name,
-              path: 'welcome',
-              parent: AuthenticatedRouter.name,
-            ),
-          ],
-        ),
-      ];
 }
 
 /// generated route for
-/// [SectionRouter]
-class UnauthenticatedRouter extends PageRouteInfo<void> {
-  const UnauthenticatedRouter({List<PageRouteInfo>? children})
+/// [AuthenticatedSectionRouter]
+class AuthenticatedSectionRoute extends PageRouteInfo<void> {
+  const AuthenticatedSectionRoute({List<PageRouteInfo>? children})
       : super(
-          UnauthenticatedRouter.name,
-          path: '/',
+          AuthenticatedSectionRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'UnauthenticatedRouter';
+  static const String name = 'AuthenticatedSectionRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [SectionRouter]
-class AuthenticatedRouter extends PageRouteInfo<void> {
-  const AuthenticatedRouter({List<PageRouteInfo>? children})
+/// [UnauthenticatedSectionRouter]
+class UnauthenticatedSectionRoute extends PageRouteInfo<void> {
+  const UnauthenticatedSectionRoute({List<PageRouteInfo>? children})
       : super(
-          AuthenticatedRouter.name,
-          path: '/section-router',
+          UnauthenticatedSectionRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'AuthenticatedRouter';
-}
+  static const String name = 'UnauthenticatedSectionRoute';
 
-/// generated route for
-/// [SignInScreen]
-class SignInScreenRoute extends PageRouteInfo<void> {
-  const SignInScreenRoute()
-      : super(
-          SignInScreenRoute.name,
-          path: 'login',
-        );
-
-  static const String name = 'SignInScreenRoute';
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [WelcomeScreen]
-class WelcomeScreenRoute extends PageRouteInfo<void> {
-  const WelcomeScreenRoute()
+class WelcomeRoute extends PageRouteInfo<void> {
+  const WelcomeRoute({List<PageRouteInfo>? children})
       : super(
-          WelcomeScreenRoute.name,
-          path: 'welcome',
+          WelcomeRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'WelcomeScreenRoute';
+  static const String name = 'WelcomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SignInScreen]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute({List<PageRouteInfo>? children})
+      : super(
+          SignInRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignInRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
