@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/ui/extensions/context_extensions.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_template/ui/section/error_handler/global_event_handler_c
 
 import 'package:flutter_template/ui/signin/signin_cubit.dart';
 
+@RoutePage()
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
@@ -33,9 +35,12 @@ class _SignInContentScreen extends StatelessWidget {
                   context.localizations
                       .error(context.read<SignInCubit>().state.error),
                 ),
-              TextButton(
-                onPressed: () => context.read<SignInCubit>().signIn(),
-                child: Text(context.localizations.sign_in),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30.0),
+                child: TextButton(
+                  onPressed: () => context.read<SignInCubit>().signIn(),
+                  child: Text(context.localizations.sign_in),
+                ),
               ),
             ],
           ),

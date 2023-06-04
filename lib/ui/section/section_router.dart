@@ -4,6 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/ui/extensions/context_extensions.dart';
 import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
 
+@RoutePage()
+class AuthenticatedSectionRouter extends SectionRouter {
+  const AuthenticatedSectionRouter({super.key});
+}
+
+@RoutePage()
+class UnauthenticatedSectionRouter extends SectionRouter {
+  const UnauthenticatedSectionRouter({super.key});
+}
+
 class SectionRouter extends StatelessWidget {
   const SectionRouter({super.key});
 

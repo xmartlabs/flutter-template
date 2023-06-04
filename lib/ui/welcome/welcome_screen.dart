@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/model/project.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_template/ui/theme/app_theme.dart';
 import 'package:flutter_template/ui/welcome/welcome_cubit.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
+@RoutePage()
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 

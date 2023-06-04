@@ -21,7 +21,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  auto_route: 5.0.4
+  auto_route: 7.4.0
   bloc: 8.1.1
   cupertino_icons: 1.0.5
   dartx: 1.1.0
@@ -51,12 +51,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  auto_route_generator: 5.0.3
+  auto_route_generator: 7.1.1
   build_runner: 2.3.3
   dart_code_metrics: 5.7.4
   floor_generator: 1.4.1
   flutter_flavorizr: 2.1.6
-  flutter_gen_runner: 5.3.0
+  flutter_gen_runner: 5.3.1
   flutter_launcher_icons: 0.13.1
   flutter_lints: 2.0.1
   freezed: 2.3.4

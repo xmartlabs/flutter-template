@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
-import 'package:flutter_template/ui/router/app_router.dart';
 import 'package:flutter_template/ui/resources.dart';
+import 'package:flutter_template/ui/router/app_router.dart';
 import 'package:flutter_template/ui/theme/app_theme.dart';
 
 class MainScreen extends StatelessWidget {
@@ -14,9 +14,8 @@ class MainScreen extends StatelessWidget {
     final router = DiProvider.get<AppRouter>();
     return MaterialApp.router(
       theme: AppTheme.provideAppTheme(context),
-      routerDelegate: router.delegate(),
-      routeInformationParser:
-          router.defaultRouteParser(includePrefixMatches: true),
+      routerConfig:
+          router.config(reevaluateListenable: router.authReevaluateListenable),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
