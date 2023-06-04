@@ -35,9 +35,12 @@ class _SignInContentScreen extends StatelessWidget {
                   context.localizations
                       .error(context.read<SignInCubit>().state.error),
                 ),
-              TextButton(
-                onPressed: () => context.read<SignInCubit>().signIn(),
-                child: Text(context.localizations.sign_in),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30.0),
+                child: TextButton(
+                  onPressed: () => context.read<SignInCubit>().signIn(),
+                  child: Text(context.localizations.sign_in),
+                ),
               ),
             ],
           ),

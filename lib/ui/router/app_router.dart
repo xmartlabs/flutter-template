@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:flutter_template/ui/router/app_router_guards.dart';
 import 'package:flutter_template/ui/section/section_router.dart';
 import 'package:flutter_template/ui/signin/signin_screen.dart';
@@ -13,14 +14,17 @@ class AppRouter extends _$AppRouter {
   @override
   final List<AutoRoute> routes;
 
-  AppRouter(
-    UnauthenticatedGuard unauthenticatedGuard,
-    AuthenticatedGuard authenticatedGuard,
-  ) : routes = [
+  ReevaluateListenable authReevaluateListenable;
+
+  AppRouter(SessionRepository sessionRepository)
+      : authReevaluateListenable = ReevaluateListenable.stream(
+          sessionRepository.status.distinct().skip(1),
+        ),
+        routes = [
           AutoRoute(
             page: UnauthenticatedSectionRoute.page,
             path: '/',
-            guards: [unauthenticatedGuard],
+            guards: [UnauthenticatedGuard(sessionRepository)],
             children: [
               RedirectRoute(path: '', redirectTo: 'login'),
               AutoRoute(path: 'login', page: SignInRoute.page),
@@ -28,7 +32,7 @@ class AppRouter extends _$AppRouter {
           ),
           AutoRoute(
             page: AuthenticatedSectionRoute.page,
-            guards: [authenticatedGuard],
+            guards: [AuthenticatedGuard(sessionRepository)],
             path: '/',
             children: [
               RedirectRoute(path: '', redirectTo: 'welcome'),
