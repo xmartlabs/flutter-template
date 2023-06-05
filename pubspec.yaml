@@ -43,7 +43,7 @@ dependencies:
   material_color_generator: 1.1.0
   rxdart: 0.27.7
   shared_preferences: 2.0.16
-  sqflite: ^2.2.8+4
+  sqflite: 2.2.8+4
   stack_trace: 1.11.0
   stock: 1.0.1
 
