@@ -873,10 +873,10 @@ packages:
     dependency: "direct main"
     description:
       name: shared_preferences
-      sha256: "95688ad7fc320f8566f28e2ee91b6743c10b433ccc262f6469f3007f2aa62e78"
+      sha256: "16d3fb6b3692ad244a695c0183fca18cf81fd4b821664394a781de42386bf022"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.16"
+    version: "2.1.1"
   shared_preferences_android:
     dependency: transitive
     description:
