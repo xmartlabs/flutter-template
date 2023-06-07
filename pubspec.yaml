@@ -52,7 +52,7 @@ dev_dependencies:
     sdk: flutter
 
   auto_route_generator: 7.1.1
-  build_runner: 2.3.3
+  build_runner: ^2.4.5
   dart_code_metrics: 5.7.4
   floor_generator: 1.4.1
   flutter_flavorizr: 2.1.6
