@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/common/extension/stream_future_extensions.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
