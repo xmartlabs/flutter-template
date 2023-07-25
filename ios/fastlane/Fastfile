@@ -121,6 +121,7 @@ platform :ios do
         flavor: env,
         include_git_version_suffix: true,
         export_method: build_export_method,
+        sign_enabled: true,
       )
 
       app_identifier = options[:env] == DEV_ENV ? DEV_BUNDLE_ID : PROD_BUNDLE_ID
