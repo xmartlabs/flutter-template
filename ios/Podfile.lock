@@ -6,18 +6,30 @@ PODS:
     - Flutter
   - flutter_web_browser (0.17.1):
     - Flutter
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sqflite (0.0.2):
+  - sqlite3 (3.38.5):
+    - sqlite3/common (= 3.38.5)
+  - sqlite3/common (3.38.5)
+  - sqlite3/fts5 (3.38.5):
+    - sqlite3/common
+  - sqlite3/json1 (3.38.5):
+    - sqlite3/common
+  - sqlite3/perf-threadsafe (3.38.5):
+    - sqlite3/common
+  - sqlite3/rtree (3.38.5):
+    - sqlite3/common
+  - sqlite3_flutter_libs (0.0.1):
     - Flutter
-    - FMDB (>= 2.7.5)
+    - sqlite3 (~> 3.38.2)
+    - sqlite3/fts5
+    - sqlite3/json1
+    - sqlite3/perf-threadsafe
+    - sqlite3/rtree
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -26,11 +38,11 @@ DEPENDENCIES:
   - flutter_web_browser (from `.symlinks/plugins/flutter_web_browser/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
-  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
 
 SPEC REPOS:
   trunk:
-    - FMDB
+    - sqlite3
 
 EXTERNAL SOURCES:
   Flutter:
@@ -45,19 +57,19 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
-  sqflite:
-    :path: ".symlinks/plugins/sqflite/ios"
+  sqlite3_flutter_libs:
+    :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
   flutter_web_browser: 7bccaafbb0c5b8862afe7bcd158f15557109f61f
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
   shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
-  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
+  sqlite3: 93442daab2ab1825bc9c05faa85814a1996f5b65
+  sqlite3_flutter_libs: e21c8c90448ce608a0d685e717727c46f37c6695
 
 PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
