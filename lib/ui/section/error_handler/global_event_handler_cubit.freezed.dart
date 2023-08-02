@@ -520,23 +520,23 @@ mixin _$GlobalEventHandlerStateError {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UnknownError value) unknownError,
-    required TResult Function(_InternetError value) internetError,
-    required TResult Function(_GeneralError value) generalError,
+    required TResult Function(UnknownError value) unknownError,
+    required TResult Function(InternetError value) internetError,
+    required TResult Function(GeneralError value) generalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UnknownError value)? unknownError,
-    TResult? Function(_InternetError value)? internetError,
-    TResult? Function(_GeneralError value)? generalError,
+    TResult? Function(UnknownError value)? unknownError,
+    TResult? Function(InternetError value)? internetError,
+    TResult? Function(GeneralError value)? generalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UnknownError value)? unknownError,
-    TResult Function(_InternetError value)? internetError,
-    TResult Function(_GeneralError value)? generalError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InternetError value)? internetError,
+    TResult Function(GeneralError value)? generalError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -583,22 +583,22 @@ class _$GlobalEventHandlerStateErrorCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_UnknownErrorCopyWith<$Res>
+abstract class _$$UnknownErrorCopyWith<$Res>
     implements $GlobalEventHandlerStateErrorCopyWith<$Res> {
-  factory _$$_UnknownErrorCopyWith(
-          _$_UnknownError value, $Res Function(_$_UnknownError) then) =
-      __$$_UnknownErrorCopyWithImpl<$Res>;
+  factory _$$UnknownErrorCopyWith(
+          _$UnknownError value, $Res Function(_$UnknownError) then) =
+      __$$UnknownErrorCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Object? error, VoidCallback? retry});
 }
 
 /// @nodoc
-class __$$_UnknownErrorCopyWithImpl<$Res>
-    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$_UnknownError>
-    implements _$$_UnknownErrorCopyWith<$Res> {
-  __$$_UnknownErrorCopyWithImpl(
-      _$_UnknownError _value, $Res Function(_$_UnknownError) _then)
+class __$$UnknownErrorCopyWithImpl<$Res>
+    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$UnknownError>
+    implements _$$UnknownErrorCopyWith<$Res> {
+  __$$UnknownErrorCopyWithImpl(
+      _$UnknownError _value, $Res Function(_$UnknownError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -607,7 +607,7 @@ class __$$_UnknownErrorCopyWithImpl<$Res>
     Object? error = freezed,
     Object? retry = freezed,
   }) {
-    return _then(_$_UnknownError(
+    return _then(_$UnknownError(
       freezed == error ? _value.error : error,
       freezed == retry
           ? _value.retry
@@ -619,8 +619,8 @@ class __$$_UnknownErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UnknownError with DiagnosticableTreeMixin implements _UnknownError {
-  const _$_UnknownError(this.error, [this.retry]);
+class _$UnknownError with DiagnosticableTreeMixin implements UnknownError {
+  const _$UnknownError(this.error, [this.retry]);
 
   @override
   final Object? error;
@@ -645,8 +645,8 @@ class _$_UnknownError with DiagnosticableTreeMixin implements _UnknownError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UnknownErrorCopyWith<_$_UnknownError> get copyWith =>
-      __$$_UnknownErrorCopyWithImpl<_$_UnknownError>(this, _$identity);
+  _$$UnknownErrorCopyWith<_$UnknownError> get copyWith =>
+      __$$UnknownErrorCopyWithImpl<_$UnknownError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -689,9 +689,9 @@ class _$_UnknownError with DiagnosticableTreeMixin implements _UnknownError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UnknownError value) unknownError,
-    required TResult Function(_InternetError value) internetError,
-    required TResult Function(_GeneralError value) generalError,
+    required TResult Function(UnknownError value) unknownError,
+    required TResult Function(InternetError value) internetError,
+    required TResult Function(GeneralError value) generalError,
   }) {
     return unknownError(this);
   }
@@ -699,9 +699,9 @@ class _$_UnknownError with DiagnosticableTreeMixin implements _UnknownError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UnknownError value)? unknownError,
-    TResult? Function(_InternetError value)? internetError,
-    TResult? Function(_GeneralError value)? generalError,
+    TResult? Function(UnknownError value)? unknownError,
+    TResult? Function(InternetError value)? internetError,
+    TResult? Function(GeneralError value)? generalError,
   }) {
     return unknownError?.call(this);
   }
@@ -709,9 +709,9 @@ class _$_UnknownError with DiagnosticableTreeMixin implements _UnknownError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UnknownError value)? unknownError,
-    TResult Function(_InternetError value)? internetError,
-    TResult Function(_GeneralError value)? generalError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InternetError value)? internetError,
+    TResult Function(GeneralError value)? generalError,
     required TResult orElse(),
   }) {
     if (unknownError != null) {
@@ -721,36 +721,36 @@ class _$_UnknownError with DiagnosticableTreeMixin implements _UnknownError {
   }
 }
 
-abstract class _UnknownError implements GlobalEventHandlerStateError {
-  const factory _UnknownError(final Object? error,
-      [final VoidCallback? retry]) = _$_UnknownError;
+abstract class UnknownError implements GlobalEventHandlerStateError {
+  const factory UnknownError(final Object? error, [final VoidCallback? retry]) =
+      _$UnknownError;
 
   Object? get error;
   @override
   VoidCallback? get retry;
   @override
   @JsonKey(ignore: true)
-  _$$_UnknownErrorCopyWith<_$_UnknownError> get copyWith =>
+  _$$UnknownErrorCopyWith<_$UnknownError> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_InternetErrorCopyWith<$Res>
+abstract class _$$InternetErrorCopyWith<$Res>
     implements $GlobalEventHandlerStateErrorCopyWith<$Res> {
-  factory _$$_InternetErrorCopyWith(
-          _$_InternetError value, $Res Function(_$_InternetError) then) =
-      __$$_InternetErrorCopyWithImpl<$Res>;
+  factory _$$InternetErrorCopyWith(
+          _$InternetError value, $Res Function(_$InternetError) then) =
+      __$$InternetErrorCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({VoidCallback? retry});
 }
 
 /// @nodoc
-class __$$_InternetErrorCopyWithImpl<$Res>
-    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$_InternetError>
-    implements _$$_InternetErrorCopyWith<$Res> {
-  __$$_InternetErrorCopyWithImpl(
-      _$_InternetError _value, $Res Function(_$_InternetError) _then)
+class __$$InternetErrorCopyWithImpl<$Res>
+    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$InternetError>
+    implements _$$InternetErrorCopyWith<$Res> {
+  __$$InternetErrorCopyWithImpl(
+      _$InternetError _value, $Res Function(_$InternetError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -758,7 +758,7 @@ class __$$_InternetErrorCopyWithImpl<$Res>
   $Res call({
     Object? retry = freezed,
   }) {
-    return _then(_$_InternetError(
+    return _then(_$InternetError(
       freezed == retry
           ? _value.retry
           : retry // ignore: cast_nullable_to_non_nullable
@@ -769,8 +769,8 @@ class __$$_InternetErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_InternetError with DiagnosticableTreeMixin implements _InternetError {
-  const _$_InternetError([this.retry]);
+class _$InternetError with DiagnosticableTreeMixin implements InternetError {
+  const _$InternetError([this.retry]);
 
   @override
   final VoidCallback? retry;
@@ -792,8 +792,8 @@ class _$_InternetError with DiagnosticableTreeMixin implements _InternetError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_InternetErrorCopyWith<_$_InternetError> get copyWith =>
-      __$$_InternetErrorCopyWithImpl<_$_InternetError>(this, _$identity);
+  _$$InternetErrorCopyWith<_$InternetError> get copyWith =>
+      __$$InternetErrorCopyWithImpl<_$InternetError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -836,9 +836,9 @@ class _$_InternetError with DiagnosticableTreeMixin implements _InternetError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UnknownError value) unknownError,
-    required TResult Function(_InternetError value) internetError,
-    required TResult Function(_GeneralError value) generalError,
+    required TResult Function(UnknownError value) unknownError,
+    required TResult Function(InternetError value) internetError,
+    required TResult Function(GeneralError value) generalError,
   }) {
     return internetError(this);
   }
@@ -846,9 +846,9 @@ class _$_InternetError with DiagnosticableTreeMixin implements _InternetError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UnknownError value)? unknownError,
-    TResult? Function(_InternetError value)? internetError,
-    TResult? Function(_GeneralError value)? generalError,
+    TResult? Function(UnknownError value)? unknownError,
+    TResult? Function(InternetError value)? internetError,
+    TResult? Function(GeneralError value)? generalError,
   }) {
     return internetError?.call(this);
   }
@@ -856,9 +856,9 @@ class _$_InternetError with DiagnosticableTreeMixin implements _InternetError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UnknownError value)? unknownError,
-    TResult Function(_InternetError value)? internetError,
-    TResult Function(_GeneralError value)? generalError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InternetError value)? internetError,
+    TResult Function(GeneralError value)? generalError,
     required TResult orElse(),
   }) {
     if (internetError != null) {
@@ -868,34 +868,34 @@ class _$_InternetError with DiagnosticableTreeMixin implements _InternetError {
   }
 }
 
-abstract class _InternetError implements GlobalEventHandlerStateError {
-  const factory _InternetError([final VoidCallback? retry]) = _$_InternetError;
+abstract class InternetError implements GlobalEventHandlerStateError {
+  const factory InternetError([final VoidCallback? retry]) = _$InternetError;
 
   @override
   VoidCallback? get retry;
   @override
   @JsonKey(ignore: true)
-  _$$_InternetErrorCopyWith<_$_InternetError> get copyWith =>
+  _$$InternetErrorCopyWith<_$InternetError> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GeneralErrorCopyWith<$Res>
+abstract class _$$GeneralErrorCopyWith<$Res>
     implements $GlobalEventHandlerStateErrorCopyWith<$Res> {
-  factory _$$_GeneralErrorCopyWith(
-          _$_GeneralError value, $Res Function(_$_GeneralError) then) =
-      __$$_GeneralErrorCopyWithImpl<$Res>;
+  factory _$$GeneralErrorCopyWith(
+          _$GeneralError value, $Res Function(_$GeneralError) then) =
+      __$$GeneralErrorCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? title, String description, VoidCallback? retry});
 }
 
 /// @nodoc
-class __$$_GeneralErrorCopyWithImpl<$Res>
-    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$_GeneralError>
-    implements _$$_GeneralErrorCopyWith<$Res> {
-  __$$_GeneralErrorCopyWithImpl(
-      _$_GeneralError _value, $Res Function(_$_GeneralError) _then)
+class __$$GeneralErrorCopyWithImpl<$Res>
+    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$GeneralError>
+    implements _$$GeneralErrorCopyWith<$Res> {
+  __$$GeneralErrorCopyWithImpl(
+      _$GeneralError _value, $Res Function(_$GeneralError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -905,7 +905,7 @@ class __$$_GeneralErrorCopyWithImpl<$Res>
     Object? description = null,
     Object? retry = freezed,
   }) {
-    return _then(_$_GeneralError(
+    return _then(_$GeneralError(
       freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -924,8 +924,8 @@ class __$$_GeneralErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
-  const _$_GeneralError(this.title, this.description, [this.retry]);
+class _$GeneralError with DiagnosticableTreeMixin implements GeneralError {
+  const _$GeneralError(this.title, this.description, [this.retry]);
 
   @override
   final String? title;
@@ -953,8 +953,8 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GeneralErrorCopyWith<_$_GeneralError> get copyWith =>
-      __$$_GeneralErrorCopyWithImpl<_$_GeneralError>(this, _$identity);
+  _$$GeneralErrorCopyWith<_$GeneralError> get copyWith =>
+      __$$GeneralErrorCopyWithImpl<_$GeneralError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -997,9 +997,9 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UnknownError value) unknownError,
-    required TResult Function(_InternetError value) internetError,
-    required TResult Function(_GeneralError value) generalError,
+    required TResult Function(UnknownError value) unknownError,
+    required TResult Function(InternetError value) internetError,
+    required TResult Function(GeneralError value) generalError,
   }) {
     return generalError(this);
   }
@@ -1007,9 +1007,9 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UnknownError value)? unknownError,
-    TResult? Function(_InternetError value)? internetError,
-    TResult? Function(_GeneralError value)? generalError,
+    TResult? Function(UnknownError value)? unknownError,
+    TResult? Function(InternetError value)? internetError,
+    TResult? Function(GeneralError value)? generalError,
   }) {
     return generalError?.call(this);
   }
@@ -1017,9 +1017,9 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UnknownError value)? unknownError,
-    TResult Function(_InternetError value)? internetError,
-    TResult Function(_GeneralError value)? generalError,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InternetError value)? internetError,
+    TResult Function(GeneralError value)? generalError,
     required TResult orElse(),
   }) {
     if (generalError != null) {
@@ -1029,9 +1029,9 @@ class _$_GeneralError with DiagnosticableTreeMixin implements _GeneralError {
   }
 }
 
-abstract class _GeneralError implements GlobalEventHandlerStateError {
-  const factory _GeneralError(final String? title, final String description,
-      [final VoidCallback? retry]) = _$_GeneralError;
+abstract class GeneralError implements GlobalEventHandlerStateError {
+  const factory GeneralError(final String? title, final String description,
+      [final VoidCallback? retry]) = _$GeneralError;
 
   String? get title;
   String get description;
@@ -1039,6 +1039,6 @@ abstract class _GeneralError implements GlobalEventHandlerStateError {
   VoidCallback? get retry;
   @override
   @JsonKey(ignore: true)
-  _$$_GeneralErrorCopyWith<_$_GeneralError> get copyWith =>
+  _$$GeneralErrorCopyWith<_$GeneralError> get copyWith =>
       throw _privateConstructorUsedError;
 }

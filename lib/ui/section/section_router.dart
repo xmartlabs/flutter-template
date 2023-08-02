@@ -40,22 +40,27 @@ class SectionRouter extends StatelessWidget {
     GlobalEventHandlerStateError errorType,
     BuildContext context,
   ) =>
-      errorType.when(
-        unknownError: (error, retry) => _showDialog(
-          context,
-          context.localizations.error_unknown_error_title,
-          context.localizations.error_unknown_error_description,
-          retry,
-        ),
-        internetError: (retry) => _showDialog(
-          context,
-          context.localizations.error_no_internet_connection_error_title,
-          context.localizations.error_no_internet_connection_error_description,
-          retry,
-        ),
-        generalError: (title, description, retry) =>
-            _showDialog(context, title, description, retry),
-      );
+      switch (errorType) {
+        UnknownError(retry: final retry) => _showDialog(
+            context,
+            context.localizations.error_unknown_error_title,
+            context.localizations.error_unknown_error_description,
+            retry,
+          ),
+        InternetError(retry: final retry) => _showDialog(
+            context,
+            context.localizations.error_no_internet_connection_error_title,
+            context
+                .localizations.error_no_internet_connection_error_description,
+            retry,
+          ),
+        GeneralError(
+          title: final titleLarge,
+          description: final description,
+          retry: final retry
+        ) =>
+          _showDialog(context, titleLarge, description, retry),
+      };
 
   void _showDialog(
     BuildContext context,
