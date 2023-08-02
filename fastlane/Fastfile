@@ -111,8 +111,8 @@ lane :build_flutter do |options|
     build_type = "--#{build_type}"
   end
 
-  sign_enabled = options[:sign_enabled] || false
-  sign_param = sign_enabled ? '' : '--no-codesign'
+  sign_disabled = options[:sign_disabled] || false
+  sign_param = sign_disabled ? '--no-codesign' : ''
 
   build_platform = options[:build_platform]
 
