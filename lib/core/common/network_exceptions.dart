@@ -67,13 +67,13 @@ sealed class NetworkException with _$NetworkException implements Exception {
         NetworkException networkExceptions;
         if (error is DioError) {
           switch (error.type) {
-            case DioErrorType.cancel:
-            case DioErrorType.connectionTimeout:
-            case DioErrorType.sendTimeout:
-            case DioErrorType.receiveTimeout:
-            case DioErrorType.connectionError:
-            case DioErrorType.unknown:
-            case DioErrorType.badCertificate:
+            case DioErrorType.connectionTimeout ||
+                  DioErrorType.cancel ||
+                  DioErrorType.sendTimeout ||
+                  DioErrorType.receiveTimeout ||
+                  DioErrorType.connectionError ||
+                  DioErrorType.unknown ||
+                  DioErrorType.badCertificate:
               networkExceptions = const NetworkException.noInternetConnection();
               break;
             case DioErrorType.badResponse:
