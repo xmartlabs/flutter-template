@@ -16,19 +16,20 @@ class WelcomeCubit extends Cubit<WelcomeBaseState> {
   final SessionRepository _sessionRepository = DiProvider.get();
   final ProjectRepository _projectRepository = DiProvider.get();
 
-  final GlobalEventHandler _globalEventHandler;
+  final GlobalEventHandler? _globalEventHandler;
 
   StreamSubscription? _projectsSubscription;
 
-  WelcomeCubit(this._globalEventHandler)
-      : super(const WelcomeBaseState.state()) {
+  WelcomeCubit(
+    this._globalEventHandler,
+  ) : super(const WelcomeBaseState.state()) {
     _initStreams();
   }
 
   void _initStreams() {
     _projectsSubscription = _projectRepository
         .getProjects()
-        .filterSuccess(_globalEventHandler.handleError)
+        .filterSuccess(_globalEventHandler?.handleError)
         .listen((projects) => emit(state.copyWith(projects: projects ?? [])));
   }
 

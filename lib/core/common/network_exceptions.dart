@@ -100,53 +100,22 @@ sealed class NetworkException with _$NetworkException implements Exception {
     }
   }
 
-  static String getErrorMessage(NetworkException networkExceptions) {
-    var errorMessage = '';
-    networkExceptions.when(
-      notImplemented: () {
-        errorMessage = 'Not Implemented';
-      },
-      internalServerError: () {
-        errorMessage = 'Internal Server Error';
-      },
-      notFound: (String reason) {
-        errorMessage = reason;
-      },
-      serviceUnavailable: () {
-        errorMessage = 'Service unavailable';
-      },
-      methodNotAllowed: () {
-        errorMessage = 'Method Allowed';
-      },
-      badRequest: () {
-        errorMessage = 'Bad request';
-      },
-      unauthorizedRequest: (body) {
-        errorMessage = 'Unauthorized request - $body';
-      },
-      unexpectedError: () {
-        errorMessage = 'Unexpected error occurred';
-      },
-      noInternetConnection: () {
-        errorMessage = 'No internet connection';
-      },
-      conflict: () {
-        errorMessage = 'Error due to a conflict';
-      },
-      unableToProcess: () {
-        errorMessage = 'Unable to process the data';
-      },
-      defaultError: (int? code, String? error) {
-        errorMessage = error ?? 'Unexpected error occurred';
-      },
-      formatException: () {
-        errorMessage = 'Unexpected error occurred';
-      },
-      notAcceptable: () {
-        errorMessage = 'Not acceptable';
-      },
-    );
-
-    return errorMessage;
-  }
+  static String getErrorMessage(NetworkException networkExceptions) =>
+      switch (networkExceptions) {
+        NotImplemented() => 'Not Implemented',
+        InternalServerError() => 'Internal Server Error',
+        NotFound(reason: final reason) => reason,
+        ServiceUnavailable() => 'Service unavailable',
+        MethodNotAllowed() => 'Method Allowed',
+        BadRequest() => 'Bad request',
+        UnauthorizedRequest(body: final body) => 'Unauthorized request - $body',
+        UnexpectedError() => 'Unexpected error occurred',
+        NoInternetConnection() => 'No internet connection',
+        Conflict() => 'Error due to a conflict',
+        UnableToProcess() => 'Unable to process the data',
+        DefaultError(error: final String? error) =>
+          error ?? 'Unexpected error occurred',
+        FormatException() => 'Unexpected error occurred',
+        NotAcceptable() => 'Not acceptable',
+      };
 }

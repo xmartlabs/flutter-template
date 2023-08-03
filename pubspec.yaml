@@ -60,11 +60,13 @@ dev_dependencies:
   floor_generator: 1.4.2
   flutter_flavorizr: 2.2.0
   flutter_gen_runner: 5.3.1
+  bloc_test: 9.1.4
   flutter_launcher_icons: 0.13.1
   flutter_lints: 2.0.1
   freezed: 2.3.5
   json_serializable: 6.7.0
   lints: 2.1.1
+  mockito: 5.4.2
 
 flutter:
   generate: true

@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 
 abstract class DiProvider {
   static GetIt get _instance => GetIt.instance;
+  static GetIt get instance => GetIt.instance;
 
   static Future<void> init() async {
     // Setup app providers have to be done first
@@ -12,6 +13,7 @@ abstract class DiProvider {
     UtilsDiModule().setupModule(_instance);
     RepositoryDiModule().setupModule(_instance);
     await _instance.allReady();
+    _instance.allowReassignment = true;
   }
 
   static T get<T extends Object>({
