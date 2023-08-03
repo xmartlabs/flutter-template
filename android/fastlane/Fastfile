@@ -7,7 +7,7 @@ platform :android do
   " * **`env`**: Sets the env. It sets the flavour and the dart env. " +
   "The executed command is `build apk --flavor env --dart-define=ENV=env --debug`"
   lane :build_apk do |options|
-    build_flutter(options.merge(build_platform: 'apk') )
+    build_flutter(options.merge(build_platform: 'apk'))
   end
 
   desc "**Generates a release app bundle build**"
@@ -15,12 +15,19 @@ platform :android do
   " * **`env`**: Sets the env. It sets the flavour and the dart env. " +
   "The executed command is `flutter build appbundle --flavor env --dart-define=ENV=env --release`"
   lane :build_appbundle do |options|
-    build_flutter(build_platform: 'appbundle', build_type: 'release', flavor: options[:env])
+    build_flutter(
+      build_platform: 'appbundle',
+      build_type: 'release',
+      flavor: options[:env],
+    )
   end
 
   desc "**Build dev debug app**"
   lane :build_dev_debug_apk do |options|
-    build_flutter(build_platform: 'apk',  build_type: 'debug')
+    build_flutter(
+      build_platform: 'apk',
+      build_type: 'debug',
+    )
   end
 
   desc "**Assemble prod apk release version**"
