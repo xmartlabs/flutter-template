@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ui/section/error_handler/general_error.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'global_event_handler_cubit.freezed.dart';

@@ -17,15 +17,15 @@ sealed class GlobalEventHandlerStateError with _$GlobalEventHandlerStateError {
   const factory GlobalEventHandlerStateError.unknownError(
     Object? error, [
     VoidCallback? retry,
-  ]) = _UnknownError;
+  ]) = UnknownError;
 
   const factory GlobalEventHandlerStateError.internetError([
     VoidCallback? retry,
-  ]) = _InternetError;
+  ]) = InternetError;
 
   const factory GlobalEventHandlerStateError.generalError(
     String? title,
     String description, [
     VoidCallback? retry,
-  ]) = _GeneralError;
+  ]) = GeneralError;
 }

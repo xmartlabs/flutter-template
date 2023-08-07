@@ -6,17 +6,12 @@ enum Environments {
   prod,
 }
 
-extension EnviromentPath on Environments {
-  String get fileName {
-    switch (this) {
-      case Environments.dev:
-        return 'dev';
-      case Environments.staging:
-        return 'staging';
-      case Environments.prod:
-        return 'prod';
-    }
-  }
+extension EnvironmentPath on Environments {
+  String get fileName => switch (this) {
+        Environments.dev => 'dev',
+        Environments.staging => 'staging',
+        Environments.prod => 'prod',
+      };
 
   String get path => '${Config.environmentFolder}/$fileName';
 }

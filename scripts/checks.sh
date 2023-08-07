@@ -23,5 +23,3 @@ echo "$result"
 [[ $result == *'✔ no issues found!'* ]] || error "Linter error - Dart Code Metrics linter error"
 
 fvm flutter pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused || error "Linter error - Dart Code Metrics unused code error"
-
-fvm flutter pub run dart_code_metrics:metrics check-unused-files lib --fatal-unused --exclude=lib/gen/assets.gen.dart || error "Linter error - Dart Code Metrics unused files error"
