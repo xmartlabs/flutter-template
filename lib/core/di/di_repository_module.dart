@@ -1,3 +1,4 @@
+import 'package:drift/native.dart';
 import 'package:flutter_template/core/repository/project_repository.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:flutter_template/core/source/auth_local_source.dart';
@@ -35,6 +36,7 @@ extension _GetItDiModuleExtensions on GetIt {
   }
 
   void _setupSources() {
+    registerLazySingleton(() => AppDatabase(NativeDatabase.memory()));
     registerLazySingleton(() => AuthLocalSource(get()));
     registerLazySingleton(() => AuthRemoteSource(get()));
     registerLazySingleton(() => get<AppDatabase>().projectLocalSource);

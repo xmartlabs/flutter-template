@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:drift/drift.dart';
 import 'package:flutter_template/core/model/authentication_status.dart';
 import 'package:flutter_template/core/model/user.dart';
 import 'package:flutter_template/core/source/auth_local_source.dart';
@@ -36,7 +37,7 @@ class SessionRepository {
   }
 
   Future<void> logOut() async {
-    await _appDataBase.clearAllTables();
+    await _appDataBase.projectTable.deleteAll();
     await _authLocalSource.saveUserToken(null);
     await _authLocalSource.saveUserInfo(null);
   }

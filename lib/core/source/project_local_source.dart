@@ -1,33 +1,27 @@
 import 'dart:async';
 
-import 'package:floor/floor.dart';
-import 'package:flutter_template/core/model/db/repository_db_entity.dart';
+import 'package:drift/drift.dart';
+import 'package:flutter_template/core/source/common/app_database.dart';
 
-@dao
-abstract class ProjectLocalSource {
-  // It's set in the DAO creation
-  late final StreamController<String> changeListener;
+part 'project_local_source.g.dart';
 
-  @Query('SELECT * FROM projects')
-  Stream<List<ProjectDbEntity>> getProjects();
+@DriftAccessor(tables: [ProjectTable])
+class ProjectLocalSource extends DatabaseAccessor<AppDatabase>
+    with _$ProjectLocalSourceMixin {
+  ProjectLocalSource(super.attachedDatabase);
 
-  @Insert(onConflict: OnConflictStrategy.replace)
-  Future<void> insertProjects(List<ProjectDbEntity> projects);
+  Stream<List<Project>> getProjects() => select(projectTable).watch();
 
-  @Query('DELETE FROM projects')
-  Future<void> deleteAllProjects();
+  Future<void> insertProjects(List<Project> projects) =>
+      projectTable.insertAll(projects);
 
-  @transaction
-  Future<void> replaceProjects(List<ProjectDbEntity>? projects) async {
-    await deleteAllProjects();
-    if (projects != null) {
-      await insertProjects(projects);
-    }
-    // Floor notifier does not work very well
-    // https://github.com/pinchbv/floor/issues/360
-    // https://github.com/pinchbv/floor/issues/603
-    if (projects == null || projects.isEmpty) {
-      changeListener.add('projects');
-    }
-  }
+  Future<void> deleteAllProjects() => projectTable.deleteAll();
+
+  Future<void> replaceProjects(List<Project>? projects) async =>
+      transaction(() async {
+        await deleteAllProjects();
+        if (projects != null) {
+          await insertProjects(projects);
+        }
+      });
 }

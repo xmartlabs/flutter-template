@@ -2,166 +2,340 @@
 
 part of 'app_database.dart';
 
-// **************************************************************************
-// FloorGenerator
-// **************************************************************************
-
-// ignore: avoid_classes_with_only_static_members
-class $FloorAppDatabase {
-  /// Creates a database builder for a persistent database.
-  /// Once a database is built, you should keep a reference to it and re-use it.
-  static _$AppDatabaseBuilder databaseBuilder(String name) =>
-      _$AppDatabaseBuilder(name);
-
-  /// Creates a database builder for an in memory database.
-  /// Information stored in an in memory database disappears when the process is killed.
-  /// Once a database is built, you should keep a reference to it and re-use it.
-  static _$AppDatabaseBuilder inMemoryDatabaseBuilder() =>
-      _$AppDatabaseBuilder(null);
-}
-
-class _$AppDatabaseBuilder {
-  _$AppDatabaseBuilder(this.name);
-
-  final String? name;
-
-  final List<Migration> _migrations = [];
-
-  Callback? _callback;
-
-  /// Adds migrations to the builder.
-  _$AppDatabaseBuilder addMigrations(List<Migration> migrations) {
-    _migrations.addAll(migrations);
-    return this;
-  }
-
-  /// Adds a database [Callback] to the builder.
-  _$AppDatabaseBuilder addCallback(Callback callback) {
-    _callback = callback;
-    return this;
-  }
-
-  /// Creates the database and initializes it.
-  Future<AppDatabase> build() async {
-    final path = name != null
-        ? await sqfliteDatabaseFactory.getDatabasePath(name!)
-        : ':memory:';
-    final database = _$AppDatabase();
-    database.database = await database.open(
-      path,
-      _migrations,
-      _callback,
-    );
-    return database;
-  }
-}
-
-class _$AppDatabase extends AppDatabase {
-  _$AppDatabase([StreamController<String>? listener]) {
-    changeListener = listener ?? StreamController<String>.broadcast();
-  }
-
-  ProjectLocalSource? _projectLocalSourceInstance;
-
-  Future<sqflite.Database> open(
-    String path,
-    List<Migration> migrations, [
-    Callback? callback,
-  ]) async {
-    final databaseOptions = sqflite.OpenDatabaseOptions(
-      version: 1,
-      onConfigure: (database) async {
-        await database.execute('PRAGMA foreign_keys = ON');
-        await callback?.onConfigure?.call(database);
-      },
-      onOpen: (database) async {
-        await callback?.onOpen?.call(database);
-      },
-      onUpgrade: (database, startVersion, endVersion) async {
-        await MigrationAdapter.runMigrations(
-            database, startVersion, endVersion, migrations);
-
-        await callback?.onUpgrade?.call(database, startVersion, endVersion);
-      },
-      onCreate: (database, version) async {
-        await database.execute(
-            'CREATE TABLE IF NOT EXISTS `projects` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `url` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `language` TEXT NOT NULL, PRIMARY KEY (`id`))');
-
-        await callback?.onCreate?.call(database, version);
-      },
-    );
-    return sqfliteDatabaseFactory.openDatabase(path, options: databaseOptions);
-  }
-
+// ignore_for_file: type=lint
+class $ProjectTableTable extends ProjectTable
+    with TableInfo<$ProjectTableTable, Project> {
   @override
-  ProjectLocalSource get projectLocalSource {
-    return _projectLocalSourceInstance ??=
-        _$ProjectLocalSource(database, changeListener);
-  }
-}
-
-class _$ProjectLocalSource extends ProjectLocalSource {
-  _$ProjectLocalSource(
-    this.database,
-    this.changeListener,
-  )   : _queryAdapter = QueryAdapter(database, changeListener),
-        _projectDbEntityInsertionAdapter = InsertionAdapter(
-            database,
-            'projects',
-            (ProjectDbEntity item) => <String, Object?>{
-                  'id': item.id,
-                  'name': item.name,
-                  'description': item.description,
-                  'url': item.url,
-                  'imageUrl': item.imageUrl,
-                  'language': item.language
-                },
-            changeListener);
-
-  final sqflite.DatabaseExecutor database;
-
-  final StreamController<String> changeListener;
-
-  final QueryAdapter _queryAdapter;
-
-  final InsertionAdapter<ProjectDbEntity> _projectDbEntityInsertionAdapter;
-
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ProjectTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
-  Stream<List<ProjectDbEntity>> getProjects() {
-    return _queryAdapter.queryListStream('SELECT * FROM projects',
-        mapper: (Map<String, Object?> row) => ProjectDbEntity(
-            id: row['id'] as int,
-            name: row['name'] as String,
-            description: row['description'] as String,
-            url: row['url'] as String,
-            imageUrl: row['imageUrl'] as String,
-            language: row['language'] as String),
-        queryableName: 'projects',
-        isView: false);
-  }
-
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
-  Future<void> deleteAllProjects() async {
-    await _queryAdapter.queryNoReturn('DELETE FROM projects');
-  }
-
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+      'name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _descriptionMeta =
+      const VerificationMeta('description');
   @override
-  Future<void> insertProjects(List<ProjectDbEntity> projects) async {
-    await _projectDbEntityInsertionAdapter.insertList(
-        projects, OnConflictStrategy.replace);
-  }
-
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+      'description', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _urlMeta = const VerificationMeta('url');
   @override
-  Future<void> replaceProjects(List<ProjectDbEntity>? projects) async {
-    if (database is sqflite.Transaction) {
-      await super.replaceProjects(projects);
-    } else {
-      await (database as sqflite.Database)
-          .transaction<void>((transaction) async {
-        final transactionDatabase = _$AppDatabase(changeListener)
-          ..database = transaction;
-        await transactionDatabase.projectLocalSource.replaceProjects(projects);
-      });
+  late final GeneratedColumn<String> url = GeneratedColumn<String>(
+      'url', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _imageUrlMeta =
+      const VerificationMeta('imageUrl');
+  @override
+  late final GeneratedColumn<String> imageUrl = GeneratedColumn<String>(
+      'image_url', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _languageMeta =
+      const VerificationMeta('language');
+  @override
+  late final GeneratedColumn<String> language = GeneratedColumn<String>(
+      'language', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, name, description, url, imageUrl, language];
+  @override
+  String get aliasedName => _alias ?? 'project_table';
+  @override
+  String get actualTableName => 'project_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<Project> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
+    if (data.containsKey('name')) {
+      context.handle(
+          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+          _descriptionMeta,
+          description.isAcceptableOrUnknown(
+              data['description']!, _descriptionMeta));
+    } else if (isInserting) {
+      context.missing(_descriptionMeta);
+    }
+    if (data.containsKey('url')) {
+      context.handle(
+          _urlMeta, url.isAcceptableOrUnknown(data['url']!, _urlMeta));
+    } else if (isInserting) {
+      context.missing(_urlMeta);
+    }
+    if (data.containsKey('image_url')) {
+      context.handle(_imageUrlMeta,
+          imageUrl.isAcceptableOrUnknown(data['image_url']!, _imageUrlMeta));
+    } else if (isInserting) {
+      context.missing(_imageUrlMeta);
+    }
+    if (data.containsKey('language')) {
+      context.handle(_languageMeta,
+          language.isAcceptableOrUnknown(data['language']!, _languageMeta));
+    } else if (isInserting) {
+      context.missing(_languageMeta);
+    }
+    return context;
   }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Project map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Project(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      name: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+      description: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}description'])!,
+      url: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}url'])!,
+      imageUrl: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}image_url'])!,
+      language: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}language'])!,
+    );
+  }
+
+  @override
+  $ProjectTableTable createAlias(String alias) {
+    return $ProjectTableTable(attachedDatabase, alias);
+  }
+}
+
+class Project extends DataClass implements Insertable<Project> {
+  final int id;
+  final String name;
+  final String description;
+  final String url;
+  final String imageUrl;
+  final String language;
+  const Project(
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.url,
+      required this.imageUrl,
+      required this.language});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['name'] = Variable<String>(name);
+    map['description'] = Variable<String>(description);
+    map['url'] = Variable<String>(url);
+    map['image_url'] = Variable<String>(imageUrl);
+    map['language'] = Variable<String>(language);
+    return map;
+  }
+
+  ProjectTableCompanion toCompanion(bool nullToAbsent) {
+    return ProjectTableCompanion(
+      id: Value(id),
+      name: Value(name),
+      description: Value(description),
+      url: Value(url),
+      imageUrl: Value(imageUrl),
+      language: Value(language),
+    );
+  }
+
+  factory Project.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Project(
+      id: serializer.fromJson<int>(json['id']),
+      name: serializer.fromJson<String>(json['name']),
+      description: serializer.fromJson<String>(json['description']),
+      url: serializer.fromJson<String>(json['url']),
+      imageUrl: serializer.fromJson<String>(json['image_url']),
+      language: serializer.fromJson<String>(json['language']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'name': serializer.toJson<String>(name),
+      'description': serializer.toJson<String>(description),
+      'url': serializer.toJson<String>(url),
+      'image_url': serializer.toJson<String>(imageUrl),
+      'language': serializer.toJson<String>(language),
+    };
+  }
+
+  Project copyWith(
+          {int? id,
+          String? name,
+          String? description,
+          String? url,
+          String? imageUrl,
+          String? language}) =>
+      Project(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        description: description ?? this.description,
+        url: url ?? this.url,
+        imageUrl: imageUrl ?? this.imageUrl,
+        language: language ?? this.language,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('Project(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('description: $description, ')
+          ..write('url: $url, ')
+          ..write('imageUrl: $imageUrl, ')
+          ..write('language: $language')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, name, description, url, imageUrl, language);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Project &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.description == this.description &&
+          other.url == this.url &&
+          other.imageUrl == this.imageUrl &&
+          other.language == this.language);
+}
+
+class ProjectTableCompanion extends UpdateCompanion<Project> {
+  final Value<int> id;
+  final Value<String> name;
+  final Value<String> description;
+  final Value<String> url;
+  final Value<String> imageUrl;
+  final Value<String> language;
+  const ProjectTableCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.description = const Value.absent(),
+    this.url = const Value.absent(),
+    this.imageUrl = const Value.absent(),
+    this.language = const Value.absent(),
+  });
+  ProjectTableCompanion.insert({
+    this.id = const Value.absent(),
+    required String name,
+    required String description,
+    required String url,
+    required String imageUrl,
+    required String language,
+  })  : name = Value(name),
+        description = Value(description),
+        url = Value(url),
+        imageUrl = Value(imageUrl),
+        language = Value(language);
+  static Insertable<Project> custom({
+    Expression<int>? id,
+    Expression<String>? name,
+    Expression<String>? description,
+    Expression<String>? url,
+    Expression<String>? imageUrl,
+    Expression<String>? language,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (description != null) 'description': description,
+      if (url != null) 'url': url,
+      if (imageUrl != null) 'image_url': imageUrl,
+      if (language != null) 'language': language,
+    });
+  }
+
+  ProjectTableCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? name,
+      Value<String>? description,
+      Value<String>? url,
+      Value<String>? imageUrl,
+      Value<String>? language}) {
+    return ProjectTableCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      url: url ?? this.url,
+      imageUrl: imageUrl ?? this.imageUrl,
+      language: language ?? this.language,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (description.present) {
+      map['description'] = Variable<String>(description.value);
+    }
+    if (url.present) {
+      map['url'] = Variable<String>(url.value);
+    }
+    if (imageUrl.present) {
+      map['image_url'] = Variable<String>(imageUrl.value);
+    }
+    if (language.present) {
+      map['language'] = Variable<String>(language.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProjectTableCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('description: $description, ')
+          ..write('url: $url, ')
+          ..write('imageUrl: $imageUrl, ')
+          ..write('language: $language')
+          ..write(')'))
+        .toString();
+  }
+}
+
+abstract class _$AppDatabase extends GeneratedDatabase {
+  _$AppDatabase(QueryExecutor e) : super(e);
+  late final $ProjectTableTable projectTable = $ProjectTableTable(this);
+  late final ProjectLocalSource projectLocalSource =
+      ProjectLocalSource(this as AppDatabase);
+  @override
+  Iterable<TableInfo<Table, Object?>> get allTables =>
+      allSchemaEntities.whereType<TableInfo<Table, Object?>>();
+  @override
+  List<DatabaseSchemaEntity> get allSchemaEntities => [projectTable];
 }
