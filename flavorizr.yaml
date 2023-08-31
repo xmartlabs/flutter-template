@@ -9,16 +9,6 @@ flavors:
       variables:
         FLUTTER_TARGET:
           value: 'lib/main.dart'
-  prod:
-    app:
-      name: 'Template'
-    android:
-      applicationId: 'com.xmartlabs.template'
-    ios:
-      bundleId: 'com.xmartlabs.template'
-      variables:
-        FLUTTER_TARGET:
-          value: 'lib/main.dart'
   staging:
     app:
       name: 'Template Sta'
@@ -26,6 +16,16 @@ flavors:
       applicationId: 'com.xmartlabs.template.sta'
     ios:
       bundleId: 'com.xmartlabs.template.sta'
+      variables:
+        FLUTTER_TARGET:
+          value: 'lib/main.dart'
+  prod:
+    app:
+      name: 'Template'
+    android:
+      applicationId: 'com.xmartlabs.template'
+    ios:
+      bundleId: 'com.xmartlabs.template'
       variables:
         FLUTTER_TARGET:
           value: 'lib/main.dart'
