@@ -65,23 +65,21 @@ sealed class NetworkException with _$NetworkException implements Exception {
     if (error is Exception) {
       try {
         NetworkException networkExceptions;
-        if (error is DioError) {
-          switch (error.type) {
-            case DioErrorType.connectionTimeout ||
-                  DioErrorType.cancel ||
-                  DioErrorType.sendTimeout ||
-                  DioErrorType.receiveTimeout ||
-                  DioErrorType.connectionError ||
-                  DioErrorType.unknown ||
-                  DioErrorType.badCertificate:
-              networkExceptions = const NetworkException.noInternetConnection();
-              break;
-            case DioErrorType.badResponse:
-              networkExceptions = NetworkException.handleResponse(
+        if (error is DioException) {
+          networkExceptions = switch (error.type) {
+            DioExceptionType.connectionTimeout ||
+            DioExceptionType.cancel ||
+            DioExceptionType.sendTimeout ||
+            DioExceptionType.badCertificate ||
+            DioExceptionType.unknown ||
+            DioExceptionType.receiveTimeout ||
+            DioExceptionType.connectionError =>
+              const NetworkException.noInternetConnection(),
+            DioExceptionType.badResponse => NetworkException.handleResponse(
                 error.response?.statusCode,
                 error.response?.data,
-              );
-          }
+              ),
+          };
         } else if (error is SocketException) {
           networkExceptions = const NetworkException.noInternetConnection();
         } else {

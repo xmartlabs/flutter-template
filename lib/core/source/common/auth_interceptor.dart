@@ -22,7 +22,7 @@ class AuthInterceptor extends Interceptor {
 
   @override
   Future onError(
-    DioError err,
+    DioException err,
     ErrorInterceptorHandler handler,
   ) async {
     if (err.response?.statusCode == HttpStatus.unauthorized) {

@@ -1,0 +1,40 @@
+flavors:
+  dev:
+    app:
+      name: 'Template Dev'
+    android:
+      applicationId: 'com.xmartlabs.template.dev'
+    ios:
+      bundleId: 'com.xmartlabs.template.dev'
+      variables:
+        FLUTTER_TARGET:
+          value: 'lib/main.dart'
+  staging:
+    app:
+      name: 'Template Sta'
+    android:
+      applicationId: 'com.xmartlabs.template.sta'
+    ios:
+      bundleId: 'com.xmartlabs.template.sta'
+      variables:
+        FLUTTER_TARGET:
+          value: 'lib/main.dart'
+  prod:
+    app:
+      name: 'Template'
+    android:
+      applicationId: 'com.xmartlabs.template'
+    ios:
+      bundleId: 'com.xmartlabs.template'
+      variables:
+        FLUTTER_TARGET:
+          value: 'lib/main.dart'
+instructions:
+  - assets:download
+  - assets:extract
+  - android:buildGradle
+  - ios:xcconfig
+  - ios:buildTargets
+  - ios:schema
+  - ios:plist
+  - assets:clean

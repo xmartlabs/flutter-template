@@ -16,22 +16,27 @@ interface class Logger {
   static Future init() => _crashReportTool.init();
 
   static void v(dynamic message, [dynamic error, StackTrace? stackTrace]) =>
-      _instance.log(Level.verbose, message, error, stackTrace);
+      _instance.log(Level.trace, message, error: error, stackTrace: stackTrace);
 
   static void d(dynamic message, [dynamic error, StackTrace? stackTrace]) =>
-      _instance.log(Level.debug, message, error, stackTrace);
+      _instance.log(Level.debug, message, error: error, stackTrace: stackTrace);
 
   static void i(dynamic message, [dynamic error, StackTrace? stackTrace]) =>
-      _instance.log(Level.info, message, error, stackTrace);
+      _instance.log(Level.info, message, error: error, stackTrace: stackTrace);
 
   static void w(dynamic message, [dynamic error, StackTrace? stackTrace]) =>
-      _instance.log(Level.warning, message, error, stackTrace);
+      _instance.log(
+        Level.warning,
+        message,
+        error: error,
+        stackTrace: stackTrace,
+      );
 
   static void e(dynamic message, [dynamic error, StackTrace? stackTrace]) =>
-      _instance.log(Level.error, message, error, stackTrace);
+      _instance.log(Level.error, message, error: error, stackTrace: stackTrace);
 
   static void wtf(dynamic message, [dynamic error, StackTrace? stackTrace]) =>
-      _instance.log(Level.wtf, message, error, stackTrace);
+      _instance.log(Level.off, message, error: error, stackTrace: stackTrace);
 
   static Future<void> fatal({dynamic error, StackTrace? stackTrace}) async {
     d('Fatal', error, stackTrace);
@@ -52,7 +57,7 @@ class _CrashReportWrappedPrinter extends LogPrinter {
   _CrashReportWrappedPrinter(this._printer, this._crashReportTool);
 
   @override
-  void init() => _printer.init();
+  Future<void> init() => _printer.init();
 
   StackTrace _currentStacktrace() {
     // Filter: FirebaseCrashlytics.record, _CrashReportWrappedPrinter
@@ -75,26 +80,17 @@ class _CrashReportWrappedPrinter extends LogPrinter {
     final sanitizedEvent = dart_log.LogEvent(
       event.level,
       event.message,
-      event.error,
-      event.stackTrace ?? _currentStacktrace(),
+      error: event.error,
+      stackTrace: event.stackTrace ?? _currentStacktrace(),
     );
-    switch (event.level) {
-      case Level.verbose:
-      case Level.debug:
-      case Level.nothing:
-      case Level.info:
-        break;
-      case Level.warning:
-      case Level.error:
-      case Level.wtf:
-        _crashReportTool.logNonFatal(sanitizedEvent);
-        break;
+    if (event.level case Level.warning || Level.error) {
+      _crashReportTool.logNonFatal(sanitizedEvent);
     }
     return _printer.log(sanitizedEvent);
   }
 
   @override
-  void destroy() => _printer.destroy();
+  Future<void> destroy() => _printer.destroy();
 }
 
 class _PrintableTrace extends Trace {

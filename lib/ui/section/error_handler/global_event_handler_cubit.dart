@@ -17,10 +17,10 @@ class GlobalEventHandlerCubit extends Cubit<GlobalEventHandlerState>
     StackTrace? stackTrace,
     VoidCallback? retry,
   ]) {
-    if (error is DioError &&
-        (error.type == DioErrorType.connectionTimeout ||
-            error.type == DioErrorType.sendTimeout ||
-            error.type == DioErrorType.receiveTimeout)) {
+    if (error is DioException &&
+        (error.type == DioExceptionType.connectionTimeout ||
+            error.type == DioExceptionType.sendTimeout ||
+            error.type == DioExceptionType.receiveTimeout)) {
       emit(
         const GlobalEventHandlerState.error(
           GlobalEventHandlerStateError.internetError(),
