@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AuthenticatedSectionRouter(),
       );
     },
+    SignInRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignInScreen(),
+      );
+    },
     UnauthenticatedSectionRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -31,12 +37,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const WelcomeScreen(),
-      );
-    },
-    SignInRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SignInScreen(),
       );
     },
   };
@@ -52,6 +52,20 @@ class AuthenticatedSectionRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AuthenticatedSectionRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SignInScreen]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute({List<PageRouteInfo>? children})
+      : super(
+          SignInRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignInRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -80,20 +94,6 @@ class WelcomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'WelcomeRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [SignInScreen]
-class SignInRoute extends PageRouteInfo<void> {
-  const SignInRoute({List<PageRouteInfo>? children})
-      : super(
-          SignInRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SignInRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
