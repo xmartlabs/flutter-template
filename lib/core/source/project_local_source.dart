@@ -17,7 +17,7 @@ class ProjectLocalSource extends DatabaseAccessor<AppDatabase>
 
   Future<void> deleteAllProjects() => projectTable.deleteAll();
 
-  Future<void> replaceProjects(List<Project>? projects) async =>
+  Future<void> replaceProjects(List<Project>? projects) =>
       transaction(() async {
         await deleteAllProjects();
         if (projects != null) {
