@@ -24,7 +24,8 @@ class SignInCubit extends Cubit<SignInBaseState> {
 
   void changeEmail(String email) => emit(state.copyWith(email: email));
 
-  void changePassword(String email) => emit(state.copyWith(email: email));
+  void changePassword(String password) =>
+      emit(state.copyWith(password: password));
 
   Future<void> signIn() => _sessionRepository
       .signInUser(email: state.email!, password: state.password!)
