@@ -1,0 +1,34 @@
+name: "Check commit message"
+on:
+  merge_group:
+
+jobs:
+  check_commit_message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Get commit message
+        id: commit_message
+        run: |
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MESSAGE"
+        shell: bash
+
+      - name: Use the commit message in subsequent steps
+        run: |
+          echo "Commit message in subsequent steps: ${{ steps.commit_message.outputs.COMMIT_MESSAGE }}"
+
+      - name: Check if commit message is "mirland"
+        id: check_commit
+        run: |
+          if [[ "$COMMIT_MESSAGE" != *"mirland"* ]]; then
+            echo "Commit message is 'mirland'."
+            exit 1
+          else
+            echo "Error: Commit message is not 'mirland'."
+            echo "::set-output name=status::failure"
+            exit 1
+          fi
+        shell: bash
