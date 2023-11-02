@@ -1,17 +1,17 @@
-import 'package:catalog/theme/text_styles.dart';
+import 'package:catalog/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
-import 'dimensions.dart';
+import 'app_dimensions.dart';
 
 late AppColors _colors;
 late AppDimens _dimensions;
-late AppStyles _styles;
+late AppTextStyles _styles;
 
 class AppTheme {
   static ThemeData provideAppTheme(BuildContext buildContext) {
     // It can be changed based on the device
-    _styles = AppStyles.getAppStyles();
+    _styles = AppTextStyles.getAppStyles();
     _dimensions = AppDimens.getDimensions();
     _colors = AppColors.getColorScheme();
 
@@ -29,5 +29,5 @@ extension ThemeExtensions on ThemeData {
 
   AppColors get colors => _colors;
 
-  AppStyles get textStyles => _styles;
+  AppTextStyles get textStyles => _styles;
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppStyles extends TextTheme {
+class AppTextStyles extends TextTheme {
   final TextStyle customStyle;
 
-  const AppStyles({
+  const AppTextStyles({
     required this.customStyle,
     headlineLarge,
     headlineMedium,
@@ -32,11 +32,11 @@ class AppStyles extends TextTheme {
           labelSmall: labelSmall,
         );
 
-  factory AppStyles.fromTextTheme({
+  factory AppTextStyles.fromTextTheme({
     required TextStyle customStyle,
     required TextTheme textTheme,
   }) =>
-      AppStyles(
+      AppTextStyles(
         customStyle: customStyle,
         headlineSmall: textTheme.headlineSmall,
         headlineMedium: textTheme.headlineMedium,
@@ -52,7 +52,7 @@ class AppStyles extends TextTheme {
         labelSmall: textTheme.labelSmall,
       );
 
-  static AppStyles getAppStyles() => AppStyles.fromTextTheme(
+  static AppTextStyles getAppStyles() =>  AppTextStyles.fromTextTheme(
         customStyle: GoogleFonts.inter(
           fontSize: 50.sp,
           fontWeight: FontWeight.w300,
