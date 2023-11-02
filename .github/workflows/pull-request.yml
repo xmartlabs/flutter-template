@@ -1,0 +1,18 @@
+name: Validate pull request before putting into queue
+
+on:
+  pull_request:
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Display info
+        run: |
+          pwd
+          tree -a -I '.git'
+          git status
+      - name: Run fast CI (emulated by a short sleep)
+        run: sleep 5
