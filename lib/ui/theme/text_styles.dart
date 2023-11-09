@@ -7,30 +7,19 @@ class AppStyles extends TextTheme {
 
   const AppStyles({
     required this.customStyle,
-    headlineLarge,
-    headlineMedium,
-    headlineSmall,
-    bodyLarge,
-    bodyMedium,
-    bodySmall,
-    titleLarge,
-    titleMedium,
-    titleSmall,
-    labelLarge,
-    labelMedium,
-    labelSmall,
-  }) : super(
-          bodyLarge: bodyLarge,
-          headlineMedium: headlineMedium,
-          headlineSmall: headlineSmall,
-          titleLarge: titleLarge,
-          titleMedium: titleMedium,
-          titleSmall: titleSmall,
-          bodyMedium: bodyMedium,
-          bodySmall: bodySmall,
-          labelLarge: labelLarge,
-          labelSmall: labelSmall,
-        );
+    super.headlineLarge,
+    super.headlineMedium,
+    super.headlineSmall,
+    super.bodyLarge,
+    super.bodyMedium,
+    super.bodySmall,
+    super.titleLarge,
+    super.titleMedium,
+    super.titleSmall,
+    super.labelLarge,
+    super.labelMedium,
+    super.labelSmall,
+  });
 
   factory AppStyles.fromTextTheme({
     required TextStyle customStyle,

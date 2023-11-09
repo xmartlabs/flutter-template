@@ -54,8 +54,8 @@ class _WelcomeContentScreen extends StatelessWidget {
 class _ProjectWidget extends StatelessWidget {
   const _ProjectWidget({
     required this.project,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Project project;
 

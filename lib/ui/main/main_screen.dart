@@ -7,7 +7,7 @@ import 'package:flutter_template/ui/router/app_router.dart';
 import 'package:flutter_template/ui/theme/app_theme.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ import 'package:flutter_template/ui/signin/signin_cubit.dart';
 
 @RoutePage()
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) => BlocProvider(
