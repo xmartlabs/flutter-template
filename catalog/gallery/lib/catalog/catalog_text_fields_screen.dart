@@ -8,7 +8,7 @@ class CatalogTextFieldsScreen extends StatelessWidget {
   const CatalogTextFieldsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => CatalogScaffoldScreen(
+  Widget build(BuildContext context) => CatalogScaffold(
         title: 'TextFields',
         child: Container(),
       );

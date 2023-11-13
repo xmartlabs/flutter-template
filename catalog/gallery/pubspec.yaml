@@ -17,18 +17,41 @@ dependencies:
   flutter:
     sdk: flutter
   catalog:
-    path: ../../catalog
+    path: ../
 
   auto_route: 7.8.3
   flutter_screenutil: 5.9.0
+  flutter_native_splash: 2.3.2
   material_color_generator: 1.1.0
   google_fonts: 5.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: 3.0.1
   auto_route_generator: 7.3.1
+  flutter_lints: 3.0.1
   flutter_gen_runner: 5.3.1
+  flutter_flavorizr: 2.2.1
+  flutter_launcher_icons: 0.13.1
   build_runner: 2.4.6
   lints: 3.0.0
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: 'icons/ic_launcher.png'
+  image_path_ios: 'icons/ic_launcher_ios.png' # Transparency not supported on IOS
+  adaptive_icon_foreground: 'icons/ic_launcher_foreground.png'
+  adaptive_icon_background: '#ee1a64'
+  remove_alpha_ios: true
+  web:
+    generate: false
+  windows:
+    generate: false
+
+flutter_native_splash:
+  color: '#ffffff'
+  image: 'icons/splash_logo.png'
+  android_12:
+    image: 'icons/splash_logo_android_12.png'
+    branding: 'icons/splash_branding.png'

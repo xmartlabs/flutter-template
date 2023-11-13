@@ -19,9 +19,8 @@ class CatalogRouter extends _$CatalogRouter {
             page: CatalogSectionRouter.page,
             path: '/',
             children: [
-              RedirectRoute(path: '', redirectTo: 'main'),
               AutoRoute(page: CatalogAppButtonRoute.page),
-              AutoRoute(page: CatalogMainRoute.page, path: 'main'),
+              AutoRoute(initial: true, page: CatalogMainRoute.page),
               AutoRoute(page: CatalogTextFieldsRoute.page),
             ],
           ),

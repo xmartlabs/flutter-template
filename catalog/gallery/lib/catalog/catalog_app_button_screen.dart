@@ -7,7 +7,7 @@ class CatalogAppButtonScreen extends StatelessWidget {
   const CatalogAppButtonScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => CatalogScaffoldScreen(
+  Widget build(BuildContext context) => CatalogScaffold(
         title: 'Buttons',
         child: Container(),
       );

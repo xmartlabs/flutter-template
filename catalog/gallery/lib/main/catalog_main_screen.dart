@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery/catalog/catalog_scaffold_screen.dart';
 import 'package:gallery/router/catalog_router.dart';
 
 @RoutePage()
@@ -8,19 +8,11 @@ class CatalogMainScreen extends StatelessWidget {
   const CatalogMainScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: context.theme.colors.background,
-        appBar: AppBar(
-          backgroundColor: context.theme.colors.background,
-          centerTitle: true,
-          title: Text(
-            'Widget Catalog',
-            style: context.theme.textStyles.labelLarge?.copyWith(
-              color: context.theme.colors.primary,
-            ),
-          ),
-        ),
-        body: ListView.separated(
+  Widget build(BuildContext context) => CatalogScaffold(
+        title: 'Widget Catalog',
+        showBack: false,
+        child: ListView.separated(
+          shrinkWrap: true,
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
           itemCount: _CatalogScreen.values.length,
