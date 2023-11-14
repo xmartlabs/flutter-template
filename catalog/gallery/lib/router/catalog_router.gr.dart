@@ -27,12 +27,6 @@ abstract class _$CatalogRouter extends RootStackRouter {
         child: const CatalogMainScreen(),
       );
     },
-    CatalogSectionRouter.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CatalogSectionRouterPage(),
-      );
-    },
     CatalogTextFieldsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -66,20 +60,6 @@ class CatalogMainRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CatalogMainRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [CatalogSectionRouterPage]
-class CatalogSectionRouter extends PageRouteInfo<void> {
-  const CatalogSectionRouter({List<PageRouteInfo>? children})
-      : super(
-          CatalogSectionRouter.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'CatalogSectionRouter';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
