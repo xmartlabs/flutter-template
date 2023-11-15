@@ -17,12 +17,16 @@ end
 
 private_lane :sh_on_root do |options|
   command = options[:command]
-  sh("cd #{root_path} && #{command}")
+  subdirectory = options[:subdirectory] || ''
+  full_path = File.join(root_path, subdirectory)
+
+  sh("cd #{full_path} && #{command}")
 end
 
 private_lane :flutter_command do |options|
   command = options[:command]
-  sh_on_root(command: "fvm flutter #{command}")
+  subdirectory = options[:subdirectory]
+  sh_on_root(subdirectory: subdirectory, command: "fvm flutter #{command}")
 end
 
 private_lane :dart_command do |options|
@@ -38,6 +42,8 @@ end
 desc "**Fetch flutter dependencies**"
 lane :fetch_dependencies do
   flutter_command(command: "pub get --suppress-analytics")
+  # Template does not depends on gallery
+  flutter_command(command: "pub get --suppress-analytics", subdirectory: "catalog/gallery")
 end
 
 desc "**Generate flutter generated code**"
@@ -63,7 +69,9 @@ end
 
 desc "**Lint: Analyze code**"
 lane :lint_analyze do
-  flutter_command(command: "analyze .")
+  flutter_command(command: "analyze lib")
+  flutter_command(command: "analyze catalog/gallery")
+  flutter_command(command: "analyze catalog")
 end
 
 desc "**Lint: Code metrics**"

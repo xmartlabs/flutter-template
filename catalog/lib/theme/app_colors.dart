@@ -14,29 +14,21 @@ class AppColors extends ColorScheme {
   final MaterialColor surface;
 
   const AppColors({
-    required Brightness brightness,
+    required super.brightness,
     required this.primary,
     required this.onPrimary,
-    required Color secondary,
-    required Color onSecondary,
-    required Color error,
-    required Color onError,
-    required Color background,
-    required Color onBackground,
+    required super.secondary,
+    required super.onSecondary,
+    required super.error,
+    required super.onError,
+    required super.background,
+    required super.onBackground,
     required this.surface,
-    required Color onSurface,
+    required super.onSurface,
   }) : super(
-          brightness: brightness,
           primary: primary,
           onPrimary: onPrimary,
-          secondary: secondary,
-          onSecondary: onSecondary,
-          error: error,
-          onError: onError,
-          background: background,
-          onBackground: onBackground,
           surface: surface,
-          onSurface: onSurface,
         );
 
   static AppColors getColorScheme() => AppColors(

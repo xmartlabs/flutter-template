@@ -7,19 +7,15 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
-  flutter: 3.13.4
+  flutter: 3.13.9
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  catalog:
+    path: ./catalog
 
   auto_route: 7.8.3
   cupertino_icons: 1.0.6
@@ -61,10 +57,10 @@ dev_dependencies:
   flutter_flavorizr: 2.2.1
   flutter_gen_runner: 5.3.1
   flutter_launcher_icons: 0.13.1
-  flutter_lints: 2.0.3
+  flutter_lints: 3.0.1
   freezed: 2.4.1
   json_serializable: 6.7.1
-  lints: 2.1.1
+  lints: 3.0.0
 
 flutter:
   generate: true
