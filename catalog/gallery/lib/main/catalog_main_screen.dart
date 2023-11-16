@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery/catalog/catalog_scaffold_screen.dart';
 import 'package:gallery/router/catalog_router.dart';
@@ -13,8 +14,9 @@ class CatalogMainScreen extends StatelessWidget {
         showBack: false,
         child: ListView.separated(
           shrinkWrap: true,
-          separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
+          separatorBuilder: (BuildContext context, int index) => Divider(
+            color: context.theme.colors.primary,
+          ),
           itemCount: _CatalogScreen.values.length,
           itemBuilder: (BuildContext context, int index) {
             final element = _CatalogScreen.values[index];
@@ -36,6 +38,8 @@ class CatalogMainScreen extends StatelessWidget {
 enum _CatalogScreen {
   buttons,
   textFields,
+  colors,
+  typography,
 }
 
 extension _CatalogScreenExtensions on _CatalogScreen {
@@ -45,6 +49,10 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return 'Buttons';
       case _CatalogScreen.textFields:
         return 'Text Fields';
+      case _CatalogScreen.colors:
+        return 'Colors';
+      case _CatalogScreen.typography:
+        return 'Typography';
     }
   }
 
@@ -54,6 +62,10 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return const CatalogAppButtonRoute();
       case _CatalogScreen.textFields:
         return const CatalogTextFieldsRoute();
+      case _CatalogScreen.colors:
+        return const CatalogAppColorsRoute();
+      case _CatalogScreen.typography:
+        return const CatalogAppTypographyRoute();
     }
   }
 }
