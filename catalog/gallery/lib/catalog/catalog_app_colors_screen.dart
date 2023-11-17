@@ -25,7 +25,7 @@ class CatalogAppColorsScreen extends StatelessWidget {
                     color: element.color(context),
                     child: Center(
                       child: Text(
-                        element.name,
+                        element.name.toUpperCase(),
                         style: context.theme.textStyles.labelMedium,
                       ),
                     ),

@@ -24,7 +24,7 @@ class CatalogMainScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextButton(
-                    child: Text(element.title),
+                    child: Text(element.title.toUpperCase()),
                     onPressed: () => context.router.push(element.route),
                   ),
                 ),

@@ -22,7 +22,7 @@ class CatalogAppTypographyScreen extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
-                      element.name,
+                      element.name.toUpperCase(),
                       style: element
                           .textStyle(context)
                           .copyWith(color: context.theme.colors.textColor),
