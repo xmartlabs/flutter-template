@@ -10,7 +10,7 @@ class CatalogMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CatalogScaffold(
-        title: 'Widget Catalog',
+        title: 'WIDGET CATALOG',
         showBack: false,
         child: ListView.separated(
           shrinkWrap: true,

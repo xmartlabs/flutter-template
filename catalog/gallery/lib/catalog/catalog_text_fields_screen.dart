@@ -9,7 +9,7 @@ class CatalogTextFieldsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CatalogScaffold(
-        title: 'TextFields',
+        title: 'TEXT FIELDS',
         child: Container(),
       );
 }

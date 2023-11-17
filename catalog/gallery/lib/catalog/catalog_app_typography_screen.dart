@@ -9,7 +9,7 @@ class CatalogAppTypographyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CatalogScaffold(
-        title: 'Typography',
+        title: 'TYPOGRAPHY',
         child: ListView.separated(
           shrinkWrap: true,
           separatorBuilder: (BuildContext context, int index) =>

@@ -9,7 +9,7 @@ class CatalogAppColorsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CatalogScaffold(
-        title: 'Colors',
+        title: 'COLORS',
         child: ListView.separated(
           shrinkWrap: true,
           separatorBuilder: (BuildContext context, int index) =>
