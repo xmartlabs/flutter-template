@@ -21,6 +21,18 @@ abstract class _$CatalogRouter extends RootStackRouter {
         child: const CatalogAppButtonScreen(),
       );
     },
+    CatalogAppColorsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CatalogAppColorsScreen(),
+      );
+    },
+    CatalogAppTypographyRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CatalogAppTypographyScreen(),
+      );
+    },
     CatalogMainRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -46,6 +58,34 @@ class CatalogAppButtonRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CatalogAppButtonRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CatalogAppColorsScreen]
+class CatalogAppColorsRoute extends PageRouteInfo<void> {
+  const CatalogAppColorsRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogAppColorsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogAppColorsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CatalogAppTypographyScreen]
+class CatalogAppTypographyRoute extends PageRouteInfo<void> {
+  const CatalogAppTypographyRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogAppTypographyRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogAppTypographyRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

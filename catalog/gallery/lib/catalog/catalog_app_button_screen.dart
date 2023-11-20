@@ -8,7 +8,7 @@ class CatalogAppButtonScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CatalogScaffold(
-        title: 'Buttons',
+        title: 'BUTTONS',
         child: Container(),
       );
 }

@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:gallery/catalog/catalog_app_button_screen.dart';
+import 'package:gallery/catalog/catalog_app_colors_screen.dart';
+import 'package:gallery/catalog/catalog_app_typography_screen.dart';
 import 'package:gallery/catalog/catalog_text_fields_screen.dart';
 import 'package:gallery/main/catalog_main_screen.dart';
 
@@ -17,5 +19,7 @@ class CatalogRouter extends _$CatalogRouter {
           AutoRoute(page: CatalogAppButtonRoute.page),
           AutoRoute(initial: true, page: CatalogMainRoute.page),
           AutoRoute(page: CatalogTextFieldsRoute.page),
+          AutoRoute(page: CatalogAppColorsRoute.page),
+          AutoRoute(page: CatalogAppTypographyRoute.page),
         ];
 }
