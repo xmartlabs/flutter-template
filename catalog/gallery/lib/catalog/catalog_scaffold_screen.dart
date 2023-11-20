@@ -21,7 +21,7 @@ class CatalogScaffold extends StatelessWidget {
           leading: showBack ?? true
               ? IconButton(
                   icon: Icon(
-                    Icons.arrow_back,
+                    Icons.chevron_left,
                     color: context.theme.colors.primary.shade100,
                   ),
                   onPressed: () => context.router.pop(),
@@ -34,7 +34,10 @@ class CatalogScaffold extends StatelessWidget {
         ),
         backgroundColor: context.theme.colors.primary.shade200,
         body: SafeArea(
-          child: child,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: child,
+          ),
         ),
       );
 }
