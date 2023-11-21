@@ -17,56 +17,64 @@ class CatalogAppButtonScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 10),
-              ...StyleButton.values.map(
-                (element) => Container(
-                  margin: EdgeInsets.only(bottom: 20.w),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: AppPrimaryButton(
-                          text: "PRIMARY BUTTON ${element.name.toUpperCase()}",
-                          onPressed: () => {},
-                          style: element,
-                        ),
-                      ),
-                    ],
-                  ),
+              ..._buildPrimaryButton(),
+              ..._buildSecondarySelectableButton(),
+              ..._buildSecondaryNotSelectableButton(),
+            ],
+          ),
+        ),
+      );
+
+  Iterable<Widget> _buildSecondaryNotSelectableButton() =>
+      StyleButton.values.map(
+        (element) => Container(
+          margin: const EdgeInsets.only(bottom: 20),
+          child: Row(
+            children: [
+              Expanded(
+                child: AppSecondaryButton(
+                  text: "SECONDARY NOT SELECTABLE "
+                      "${element.name.toUpperCase()}",
+                  onPressed: () => {},
+                  style: element,
+                  isSelected: false,
                 ),
               ),
-              ...StyleButton.values.map(
-                (element) => Container(
-                  margin: const EdgeInsets.only(bottom: 20),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: AppSecondaryButton(
-                          text:
-                              "SECONDARY SELECTABLE BUTTON ${element.name.toUpperCase()}",
-                          onPressed: () => {},
-                          style: element,
-                          isSelected: true,
-                        ),
-                      ),
-                    ],
-                  ),
+            ],
+          ),
+        ),
+      );
+
+  Iterable<Widget> _buildSecondarySelectableButton() => StyleButton.values.map(
+        (element) => Container(
+          margin: const EdgeInsets.only(bottom: 20),
+          child: Row(
+            children: [
+              Expanded(
+                child: AppSecondaryButton(
+                  text:
+                      "SECONDARY SELECTABLE BUTTON "
+                          "${element.name.toUpperCase()}",
+                  onPressed: () => {},
+                  style: element,
+                  isSelected: true,
                 ),
               ),
-              ...StyleButton.values.map(
-                (element) => Container(
-                  margin: const EdgeInsets.only(bottom: 20),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: AppSecondaryButton(
-                          text: "SECONDARY NOT SELECTABLE "
-                              "${element.name.toUpperCase()}",
-                          onPressed: () => {},
-                          style: element,
-                          isSelected: false,
-                        ),
-                      ),
-                    ],
-                  ),
+            ],
+          ),
+        ),
+      );
+
+  Iterable<Widget> _buildPrimaryButton() => StyleButton.values.map(
+        (element) => Container(
+          margin: EdgeInsets.only(bottom: 20.w),
+          child: Row(
+            children: [
+              Expanded(
+                child: AppPrimaryButton(
+                  text: "PRIMARY BUTTON ${element.name.toUpperCase()}",
+                  onPressed: () => {},
+                  style: element,
                 ),
               ),
             ],

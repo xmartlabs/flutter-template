@@ -78,11 +78,11 @@ class AppPrimaryButton extends StatelessWidget {
         iconLeft: iconLeft,
         iconRight: iconRight,
         backgroundColor: Colors.transparent,
-        textColor: context.theme.colors.primary.shade900,
+        textColor: context.theme.colors.primary.shade500,
         disabledColor: Colors.transparent,
-        focusColor: context.theme.colors.primary.shade100,
-        pressedColor: context.theme.colors.primary.shade300,
-        disabledTextColor: context.theme.colors.onSurface.shade500,
+        focusColor: context.theme.colors.primary.shade200,
+        pressedColor: context.theme.colors.primary.shade200,
+        disabledTextColor: context.theme.colors.textColor.shade300,
         hoveredColor: context.theme.colors.primary.shade100,
       );
 
@@ -93,10 +93,10 @@ class AppPrimaryButton extends StatelessWidget {
         iconRight: iconRight,
         backgroundColor: context.theme.colors.surface.shade100,
         textColor: context.theme.colors.primary.shade500,
-        disabledColor: context.theme.colors.surface.shade200,
+        disabledColor: context.theme.colors.surface.shade500,
         focusColor: context.theme.colors.primary.shade200,
         pressedColor: context.theme.colors.primary.shade300,
-        disabledTextColor: context.theme.colors.primary,
+        disabledTextColor: context.theme.colors.textColor.shade300,
         borderSideColor: context.theme.colors.primary.shade500,
         hoveredColor: context.theme.colors.primary.shade100,
       );

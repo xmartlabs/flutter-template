@@ -99,10 +99,11 @@ class AppSecondaryButton extends StatelessWidget {
             ? context.theme.colors.textColor.shade500
             : context.theme.colors.textColor.shade300,
         disabledColor: Colors.transparent,
-        focusColor: context.theme.colors.primary.shade300,
+        borderSideColor: Colors.transparent,
+        focusColor: context.theme.colors.surface.shade200,
         pressedColor: context.theme.colors.surface.shade300,
         disabledTextColor: context.theme.colors.textColor.shade200,
-        hoveredColor: context.theme.colors.onSurface.shade400,
+        hoveredColor: context.theme.colors.surface.shade200,
       );
 
   AppBaseButton _secondaryStrokeButton(BuildContext context) => AppBaseButton(
@@ -113,14 +114,14 @@ class AppSecondaryButton extends StatelessWidget {
         iconRight: iconRight,
         backgroundColor: isSelected
             ? context.theme.colors.surface.shade100
-            : Colors.transparent,
+            : context.theme.colors.surface.shade100,
         textColor: context.theme.colors.textColor.shade300,
-        disabledColor: context.theme.colors.onSurface.shade200,
-        focusColor: context.theme.colors.primary.shade100,
-        pressedColor: context.theme.colors.primary.shade300,
-        disabledTextColor: context.theme.colors.surface.shade500,
-        borderSideColor: context.theme.colors.primary.shade900,
-        hoveredColor: context.theme.colors.onSurface.shade400,
+        disabledColor: context.theme.colors.surface.shade500,
+        focusColor: context.theme.colors.surface.shade300,
+        pressedColor: context.theme.colors.surface.shade400,
+        disabledTextColor: context.theme.colors.textColor.shade300,
+        borderSideColor: context.theme.colors.textColor.shade300,
+        hoveredColor: context.theme.colors.surface.shade300,
       );
 
   AppBaseButton _secondaryFilledButton(BuildContext context) => AppBaseButton(
@@ -131,14 +132,14 @@ class AppSecondaryButton extends StatelessWidget {
         verticalPadding: 10,
         backgroundColor: context.theme.colors.textColor.shade300,
         textColor: context.theme.colors.textColor.shade100,
-        disabledColor: context.theme.colors.onSurface.shade200,
+        disabledColor: context.theme.colors.surface.shade500,
         focusColor: context.theme.colors.textColor.shade400,
-        pressedColor: context.theme.colors.onSurface.shade400,
-        disabledTextColor: context.theme.colors.surface.shade500,
+        pressedColor: context.theme.colors.textColor.shade500,
+        disabledTextColor: context.theme.colors.textColor.shade300,
         hoveredColor: context.theme.colors.onSurface.shade400,
         borderSideColor: borderColor ??
             (isSelected
-                ? context.theme.colors.primary.shade900
+                ? context.theme.colors.textColor.shade300
                 : Colors.transparent),
       );
 }
