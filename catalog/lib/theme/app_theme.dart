@@ -30,15 +30,10 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: _buttons.textButton,
       ),
-      scaffoldBackgroundColor: _colors.primary.shade200,
       textTheme: _styles.getThemeData().apply(
-        bodyColor: _colors.textColor.shade100,
-        displayColor: _colors.textColor.shade500,
-      ),
-      primaryTextTheme: _styles.getThemeData().apply(
-        bodyColor: _colors.textColor.shade100,
-        displayColor: _colors.primary,
-      ),
+            bodyColor: _colors.textColor,
+            displayColor: _colors.textColor.shade500,
+          ),
       appBarTheme: AppBarTheme(
         backgroundColor: _colors.primary.shade400,
         titleTextStyle: TextStyle(color: _colors.textColor.shade100),

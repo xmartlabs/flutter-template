@@ -1,3 +1,4 @@
+import 'package:catalog/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:catalog/theme/app_colors.dart';
@@ -24,10 +25,8 @@ final _appFilledButton = FilledButton.styleFrom(
       color: Colors.transparent,
     ),
   ),
+  textStyle: AppTextStyles.getAppStyles().buttonLarge,
   elevation: 0.0,
-  textStyle: TextStyle(
-    color: AppColors.getColorScheme().textColor.shade100,
-  ),
   foregroundColor: AppColors.getColorScheme().textColor.shade100,
 );
 
@@ -40,9 +39,7 @@ final _appOutlineButton = OutlinedButton.styleFrom(
     width: 2,
     color: AppColors.getColorScheme().primary,
   ),
-  textStyle: TextStyle(
-    color: AppColors.getColorScheme().textColor.shade100,
-  ),
+  textStyle: AppTextStyles.getAppStyles().buttonLarge,
   elevation: 0.0,
 );
 
@@ -55,9 +52,7 @@ final _appTextButton = TextButton.styleFrom(
       color: Colors.transparent,
     ),
   ),
-  textStyle: TextStyle(
-    color: AppColors.getColorScheme().textColor.shade100,
-  ),
+  textStyle: AppTextStyles.getAppStyles().buttonLarge,
   elevation: 0.0,
 );
 
@@ -104,7 +99,7 @@ final _appSecondaryOutlineButton = _appOutlineButton.copyWith(
     },
   ),
   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-        (Set<MaterialState> states) {
+    (Set<MaterialState> states) {
       if (states.contains(MaterialState.pressed)) {
         return AppColors.getColorScheme().textColor.shade500;
       }
