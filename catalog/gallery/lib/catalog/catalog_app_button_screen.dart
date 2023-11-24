@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:catalog/catalog.dart';
 import 'package:catalog/widgets/app_base_button.dart';
 import 'package:catalog/widgets/app_primary_button.dart';
 import 'package:catalog/widgets/app_secondary_button.dart';
@@ -17,6 +18,10 @@ class CatalogAppButtonScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 10),
+              FilledButton(onPressed: ()=>{}, child: Text('hola')),
+              SizedBox(height: 10.h),
+              OutlinedButton(onPressed: ()=>{}, child: Text('hola')),
+              SizedBox(height: 10.h),
               ..._buildPrimaryButton(),
               ..._buildSecondarySelectableButton(),
               ..._buildSecondaryNotSelectableButton(),

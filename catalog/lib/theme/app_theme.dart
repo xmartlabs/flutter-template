@@ -1,3 +1,4 @@
+import 'package:catalog/theme/app_buttons.dart';
 import 'package:catalog/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:catalog/theme/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:catalog/theme/app_dimensions.dart';
 late AppColors _colors;
 late AppDimens _dimensions;
 late AppTextStyles _styles;
+late AppButtons _buttons;
 
 class AppTheme {
   static ThemeData provideAppTheme(BuildContext buildContext) {
@@ -14,12 +16,24 @@ class AppTheme {
     _styles = AppTextStyles.getAppStyles();
     _dimensions = AppDimens.getDimensions();
     _colors = AppColors.getColorScheme();
+    _buttons = AppButtons.getButtonTheme();
 
     return ThemeData(
       primaryColor: _colors.primary,
       colorScheme: _colors,
+      filledButtonTheme: FilledButtonThemeData(
+        style: _buttons.primary,
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: _buttons.secondary,
+      ),
+      scaffoldBackgroundColor: _colors.primary.shade200,
       textTheme: _styles.getThemeData(),
       primaryTextTheme: _styles.getThemeData(),
+      appBarTheme: AppBarTheme(
+        backgroundColor: _colors.primary.shade400,
+        titleTextStyle: TextStyle(color: _colors.textColor.shade100),
+      ),
     );
   }
 }
@@ -30,4 +44,6 @@ extension ThemeExtensions on ThemeData {
   AppColors get colors => _colors;
 
   AppTextStyles get textStyles => _styles;
+
+  AppButtons get buttons => _buttons;
 }
