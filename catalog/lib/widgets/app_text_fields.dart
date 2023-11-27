@@ -10,7 +10,7 @@ class AppTextField extends StatelessWidget {
   final String? labelText;
   final String? hintText;
   final String? helperText;
-  final IconData? leadingIcon;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final void Function()? onTrailingIconPress;
   final TextInputType? keyboardType;
@@ -27,7 +27,7 @@ class AppTextField extends StatelessWidget {
     this.onChange,
     this.errorText,
     this.labelText,
-    this.leadingIcon,
+    this.prefixIcon,
     this.suffixIcon,
     this.onTrailingIconPress,
     this.keyboardType,
@@ -91,7 +91,7 @@ class AppTextField extends StatelessWidget {
             hintStyle: context.theme.textStyles.bodyMedium
                 ?.copyWith(color: context.theme.colors.textColor.shade300),
             border: outlineBorder(context.theme.colors.textColor.shade100),
-            fillColor: colors.surface.shade300,
+            fillColor: colors.surface.shade100,
             enabledBorder:
                 outlineBorder(context.theme.colors.textColor.shade200),
             errorBorder: outlineBorder(colors.danger.shade300),
@@ -100,14 +100,8 @@ class AppTextField extends StatelessWidget {
             focusedErrorBorder: outlineBorder(colors.error),
             errorStyle: context.theme.textStyles.labelSmall
                 ?.copyWith(color: colors.danger),
-            prefixIcon: Icon(
-              Icons.close,
-              color: colors.textColor.shade200,
-            ),
-            suffixIcon: Icon(
-              Icons.close,
-              color: colors.textColor.shade200,
-            ),
+            prefixIcon: prefixIcon,
+            suffixIcon: suffixIcon,
             errorText: errorText,
             errorMaxLines: 2,
             hoverColor: colors.primary.shade400,
