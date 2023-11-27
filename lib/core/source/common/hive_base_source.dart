@@ -2,75 +2,101 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dartx/dartx.dart';
+import 'package:flutter_template/core/source/common/local_storage.dart';
 import 'package:hive/hive.dart';
+import 'package:rxdart/rxdart.dart';
 
-abstract class HiveBaseSource<Model, Key> {
+abstract class HiveBaseSource<Model, Key> implements LocalStorage<Model, Key> {
   final Map<String, dynamic> Function(Model) dbParser;
   final Model Function(Map<String, dynamic>) modelParser;
-  late final Box<String> _box;
+  Box<String>? _box;
 
   HiveBaseSource({required this.dbParser, required this.modelParser});
 
-  Future<void> init() async {
-    _box = await Hive.openBox<String>(Model.toString());
+  Future<Box<String>> getBox() async {
+    if (_box != null && _box!.isOpen) {
+      return _box!;
+    } else {
+      _box = await Hive.openBox<String>(Model.toString());
+      return _box!;
+    }
   }
 
+  Future<T> withBox<T>(Future<T> Function(Box<String>) body) async =>
+      body(await getBox());
+
+  @override
   Future<Model> putElement(
     Key key,
     Model response,
-  ) async {
-    await _box.put(
-      key,
-      jsonEncode(dbParser(response)),
-    );
-    return response;
-  }
+  ) async =>
+      withBox((box) async {
+        await box.put(
+          key,
+          jsonEncode(dbParser(response)),
+        );
+        return response;
+      });
 
-  List<Model> putAllElements(Map<Key, Model> entries) {
-    _box.putAll(
-      entries.mapValues(
-        (entry) => jsonEncode(dbParser(entry.value)),
-      ),
-    );
-    return getElements();
-  }
+  @override
+  Future<List<Model>> putAllElements(Map<Key, Model> entries) =>
+      withBox((box) async {
+        await box.putAll(
+          entries.mapValues(
+            (entry) => jsonEncode(dbParser(entry.value)),
+          ),
+        );
+        return getElements();
+      });
 
-  Future<void> deleteElement(Key key) => _box.delete(key);
+  @override
+  Future<void> deleteElement(Key key) => withBox((box) => box.delete(key));
 
-  Future<void> deleteAllElements() => _box.clear();
+  @override
+  Future<void> deleteAllElements() => withBox((box) => box.clear());
 
-  Model? getElement(
+  @override
+  Future<Model?> getElement(
     Key key,
-  ) {
-    final data = _box.get(key);
-    return data == null
-        ? null
-        : modelParser(
-            jsonDecode(
-              data,
-            ),
-          );
-  }
+  ) =>
+      withBox((box) async {
+        final data = box.get(key);
+        return data == null
+            ? null
+            : modelParser(
+                jsonDecode(
+                  data,
+                ),
+              );
+      });
 
+  @override
   Stream<Model> getElementStream(
     Key key,
   ) async* {
-    final element = getElement(key);
+    final box = await getBox();
+    final element = await getElement(key);
     if (element != null) {
       yield element;
     }
-    yield* _box.watch(key: key).map(
+    yield* box.watch(key: key).map(
           (event) => modelParser(jsonDecode(event.value)),
         );
   }
 
-  List<Model> getElements() =>
-      _box.values.map((e) => modelParser(jsonDecode(e))).toList();
+  @override
+  Future<List<Model>> getElements() => withBox(
+        (box) => Future.value(
+          box.values.map((e) => modelParser(jsonDecode(e))).toList(),
+        ),
+      );
 
+  @override
   Stream<List<Model>> getElementsStream() async* {
-    yield getElements();
-    yield* _box.watch().map(
-          (event) => getElements(),
+    final box = await getBox();
+    yield await getElements();
+    yield* box.watch().flatMap(
+          (event) => getElements().asStream(),
         );
   }
 }

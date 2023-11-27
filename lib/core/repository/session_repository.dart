@@ -4,17 +4,15 @@ import 'package:flutter_template/core/model/authentication_status.dart';
 import 'package:flutter_template/core/model/user.dart';
 import 'package:flutter_template/core/source/auth_local_source.dart';
 import 'package:flutter_template/core/source/auth_remote_source.dart';
-import 'package:flutter_template/core/source/project_local_source.dart';
+import 'package:hive/hive.dart';
 
 class SessionRepository {
   final AuthLocalSource _authLocalSource;
   final AuthRemoteSource _authRemoteSource;
-  final ProjectLocalSource _projectLocalSource;
 
   SessionRepository(
     this._authLocalSource,
     this._authRemoteSource,
-    this._projectLocalSource,
   );
 
   Stream<AuthenticationStatus> get status =>
@@ -36,7 +34,7 @@ class SessionRepository {
   }
 
   Future<void> logOut() async {
-    await _projectLocalSource.deleteAllElements();
+    await Hive.deleteFromDisk();
     await _authLocalSource.saveUserToken(null);
     await _authLocalSource.saveUserInfo(null);
   }

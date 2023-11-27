@@ -30,7 +30,7 @@ extension _GetItDiModuleExtensions on GetIt {
   }
 
   void _setupRepositories() {
-    registerLazySingleton(() => SessionRepository(get(), get(), get()));
+    registerLazySingleton(() => SessionRepository(get(), get()));
     registerLazySingleton(() => ProjectRepository(get(), get()));
   }
 
@@ -40,7 +40,7 @@ extension _GetItDiModuleExtensions on GetIt {
     registerSingletonAsync<ProjectLocalSource>(
       () async {
         final projectLocalSource = ProjectLocalSource();
-        await projectLocalSource.init();
+        await projectLocalSource.getBox();
         return projectLocalSource;
       },
     );
