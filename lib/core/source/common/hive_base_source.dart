@@ -71,14 +71,11 @@ abstract class HiveBaseSource<Model, Key> implements LocalStorage<Model, Key> {
       });
 
   @override
-  Stream<Model> getElementStream(
+  Stream<Model?> getElementStream(
     Key key,
   ) async* {
     final box = await getBox();
-    final element = await getElement(key);
-    if (element != null) {
-      yield element;
-    }
+    yield await getElement(key);
     yield* box.watch(key: key).map(
           (event) => modelParser(jsonDecode(event.value)),
         );

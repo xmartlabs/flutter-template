@@ -14,7 +14,7 @@ abstract interface class LocalStorage<Model, Key> {
     Key key,
   );
 
-  Stream<Model> getElementStream(
+  Stream<Model?> getElementStream(
     Key key,
   );
 
