@@ -37,13 +37,7 @@ extension _GetItDiModuleExtensions on GetIt {
   void _setupSources() {
     registerLazySingleton(() => AuthLocalSource(get()));
     registerLazySingleton(() => AuthRemoteSource(get()));
-    registerSingletonAsync<ProjectLocalSource>(
-      () async {
-        final projectLocalSource = ProjectLocalSource();
-        await projectLocalSource.getBox();
-        return projectLocalSource;
-      },
-    );
+    registerLazySingleton(() => ProjectLocalSource());
     registerLazySingleton(() => ProjectRemoteSource(get()));
   }
 }

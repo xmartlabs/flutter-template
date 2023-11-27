@@ -26,10 +26,9 @@ Future main() async {
 
 Future _initSdks() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final directory = await getApplicationDocumentsDirectory();
-  Hive.init(directory.path);
   await Logger.init();
   await Config.initialize();
+  Hive.init(Config.appDirectoryPath);
 
   await Future.wait([
     DiProvider.init(),
