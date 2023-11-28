@@ -16,6 +16,7 @@ class AppTheme {
     _colors = AppColors.getColorScheme();
 
     return ThemeData(
+      dialogBackgroundColor: _colors.surface.shade100,
       primaryColor: _colors.primary,
       colorScheme: _colors,
       textTheme: _styles.getThemeData(),

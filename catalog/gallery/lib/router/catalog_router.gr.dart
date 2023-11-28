@@ -33,6 +33,12 @@ abstract class _$CatalogRouter extends RootStackRouter {
         child: const CatalogAppTypographyScreen(),
       );
     },
+    CatalogDialogRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CatalogDialogScreen(),
+      );
+    },
     CatalogDropdownRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -92,6 +98,20 @@ class CatalogAppTypographyRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CatalogAppTypographyRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CatalogDialogScreen]
+class CatalogDialogRoute extends PageRouteInfo<void> {
+  const CatalogDialogRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogDialogRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogDialogRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

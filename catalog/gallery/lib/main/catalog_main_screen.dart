@@ -41,6 +41,7 @@ enum _CatalogScreen {
   colors,
   typography,
   dropdown,
+  dialog,
 }
 
 extension _CatalogScreenExtensions on _CatalogScreen {
@@ -56,6 +57,8 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return 'Typography';
       case _CatalogScreen.dropdown:
         return 'Dropdown';
+      case _CatalogScreen.dialog:
+        return 'Dialog';
     }
   }
 
@@ -71,6 +74,8 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return const CatalogAppTypographyRoute();
       case _CatalogScreen.dropdown:
         return const CatalogDropdownRoute();
+      case _CatalogScreen.dialog:
+        return const CatalogDialogRoute();
     }
   }
 }
