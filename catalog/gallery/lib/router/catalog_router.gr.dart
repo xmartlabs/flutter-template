@@ -27,6 +27,12 @@ abstract class _$CatalogRouter extends RootStackRouter {
         child: const CatalogAppColorsScreen(),
       );
     },
+    CatalogAppSelectionControlRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CatalogAppSelectionControlScreen(),
+      );
+    },
     CatalogAppTypographyRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -84,6 +90,20 @@ class CatalogAppColorsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CatalogAppColorsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CatalogAppSelectionControlScreen]
+class CatalogAppSelectionControlRoute extends PageRouteInfo<void> {
+  const CatalogAppSelectionControlRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogAppSelectionControlRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogAppSelectionControlRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

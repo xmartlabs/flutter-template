@@ -42,6 +42,7 @@ enum _CatalogScreen {
   typography,
   dropdown,
   dialog,
+  selectionControl,
 }
 
 extension _CatalogScreenExtensions on _CatalogScreen {
@@ -59,6 +60,8 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return 'Dropdown';
       case _CatalogScreen.dialog:
         return 'Dialog';
+      case _CatalogScreen.selectionControl:
+        return 'Selection control';
     }
   }
 
@@ -76,6 +79,8 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return const CatalogDropdownRoute();
       case _CatalogScreen.dialog:
         return const CatalogDialogRoute();
+      case _CatalogScreen.selectionControl:
+        return const CatalogAppSelectionControlRoute();
     }
   }
 }
