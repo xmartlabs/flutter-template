@@ -40,6 +40,7 @@ enum _CatalogScreen {
   textFields,
   colors,
   typography,
+  dropdown,
 }
 
 extension _CatalogScreenExtensions on _CatalogScreen {
@@ -53,6 +54,8 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return 'Colors';
       case _CatalogScreen.typography:
         return 'Typography';
+      case _CatalogScreen.dropdown:
+        return 'Dropdown';
     }
   }
 
@@ -66,6 +69,8 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return const CatalogAppColorsRoute();
       case _CatalogScreen.typography:
         return const CatalogAppTypographyRoute();
+      case _CatalogScreen.dropdown:
+        return const CatalogDropdownRoute();
     }
   }
 }
