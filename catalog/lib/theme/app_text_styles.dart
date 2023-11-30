@@ -87,7 +87,6 @@ class AppTextStyles extends TextTheme {
       GoogleFonts.roboto(
         fontSize: fontSize,
         fontWeight: fontWeight,
-        color: Colors.white,
       );
 
   static AppTextStyles getAppStyles() => AppTextStyles.fromTextTheme(
