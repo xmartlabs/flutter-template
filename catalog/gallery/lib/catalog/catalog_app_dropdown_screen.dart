@@ -18,6 +18,7 @@ class CatalogDropdownScreen extends StatelessWidget {
             children: [
               SizedBox(height: 30.h),
               const AppSelectDropdown<int>(
+                label: 'Select',
                 items: [
                   (value: 1, label: 'Option 1'),
                   (value: 2, label: 'Option 2'),

@@ -4,11 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 typedef MenuItems<T> = ({T value, String label});
 
+const _kAnimationDuration = Duration(milliseconds: 200);
+
 class AppSelectDropdown<T> extends StatefulWidget {
   final double? width;
+  final String label;
   final List<MenuItems<T>> items;
+  final Function(T value)? onChanged;
 
-  const AppSelectDropdown({required this.items, this.width, super.key});
+  const AppSelectDropdown({
+    required this.items,
+    required this.label,
+    this.onChanged,
+    this.width,
+    super.key,
+  });
 
   @override
   State<AppSelectDropdown<T>> createState() => _AppSelectDropdownState<T>();
@@ -16,7 +26,7 @@ class AppSelectDropdown<T> extends StatefulWidget {
 
 class _AppSelectDropdownState<T> extends State<AppSelectDropdown<T>>
     with SingleTickerProviderStateMixin {
-  final FocusNode _buttonFocusNode = FocusNode(debugLabel: 'Menu Button');
+  late final FocusNode _buttonFocusNode;
   final MenuController _menuController = MenuController();
   final List<MenuItems<T>> _selectedValues = [];
   late AnimationController _animationController;
@@ -29,9 +39,10 @@ class _AppSelectDropdownState<T> extends State<AppSelectDropdown<T>>
   late Animation<double> _iconTurns;
   @override
   void initState() {
+    _buttonFocusNode = FocusNode(debugLabel: 'Menu Button-${widget.label}');
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 200),
+      duration: _kAnimationDuration,
       vsync: this,
     );
 
@@ -53,6 +64,7 @@ class _AppSelectDropdownState<T> extends State<AppSelectDropdown<T>>
                 closeOnActivate: false,
                 value: _selectedValues.contains(elem),
                 onChanged: (value) {
+                  widget.onChanged?.call(elem.value);
                   setState(() {
                     if (value!) {
                       _selectedValues.add(elem);
@@ -114,7 +126,7 @@ class _AppSelectDropdownState<T> extends State<AppSelectDropdown<T>>
                     padding: EdgeInsets.all(8.sp),
                     child: Text(
                       _selectedValues.isEmpty
-                          ? 'Open menu'
+                          ? widget.label
                           : _selectedValues.map((e) => e.label).join(', '),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
