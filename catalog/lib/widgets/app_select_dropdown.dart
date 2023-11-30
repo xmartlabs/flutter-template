@@ -118,7 +118,6 @@ class _AppSelectDropdownState<T> extends State<AppSelectDropdown<T>>
                           : _selectedValues.map((e) => e.label).join(', '),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      key: const Key('Mmmmmmmmmmm'),
                       style: context.theme.textStyles.labelMedium,
                     ),
                   ),
