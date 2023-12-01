@@ -24,7 +24,6 @@ dependencies:
   flutter_native_splash: 2.3.2
   material_color_generator: 1.1.0
   google_fonts: 5.1.0
-  multi_select_flutter: 4.1.3
 
 dev_dependencies:
   flutter_test:

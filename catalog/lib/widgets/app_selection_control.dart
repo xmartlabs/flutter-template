@@ -27,19 +27,7 @@ class AppSelectionControl<T> extends StatelessWidget {
                 onPressed: onPressed,
                 icon: Row(
                   children: [
-                    isSelected
-                        ? Icon(
-                            isRadioButton!
-                                ? Icons.radio_button_checked_outlined
-                                : Icons.check_box_outlined,
-                            color: context.theme.colors.primary.shade500,
-                          )
-                        : Icon(
-                            isRadioButton!
-                                ? Icons.radio_button_unchecked_outlined
-                                : Icons.check_box_outline_blank,
-                            color: context.theme.colors.textColor.shade100,
-                          ),
+                    _getIcon(context),
                     SizedBox(width: 5.w),
                     Text(
                       label,
@@ -53,4 +41,18 @@ class AppSelectionControl<T> extends StatelessWidget {
           ],
         ),
       );
+
+  Widget _getIcon(BuildContext context) => isSelected
+      ? Icon(
+          isRadioButton!
+              ? Icons.radio_button_checked_outlined
+              : Icons.check_box_outlined,
+          color: context.theme.colors.primary.shade500,
+        )
+      : Icon(
+          isRadioButton!
+              ? Icons.radio_button_unchecked_outlined
+              : Icons.check_box_outline_blank,
+          color: context.theme.colors.textColor.shade100,
+        );
 }

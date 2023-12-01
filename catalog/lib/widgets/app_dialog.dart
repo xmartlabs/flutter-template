@@ -20,20 +20,9 @@ class AppDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-        elevation: 0,
-        backgroundColor: context.theme.colors.surface.shade100,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.r),
-          side: BorderSide(color: context.theme.colors.surface.shade500),
-        ),
         title: Row(
           children: [
-            Text(
-              title,
-              style: context.theme.textStyles.customOverline
-                  .copyWith(color: context.theme.colors.textColor.shade300)
-                  .semibold(),
-            ),
+            Text(title),
             const Spacer(),
             IconButton(
               onPressed: Navigator.of(context).pop,
@@ -44,19 +33,12 @@ class AppDialog extends StatelessWidget {
             ),
           ],
         ),
-        content: content != null
-            ? Text(
-                content!,
-                style: context.theme.textStyles.bodyMedium
-                    ?.copyWith(color: context.theme.colors.textColor.shade400),
-              )
-            : null,
+        content: content != null ? Text(content!) : null,
         actionsAlignment: _getAligment(),
-        buttonPadding: EdgeInsets.only(left: 10.w, right: 10.w),
         actions: [
           if (cancelButtonText != null)
             SizedBox(
-              width: _getWidth(),
+              width: _getActionButtonsWidth(),
               child: TextButton(
                 onPressed: Navigator.of(context).pop,
                 child: Text(
@@ -69,7 +51,7 @@ class AppDialog extends StatelessWidget {
             ),
           if (actionButtonText != null)
             SizedBox(
-              width: _getWidth(),
+              width: _getActionButtonsWidth(),
               child: FilledButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
@@ -104,7 +86,7 @@ class AppDialog extends StatelessWidget {
     }
   }
 
-  double? _getWidth() {
+  double? _getActionButtonsWidth() {
     if (actionButtonText == null || cancelButtonText == null) {
       return 130.w;
     }

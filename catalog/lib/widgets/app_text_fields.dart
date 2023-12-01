@@ -3,7 +3,7 @@ import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppTextField extends StatelessWidget {
+class AppTextField extends StatefulWidget {
   final TextEditingController controller;
   final void Function(String value)? onChange;
   final String? errorText;
@@ -20,6 +20,7 @@ class AppTextField extends StatelessWidget {
   final int minLines;
   final int maxLines;
   final bool hasScreenBottomNavigation;
+  final int? currentLength;
 
   const AppTextField({
     required this.controller,
@@ -38,27 +39,27 @@ class AppTextField extends StatelessWidget {
     this.helperText,
     this.hintText,
     this.maxLines = 1,
+    this.currentLength = 0,
     this.hasScreenBottomNavigation = true,
   });
 
   @override
+  State<AppTextField> createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
+
+  @override
   Widget build(BuildContext context) {
-    OutlineInputBorder outlineBorder(Color color) => OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4.r),
-          borderSide: BorderSide(
-            width: 2,
-            color: color,
-          ),
-        );
     final colors = context.theme.colors;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (labelText != null)
+        if (widget.labelText != null)
           Padding(
             padding: EdgeInsets.symmetric(vertical: 5.h),
             child: Text(
-              labelText!,
+              widget.labelText!,
               textAlign: TextAlign.left,
               style: context.theme.textStyles.labelMedium!
                   .bold()
@@ -67,51 +68,44 @@ class AppTextField extends StatelessWidget {
           ),
         SizedBox(height: 5.h),
         TextField(
-          scrollPadding: hasScreenBottomNavigation
+          buildCounter: widget.maxLength != null ? _buildCounter : null,
+          scrollPadding: widget.hasScreenBottomNavigation
               ? EdgeInsets.only(bottom: 140.h)
               : const EdgeInsets.all(20.0),
-          maxLength: maxLength,
-          minLines: minLines,
-          maxLines: maxLines,
+          maxLength: widget.maxLength,
+          minLines: widget.minLines,
+          maxLines: widget.maxLines,
           cursorHeight: 24,
           textAlignVertical: TextAlignVertical.center,
-          controller: controller,
-          onChanged: onChange,
+          controller: widget.controller,
+          onChanged: widget.onChange,
           style: context.theme.textStyles.bodyMedium
               ?.copyWith(color: colors.textColor.shade400),
           decoration: InputDecoration(
-            helperText: helperText,
-            hintText: hintText,
-            labelStyle: context.theme.textStyles.bodyMedium
-                ?.copyWith(color: context.theme.colors.textColor.shade400),
-            filled: true,
-            helperStyle: context.theme.textStyles.bodySmall
-                ?.copyWith(color: context.theme.colors.textColor.shade300),
-            counterText: "",
-            hintStyle: context.theme.textStyles.bodyMedium
-                ?.copyWith(color: context.theme.colors.textColor.shade300),
-            border: outlineBorder(context.theme.colors.textColor.shade100),
-            fillColor: colors.surface.shade100,
-            enabledBorder:
-                outlineBorder(context.theme.colors.textColor.shade200),
-            errorBorder: outlineBorder(colors.danger.shade300),
-            focusedBorder: outlineBorder(colors.primary.shade800),
-            disabledBorder: outlineBorder(colors.textColor.shade200),
-            focusedErrorBorder: outlineBorder(colors.error),
-            errorStyle: context.theme.textStyles.labelSmall
-                ?.copyWith(color: colors.danger),
-            prefixIcon: prefixIcon,
-            suffixIcon: suffixIcon,
-            errorText: errorText,
-            errorMaxLines: 2,
-            hoverColor: colors.primary.shade400,
-            focusColor: colors.primary.shade800,
+            helperText: widget.helperText,
+            hintText: widget.hintText,
+            prefixIcon: widget.prefixIcon,
+            suffixIcon: widget.suffixIcon,
+            errorText: widget.errorText,
           ),
-          keyboardType: keyboardType,
-          enabled: enabled,
-          obscureText: obscureText,
+          keyboardType: widget.keyboardType,
+          enabled: widget.enabled,
+          obscureText: widget.obscureText,
         ),
       ],
     );
   }
+
+  Widget? _buildCounter(
+            BuildContext context, {
+              required int currentLength,
+              required bool isFocused,
+              int? maxLength,
+            }) =>
+            Text(
+              '${widget.currentLength}/${widget.maxLength}',
+              style: context.theme.textStyles.bodySmall?.copyWith(
+                color: context.theme.colors.textColor.shade300,
+              ),
+            );
 }
