@@ -85,6 +85,24 @@ You can do that by executing `flutter pub run flutter_native_splash:create`.
 Although you can setup a bunch of features in this library, it doesn't provide a way to display animations.
 If you need a more personalized splash screen, you can edit the native code or just remove this library. 
 
+### Code generation
+
+Code generation is created using `build_runner` package.\
+To configure this package edit the `build.yaml`\
+To add new files to watch for code generation add the following lines:
+```
+targets:
+  $default:
+    builders:
+      # Previous configured builders
+      ...
+      builder_package_name:
+        generate_for:
+          # Example glob for only the Dart files under `lib/models`
+          - lib/models/*.dart
+```
+To create generated code run `clean_up.sh` under [scripts] folder or the following command: `flutter pub run build_runner build --delete-conflicting-outputs`
+
 ### Pre Push config
 
 In order to setup pre-push hook you need to go to the root of the project and run `git config core.hooksPath .github/hooks`
@@ -102,3 +120,4 @@ In order to setup pre-push hook you need to go to the root of the project and ru
 [repository_folder]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/repository
 [data_source_folder]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/source
 [get_it]: https://pub.dev/packages/get_it
+[scripts]: https://github.com/xmartlabs/flutter-template/tree/main/scripts
