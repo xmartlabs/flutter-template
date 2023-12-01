@@ -156,7 +156,7 @@ packages:
   catalog:
     dependency: "direct main"
     description:
-      path: catalog
+      path: "packages/catalog"
       relative: true
     source: path
     version: "0.0.1"

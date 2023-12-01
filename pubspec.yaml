@@ -15,7 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   catalog:
-    path: ./catalog
+    path: ./packages/catalog
 
   auto_route: 7.8.3
   cupertino_icons: 1.0.6
