@@ -6,7 +6,7 @@ import '{{name.snakeCase()}}_cubit.dart';
 
 @RoutePage()
 class {{name.pascalCase()}}Screen extends StatelessWidget {
-  const {{name.pascalCase()}}Screen({Key? key}) : super(key: key);
+  const {{name.pascalCase()}}Screen({super.key});
 
   @override
   Widget build(BuildContext context) => BlocProvider(
