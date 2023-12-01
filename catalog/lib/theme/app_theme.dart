@@ -8,7 +8,7 @@ import 'package:catalog/theme/app_dimensions.dart';
 late AppColors _colors;
 late AppDimens _dimensions;
 late AppTextStyles _styles;
-late AppButtons _buttons;
+late AppButtonsStyle _buttons;
 
 class AppTheme {
   static ThemeData provideAppTheme(BuildContext buildContext) {
@@ -16,7 +16,7 @@ class AppTheme {
     _styles = AppTextStyles.getAppStyles();
     _dimensions = AppDimens.getDimensions();
     _colors = AppColors.getColorScheme();
-    _buttons = AppButtons.getButtonTheme();
+    _buttons = AppButtonsStyle.getButtonTheme();
 
     return ThemeData(
       primaryColor: _colors.primary,
@@ -49,5 +49,5 @@ extension ThemeExtensions on ThemeData {
 
   AppTextStyles get textStyles => _styles;
 
-  AppButtons get buttons => _buttons;
+  AppButtonsStyle get buttonsStyle => _buttons;
 }

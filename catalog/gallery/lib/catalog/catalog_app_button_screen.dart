@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:catalog/catalog.dart';
+import 'package:catalog/theme/app_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gallery/catalog/catalog_scaffold_screen.dart';
@@ -15,36 +16,36 @@ class CatalogAppButtonScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 10),
-              FilledButton(
+              AppFilledButton(
                 onPressed: () => {},
                 child: const Text('PRIMARY BUTTON FILLED'),
               ),
               SizedBox(height: 10.h),
-              OutlinedButton(
+              AppStrokeButton(
                 onPressed: () => {},
                 child: const Text('PRIMARY BUTTON STROKE'),
               ),
               SizedBox(height: 10.h),
-              TextButton(
+              AppGhostButton(
                 onPressed: () => {},
                 child: const Text('PRIMARY BUTTON GHOST'),
               ),
               SizedBox(height: 10.h),
-              FilledButton(
-                style: context.theme.buttons.secondaryFilledButton,
-                onPressed: null,
+              AppFilledButton(
+                style: context.theme.buttonsStyle.secondaryFilledButton,
+                onPressed: (){},
                 child: const Text('SECONDARY BUTTON FILLED'),
               ),
               SizedBox(height: 10.h),
-              FilledButton(
-                style: context.theme.buttons.secondaryOutlineButton,
-                onPressed: null,
+              AppStrokeButton(
+                style: context.theme.buttonsStyle.secondaryOutlineButton,
+                onPressed: (){},
                 child: const Text('SECONDARY BUTTON STROKE'),
               ),
               SizedBox(height: 10.h),
-              FilledButton(
-                style: context.theme.buttons.secondaryTextButton,
-                onPressed: null,
+              AppGhostButton(
+                style: context.theme.buttonsStyle.secondaryTextButton,
+                onPressed: (){},
                 child: const Text('SECONDARY BUTTON GHOST'),
               ),
             ],

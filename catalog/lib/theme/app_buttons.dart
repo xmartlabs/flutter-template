@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:catalog/theme/app_colors.dart';
 
-class AppButtons {
+typedef AppFilledButton = FilledButton;
+typedef AppStrokeButton = OutlinedButton;
+typedef AppGhostButton = TextButton;
+
+class AppButtonsStyle {
   final ButtonStyle filledButton = _appFilledButton;
   final ButtonStyle outlineButton = _appOutlineButton;
   final ButtonStyle textButton = _appTextButton;
@@ -11,9 +15,9 @@ class AppButtons {
   final ButtonStyle secondaryOutlineButton = _appSecondaryOutlineButton;
   final ButtonStyle secondaryTextButton = _appSecondaryTextButton;
 
-  AppButtons();
+  AppButtonsStyle();
 
-  static AppButtons getButtonTheme() => AppButtons();
+  static AppButtonsStyle getButtonTheme() => AppButtonsStyle();
 }
 
 final _appFilledButton = FilledButton.styleFrom(
