@@ -24,8 +24,7 @@ echo "$result"
 
 fvm flutter pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused || error "Linter error - Dart Code Metrics unused code error"
 
-echo ':: Run Catalog checks'
+echo ':: Run packages checks'
 
-echo ':: Run linter catalog ::'
-fvm flutter analyze catalog || error "Linter error - Flutter Analyze error - Catalog gallery"
-fvm flutter analyze catalog/gallery || error "Linter error - Flutter Analyze error - Catalog gallery"
+echo ':: Run linter packages ::'
+fvm flutter analyze packages/ || error "Linter error - Flutter Analyze error - Packages folder"
