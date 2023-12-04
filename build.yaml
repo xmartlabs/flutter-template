@@ -5,3 +5,21 @@ targets:
         options:
           explicit_to_json: true
           field_rename: snake
+        generate_for:
+          include:
+            - lib/core/model/*.dart
+            - lib/core/model/service/*.dart
+      freezed:
+        generate_for:
+          include:
+             - lib/core/model/*.dart    
+             - lib/core/common/network_exceptions.dart    
+             - lib/core/model/service/*.dart
+             - "lib/ui/**_cubit.dart" 
+             - lib/ui/section/error_handler/general_error.dart
+      auto_route_generator:
+        generate_for:
+          include:
+            - "lib/ui/**_router.dart"  
+            - "lib/ui/**_screen.dart"  
+            - "lib/ui/**_section.dart"  
