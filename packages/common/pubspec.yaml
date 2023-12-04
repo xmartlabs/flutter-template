@@ -1,5 +1,5 @@
-name: models
-description: Models package
+name: common
+description: Common package
 version: 0.0.1
 homepage:
 
@@ -10,9 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  freezed_annotation: 2.4.1
-  json_annotation: 4.8.1
+  equatable: 2.0.5
+  logger: 2.0.1
+  stack_trace: 1.11.0
+  stock: 1.0.1
+  rxdart: 0.27.7
+  dartx: 1.2.0
   flutter_dotenv: 5.1.0
+
+
 
 
 
@@ -21,10 +27,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  freezed: 2.4.1
-  build_runner: 2.4.6
-  flutter_gen_runner: 5.3.1
-  json_serializable: 6.7.1
+
 
 
 

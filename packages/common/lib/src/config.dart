@@ -1,0 +1,57 @@
+// ignore_for_file: constant_identifier_names
+
+import 'dart:async';
+
+import 'package:common/src/environments.dart';
+import 'package:common/src/extension/string_extensions.dart';
+import 'package:common/src/helper/enum_helpers.dart';
+import 'package:common/src/helper/env_helper.dart';
+import 'package:flutter/foundation.dart';
+
+interface class Config {
+  static const String environmentFolder = 'environments';
+
+  static const debugMode = kDebugMode;
+
+  static late String apiBaseUrl;
+  static late String supabaseApiKey;
+
+  static final _environment = enumFromString(
+        Environments.values,
+        const String.fromEnvironment('ENV'),
+      ) ??
+      Environments.dev;
+
+  static Future<void> initialize() async {
+    await _EnvConfig._setupEnv(_environment);
+    _initializeEnvVariables();
+  }
+
+  static void _initializeEnvVariables() {
+    apiBaseUrl = _EnvConfig.getEnvVariable(_EnvConfig.ENV_KEY_API_BASE_URL)!;
+    supabaseApiKey =
+        _EnvConfig.getEnvVariable(_EnvConfig.ENV_KEY_SUPABASE_API_KEY)!;
+  }
+}
+
+abstract class _EnvConfig {
+  static const ENV_KEY_API_BASE_URL = 'API_BASE_URL';
+  static const ENV_KEY_SUPABASE_API_KEY = 'SUPABASE_API_KEY';
+
+  static const systemEnv = {
+    ENV_KEY_API_BASE_URL: String.fromEnvironment(ENV_KEY_API_BASE_URL),
+    ENV_KEY_SUPABASE_API_KEY: String.fromEnvironment(ENV_KEY_SUPABASE_API_KEY),
+  };
+
+  static final Map<String, String> _envFileEnv = {};
+
+  static String? getEnvVariable(String key) =>
+      _EnvConfig.systemEnv[key].ifNullOrBlank(() => _envFileEnv[key]);
+
+  static Future<void> _setupEnv(Environments env) async {
+    _envFileEnv
+      ..addAll(await loadEnvs('${Config.environmentFolder}/default.env'))
+      ..addAll(await loadEnvs('${env.path}.env'))
+      ..addAll(await loadEnvs('${env.path}.private.env'));
+  }
+}
