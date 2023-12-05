@@ -1,6 +1,6 @@
 # Gallery App
 
-Gallery is a Flutter app designed to showcase and share the design system of our project. 
+Gallery is a Flutter app designed to showcase and share the design system of our project.
 This app serves as a visual reference for developers and provides a streamlined process for the design team to approve the correct implementation of components.
 
 ## Features
