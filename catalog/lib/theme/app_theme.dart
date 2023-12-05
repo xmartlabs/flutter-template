@@ -19,7 +19,7 @@ class AppTheme {
     return ThemeData(
       dialogTheme: DialogTheme(
         backgroundColor: _colors.surface.shade100,
-        elevation: 0,
+        elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.r),
           side: BorderSide(color: _colors.surface.shade500),
@@ -29,7 +29,7 @@ class AppTheme {
             .semibold(),
         contentTextStyle:
             _styles.bodyMedium?.copyWith(color: _colors.textColor.shade400),
-        actionsPadding: EdgeInsets.only(left: 10.w, right: 10.w),
+        actionsPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
       ),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle:

@@ -6,7 +6,7 @@ class AppDialog extends StatelessWidget {
   final String title;
   final String? content;
   final String? actionButtonText;
-  final void Function()? onActionPressed;
+  final VoidCallback? onActionPressed;
   final String? cancelButtonText;
 
   const AppDialog({
@@ -56,7 +56,7 @@ class AppDialog extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
                     (Set<MaterialState> states) =>
-                        AppColors.getColorScheme().primary.shade500,
+                        context.theme.colors.primary.shade500,
                   ),
                 ),
                 child: Text(

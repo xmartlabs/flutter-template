@@ -16,11 +16,11 @@ class CatalogTextFieldsScreen extends StatefulWidget {
 
 class _CatalogTextFieldsScreenState extends State<CatalogTextFieldsScreen> {
   int _characterCount = 0;
+  final labelTextController = TextEditingController();
+  final textAreaTextController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
-    final labelTextController = TextEditingController();
-    return CatalogScaffold(
+  Widget build(BuildContext context) => CatalogScaffold(
       title: 'TEXT FIELDS',
       child: Container(
         margin: const EdgeInsets.all(20),
@@ -44,8 +44,8 @@ class _CatalogTextFieldsScreenState extends State<CatalogTextFieldsScreen> {
             SizedBox(height: 10.h),
             AppTextField(
               keyboardType: TextInputType.multiline,
+              controller: textAreaTextController,
               maxLength: 100,
-              controller: labelTextController,
               labelText: 'Label',
               hintText: 'Text',
               currentLength: _characterCount,
@@ -62,5 +62,4 @@ class _CatalogTextFieldsScreenState extends State<CatalogTextFieldsScreen> {
         ),
       ),
     );
-  }
 }
