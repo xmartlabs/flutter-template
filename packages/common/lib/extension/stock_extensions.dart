@@ -1,5 +1,5 @@
 //ignore_for_file: unused-files, unused-code
-import 'package:common/src/result.dart';
+import 'package:common/result.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:stock/stock.dart';
 

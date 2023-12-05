@@ -1,4 +1,4 @@
-import 'package:models/models.dart';
+import 'package:models/project.dart';
 import 'package:repositories/src/db/repository_db_entity.dart';
 import 'package:stock/stock.dart';
 

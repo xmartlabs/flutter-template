@@ -1,5 +1,5 @@
-import 'package:common/src/logger.dart';
-import 'package:common/src/result.dart';
+import 'package:common/logger.dart';
+import 'package:common/result.dart';
 import 'package:rxdart/rxdart.dart';
 
 extension StreamExtensions<T> on Stream<T> {

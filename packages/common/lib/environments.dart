@@ -1,4 +1,4 @@
-import 'package:common/src/config.dart';
+import 'package:common/config.dart';
 
 enum Environments {
   dev,

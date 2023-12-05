@@ -2,10 +2,10 @@
 
 import 'dart:async';
 
-import 'package:common/src/environments.dart';
-import 'package:common/src/extension/string_extensions.dart';
-import 'package:common/src/helper/enum_helpers.dart';
-import 'package:common/src/helper/env_helper.dart';
+import 'package:common/environments.dart';
+import 'package:common/extension/string_extensions.dart';
+import 'package:common/helper/enum_helpers.dart';
+import 'package:common/helper/env_helper.dart';
 import 'package:flutter/foundation.dart';
 
 interface class Config {
@@ -46,7 +46,7 @@ abstract class _EnvConfig {
   static final Map<String, String> _envFileEnv = {};
 
   static String? getEnvVariable(String key) =>
-      _EnvConfig.systemEnv[key].ifNullOrBlank(() => _envFileEnv[key]);
+      _EnvConfig.systemEnv[key]?.ifNullOrBlank(() => _envFileEnv[key]);
 
   static Future<void> _setupEnv(Environments env) async {
     _envFileEnv

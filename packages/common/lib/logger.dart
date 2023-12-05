@@ -1,4 +1,4 @@
-import 'package:common/src/crash_report_tool.dart';
+import 'package:common/crash_report_tool.dart';
 import 'package:logger/logger.dart' as dart_log;
 import 'package:logger/logger.dart';
 import 'package:stack_trace/stack_trace.dart';

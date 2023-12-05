@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:models/models.dart';
+import 'package:models/user.dart';
 import 'package:repositories/src/db/app_database.dart';
 import 'package:repositories/src/session/auth_local_source.dart';
 import 'package:repositories/src/session/auth_remote_source.dart';

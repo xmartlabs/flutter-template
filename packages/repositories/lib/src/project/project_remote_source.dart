@@ -1,4 +1,4 @@
-import 'package:models/models.dart';
+import 'package:models/project.dart';
 import 'package:services/networking.dart';
 
 class ProjectRemoteSource {
