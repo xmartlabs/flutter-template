@@ -2,6 +2,8 @@ name: repositories
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
+publish_to: none
+
 
 environment:
   sdk: '>=3.1.5 <4.0.0'
@@ -17,10 +19,12 @@ dependencies:
   flutter_secure_storage: 9.0.0
   shared_preferences: 2.2.1
   floor: 1.4.2
+  get_it: 7.6.2
   models:
     path: ../models
   services:
     path: ../services
+
     
 
 dev_dependencies:

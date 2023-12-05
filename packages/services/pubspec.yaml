@@ -2,6 +2,7 @@ name: services
 description: Services package
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
   sdk: '>=3.1.5 <4.0.0'

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
-import 'package:repositories/src/common/local_shared_preferences_storage.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:repositories/common/local_shared_preferences_storage.dart';
 import 'package:stock/stock.dart';
 
 class SharedPreferencesSourceOfTruth

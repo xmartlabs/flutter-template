@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:common/config.dart';
+import 'package:common/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_template/core/common/config.dart';
-import 'package:flutter_template/core/common/logger.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/ui/main/main_screen.dart';
 

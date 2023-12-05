@@ -1,7 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_template/core/source/common/app_database.dart';
-import 'package:flutter_template/core/source/common/local_shared_preferences_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:repositories/common/local_shared_preferences_storage.dart';
+import 'package:repositories/repositories.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppProvidersModule {

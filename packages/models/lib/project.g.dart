@@ -11,7 +11,7 @@ _$_Project _$$_ProjectFromJson(Map<String, dynamic> json) => _$_Project(
       name: json['name'] as String,
       description: json['description'] as String,
       url: json['url'] as String,
-      imageUrl: json['imageUrl'] as String,
+      imageUrl: json['image_url'] as String,
       language: json['language'] as String,
     );
 
@@ -21,6 +21,6 @@ Map<String, dynamic> _$$_ProjectToJson(_$_Project instance) =>
       'name': instance.name,
       'description': instance.description,
       'url': instance.url,
-      'imageUrl': instance.imageUrl,
+      'image_url': instance.imageUrl,
       'language': instance.language,
     };

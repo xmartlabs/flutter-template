@@ -1,4 +1,4 @@
-import 'package:repositories/src/session/common/auth_models.dart';
+import 'package:models/service/auth_models.dart';
 import 'package:services/networking.dart';
 
 class AuthRemoteSource {

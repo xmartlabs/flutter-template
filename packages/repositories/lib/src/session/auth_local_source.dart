@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:models/user.dart';
-import 'package:repositories/src/common/local_shared_preferences_storage.dart';
-import 'package:repositories/src/common/secure_storage_cached_source.dart';
+import 'package:repositories/common/local_shared_preferences_storage.dart';
+import 'package:repositories/common/secure_storage_cached_source.dart';
 import 'package:stock/stock.dart';
 
 class AuthLocalSource {

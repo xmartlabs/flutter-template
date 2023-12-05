@@ -16,31 +16,31 @@ dependencies:
     sdk: flutter
   catalog:
     path: ./packages/catalog
+  models: 
+    path: ./packages/models
+  common:
+    path: ./packages/common
+  repositories:
+    path: ./packages/repositories
+  services:
+    path: ./packages/services
+
 
   auto_route: 7.8.3
   cupertino_icons: 1.0.6
   dartx: 1.2.0
   dio: 5.3.2
-  equatable: 2.0.5
   floor: 1.4.2
   flutter_bloc: 8.1.3
-  flutter_dotenv: 5.1.0
   flutter_native_splash: 2.3.2
   flutter_screenutil: 5.9.0
-  flutter_secure_storage: 9.0.0
   flutter_web_browser: 0.17.1 # This can be removed
   freezed_annotation: 2.4.1
   get_it: 7.6.2
   google_fonts: 5.1.0
   intl: 0.18.1
-  json_annotation: 4.8.1
-  logger: 2.0.1
   material_color_generator: 1.1.0
   rxdart: 0.27.7
-  shared_preferences: 2.2.1
-  sqflite: 2.3.0
-  stack_trace: 1.11.0
-  stock: 1.0.1
 
 # Remove when dart_code_metrics updates its dependencies
 dependency_overrides:
