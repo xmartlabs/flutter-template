@@ -16,37 +16,37 @@ class CatalogAppButtonScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 10),
-              AppFilledButton(
+              FilledButton(
                 onPressed: () => {},
                 child: const Text('PRIMARY FILLED BUTTON'),
               ),
               SizedBox(height: 10.h),
-              AppStrokeButton(
+              StrokeButton(
                 onPressed: () => {},
                 child: const Text('PRIMARY STROKE BUTTON'),
               ),
               SizedBox(height: 10.h),
-              AppGhostButton(
+              GhostButton(
                 onPressed: () => {},
                 child: const Text('PRIMARY GHOST BUTTON'),
               ),
               SizedBox(height: 10.h),
-              AppFilledButton(
+              FilledButton(
                 style: context.theme.buttonsStyle.secondaryFilledButton,
                 onPressed: (){},
                 child: const Text('SECONDARY FILLED BUTTON'),
               ),
               SizedBox(height: 10.h),
-              AppStrokeButton(
+              StrokeButton(
                 style: context.theme.buttonsStyle.secondaryOutlineButton,
                 onPressed: (){},
                 child: const Text('SECONDARY STROKE BUTTON'),
               ),
               SizedBox(height: 10.h),
-              AppGhostButton(
+              GhostButton(
                 style: context.theme.buttonsStyle.secondaryTextButton,
                 onPressed: (){},
-                child: const Text('context'),
+                child: const Text('SECONDARY GHOST BUTTON'),
               ),
             ],
           ),

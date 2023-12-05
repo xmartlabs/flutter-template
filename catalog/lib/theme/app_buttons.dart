@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:catalog/theme/app_colors.dart';
 
-typedef AppFilledButton = FilledButton;
-typedef AppStrokeButton = OutlinedButton;
-typedef AppGhostButton = TextButton;
+typedef StrokeButton = OutlinedButton;
+typedef GhostButton = TextButton;
 
 class AppButtonsStyle {
   final ButtonStyle filledButton = _appFilledButton;
@@ -49,13 +48,7 @@ final _appOutlineButton = OutlinedButton.styleFrom(
 
 final _appTextButton = TextButton.styleFrom(
   minimumSize: Size(double.infinity, 50.h),
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16.r),
-    side: const BorderSide(
-      width: 2,
-      color: Colors.transparent,
-    ),
-  ),
+  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
   textStyle: AppTextStyles.getAppStyles().buttonLarge,
   elevation: 0.0,
 );
@@ -99,7 +92,7 @@ final _appSecondaryOutlineButton = _appOutlineButton.copyWith(
       if (states.contains(MaterialState.focused)) {
         return AppColors.getColorScheme().surface.shade300;
       }
-      return AppColors.getColorScheme().surface.shade100;
+      return Colors.transparent;
     },
   ),
   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
