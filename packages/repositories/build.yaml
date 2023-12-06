@@ -1,0 +1,17 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          explicit_to_json: true
+          field_rename: snake
+        generate_for:
+          include:
+            - "lib/**_serializer.dart"
+
+      freezed:
+        generate_for:
+          include:
+            - "lib/**_serializer.dart"
+            - "lib/**_entity.dart"
+

@@ -124,6 +124,11 @@ analyzer:
     - '**/*.gr.dart'
     - 'bricks'
     - 'lib/generated_plugin_registrant.dart'
+    - 'packages/**/*.freezed.dart'
+    - 'packages/**/*.g.dart'
+    - 'packages/**/*.gen.dart'
+    - 'packages/**/*.gr.dart'
+    
   errors:
     invalid_annotation_target: ignore
     unused_element: ignore # https://github.com/dart-lang/sdk/issues/49025

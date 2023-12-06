@@ -1,0 +1,26 @@
+name: common
+description: Common package
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  equatable: 2.0.5
+  logger: 2.0.1
+  stack_trace: 1.11.0
+  stock: 1.0.1
+  rxdart: 0.27.7
+  dartx: 1.2.0
+  flutter_dotenv: 5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec

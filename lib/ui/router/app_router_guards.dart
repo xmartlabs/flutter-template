@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_template/core/model/authentication_status.dart';
-import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:flutter_template/ui/router/app_router.dart';
+import 'package:repositories/repositories.dart';
 
 class _AppAuthStatusGuard extends AutoRouteGuard {
   final SessionRepository _sessionRepository;

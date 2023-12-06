@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:flutter_template/ui/router/app_router_guards.dart';
 import 'package:flutter_template/ui/section/section_router.dart';
 import 'package:flutter_template/ui/signin/signin_screen.dart';
 import 'package:flutter_template/ui/welcome/welcome_screen.dart';
+import 'package:repositories/repositories.dart';
 
 part 'app_router.gr.dart';
 

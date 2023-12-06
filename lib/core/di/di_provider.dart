@@ -11,6 +11,7 @@ abstract class DiProvider {
     await AppProvidersModule().setupModule(_instance);
     UtilsDiModule().setupModule(_instance);
     RepositoryDiModule().setupModule(_instance);
+
     await _instance.allReady();
   }
 
