@@ -23,10 +23,6 @@ final _appFilledButton = FilledButton.styleFrom(
   minimumSize: Size(double.infinity, 50.h),
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(16.r),
-    side: const BorderSide(
-      width: 2,
-      color: Colors.transparent,
-    ),
   ),
   textStyle: AppTextStyles.getAppStyles().buttonLarge,
   elevation: 0.0,
