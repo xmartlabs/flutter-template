@@ -1,0 +1,16 @@
+name: flutter_template
+
+sdkPath: .fvm/flutter_sdk
+
+packages:
+  - packages/*
+
+# Enable this config if using Android Studio
+# ide:
+#   intellij:
+#     enabled: false
+
+
+scripts:
+  analyze:
+    exec: fvm flutter analyze .
