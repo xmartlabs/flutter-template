@@ -1,12 +1,11 @@
 name: services
 description: Services package
 version: 0.0.1
-homepage:
 publish_to: none
 
 environment:
-  sdk: '>=3.1.5 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -14,9 +13,6 @@ dependencies:
   freezed_annotation: 2.4.1
   json_annotation: 4.8.1
   dio: 5.3.2
-
-
-
 
 dev_dependencies:
   flutter_test:
@@ -26,9 +22,5 @@ dev_dependencies:
   build_runner: 2.4.6
   flutter_gen_runner: 5.3.1
   json_serializable: 6.7.1
-
-
-
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

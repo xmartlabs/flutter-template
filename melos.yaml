@@ -4,13 +4,44 @@ sdkPath: .fvm/flutter_sdk
 
 packages:
   - packages/*
+  - "*"
 
 # Enable this config if using Android Studio
 # ide:
 #   intellij:
 #     enabled: false
 
+command:
+  bootstrap:
+    environment:
+      sdk: ">=3.0.0 <4.0.0"
+      flutter: ">=3.0.0 <4.0.0"
+
+    dependencies:
+      freezed_annotation: 2.4.1
+      json_annotation: 4.8.1
+      flutter_dotenv: 5.1.0
+
+    dev_dependencies:
+      build_runner: 2.4.6
+      flutter_gen_runner: 5.3.1
+      freezed: 2.4.1
+      json_serializable: 6.7.1
+
+    runPubGetInParallel: true
+    hooks:
+      post: fvm flutter pub get
 
 scripts:
+  get:
+    run: fvm flutter pub get
   analyze:
     exec: fvm flutter analyze .
+  build_runner:
+    exec:
+      orderDependents: true
+      run: fvm flutter pub run build_runner build --delete-conflicting-outputs
+    packageFilters:
+      flutter: true
+      ignore: [common, catalog]
+    run: fvm flutter pub run build_runner build --delete-conflicting-outputs

@@ -1,0 +1,13 @@
+# melos_managed_dependency_overrides: catalog,common,models,repositories,services,http
+dependency_overrides:
+  catalog:
+    path: packages/catalog
+  common:
+    path: packages/common
+  models:
+    path: packages/models
+  repositories:
+    path: packages/repositories
+  services:
+    path: packages/services
+  http: 1.0.0

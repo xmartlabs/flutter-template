@@ -320,7 +320,7 @@ packages:
     source: hosted
     version: "1.2.0"
   dio:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dio
       sha256: ce75a1b40947fea0a0e16ce73337122a86762e38b982e1ccb909daa3b9bc4197
@@ -368,7 +368,7 @@ packages:
     source: hosted
     version: "1.1.0"
   floor:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: floor
       sha256: "52a8eac2c8d274e7c0c54251226f59786bb5b749365a2d8537d8095aa5132d92"
@@ -1326,5 +1326,5 @@ packages:
     source: hosted
     version: "2.1.1"
 sdks:
-  dart: ">=3.1.5 <4.0.0"
-  flutter: ">=3.13.9"
+  dart: ">=3.1.0 <4.0.0"
+  flutter: ">=3.13.0"

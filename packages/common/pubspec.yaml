@@ -1,12 +1,11 @@
 name: common
 description: Common package
 version: 0.0.1
-homepage:
 publish_to: none
 
 environment:
-  sdk: '>=3.1.5 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -19,19 +18,9 @@ dependencies:
   dartx: 1.2.0
   flutter_dotenv: 5.1.0
 
-
-
-
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-
-
-
-
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
