@@ -21,16 +21,22 @@ abstract class _$CatalogRouter extends RootStackRouter {
         child: const CatalogAppButtonScreen(),
       );
     },
+    CatalogAppCheckboxRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CatalogAppCheckboxScreen(),
+      );
+    },
     CatalogAppColorsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CatalogAppColorsScreen(),
       );
     },
-    CatalogAppSelectionControlRoute.name: (routeData) {
+    CatalogAppRadioButtonRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const CatalogAppSelectionControlScreen(),
+        child: const CatalogAppRadioButtonScreen(),
       );
     },
     CatalogAppTypographyRoute.name: (routeData) {
@@ -81,6 +87,20 @@ class CatalogAppButtonRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CatalogAppCheckboxScreen]
+class CatalogAppCheckboxRoute extends PageRouteInfo<void> {
+  const CatalogAppCheckboxRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogAppCheckboxRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogAppCheckboxRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [CatalogAppColorsScreen]
 class CatalogAppColorsRoute extends PageRouteInfo<void> {
   const CatalogAppColorsRoute({List<PageRouteInfo>? children})
@@ -95,15 +115,15 @@ class CatalogAppColorsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [CatalogAppSelectionControlScreen]
-class CatalogAppSelectionControlRoute extends PageRouteInfo<void> {
-  const CatalogAppSelectionControlRoute({List<PageRouteInfo>? children})
+/// [CatalogAppRadioButtonScreen]
+class CatalogAppRadioButtonRoute extends PageRouteInfo<void> {
+  const CatalogAppRadioButtonRoute({List<PageRouteInfo>? children})
       : super(
-          CatalogAppSelectionControlRoute.name,
+          CatalogAppRadioButtonRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CatalogAppSelectionControlRoute';
+  static const String name = 'CatalogAppRadioButtonRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

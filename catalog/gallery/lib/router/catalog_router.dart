@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:gallery/catalog/catalog_app_button_screen.dart';
 import 'package:gallery/catalog/catalog_app_colors_screen.dart';
-import 'package:gallery/catalog/catalog_app_selection_control.dart';
+import 'package:gallery/catalog/catalog_app_radio_button.dart';
 import 'package:gallery/catalog/catalog_app_typography_screen.dart';
+import 'package:gallery/catalog/catalog_app_checkbox.dart';
 import 'package:gallery/catalog/catalog_app_dropdown_screen.dart';
 import 'package:gallery/catalog/catalog_app_text_fields_screen.dart';
 import 'package:gallery/catalog/catalog_app_dialog.dart';
@@ -26,6 +27,7 @@ class CatalogRouter extends _$CatalogRouter {
           AutoRoute(page: CatalogAppTypographyRoute.page),
           AutoRoute(page: CatalogDropdownRoute.page),
           AutoRoute(page: CatalogDialogRoute.page),
-          AutoRoute(page: CatalogAppSelectionControlRoute.page),
+          AutoRoute(page: CatalogAppRadioButtonRoute.page),
+          AutoRoute(page: CatalogAppCheckboxRoute.page),
         ];
 }

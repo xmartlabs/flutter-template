@@ -67,23 +67,6 @@ class _AppTextFieldState extends State<AppTextField> {
           ),
         SizedBox(height: 5.h),
         TextField(
-          buildCounter: (
-            BuildContext context, {
-            required int currentLength,
-            required bool isFocused,
-            int? maxLength,
-          }) =>
-              widget.maxLength != null
-                  ? Text(
-                      '${widget.currentLength}/${widget.maxLength}',
-                      style: context.theme.textStyles.bodySmall?.copyWith(
-                        color: context.theme.colors.textColor.shade300,
-                      ),
-                    )
-                  : null,
-          scrollPadding: widget.hasScreenBottomNavigation
-              ? EdgeInsets.only(bottom: 140.h)
-              : const EdgeInsets.all(20.0),
           maxLength: widget.maxLength,
           minLines: widget.minLines,
           maxLines: widget.maxLines,

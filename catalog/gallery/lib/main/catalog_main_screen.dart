@@ -42,7 +42,8 @@ enum _CatalogScreen {
   typography,
   dropdown,
   dialog,
-  selectionControl,
+  radioButtons,
+  checkbox,
 }
 
 extension _CatalogScreenExtensions on _CatalogScreen {
@@ -60,8 +61,10 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return 'Dropdown';
       case _CatalogScreen.dialog:
         return 'Dialog';
-      case _CatalogScreen.selectionControl:
-        return 'Selection control';
+      case _CatalogScreen.radioButtons:
+        return 'Radio Buttons';
+      case _CatalogScreen.checkbox:
+        return 'Checkbox';
     }
   }
 
@@ -79,8 +82,10 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return const CatalogDropdownRoute();
       case _CatalogScreen.dialog:
         return const CatalogDialogRoute();
-      case _CatalogScreen.selectionControl:
-        return const CatalogAppSelectionControlRoute();
+      case _CatalogScreen.radioButtons:
+        return const CatalogAppRadioButtonRoute();
+      case _CatalogScreen.checkbox:
+        return const CatalogAppCheckboxRoute();
     }
   }
 }

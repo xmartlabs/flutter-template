@@ -98,7 +98,6 @@ class AppTheme {
         ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          // fillColor: context.theme.colors.textColor.shade100,
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: _colors.onSurface.shade200,
