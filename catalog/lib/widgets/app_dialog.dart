@@ -36,42 +36,39 @@ class AppDialog extends StatelessWidget {
         content: content != null ? Text(content!) : null,
         actionsAlignment: _getAligment(),
         actions: [
-          if (cancelButtonText != null)
-            SizedBox(
-              width: _getActionButtonsWidth(),
-              child: TextButton(
-                onPressed: Navigator.of(context).pop,
-                child: Text(
-                  cancelButtonText!,
-                  style: context.theme.textStyles.buttonMedium.copyWith(
-                    color: context.theme.colors.textColor.shade300,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                if (cancelButtonText != null)
+                  Expanded(
+                    child: TextButton(
+                      onPressed: Navigator.of(context).pop,
+                      child: Text(
+                        cancelButtonText!,
+                        style: context.theme.textStyles.buttonMedium.copyWith(
+                          color: context.theme.colors.textColor.shade300,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
-          if (actionButtonText != null)
-            SizedBox(
-              width: _getActionButtonsWidth(),
-              child: FilledButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                    (Set<MaterialState> states) =>
-                        context.theme.colors.primary.shade500,
+                if (actionButtonText != null)
+                  Expanded(
+                    child: FilledButton(
+                      child: Text(
+                        actionButtonText!,
+                        style: context.theme.textStyles.buttonMedium.copyWith(
+                          color: context.theme.colors.textColor.shade100,
+                        ),
+                      ),
+                      onPressed: () {
+                        if (onActionPressed != null) {
+                          onActionPressed!();
+                        }
+                        Navigator.of(context).pop();
+                      },
+                    ),
                   ),
-                ),
-                child: Text(
-                  actionButtonText!,
-                  style: context.theme.textStyles.buttonMedium.copyWith(
-                    color: context.theme.colors.textColor.shade100,
-                  ),
-                ),
-                onPressed: () {
-                  if (onActionPressed != null) {
-                    onActionPressed!();
-                  }
-                  Navigator.of(context).pop();
-                },
-              ),
+              ],
             ),
         ],
       );

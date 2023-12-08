@@ -6,7 +6,7 @@ typedef AppCheckboxItems<T> = ({bool value, String label});
 class AppCheckbox<T> extends StatefulWidget {
   final bool initialValue;
   final List<AppCheckboxItems> items;
-  final void Function(T?) onPressed;
+  final void Function(bool?) onPressed;
 
   const AppCheckbox({
     required this.onPressed,
@@ -24,10 +24,9 @@ class _AppCheckboxState<T> extends State<AppCheckbox<T>> {
 
   @override
   void initState() {
-    isCheckedList = List.generate(
-      widget.items.length,
-      (index) => widget.items[index].value,
-    );
+    isCheckedList = widget.items.map(
+          (item) => item.value,
+    ).toList();
     super.initState();
   }
 
@@ -46,8 +45,8 @@ class _AppCheckboxState<T> extends State<AppCheckbox<T>> {
                 value: isCheckedList[index],
                 onChanged: (bool? value) {
                   setState(() {
-                    isCheckedList[index] = value ?? false;
-                    widget.onPressed(value as T?);
+                    isCheckedList[index] = !isCheckedList[index];
+                    widget.onPressed(value);
                   });
                 },
               ),

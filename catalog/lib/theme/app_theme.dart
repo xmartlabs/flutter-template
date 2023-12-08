@@ -1,3 +1,4 @@
+import 'package:catalog/theme/app_buttons.dart';
 import 'package:catalog/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:catalog/theme/app_colors.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 late AppColors _colors;
 late AppDimens _dimensions;
 late AppTextStyles _styles;
+late AppButtonsStyle _buttonStyles;
 
 class AppTheme {
   static ThemeData provideAppTheme(BuildContext buildContext) {
@@ -15,6 +17,7 @@ class AppTheme {
     _styles = AppTextStyles.getAppStyles();
     _dimensions = AppDimens.getDimensions();
     _colors = AppColors.getColorScheme();
+    _buttonStyles = AppButtonsStyle.getButtonTheme();
 
     return ThemeData(
       dialogTheme: DialogTheme(
@@ -29,7 +32,6 @@ class AppTheme {
             .semibold(),
         contentTextStyle:
             _styles.bodyMedium?.copyWith(color: _colors.textColor.shade400),
-        actionsPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
       ),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle:
@@ -108,8 +110,23 @@ class AppTheme {
       ),
       primaryColor: _colors.primary,
       colorScheme: _colors,
-      textTheme: _styles.getThemeData(),
-      primaryTextTheme: _styles.getThemeData(),
+      filledButtonTheme: FilledButtonThemeData(
+        style: _buttonStyles.filledButton,
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: _buttonStyles.outlineButton,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: _buttonStyles.textButton,
+      ),
+      textTheme: _styles.getThemeData().apply(
+            bodyColor: _colors.textColor,
+            displayColor: _colors.textColor.shade500,
+          ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: _colors.primary.shade400,
+        titleTextStyle: TextStyle(color: _colors.textColor.shade100),
+      ),
     );
   }
 }
@@ -120,4 +137,6 @@ extension ThemeExtensions on ThemeData {
   AppColors get colors => _colors;
 
   AppTextStyles get textStyles => _styles;
+
+  AppButtonsStyle get buttonsStyle => _buttonStyles;
 }

@@ -70,7 +70,7 @@ class AppColors extends ColorScheme {
 
   static AppColors getColorScheme() => AppColors(
         colorScheme: ColorScheme.fromSeed(
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
           seedColor: const MaterialColor(
             0xffee1a64,
             <int, Color>{
