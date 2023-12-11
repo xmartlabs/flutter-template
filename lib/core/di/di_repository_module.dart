@@ -1,4 +1,3 @@
-import 'package:common/config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:repositories/repositories.dart';
 import 'package:services/networking.dart';
@@ -13,7 +12,7 @@ class RepositoryDiModule {
 
   void setupModule(GetIt locator) {
     locator
-      .._setupProvidersAndUtils()
+      ..setupHttpService()
       ..setupSources()
       ..setupRepositories()
       .._setupInterceptors();
@@ -21,12 +20,6 @@ class RepositoryDiModule {
 }
 
 extension _GetItDiModuleExtensions on GetIt {
-  void _setupProvidersAndUtils() {
-    registerLazySingleton(
-      () => HttpServiceDio([], Config.apiBaseUrl, Config.supabaseApiKey),
-    );
-  }
-
   void _setupInterceptors() {
     final httpService = get<HttpServiceDio>();
     final sessionRepository = get<SessionRepository>();

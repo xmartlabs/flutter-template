@@ -13,6 +13,9 @@ dependencies:
   freezed_annotation: 2.4.1
   json_annotation: 4.8.1
   dio: 5.3.2
+  get_it: 7.6.2
+  common:
+    path: ../common
 
 dev_dependencies:
   flutter_test:
