@@ -1,9 +1,7 @@
 name: repositories
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
 publish_to: none
-
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -19,13 +17,13 @@ dependencies:
   flutter_secure_storage: 9.0.0
   shared_preferences: 2.2.1
   floor: 1.4.2
+  collection: 1.17.2
   get_it: 7.6.2
+  mocktail: 1.0.1
   models:
     path: ../models
   services:
     path: ../services
-
-    
 
 dev_dependencies:
   flutter_test:
@@ -36,7 +34,6 @@ dev_dependencies:
   build_runner: 2.4.6
   flutter_gen_runner: 5.3.1
   json_serializable: 6.7.1
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
