@@ -11,15 +11,16 @@ class CatalogAppCheckboxScreen extends StatelessWidget {
   Widget build(BuildContext context) => CatalogScaffold(
         title: 'APP CHECKBOX',
         child: AppCheckbox(
+          shrinkWrap: true,
           initialValue: true,
           onPressed: (bool? value) {},
           items: const [
-            (value: false, label: 'Option 1'),
-            (value: false, label: 'Option 2'),
-            (value: false, label: 'Option 3'),
-            (value: false, label: 'Option 4'),
-            (value: false, label: 'Option 5'),
-            (value: false, label: 'Option 6'),
+            (value: false, title: 'Option 1', subtitle: null),
+            (value: false, title: 'Option 2', subtitle: null),
+            (value: false, title: 'Option 3', subtitle: null),
+            (value: false, title: 'Option 4', subtitle: null),
+            (value: false, title: 'Option 5', subtitle: null),
+            (value: false, title: 'Option 6', subtitle: null),
           ],
         ),
       );

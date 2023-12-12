@@ -127,6 +127,26 @@ class AppTheme {
         backgroundColor: _colors.primary.shade400,
         titleTextStyle: TextStyle(color: _colors.textColor.shade100),
       ),
+      checkboxTheme: CheckboxThemeData(
+        checkColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) =>
+              AppColors.getColorScheme().primary.shade600,
+        ),
+        fillColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) =>
+              AppColors.getColorScheme().textColor.shade100,
+        ),
+        side: BorderSide(
+          width: 2,
+          color: AppColors.getColorScheme().textColor.shade400,
+        ),
+      ),
+      radioTheme: RadioThemeData(
+        fillColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) =>
+              AppColors.getColorScheme().textColor.shade400,
+        ),
+      ),
     );
   }
 }
