@@ -23,9 +23,9 @@ class CatalogAppTypographyScreen extends StatelessWidget {
                   child: Center(
                     child: Text(
                       element.name.toUpperCase(),
-                      style: element
-                          .textStyle(context)
-                          .copyWith(color: context.theme.colors.textColor),
+                      style: element.textStyle(context).copyWith(
+                            color: context.theme.customColors.textColor,
+                          ),
                     ),
                   ),
                 ),
