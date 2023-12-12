@@ -20,11 +20,11 @@ void main() {
   });
 
   group('Test projects db', () {
-    test('Get  projects from empty db', () async {
+    test('Get  projects from empty db, should return an empty list', () async {
       final projects = await projectDao.getProjects().first;
       expect(projects, []);
     });
-    test('Insert one project to db', () async {
+    test('Insert one project to empty db, should return 1 project', () async {
       final project = ProjectDbEntity(
         id: 1,
         name: 'Test projects',
@@ -37,7 +37,7 @@ void main() {
       final projects = await projectDao.getProjects().first;
       expect(projects.length, 1);
     });
-    test('get all projects', () async {
+    test('get all projects from db, should return 10', () async {
       final projects = Iterable.generate(
         10,
         (index) => ProjectDbEntity(
@@ -52,7 +52,7 @@ void main() {
       await projectDao.insertProjects(projects);
       expect((await projectDao.getProjects().first).length, projects.length);
     });
-    test('Delete all projects from db', () async {
+    test('Delete all projects from db, should return empty list', () async {
       final projects = Iterable.generate(
         10,
         (index) => ProjectDbEntity(
@@ -68,7 +68,8 @@ void main() {
       await projectDao.deleteAllProjects();
       expect(await projectDao.getProjects().first, []);
     });
-    test('Replace projects from db', () async {
+    test('Replace 2 projects from db, should return two new projects',
+        () async {
       final projects = Iterable.generate(
         2,
         (index) => ProjectDbEntity(

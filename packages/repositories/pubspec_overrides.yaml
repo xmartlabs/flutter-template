@@ -1,5 +1,7 @@
-# melos_managed_dependency_overrides: models,services
+# melos_managed_dependency_overrides: models,services,common
 dependency_overrides:
+  common:
+    path: ../common
   models:
     path: ../models
   services:

@@ -10,13 +10,15 @@ void main() {
   late HttpServiceDio httpService;
   late Dio dio;
   late ProjectRemoteSource projectRemoteSource;
+
   setUp(() {
     dio = DioMock();
     when(() => dio.interceptors).thenReturn(Interceptors());
     httpService = HttpServiceDio(dio);
     projectRemoteSource = ProjectRemoteSource(httpService);
   });
-  test('Get all projects from API', () async {
+
+  test('Get projects from API should return one project', () async {
     const urlGetProjects = 'rest/v1/projects?select=*';
     final requestOptions = RequestOptions(path: urlGetProjects);
 
@@ -39,5 +41,20 @@ void main() {
 
     final result = await projectRemoteSource.getProjects();
     expect(result.length, 1);
+  });
+  test('Get projects from empty API should return empty', () async {
+    const urlGetProjects = 'rest/v1/projects?select=*';
+    final requestOptions = RequestOptions(path: urlGetProjects);
+
+    when(() => dio.get(urlGetProjects)).thenAnswer(
+      (_) async => Response(
+        data: [],
+        statusCode: 200,
+        requestOptions: requestOptions,
+      ),
+    );
+
+    final result = await projectRemoteSource.getProjects();
+    expect(result.isEmpty, true);
   });
 }
