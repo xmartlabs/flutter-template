@@ -48,11 +48,19 @@ class HttpServiceDio implements HttpService {
   late Dio _dio;
 
   HttpServiceDio(
-    Dio dio, [
-    List<Interceptor>? interceptors,
-  ]) {
-    _dio = dio;
-    _dio.interceptors.addAll(interceptors ?? []);
+    List<Interceptor> interceptors,
+    String apiBaseUrl,
+    String? supabaseApiKey,
+  ) {
+    final options = BaseOptions(
+      baseUrl: apiBaseUrl,
+      //TODO: Remove this
+      headers: {'apikey': supabaseApiKey},
+
+      contentType: Headers.jsonContentType,
+    );
+    _dio = Dio(options);
+    _dio.interceptors.addAll(interceptors);
   }
 
   void addInterceptors(List<Interceptor> interceptors) {

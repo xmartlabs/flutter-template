@@ -4,7 +4,7 @@ import 'package:services/networking.dart';
 class ProjectRemoteSource {
   static const _urlGetProjects = 'rest/v1/projects?select=*';
 
-  final HttpServiceDio _httpService;
+  final HttpService _httpService;
 
   ProjectRemoteSource(this._httpService);
 

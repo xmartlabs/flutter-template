@@ -2,7 +2,7 @@ import 'package:models/service/auth_models.dart';
 import 'package:services/networking.dart';
 
 class AuthRemoteSource {
-  final HttpServiceDio _httpService;
+  final HttpService _httpService;
 
   static const _urlLogin = 'auth/v1/token';
 

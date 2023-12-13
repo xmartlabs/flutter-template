@@ -4,17 +4,14 @@ import 'package:mocktail/mocktail.dart';
 import 'package:repositories/src/project/project_remote_source.dart';
 import 'package:services/networking.dart';
 
-class DioMock extends Mock implements Dio {}
+class HttpServiceMock extends Mock implements HttpService {}
 
 void main() {
-  late HttpServiceDio httpService;
-  late Dio dio;
+  late HttpService httpService;
   late ProjectRemoteSource projectRemoteSource;
 
   setUp(() {
-    dio = DioMock();
-    when(() => dio.interceptors).thenReturn(Interceptors());
-    httpService = HttpServiceDio(dio);
+    httpService = HttpServiceMock();
     projectRemoteSource = ProjectRemoteSource(httpService);
   });
 
@@ -22,7 +19,7 @@ void main() {
     const urlGetProjects = 'rest/v1/projects?select=*';
     final requestOptions = RequestOptions(path: urlGetProjects);
 
-    when(() => dio.get(urlGetProjects)).thenAnswer(
+    when(() => httpService.get(urlGetProjects)).thenAnswer(
       (_) async => Response(
         data: [
           {
@@ -46,7 +43,7 @@ void main() {
     const urlGetProjects = 'rest/v1/projects?select=*';
     final requestOptions = RequestOptions(path: urlGetProjects);
 
-    when(() => dio.get(urlGetProjects)).thenAnswer(
+    when(() => httpService.get(urlGetProjects)).thenAnswer(
       (_) async => Response(
         data: [],
         statusCode: 200,

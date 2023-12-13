@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:models/project.dart';
@@ -6,8 +5,6 @@ import 'package:repositories/repositories.dart';
 import 'package:repositories/src/db/repository_db_entity.dart';
 import 'package:repositories/src/project/project_local_source.dart';
 import 'package:repositories/src/project/project_remote_source.dart';
-
-class DioMock extends Mock implements Dio {}
 
 class ProjectLocalSourceMock extends Mock implements ProjectLocalSource {}
 
