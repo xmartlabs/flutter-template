@@ -27,7 +27,8 @@ class RepositoryDiModule {
 extension _GetItDiModuleExtensions on GetIt {
   void _setupProvidersAndUtils() {
     registerLazySingleton<HttpService>(
-        () => HttpServiceDio([AuthInterceptor(get())]));
+      () => HttpServiceDio([AuthInterceptor(get())]),
+    );
   }
 
   void _setupRepositories() {

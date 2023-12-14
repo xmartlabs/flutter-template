@@ -1,11 +1,11 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter_template/core/model/user.dart';
 import 'package:flutter_template/core/source/auth_local_source.dart';
-import 'package:flutter_template/core/source/common/local_shared_preferences_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class LocalSharedPreferencesStorageMock extends Mock
-    implements LocalSharedPreferencesStorage {}
+import '../../common/mocks.dart';
 
 void main() {
   late LocalSharedPreferencesStorageMock storage;

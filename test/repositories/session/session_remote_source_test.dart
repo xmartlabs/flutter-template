@@ -8,7 +8,7 @@ import 'package:flutter_template/core/source/common/http_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class HttpServiceMock extends Mock implements HttpService {}
+import '../../common/mocks.dart';
 
 void main() {
   late HttpService httpService;

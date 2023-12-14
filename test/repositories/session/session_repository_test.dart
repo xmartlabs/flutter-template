@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:io';
 
 import 'package:flutter_template/core/model/authentication_status.dart';
@@ -10,9 +12,8 @@ import 'package:flutter_template/core/source/common/app_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class AuthLocalSourceMock extends Mock implements AuthLocalSource {}
-
-class AuthRemoteSourceMock extends Mock implements AuthRemoteSource {}
+import '../../common/general_helpers.dart';
+import '../../common/mocks.dart';
 
 void main() {
   late AuthLocalSource authLocalSource;
@@ -23,7 +24,7 @@ void main() {
   setUp(() async {
     authLocalSource = AuthLocalSourceMock();
     authRemoteSource = AuthRemoteSourceMock();
-    appDatabase = await $FloorAppDatabase.inMemoryDatabaseBuilder().build();
+    appDatabase = await setupFloorDatabase();
     sessionRepository =
         SessionRepository(appDatabase, authLocalSource, authRemoteSource);
   });

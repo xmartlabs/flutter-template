@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:floor/floor.dart';
 
 @Entity(tableName: 'projects')
-class ProjectDbEntity {
+class ProjectDbEntity extends Equatable {
   @primaryKey
   final int id;
   final String name;
@@ -10,7 +11,7 @@ class ProjectDbEntity {
   final String imageUrl;
   final String language;
 
-  ProjectDbEntity({
+  const ProjectDbEntity({
     required this.id,
     required this.name,
     required this.description,
@@ -18,4 +19,14 @@ class ProjectDbEntity {
     required this.imageUrl,
     required this.language,
   });
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        description,
+        url,
+        imageUrl,
+        language,
+      ];
 }

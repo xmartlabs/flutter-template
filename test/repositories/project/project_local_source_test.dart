@@ -1,17 +1,19 @@
 import 'dart:math';
 
-import 'package:collection/collection.dart';
 import 'package:flutter_template/core/model/db/repository_db_entity.dart';
 import 'package:flutter_template/core/source/common/app_database.dart';
 import 'package:flutter_template/core/source/project_local_source.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../../common/general_helpers.dart';
+import '../../common/project_helpers.dart';
 
 void main() {
   late AppDatabase database;
   late ProjectLocalSource projectDao;
 
   setUp(() async {
-    database = await $FloorAppDatabase.inMemoryDatabaseBuilder().build();
+    database = await setupFloorDatabase();
     projectDao = database.projectLocalSource;
   });
 
@@ -20,67 +22,32 @@ void main() {
   });
 
   group('Test projects db', () {
-    test('Get  projects from empty db, should return an empty list', () async {
+    test('Get projects from empty db, should return an empty list', () async {
       final projects = await projectDao.getProjects().first;
       expect(projects, []);
     });
     test('Insert one project to empty db, should return 1 project', () async {
-      final project = ProjectDbEntity(
-        id: 1,
-        name: 'Test projects',
-        description: 'Test project description',
-        url: 'test.com',
-        imageUrl: '',
-        language: 'ES',
+      final projects = generateProjectDbEntities(1);
+      await projectDao.insertProjects(projects);
+      expect(
+        await projectDao.getProjects().first,
+        projects,
       );
-      await projectDao.insertProjects([project]);
-      final projects = await projectDao.getProjects().first;
-      expect(projects.length, 1);
     });
     test('get all projects from db, should return 10', () async {
-      final projects = Iterable.generate(
-        10,
-        (index) => ProjectDbEntity(
-          id: index,
-          name: 'Test $index project',
-          description: 'Test $index project description',
-          url: 'test$index.com',
-          imageUrl: '',
-          language: 'ES',
-        ),
-      ).toList();
+      final projects = generateProjectDbEntities(10);
       await projectDao.insertProjects(projects);
-      expect((await projectDao.getProjects().first).length, projects.length);
+      expect(await projectDao.getProjects().first, projects);
     });
     test('Delete all projects from db, should return empty list', () async {
-      final projects = Iterable.generate(
-        10,
-        (index) => ProjectDbEntity(
-          id: index,
-          name: 'Test $index project',
-          description: 'Test $index project description',
-          url: 'test$index.com',
-          imageUrl: '',
-          language: 'ES',
-        ),
-      ).toList();
+      final projects = generateProjectDbEntities(10);
       await projectDao.insertProjects(projects);
       await projectDao.deleteAllProjects();
       expect(await projectDao.getProjects().first, []);
     });
     test('Replace 2 projects from db, should return two new projects',
         () async {
-      final projects = Iterable.generate(
-        2,
-        (index) => ProjectDbEntity(
-          id: index,
-          name: 'Test $index project',
-          description: 'Test $index project description',
-          url: 'test$index.com',
-          imageUrl: '',
-          language: 'ES',
-        ),
-      ).toList();
+      final projects = generateProjectDbEntities(2);
       await projectDao.insertProjects(projects);
       final replacement = projects
           .map(
@@ -98,14 +65,7 @@ void main() {
         replacement,
       );
       final list = await projectDao.getProjects().first;
-      bool result = true;
-      for (final element in list) {
-        if (replacement.firstWhereOrNull((e) => e.id == element.id) == null) {
-          result = false;
-          break;
-        }
-      }
-      expect(result, true);
+      expect(list, replacement);
     });
   });
 }
