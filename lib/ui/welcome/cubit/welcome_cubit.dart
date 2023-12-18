@@ -6,7 +6,7 @@ import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/model/project.dart';
 import 'package:flutter_template/core/repository/project_repository.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
-import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
+import 'package:flutter_template/ui/section/error_handler/cubit/global_event_handler_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'welcome_cubit.freezed.dart';

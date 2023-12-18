@@ -1,49 +1,45 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/ui/extensions/context_extensions.dart';
-import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
-
-import 'package:flutter_template/ui/signin/signin_cubit.dart';
+import 'package:flutter_template/ui/section/error_handler/global_event_handler_provider.dart';
+import 'package:flutter_template/ui/signin/signin_provider.dart';
+import 'package:provider/provider.dart';
 
 @RoutePage()
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
+  Widget build(BuildContext context) => ChangeNotifierProvider(
         create: (context) =>
-            SignInCubit(context.read<GlobalEventHandlerCubit>()),
+            SignInProvider(context.read<GlobalEventHandlerProvider>()),
         child: _SignInContentScreen(),
       );
 }
 
 class _SignInContentScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) =>
-      BlocBuilder<SignInCubit, SignInBaseState>(
-        builder: (context, state) => Scaffold(
-          appBar: AppBar(
-            title: Text(context.localizations.sign_in),
-          ),
-          body: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(child: _SignInForm()),
-              if (context.read<SignInCubit>().state.error.isNotEmpty)
-                Text(
-                  context.localizations
-                      .error(context.read<SignInCubit>().state.error),
-                ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30.0),
-                child: TextButton(
-                  onPressed: () => context.read<SignInCubit>().signIn(),
-                  child: Text(context.localizations.sign_in),
-                ),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text(context.localizations.sign_in),
+        ),
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(child: _SignInForm()),
+            if (context.read<SignInProvider>().error.isNotEmpty)
+              Text(
+                context.localizations
+                    .error(context.read<SignInProvider>().error),
               ),
-            ],
-          ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30.0),
+              child: TextButton(
+                onPressed: () => context.read<SignInProvider>().signIn(),
+                child: Text(context.localizations.sign_in),
+              ),
+            ),
+          ],
         ),
       );
 }
@@ -56,7 +52,7 @@ class _SignInForm extends StatefulWidget {
 class _SignInFormState extends State<_SignInForm> {
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
-  late SignInCubit _signInCubit;
+  late SignInProvider _signInProvider;
 
   @override
   void dispose() {
@@ -68,10 +64,10 @@ class _SignInFormState extends State<_SignInForm> {
   @override
   void initState() {
     super.initState();
-    _signInCubit = context.read<SignInCubit>();
+    _signInProvider = context.read<SignInProvider>();
     // TODO: This should be bound
-    _emailTextController.text = _signInCubit.state.email ?? '';
-    _passwordTextController.text = _signInCubit.state.password ?? '';
+    _emailTextController.text = _signInProvider.email;
+    _passwordTextController.text = _signInProvider.password;
   }
 
   @override
@@ -82,7 +78,7 @@ class _SignInFormState extends State<_SignInForm> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: _emailTextController,
-              onChanged: (String text) => _signInCubit.changeEmail(text),
+              onChanged: (String text) => _signInProvider.changeEmail(text),
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 labelText: context.localizations.mail,
@@ -95,7 +91,7 @@ class _SignInFormState extends State<_SignInForm> {
               obscureText: true,
               controller: _passwordTextController,
               onChanged: (String password) =>
-                  _signInCubit.changePassword(password),
+                  _signInProvider.changePassword(password),
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 labelText: context.localizations.password,

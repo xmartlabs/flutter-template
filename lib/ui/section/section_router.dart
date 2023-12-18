@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/ui/extensions/context_extensions.dart';
-import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
+import 'package:flutter_template/ui/section/error_handler/cubit/global_event_handler_cubit.dart';
+import 'package:flutter_template/ui/section/error_handler/global_event_handler_provider.dart';
+import 'package:provider/provider.dart';
 
 @RoutePage()
 class AuthenticatedSectionRouter extends SectionRouter {
@@ -14,15 +15,56 @@ class UnauthenticatedSectionRouter extends SectionRouter {
   const UnauthenticatedSectionRouter({super.key});
 }
 
+class ProviderListener extends StatefulWidget {
+  final ChangeNotifier provider;
+  final VoidCallback callback;
+  final Widget child;
+  const ProviderListener({
+    required this.provider,
+    required this.callback,
+    required this.child,
+    super.key,
+  });
+
+  @override
+  State<ProviderListener> createState() => _ProviderListenerState();
+}
+
+class _ProviderListenerState extends State<ProviderListener> {
+  @override
+  void initState() {
+    widget.provider.addListener(() {
+      widget.callback();
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
+}
+
 class SectionRouter extends StatelessWidget {
   const SectionRouter({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
-        create: (BuildContext context) => GlobalEventHandlerCubit(),
-        child: BlocListener<GlobalEventHandlerCubit, GlobalEventHandlerState>(
-          listener: _handleStateChanges,
-          child: const AutoRouter(),
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+        create: (BuildContext context) => GlobalEventHandlerProvider(),
+        child: const _Content(),
+      );
+}
+
+class _Content extends StatelessWidget {
+  const _Content({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) => ProviderListener(
+        provider: context.read<GlobalEventHandlerProvider>(),
+        child: const AutoRouter(),
+        callback: () => _handleStateChanges(
+          context,
+          context.read<GlobalEventHandlerProvider>().state,
         ),
       );
 
