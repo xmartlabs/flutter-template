@@ -16,5 +16,5 @@ For comprehensive documentation on our design system, including guidelines, prin
 ### Contributing
 We welcome contributions! If you find a bug or have a feature request, please open an [issue].
 
-[issue]: https://github.com/xmartlabs/flutter-template
+[issue]: https://github.com/xmartlabs/flutter-template/issues
 [Design System]: https://www.figma.com/file/OWDUY4WaDjyfiOE6Z8mfsC/XL---Tourmaline?node-id=0%3A1&mode=dev
