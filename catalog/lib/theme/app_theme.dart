@@ -129,22 +129,19 @@ class AppTheme {
       ),
       checkboxTheme: CheckboxThemeData(
         checkColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) =>
-              AppColors.getColorScheme().primary.shade600,
+          (Set<MaterialState> states) => _colors.primary.shade600,
         ),
         fillColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) =>
-              AppColors.getColorScheme().textColor.shade100,
+          (Set<MaterialState> states) => _colors.textColor.shade100,
         ),
         side: BorderSide(
           width: 2,
-          color: AppColors.getColorScheme().textColor.shade400,
+          color: _colors.textColor.shade400,
         ),
       ),
       radioTheme: RadioThemeData(
         fillColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) =>
-              AppColors.getColorScheme().textColor.shade400,
+          (Set<MaterialState> states) => _colors.textColor.shade400,
         ),
       ),
     );
