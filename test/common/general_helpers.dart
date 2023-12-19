@@ -1,4 +1,4 @@
 import 'package:flutter_template/core/source/common/app_database.dart';
 
-Future<AppDatabase> setupFloorDatabase() async =>
+Future<AppDatabase> setupFloorDatabase() =>
     $FloorAppDatabase.inMemoryDatabaseBuilder().build();
