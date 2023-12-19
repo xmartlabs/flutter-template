@@ -61,6 +61,9 @@ dev_dependencies:
   freezed: 2.4.1
   json_serializable: 6.7.1
   lints: 3.0.0
+  mocktail: 1.0.1
+  integration_test:
+    sdk: flutter
 
 flutter:
   generate: true
