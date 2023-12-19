@@ -16,9 +16,6 @@ The router has two subgraphs, the `UnauthenticatedRouter` used for unauthenticat
 
 The [app router][app_router] is provided by [auto_route][auto_route], and contains the previous sections with some nested screens.
 
-The [theme folder][theme] contains the theme definitions, for example colors, styles and dimensions. 
-Another important plugin related to the UI is [flutter_screenutil][flutter_screenutil], used for adapting screen and font size.
-
 ### Core section
 
 The models are defined in the [models folder][models]. If you need to use different models for database or networking, you can create them in `db` and `service` folders respectively.
@@ -114,7 +111,6 @@ In order to setup pre-push hook you need to go to the root of the project and ru
 [app_router]: https://github.com/xmartlabs/flutter-template/blob/main/lib/ui/app_router.dart
 [bloc]: https://bloclibrary.dev
 [auto_route]: https://pub.dev/packages/auto_route
-[theme]: https://github.com/xmartlabs/flutter-template/tree/main/lib/ui/theme
 [flutter_screenutil]: https://pub.dev/packages/flutter_screenutil
 [models]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/model
 [repository_folder]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/repository
