@@ -76,17 +76,17 @@ extension _CatalogScreenExtensions on _CatalogTypography {
       case _CatalogTypography.bodySmall:
         return context.theme.textStyles.bodySmall!;
       case _CatalogTypography.bodyXSmall:
-        return context.theme.textStyles.bodyXSmall;
+        return context.theme.textStylesExtension.bodyXSmall;
       case _CatalogTypography.buttonXSmall:
-        return context.theme.textStyles.buttonXSmall;
+        return context.theme.textStylesExtension.buttonXSmall;
       case _CatalogTypography.buttonLarge:
-        return context.theme.textStyles.buttonLarge;
+        return context.theme.textStylesExtension.buttonLarge;
       case _CatalogTypography.buttonMedium:
-        return context.theme.textStyles.buttonMedium;
+        return context.theme.textStylesExtension.buttonMedium;
       case _CatalogTypography.buttonSmall:
-        return context.theme.textStyles.buttonSmall;
+        return context.theme.textStylesExtension.buttonSmall;
       case _CatalogTypography.buttonXLarge:
-        return context.theme.textStyles.buttonXLarge;
+        return context.theme.textStylesExtension.buttonXLarge;
     }
   }
 }

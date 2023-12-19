@@ -88,4 +88,17 @@ class ColorsExtensions extends ThemeExtension<ColorsExtensions> {
       danger: Color.lerp(danger, other.danger, t),
     );
   }
+
+  @override
+  Object get type => ColorsExtensions;
+}
+
+extension ColorExtension on Color {
+  Color? getShade(int shade) {
+    if (this is MaterialColor) {
+      return (this as MaterialColor)[shade]!;
+    } else {
+      return null;
+    }
+  }
 }

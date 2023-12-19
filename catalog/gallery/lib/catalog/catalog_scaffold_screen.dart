@@ -17,22 +17,24 @@ class CatalogScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: context.theme.colors.primary, //.shade400,
+          backgroundColor: context.theme.colors.primary.shade400,
           leading: showBack ?? true
               ? IconButton(
                   icon: Icon(
                     Icons.arrow_back,
-                    color: context.theme.colors.primary, //.shade100,
+                    color: context.theme.colors.primary.shade100,
                   ),
                   onPressed: () => context.router.pop(),
                 )
               : null,
           title: Text(
             title,
-            style: TextStyle(color: context.theme.customColors.textColor, )//.shade100),
+            style: TextStyle(
+              color: context.theme.customColors.textColor,//.getSahde(100),
+            ),
           ),
         ),
-        backgroundColor: context.theme.colors.primary, //.shade200,
+        backgroundColor: context.theme.customColors.textColor,//.shade1000,
         body: SafeArea(
           child: child,
         ),
