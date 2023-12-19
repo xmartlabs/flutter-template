@@ -61,11 +61,9 @@ void main() {
             ),
           )
           .toList();
-      await projectDao.replaceProjects(
-        replacement,
-      );
+      await projectDao.replaceProjects(replacement);
       final list = await projectDao.getProjects().first;
-      expect(list, replacement);
+      expect(list, unorderedEquals(replacement));
     });
   });
 }

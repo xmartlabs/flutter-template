@@ -1,6 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/repository/project_repository.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:flutter_template/ui/welcome/welcome_cubit.dart';
@@ -8,18 +9,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../common/mocks.dart';
+import '../common/cubit_mocks.dart';
+import '../common/data_mocks.dart';
 import '../common/project_helpers.dart';
 
 void main() {
-  // ignore: unused_local_variable
   late GetIt getIt;
   late SessionRepository sessionRepository;
   late ProjectRepository projectRepository;
   late WelcomeCubit welcomeCubit;
 
   setUp(() {
-    getIt = GetIt.instance
+    getIt = DiProvider.instance
       ..registerSingleton<SessionRepository>(
         sessionRepository = MockSessionRepository(),
       )

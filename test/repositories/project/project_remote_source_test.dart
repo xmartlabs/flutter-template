@@ -4,7 +4,8 @@ import 'package:flutter_template/core/source/project_remote_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../common/mocks.dart';
+import '../../common/data_mocks.dart';
+import '../../common/general_helpers.dart';
 import '../../common/project_helpers.dart';
 
 void main() {
@@ -21,11 +22,7 @@ void main() {
     final requestOptions = RequestOptions(path: urlGetProjects);
     final projects = generateProjects(1);
     when(() => httpService.get(urlGetProjects)).thenAnswer(
-      (_) async => Response(
-        data: projects.map((e) => e.toJson()).toList(),
-        statusCode: 200,
-        requestOptions: requestOptions,
-      ),
+      (_) async => successResponse(projects, requestOptions),
     );
 
     final result = await projectRemoteSource.getProjects();
@@ -36,11 +33,7 @@ void main() {
     final requestOptions = RequestOptions(path: urlGetProjects);
 
     when(() => httpService.get(urlGetProjects)).thenAnswer(
-      (_) async => Response(
-        data: [],
-        statusCode: 200,
-        requestOptions: requestOptions,
-      ),
+      (_) async => successResponse([], requestOptions),
     );
 
     final result = await projectRemoteSource.getProjects();

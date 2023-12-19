@@ -12,8 +12,8 @@ import 'package:flutter_template/core/source/common/app_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../common/data_mocks.dart';
 import '../../common/general_helpers.dart';
-import '../../common/mocks.dart';
 
 void main() {
   late AuthLocalSource authLocalSource;

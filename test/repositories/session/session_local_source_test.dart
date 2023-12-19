@@ -5,7 +5,7 @@ import 'package:flutter_template/core/source/auth_local_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../common/mocks.dart';
+import '../../common/data_mocks.dart';
 
 void main() {
   late LocalSharedPreferencesStorageMock storage;

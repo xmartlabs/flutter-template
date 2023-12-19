@@ -9,7 +9,7 @@ List<ProjectDbEntity> generateProjectDbEntities(int count) => Iterable.generate(
         description: 'Test $index project description',
         url: 'test$index.com',
         imageUrl: '',
-        language: 'ES',
+        language: 'Dart',
       ),
     ).toList();
 
@@ -21,6 +21,6 @@ List<Project> generateProjects(int count) => Iterable.generate(
         description: 'Test $index project description',
         url: 'test$index.com',
         imageUrl: '',
-        language: 'ES',
+        language: 'Dart',
       ),
     ).toList();

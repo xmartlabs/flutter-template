@@ -8,7 +8,7 @@ import 'package:flutter_template/core/source/common/http_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../common/mocks.dart';
+import '../../common/data_mocks.dart';
 
 void main() {
   late HttpService httpService;

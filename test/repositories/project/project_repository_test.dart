@@ -6,7 +6,7 @@ import 'package:flutter_template/core/source/project_remote_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../common/mocks.dart';
+import '../../common/data_mocks.dart';
 import '../../common/project_helpers.dart';
 
 void main() {

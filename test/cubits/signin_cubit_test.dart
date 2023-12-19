@@ -5,7 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../common/mocks.dart';
+import '../common/cubit_mocks.dart';
+import '../common/data_mocks.dart';
 
 void main() {
   late GetIt getIt;
