@@ -11,7 +11,6 @@ class CatalogAppColorsScreen extends StatelessWidget {
   Widget build(BuildContext context) => CatalogScaffold(
         title: 'COLORS',
         child: ListView.separated(
-          shrinkWrap: true,
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
           itemCount: _CatalogColors.values.length,

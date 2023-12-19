@@ -34,5 +34,6 @@ extension ThemeExtensions on ThemeData {
 
   CustomTextStyles get customTextStyles => extension<CustomTextStyles>()!;
 
-  TextTheme get textStyles => AppTextStyles.getDefaultAppStyles().getThemeData();
+  TextTheme get textStyles =>
+      AppTextStyles.getDefaultAppStyles().getThemeData();
 }

@@ -34,7 +34,7 @@ class CatalogScaffold extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: context.theme.customColors.textColor!.getShade(1000),
+        backgroundColor: context.theme.customColors.textColor!.getShade(100),
         body: SafeArea(
           child: child,
         ),
