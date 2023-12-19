@@ -7,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 const FontWeight _semiboldWeight = FontWeight.w600;
 
 @immutable
-class TextStylesExtensions extends ThemeExtension<TextStylesExtensions> {
-  const TextStylesExtensions({
+class CustomTextStyles extends ThemeExtension<CustomTextStyles> {
+  const CustomTextStyles({
     required this.tinyText,
     required this.customOverline,
     required this.buttonXLarge,
@@ -32,7 +32,7 @@ class TextStylesExtensions extends ThemeExtension<TextStylesExtensions> {
   final TextStyle bodyXSmall;
   final TextStyle labelXSmall;
 
-  static TextStylesExtensions getAppStyles() =>  TextStylesExtensions(
+  static CustomTextStyles getCustomTextStyles() =>  CustomTextStyles(
     tinyText: _robotoTextStyle(10.sp, FontWeight.normal),
     customOverline: _robotoTextStyle(10.sp, FontWeight.normal),
     buttonXLarge: _robotoTextStyle(24.sp, _semiboldWeight),
@@ -56,15 +56,15 @@ class TextStylesExtensions extends ThemeExtension<TextStylesExtensions> {
       );
 
   @override
-  TextStylesExtensions copyWith({MaterialColor? primary}) =>
-      TextStylesExtensions.getAppStyles();
+  CustomTextStyles copyWith({MaterialColor? primary}) =>
+      CustomTextStyles.getCustomTextStyles();
 
   @override
-  TextStylesExtensions lerp(TextStylesExtensions? other, double t) {
-    if (other is! TextStylesExtensions) {
+  CustomTextStyles lerp(CustomTextStyles? other, double t) {
+    if (other is! CustomTextStyles) {
       return this;
     }
-    return TextStylesExtensions(
+    return CustomTextStyles(
       tinyText: TextStyle.lerp(tinyText, other.tinyText, t)!,
       customOverline: TextStyle.lerp(customOverline, other.customOverline, t)!,
       buttonXLarge: TextStyle.lerp(buttonXLarge, other.buttonXLarge, t)!,
@@ -79,5 +79,5 @@ class TextStylesExtensions extends ThemeExtension<TextStylesExtensions> {
   }
 
   @override
-  Object get type => TextStylesExtensions;
+  Object get type => CustomTextStyles;
 }

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class AppDimensExtensions extends ThemeExtension<AppDimensExtensions> {
+class AppDimension extends ThemeExtension<AppDimension> {
   final int spacing2;
   final int spacing4;
   final int spacing8;
@@ -10,7 +10,7 @@ class AppDimensExtensions extends ThemeExtension<AppDimensExtensions> {
   final int spacing20;
   final int spacing24;
 
-  AppDimensExtensions({
+  AppDimension({
     required this.spacing2,
     required this.spacing4,
     required this.spacing8,
@@ -20,7 +20,7 @@ class AppDimensExtensions extends ThemeExtension<AppDimensExtensions> {
     required this.spacing24,
   });
 
-  static AppDimensExtensions getDimensions() => AppDimensExtensions(
+  static AppDimension getDefaultDimensions() => AppDimension(
         spacing2: 2,
         spacing4: 4,
         spacing8: 8,
@@ -31,15 +31,15 @@ class AppDimensExtensions extends ThemeExtension<AppDimensExtensions> {
       );
 
   @override
-  AppDimensExtensions copyWith({MaterialColor? primary}) =>
-      AppDimensExtensions.getDimensions();
+  AppDimension copyWith({MaterialColor? primary}) =>
+      AppDimension.getDefaultDimensions();
 
   @override
-  AppDimensExtensions lerp(AppDimensExtensions? other, double t) {
-    if (other is! AppDimensExtensions) {
+  AppDimension lerp(AppDimension? other, double t) {
+    if (other is! AppDimension) {
       return this;
     }
-    return AppDimensExtensions(
+    return AppDimension(
       spacing2: lerpInt(spacing2, other.spacing2, t),
       spacing4: lerpInt(spacing2, other.spacing2, t),
       spacing8: lerpInt(spacing2, other.spacing2, t),

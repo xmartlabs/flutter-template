@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 // Colors name extracted from https://www.color-name.com
 @immutable
-class ColorsSchemeExtensions extends ColorScheme {
+class AppColorScheme extends ColorScheme {
   @override
   final Color onPrimary;
   @override
@@ -16,7 +16,7 @@ class ColorsSchemeExtensions extends ColorScheme {
   @override
   final MaterialColor onSurface;
 
-  ColorsSchemeExtensions({
+  AppColorScheme({
     required ColorScheme colorScheme,
     required this.onPrimary,
     required this.onSurface,
@@ -57,7 +57,7 @@ class ColorsSchemeExtensions extends ColorScheme {
           surfaceTint: colorScheme.surfaceTint,
         );
 
-  static ColorsSchemeExtensions getColorScheme() => ColorsSchemeExtensions(
+  static AppColorScheme getDefaultColorScheme() => AppColorScheme(
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.light,
           seedColor: const MaterialColor(

@@ -30,11 +30,11 @@ class CatalogScaffold extends StatelessWidget {
           title: Text(
             title,
             style: TextStyle(
-              color: context.theme.customColors.textColor,//.getSahde(100),
+              color: context.theme.customColors.textColor!.getShade(100),
             ),
           ),
         ),
-        backgroundColor: context.theme.customColors.textColor,//.shade1000,
+        backgroundColor: context.theme.customColors.textColor!.getShade(1000),
         body: SafeArea(
           child: child,
         ),

@@ -21,7 +21,6 @@ class AppTextStyles extends TextTheme {
     super.labelLarge,
     super.labelMedium,
     super.labelSmall,
-    labelXSmall,
   });
 
   factory AppTextStyles.fromTextTheme({
@@ -52,7 +51,7 @@ class AppTextStyles extends TextTheme {
         color: Colors.white,
       );
 
-  static AppTextStyles getAppStyles() => AppTextStyles.fromTextTheme(
+  static AppTextStyles getDefaultAppStyles() => AppTextStyles.fromTextTheme(
         textTheme: GoogleFonts.robotoTextTheme().copyWith(
           labelLarge: _robotoTextStyle(20.sp, FontWeight.normal),
           labelMedium: _robotoTextStyle(16.sp, FontWeight.normal),
@@ -62,7 +61,7 @@ class AppTextStyles extends TextTheme {
         ),
       );
 
-  TextTheme getThemeData() => getAppStyles();
+  TextTheme getThemeData() => getDefaultAppStyles();
 }
 
 extension TextStyleExtensions on TextStyle {

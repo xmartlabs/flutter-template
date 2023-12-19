@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class ColorsExtensions extends ThemeExtension<ColorsExtensions> {
-  const ColorsExtensions({
+class CustomColors extends ThemeExtension<CustomColors> {
+  const CustomColors({
     required this.textColor,
     required this.info,
     required this.success,
@@ -18,7 +18,7 @@ class ColorsExtensions extends ThemeExtension<ColorsExtensions> {
   final Color? warning;
   final Color? danger;
 
-  static ColorsExtensions getColorsExtensions() => const ColorsExtensions(
+  static CustomColors getCustomColors() => const CustomColors(
         textColor: MaterialColor(
           0xff414158,
           <int, Color>{
@@ -72,15 +72,15 @@ class ColorsExtensions extends ThemeExtension<ColorsExtensions> {
       );
 
   @override
-  ColorsExtensions copyWith({MaterialColor? primary}) =>
-      ColorsExtensions.getColorsExtensions();
+  CustomColors copyWith({MaterialColor? primary}) =>
+      CustomColors.getCustomColors();
 
   @override
-  ColorsExtensions lerp(ColorsExtensions? other, double t) {
-    if (other is! ColorsExtensions) {
+  CustomColors lerp(CustomColors? other, double t) {
+    if (other is! CustomColors) {
       return this;
     }
-    return ColorsExtensions(
+    return CustomColors(
       textColor: Color.lerp(textColor, other.textColor, t),
       info: Color.lerp(info, other.info, t),
       success: Color.lerp(success, other.success, t),
@@ -90,7 +90,7 @@ class ColorsExtensions extends ThemeExtension<ColorsExtensions> {
   }
 
   @override
-  Object get type => ColorsExtensions;
+  Object get type => CustomColors;
 }
 
 extension ColorExtension on Color {
