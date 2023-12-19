@@ -21,16 +21,40 @@ abstract class _$CatalogRouter extends RootStackRouter {
         child: const CatalogAppButtonScreen(),
       );
     },
+    CatalogAppCheckboxRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CatalogAppCheckboxScreen(),
+      );
+    },
     CatalogAppColorsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CatalogAppColorsScreen(),
       );
     },
+    CatalogAppRadioButtonRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CatalogAppRadioButtonScreen(),
+      );
+    },
     CatalogAppTypographyRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CatalogAppTypographyScreen(),
+      );
+    },
+    CatalogDialogRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CatalogDialogScreen(),
+      );
+    },
+    CatalogDropdownRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CatalogDropdownScreen(),
       );
     },
     CatalogMainRoute.name: (routeData) {
@@ -63,6 +87,20 @@ class CatalogAppButtonRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CatalogAppCheckboxScreen]
+class CatalogAppCheckboxRoute extends PageRouteInfo<void> {
+  const CatalogAppCheckboxRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogAppCheckboxRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogAppCheckboxRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [CatalogAppColorsScreen]
 class CatalogAppColorsRoute extends PageRouteInfo<void> {
   const CatalogAppColorsRoute({List<PageRouteInfo>? children})
@@ -77,6 +115,20 @@ class CatalogAppColorsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CatalogAppRadioButtonScreen]
+class CatalogAppRadioButtonRoute extends PageRouteInfo<void> {
+  const CatalogAppRadioButtonRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogAppRadioButtonRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogAppRadioButtonRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [CatalogAppTypographyScreen]
 class CatalogAppTypographyRoute extends PageRouteInfo<void> {
   const CatalogAppTypographyRoute({List<PageRouteInfo>? children})
@@ -86,6 +138,34 @@ class CatalogAppTypographyRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CatalogAppTypographyRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CatalogDialogScreen]
+class CatalogDialogRoute extends PageRouteInfo<void> {
+  const CatalogDialogRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogDialogRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogDialogRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CatalogDropdownScreen]
+class CatalogDropdownRoute extends PageRouteInfo<void> {
+  const CatalogDropdownRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogDropdownRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogDropdownRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
