@@ -27,6 +27,7 @@ class CatalogDropdownScreen extends StatelessWidget {
                   (value: 5, label: 'Option 5'),
                   (value: 6, label: 'Option 6'),
                 ],
+                onSelected: (int? value) {},
               ),
             ],
           ),
