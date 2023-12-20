@@ -13,7 +13,7 @@ Future main() async {
     () async {
       final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-      await _initSdks();
+      await initSdks();
       runApp(const MyApp());
       FlutterNativeSplash.remove();
     },
@@ -22,7 +22,8 @@ Future main() async {
   );
 }
 
-Future _initSdks() async {
+@visibleForTesting
+Future initSdks() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Logger.init();
   await Config.initialize();

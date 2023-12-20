@@ -26,7 +26,11 @@ class _WelcomeContentScreen extends StatelessWidget {
       BlocBuilder<WelcomeCubit, WelcomeBaseState>(
         builder: (context, state) => Scaffold(
           appBar: AppBar(
-            title: Text(context.localizations.xmartlabs_projects),
+            title: Text(
+              context.localizations.xmartlabs_projects,
+              style: context.theme.textStyles.titleMedium
+                  ?.copyWith(color: context.theme.colors.onPrimary),
+            ),
             actions: [
               TextButton(
                 style: ButtonStyle(
@@ -35,7 +39,11 @@ class _WelcomeContentScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () => context.read<WelcomeCubit>().logOut(),
-                child: Text(context.localizations.log_out),
+                child: Text(
+                  context.localizations.log_out,
+                  style: context.theme.textStyles.bodyMedium
+                      ?.copyWith(color: context.theme.colors.onPrimary),
+                ),
               ),
             ],
           ),
