@@ -17,9 +17,9 @@ class CatalogDropdownScreen extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 30.h),
-              const AppSelectDropdown<int>(
+              AppSelectDropdown<int>(
                 label: 'Select',
-                items: [
+                items: const [
                   (value: 1, label: 'Option 1'),
                   (value: 2, label: 'Option 2'),
                   (value: 3, label: 'Option 3'),
@@ -27,7 +27,7 @@ class CatalogDropdownScreen extends StatelessWidget {
                   (value: 5, label: 'Option 5'),
                   (value: 6, label: 'Option 6'),
                 ],
-                onSelected: (int? value) {},
+                onChanged: (int? value) {},
               ),
             ],
           ),
