@@ -28,13 +28,13 @@ class AppDialog extends StatelessWidget {
               onPressed: Navigator.of(context).pop,
               icon: Icon(
                 Icons.close,
-                color: context.theme.customColors.textColor!.getShade(300),
+                color: context.theme.customColors.textColor!.shade300,
               ),
             ),
           ],
         ),
         content: content != null ? Text(content!) : null,
-        actionsAlignment: _getAligment(),
+        actionsAlignment: _getAlignment(),
         actions: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -48,7 +48,7 @@ class AppDialog extends StatelessWidget {
                       style:
                           context.theme.customTextStyles.buttonMedium.copyWith(
                         color:
-                            context.theme.customColors.textColor!.getShade(300),
+                            context.theme.customColors.textColor!.shade300,
                       ),
                     ),
                   ),
@@ -61,7 +61,7 @@ class AppDialog extends StatelessWidget {
                       style:
                           context.theme.customTextStyles.buttonMedium.copyWith(
                         color:
-                            context.theme.customColors.textColor!.getShade(100),
+                            context.theme.customColors.textColor!.shade100,
                       ),
                     ),
                     onPressed: () {
@@ -77,7 +77,7 @@ class AppDialog extends StatelessWidget {
         ],
       );
 
-  MainAxisAlignment _getAligment() {
+  MainAxisAlignment _getAlignment() {
     if (actionButtonText == null) {
       return MainAxisAlignment.start;
     } else if (cancelButtonText == null) {

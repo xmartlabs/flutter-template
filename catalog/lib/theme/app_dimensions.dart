@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AppDimension extends ThemeExtension<AppDimension> {
@@ -40,18 +39,15 @@ class AppDimension extends ThemeExtension<AppDimension> {
       return this;
     }
     return AppDimension(
-      spacing2: lerpInt(spacing2, other.spacing2, t),
-      spacing4: lerpInt(spacing2, other.spacing2, t),
-      spacing8: lerpInt(spacing2, other.spacing2, t),
-      spacing12: lerpInt(spacing2, other.spacing2, t),
-      spacing16: lerpInt(spacing2, other.spacing2, t),
-      spacing20: lerpInt(spacing2, other.spacing2, t),
-      spacing24: lerpInt(spacing2, other.spacing2, t),
+      spacing2: _lerpInt(spacing2, other.spacing2, t).toInt(),
+      spacing4: _lerpInt(spacing4, other.spacing4, t).toInt(),
+      spacing8: _lerpInt(spacing8, other.spacing8, t).toInt(),
+      spacing12: _lerpInt(spacing12, other.spacing12, t).toInt(),
+      spacing16: _lerpInt(spacing16, other.spacing16, t).toInt(),
+      spacing20: _lerpInt(spacing20, other.spacing20, t).toInt(),
+      spacing24: _lerpInt(spacing24, other.spacing24, t).toInt(),
     );
   }
 
-  int lerpInt(int a, int b, double t) {
-    t = t.clamp(0.0, 1.0);
-    return ((1 - t) * a + t * b).round();
-  }
+  double _lerpInt(int a, int b, double t) => a + (b - a) * t;
 }

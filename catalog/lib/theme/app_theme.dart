@@ -1,4 +1,5 @@
 import 'package:catalog/catalog.dart';
+import 'package:catalog/common/helper.dart';
 import 'package:catalog/theme/app_color_scheme.dart';
 import 'package:catalog/theme/custom_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -26,24 +27,24 @@ class AppTheme {
           side: BorderSide(color: colors.surface.shade500),
         ),
         titleTextStyle: customTextStyles.customOverline
-            .copyWith(color: customColors.textColor!.getShade(300))
+            .copyWith(color: customColors.textColor!.shade300)
             .semibold(),
         contentTextStyle: textTheme.bodyMedium
-            ?.copyWith(color: customColors.textColor!.getShade(400)),
+            ?.copyWith(color: customColors.textColor!.shade400),
       ),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: textTheme.bodyMedium
-            ?.copyWith(color: customColors.textColor!.getShade(400)),
+            ?.copyWith(color: customColors.textColor!.shade400),
         filled: true,
         helperStyle: textTheme.bodySmall
-            ?.copyWith(color: customColors.textColor!.getShade(300)!),
+            ?.copyWith(color: customColors.textColor!.shade300),
         hintStyle: textTheme.bodyMedium
-            ?.copyWith(color: customColors.textColor!.getShade(300)),
+            ?.copyWith(color: customColors.textColor!.shade300),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.r),
           borderSide: BorderSide(
             width: 2,
-            color: customColors.textColor!.getShade(100)!,
+            color: customColors.textColor!.shade100!,
           ),
         ),
         fillColor: colors.surface.shade100,
@@ -51,14 +52,14 @@ class AppTheme {
           borderRadius: BorderRadius.circular(4.r),
           borderSide: BorderSide(
             width: 2,
-            color: customColors.textColor!.getShade(200)!,
+            color: customColors.textColor!.shade200!,
           ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.r),
           borderSide: BorderSide(
             width: 2,
-            color: customColors.danger!.getShade(300)!,
+            color: customColors.danger!.shade300!,
           ),
         ),
         focusedBorder: OutlineInputBorder(
@@ -72,7 +73,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(4.r),
           borderSide: BorderSide(
             width: 2,
-            color: customColors.textColor!.getShade(200)!,
+            color: customColors.textColor!.shade200!,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
@@ -117,30 +118,37 @@ class AppTheme {
       ),
       textTheme: textTheme.apply(
         bodyColor: CustomColors.getCustomColors().textColor,
-        displayColor: CustomColors.getCustomColors().textColor!.getShade(500),
+        displayColor: CustomColors.getCustomColors().textColor!.shade500,
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: colors.primary.shade400,
         titleTextStyle: TextStyle(
-          color: CustomColors.getCustomColors().textColor!.getShade(500),
+          color: CustomColors.getCustomColors().textColor!.shade500,
         ),
       ),
       primaryTextTheme: textTheme,
       checkboxTheme: CheckboxThemeData(
         checkColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => colors.primary.shade600,
+          (Set<MaterialState> states) =>
+              getMaterialStatesColor(states, colors.primary.shade600),
         ),
         fillColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => customColors.textColor!.getShade(100),
+          (Set<MaterialState> states) => getMaterialStatesColor(
+            states,
+            customColors.textColor!.shade100!,
+          ),
         ),
         side: BorderSide(
           width: 2,
-          color: customColors.textColor!.getShade(400)!,
+          color: customColors.textColor!.shade400!,
         ),
       ),
       radioTheme: RadioThemeData(
         fillColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => customColors.textColor!.getShade(400),
+          (Set<MaterialState> states) => getMaterialStatesColor(
+            states,
+            customColors.textColor!.shade400!,
+          ),
         ),
       ),
     );

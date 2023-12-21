@@ -28,7 +28,7 @@ class CatalogScaffold extends StatelessWidget {
               : null,
           title: Text(title),
         ),
-        backgroundColor: context.theme.customColors.textColor!.getShade(100),
+        backgroundColor: context.theme.customColors.textColor!.shade100,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

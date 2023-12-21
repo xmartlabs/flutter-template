@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:catalog/theme/app_color_scheme.dart';
 import 'package:catalog/theme/custom_colors.dart';
 import 'package:catalog/theme/custom_text_styles.dart';
+import 'package:catalog/common/helper.dart';
 
 typedef StrokeButton = OutlinedButton;
 typedef GhostButton = TextButton;
@@ -27,7 +28,7 @@ final _appFilledButton = FilledButton.styleFrom(
   ),
   textStyle: CustomTextStyles.getCustomTextStyles().buttonLarge,
   elevation: 0.0,
-  foregroundColor: CustomColors.getCustomColors().textColor!.getShade(100),
+  foregroundColor: CustomColors.getCustomColors().textColor!.shade100,
 );
 
 final _appOutlineButton = OutlinedButton.styleFrom(
@@ -52,85 +53,63 @@ final _appTextButton = TextButton.styleFrom(
 
 final _appSecondaryFilledButton = _appFilledButton.copyWith(
   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return CustomColors.getCustomColors().textColor!.getShade(500);
-      }
-      if (states.contains(MaterialState.disabled)) {
-        return AppColorScheme.getDefaultColorScheme().surface.shade500;
-      }
-      if (states.contains(MaterialState.hovered)) {
-        return AppColorScheme.getDefaultColorScheme().onSurface.shade400;
-      }
-      if (states.contains(MaterialState.focused)) {
-        return CustomColors.getCustomColors().textColor!.getShade(400);
-      }
-      return CustomColors.getCustomColors().textColor!.getShade(300);
-    },
+    (Set<MaterialState> states) => getMaterialStatesColor(
+      states,
+      CustomColors.getCustomColors().textColor!.shade500!,
+      AppColorScheme.getDefaultColorScheme().surface.shade500,
+      AppColorScheme.getDefaultColorScheme().onSurface.shade400,
+      CustomColors.getCustomColors().textColor!.shade400,
+      CustomColors.getCustomColors().textColor!.shade300,
+    ),
   ),
   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) =>
-        CustomColors.getCustomColors().textColor!.getShade(100),
+    (Set<MaterialState> states) => getMaterialStatesColor(
+      states,
+      CustomColors.getCustomColors().textColor!.shade100!,
+    ),
   ),
 );
 
 final _appSecondaryOutlineButton = _appOutlineButton.copyWith(
   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return AppColorScheme.getDefaultColorScheme().surface.shade400;
-      }
-      if (states.contains(MaterialState.disabled)) {
-        return AppColorScheme.getDefaultColorScheme().surface.shade500;
-      }
-      if (states.contains(MaterialState.hovered)) {
-        return AppColorScheme.getDefaultColorScheme().surface.shade300;
-      }
-      if (states.contains(MaterialState.focused)) {
-        return AppColorScheme.getDefaultColorScheme().surface.shade300;
-      }
-      return Colors.transparent;
-    },
+    (Set<MaterialState> states) => getMaterialStatesColor(
+      states,
+      AppColorScheme.getDefaultColorScheme().surface.shade400,
+      AppColorScheme.getDefaultColorScheme().surface.shade500,
+      AppColorScheme.getDefaultColorScheme().surface.shade300,
+      AppColorScheme.getDefaultColorScheme().surface.shade300,
+    ),
   ),
   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return CustomColors.getCustomColors().textColor!.getShade(500);
-      }
-      return CustomColors.getCustomColors().textColor!.getShade(300);
-    },
+    (Set<MaterialState> states) => getMaterialStatesColor(
+      states,
+      CustomColors.getCustomColors().textColor!.shade500!,
+      null,
+      CustomColors.getCustomColors().textColor!.shade300,
+    ),
   ),
   side: MaterialStateProperty.resolveWith<BorderSide?>(
     (Set<MaterialState> states) => BorderSide(
-      color: CustomColors.getCustomColors().textColor!.getShade(300)!,
+      color: CustomColors.getCustomColors().textColor!.shade300!,
     ),
   ),
 );
 
 final _appSecondaryTextButton = _appTextButton.copyWith(
   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return AppColorScheme.getDefaultColorScheme().surface.shade300;
-      }
-      if (states.contains(MaterialState.disabled)) {
-        return AppColorScheme.getDefaultColorScheme().surface.shade500;
-      }
-      if (states.contains(MaterialState.hovered)) {
-        return AppColorScheme.getDefaultColorScheme().surface.shade200;
-      }
-      if (states.contains(MaterialState.focused)) {
-        return AppColorScheme.getDefaultColorScheme().surface.shade200;
-      }
-      return Colors.transparent;
-    },
+    (Set<MaterialState> states) => getMaterialStatesColor(
+      states,
+      AppColorScheme.getDefaultColorScheme().surface.shade300,
+      AppColorScheme.getDefaultColorScheme().surface.shade500,
+      AppColorScheme.getDefaultColorScheme().surface.shade200,
+      AppColorScheme.getDefaultColorScheme().surface.shade200,
+    ),
   ),
   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return CustomColors.getCustomColors().textColor!.getShade(500);
-      }
-      return CustomColors.getCustomColors().textColor!.getShade(300);
-    },
+    (Set<MaterialState> states) => getMaterialStatesColor(
+      states,
+      CustomColors.getCustomColors().textColor!.shade500!,
+      CustomColors.getCustomColors().textColor!.shade300!,
+    ),
   ),
 );
