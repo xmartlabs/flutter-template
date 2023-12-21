@@ -52,6 +52,7 @@ class _AppSelectDropdownState<T> extends State<AppSelectDropdown<T>>
   @override
   void dispose() {
     _buttonFocusNode.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
