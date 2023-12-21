@@ -22,7 +22,6 @@ class AppButtonsStyle {
 }
 
 final _appFilledButton = FilledButton.styleFrom(
-  minimumSize: Size(double.infinity, 50.h),
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(16.r),
   ),
@@ -32,7 +31,6 @@ final _appFilledButton = FilledButton.styleFrom(
 );
 
 final _appOutlineButton = OutlinedButton.styleFrom(
-  minimumSize: Size(double.infinity, 50.h),
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(16.r),
   ),
@@ -45,7 +43,6 @@ final _appOutlineButton = OutlinedButton.styleFrom(
 );
 
 final _appTextButton = TextButton.styleFrom(
-  minimumSize: Size(double.infinity, 50.h),
   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
   textStyle: CustomTextStyles.getCustomTextStyles().buttonLarge,
   elevation: 0.0,
