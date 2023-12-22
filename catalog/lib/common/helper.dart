@@ -8,17 +8,15 @@ Color? getMaterialStatesColor(
   Color? customHoveredColor,
   Color? customFocusedColor,
 ]) {
-  if (states.contains(MaterialState.pressed)) {
-    return baseColor;
+  switch(MaterialState){
+    case MaterialState.disabled: return customDisabledColor;
+    case MaterialState.focused: return customFocusedColor;
+    case MaterialState.hovered:  return customHoveredColor;
+    case MaterialState.pressed:   return baseColor;
+    case MaterialState.dragged:
+    case MaterialState.error:
+    case MaterialState.selected:
+    case MaterialState.scrolledUnder:
+      return defaultColor ?? Colors.transparent;
   }
-  if (states.contains(MaterialState.disabled)) {
-    return customDisabledColor;
-  }
-  if (states.contains(MaterialState.hovered)) {
-    return customHoveredColor;
-  }
-  if (states.contains(MaterialState.focused)) {
-    return customFocusedColor;
-  }
-  return defaultColor ?? Colors.transparent;
 }

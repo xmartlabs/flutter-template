@@ -96,11 +96,8 @@ class CustomColors extends ThemeExtension<CustomColors> {
 extension ColorExtension on Color {
 
   Color? _getShade(int shade) {
-    if (this is MaterialColor) {
-      return (this as MaterialColor)[shade]!;
-    } else {
-      return null;
-    }
+    assert(this is MaterialColor, 'Expected this to be a MaterialColor');
+    return (this as MaterialColor)[shade]!;
   }
 
   Color? get shade100 => _getShade(100);

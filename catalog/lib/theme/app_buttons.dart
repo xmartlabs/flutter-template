@@ -21,13 +21,17 @@ class AppButtonsStyle {
   static AppButtonsStyle getButtonTheme() => AppButtonsStyle();
 }
 
+final customColors = CustomColors.getCustomColors();
+final defaultColorScheme = AppColorScheme.getDefaultColorScheme();
+final customTextStyles = CustomTextStyles.getCustomTextStyles();
+
 final _appFilledButton = FilledButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(16.r),
   ),
-  textStyle: CustomTextStyles.getCustomTextStyles().buttonLarge,
+  textStyle: customTextStyles.buttonLarge,
   elevation: 0.0,
-  foregroundColor: CustomColors.getCustomColors().textColor!.shade100,
+  foregroundColor: customColors.textColor!.shade100,
 );
 
 final _appOutlineButton = OutlinedButton.styleFrom(
@@ -36,15 +40,15 @@ final _appOutlineButton = OutlinedButton.styleFrom(
   ),
   side: BorderSide(
     width: 2,
-    color: AppColorScheme.getDefaultColorScheme().primary,
+    color: defaultColorScheme.primary,
   ),
-  textStyle: CustomTextStyles.getCustomTextStyles().buttonLarge,
+  textStyle: customTextStyles.buttonLarge,
   elevation: 0.0,
 );
 
 final _appTextButton = TextButton.styleFrom(
   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
-  textStyle: CustomTextStyles.getCustomTextStyles().buttonLarge,
+  textStyle: customTextStyles.buttonLarge,
   elevation: 0.0,
 );
 
@@ -52,17 +56,17 @@ final _appSecondaryFilledButton = _appFilledButton.copyWith(
   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
     (Set<MaterialState> states) => getMaterialStatesColor(
       states,
-      CustomColors.getCustomColors().textColor!.shade500!,
-      AppColorScheme.getDefaultColorScheme().surface.shade500,
-      AppColorScheme.getDefaultColorScheme().onSurface.shade400,
-      CustomColors.getCustomColors().textColor!.shade400,
-      CustomColors.getCustomColors().textColor!.shade300,
+      customColors.textColor!.shade500!,
+      defaultColorScheme.surface.shade500,
+      defaultColorScheme.onSurface.shade400,
+      customColors.textColor!.shade400,
+      customColors.textColor!.shade300,
     ),
   ),
   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
     (Set<MaterialState> states) => getMaterialStatesColor(
       states,
-      CustomColors.getCustomColors().textColor!.shade100!,
+      customColors.textColor!.shade100!,
     ),
   ),
 );
@@ -71,23 +75,23 @@ final _appSecondaryOutlineButton = _appOutlineButton.copyWith(
   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
     (Set<MaterialState> states) => getMaterialStatesColor(
       states,
-      AppColorScheme.getDefaultColorScheme().surface.shade400,
-      AppColorScheme.getDefaultColorScheme().surface.shade500,
-      AppColorScheme.getDefaultColorScheme().surface.shade300,
-      AppColorScheme.getDefaultColorScheme().surface.shade300,
+      defaultColorScheme.surface.shade400,
+      defaultColorScheme.surface.shade500,
+      defaultColorScheme.surface.shade300,
+      defaultColorScheme.surface.shade300,
     ),
   ),
   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
     (Set<MaterialState> states) => getMaterialStatesColor(
       states,
-      CustomColors.getCustomColors().textColor!.shade500!,
+      customColors.textColor!.shade500!,
       null,
-      CustomColors.getCustomColors().textColor!.shade300,
+      customColors.textColor!.shade300,
     ),
   ),
   side: MaterialStateProperty.resolveWith<BorderSide?>(
     (Set<MaterialState> states) => BorderSide(
-      color: CustomColors.getCustomColors().textColor!.shade300!,
+      color: customColors.textColor!.shade300!,
     ),
   ),
 );
@@ -96,17 +100,17 @@ final _appSecondaryTextButton = _appTextButton.copyWith(
   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
     (Set<MaterialState> states) => getMaterialStatesColor(
       states,
-      AppColorScheme.getDefaultColorScheme().surface.shade300,
-      AppColorScheme.getDefaultColorScheme().surface.shade500,
-      AppColorScheme.getDefaultColorScheme().surface.shade200,
-      AppColorScheme.getDefaultColorScheme().surface.shade200,
+      defaultColorScheme.surface.shade300,
+      defaultColorScheme.surface.shade500,
+      defaultColorScheme.surface.shade200,
+      defaultColorScheme.surface.shade200,
     ),
   ),
   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
     (Set<MaterialState> states) => getMaterialStatesColor(
       states,
-      CustomColors.getCustomColors().textColor!.shade500!,
-      CustomColors.getCustomColors().textColor!.shade300!,
+      customColors.textColor!.shade500!,
+      customColors.textColor!.shade300!,
     ),
   ),
 );

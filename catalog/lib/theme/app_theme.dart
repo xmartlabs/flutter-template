@@ -156,7 +156,7 @@ class AppTheme {
 }
 
 extension ThemeExtensions on ThemeData {
-  AppColorScheme get colors => AppColorScheme.getDefaultColorScheme();
+  AppColorScheme get colors => _colors.;
 
   CustomColors get customColors => extension<CustomColors>()!;
 
