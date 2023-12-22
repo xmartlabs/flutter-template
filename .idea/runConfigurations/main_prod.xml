@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="main prod" type="FlutterRunConfigurationType" factoryName="Flutter">
+        <option name="additionalArgs" value="--web-port 3003" />
+        <option name="buildFlavor" value="prod" />
+        <option name="envs">
+            <entry key="--dart-define" value="ENV=prod" />
+        </option>
+        <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+        <method v="2" />
+    </configuration>
+</component>
