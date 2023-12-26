@@ -1,5 +1,6 @@
 import 'package:catalog/catalog.dart';
 import 'package:catalog/common/helper.dart';
+import 'package:catalog/extensions/color_extensions.dart';
 import 'package:catalog/theme/app_color_scheme.dart';
 import 'package:catalog/theme/custom_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ class AppTheme {
     final customColors = CustomColors.getCustomColors();
     final customTextStyles = CustomTextStyles.getCustomTextStyles();
     final appDimension = AppDimension.getDefaultDimensions();
+    final buttonTheme =
+        AppButtonsStyle.getButtonTheme(customColors, customTextStyles, colors);
 
     return ThemeData(
       extensions: [customColors, customTextStyles, appDimension],
@@ -108,13 +111,13 @@ class AppTheme {
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
-        style: AppButtonsStyle.getButtonTheme().filledButton,
+        style: buttonTheme.filledButton,
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
-        style: AppButtonsStyle.getButtonTheme().outlineButton,
+        style: buttonTheme.outlineButton,
       ),
       textButtonTheme: TextButtonThemeData(
-        style: AppButtonsStyle.getButtonTheme().textButton,
+        style: buttonTheme.textButton,
       ),
       textTheme: textTheme.apply(
         bodyColor: CustomColors.getCustomColors().textColor,
@@ -128,44 +131,26 @@ class AppTheme {
       ),
       primaryTextTheme: textTheme,
       checkboxTheme: CheckboxThemeData(
-        checkColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) =>
-              getMaterialStatesColor(states, colors.primary.shade600),
-        ),
-        fillColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => getMaterialStatesColor(
-            states,
-            customColors.textColor!.shade100!,
-          ),
-        ),
+        checkColor: getMaterialStatesColors(colors.primary.shade600),
+        fillColor: getMaterialStatesColors(customColors.textColor!.shade100!),
         side: BorderSide(
           width: 2,
           color: customColors.textColor!.shade400!,
         ),
       ),
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => getMaterialStatesColor(
-            states,
-            customColors.textColor!.shade400!,
-          ),
-        ),
+        fillColor: getMaterialStatesColors(customColors.textColor!.shade400!),
       ),
     );
   }
 }
 
 extension ThemeExtensions on ThemeData {
-  AppColorScheme get colors => AppColorScheme.getDefaultColorScheme();
-
   CustomColors get customColors => extension<CustomColors>()!;
 
   AppDimension get dimensions => extension<AppDimension>()!;
 
   CustomTextStyles get customTextStyles => extension<CustomTextStyles>()!;
 
-  TextTheme get textStyles =>
-      AppTextStyles.getDefaultAppStyles().getThemeData();
-
-  AppButtonsStyle get buttonsStyle => AppButtonsStyle.getButtonTheme();
+  TextTheme get textStyles => primaryTextTheme;
 }

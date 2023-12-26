@@ -1,4 +1,5 @@
 import 'package:catalog/catalog.dart';
+import 'package:catalog/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -47,7 +48,7 @@ class _AppRadioButtonState<T> extends State<AppRadioButton<T>> {
           return SizedBox(
             width: 1.sw,
             child: RadioListTile<T>(
-              activeColor: context.theme.colors.primary.shade600,
+              activeColor: context.theme.colorScheme.primary.shade600,
               title: Text(element.label),
               value: element.value,
               groupValue: selectedValue,

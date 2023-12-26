@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:catalog/catalog.dart';
+import 'package:catalog/extensions/color_extensions.dart';
 import 'package:catalog/widgets/app_text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,116 +1,90 @@
+import 'package:catalog/catalog.dart';
+import 'package:catalog/extensions/color_extensions.dart';
+import 'package:catalog/theme/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:catalog/theme/app_color_scheme.dart';
-import 'package:catalog/theme/custom_colors.dart';
-import 'package:catalog/theme/custom_text_styles.dart';
 import 'package:catalog/common/helper.dart';
 
 typedef StrokeButton = OutlinedButton;
 typedef GhostButton = TextButton;
 
 class AppButtonsStyle {
-  final ButtonStyle filledButton = _appFilledButton;
-  final ButtonStyle outlineButton = _appOutlineButton;
-  final ButtonStyle textButton = _appTextButton;
-  final ButtonStyle secondaryFilledButton = _appSecondaryFilledButton;
-  final ButtonStyle secondaryOutlineButton = _appSecondaryOutlineButton;
-  final ButtonStyle secondaryTextButton = _appSecondaryTextButton;
+  final CustomColors customColors2;
+  final CustomTextStyles customTextStyles2;
+  final ColorScheme colorScheme2;
 
-  AppButtonsStyle();
+  late final ButtonStyle filledButton;
+  late final ButtonStyle outlineButton;
+  late final ButtonStyle textButton;
+  late final ButtonStyle secondaryFilledButton;
+  late final ButtonStyle secondaryOutlineButton;
+  late final ButtonStyle secondaryTextButton;
 
-  static AppButtonsStyle getButtonTheme() => AppButtonsStyle();
+  AppButtonsStyle(
+    this.customColors2,
+    this.customTextStyles2,
+    this.colorScheme2,
+  ) {
+    final roundedRectangleBorder = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.r),
+    );
+
+    filledButton = FilledButton.styleFrom(
+      shape: roundedRectangleBorder,
+      textStyle: customTextStyles2.buttonLarge,
+      elevation: 0.0,
+      foregroundColor: customColors2.textColor!.shade100,
+    );
+
+    outlineButton = OutlinedButton.styleFrom(
+      shape: roundedRectangleBorder,
+      side: BorderSide(
+        width: 2,
+        color: colorScheme2.primary,
+      ),
+      textStyle: customTextStyles2.buttonLarge,
+      elevation: 0.0,
+    );
+
+    textButton = TextButton.styleFrom(
+      shape: roundedRectangleBorder,
+      textStyle: customTextStyles2.buttonLarge,
+      elevation: 0.0,
+    );
+
+    secondaryFilledButton = filledButton.copyWith(
+      backgroundColor: getMaterialStatesColors(Colors.black),
+      foregroundColor: getMaterialStatesColors(
+        customColors2.textColor!,
+      ),
+    );
+
+    secondaryOutlineButton = outlineButton.copyWith(
+      backgroundColor: getMaterialStatesColors(
+        colorScheme2.surface,
+      ),
+      foregroundColor: getMaterialStatesColors(
+        customColors2.textColor!,
+      ),
+      side: MaterialStateProperty.resolveWith<BorderSide?>(
+        (Set<MaterialState> states) => BorderSide(
+          color: customColors2.textColor!.shade300!,
+        ),
+      ),
+    );
+
+    secondaryTextButton = textButton.copyWith(
+      backgroundColor: getMaterialStatesColors(colorScheme2.surface),
+      foregroundColor: getMaterialStatesColors(
+        customColors2.textColor!,
+      ),
+    );
+  }
+
+  static AppButtonsStyle getButtonTheme(
+    CustomColors customColors2,
+    CustomTextStyles customTextStyles2,
+    ColorScheme colorScheme2,
+  ) =>
+      AppButtonsStyle(customColors2, customTextStyles2,colorScheme2);
 }
-
-final customColors = CustomColors.getCustomColors();
-final defaultColorScheme = AppColorScheme.getDefaultColorScheme();
-final customTextStyles = CustomTextStyles.getCustomTextStyles();
-
-final _appFilledButton = FilledButton.styleFrom(
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16.r),
-  ),
-  textStyle: customTextStyles.buttonLarge,
-  elevation: 0.0,
-  foregroundColor: customColors.textColor!.shade100,
-);
-
-final _appOutlineButton = OutlinedButton.styleFrom(
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16.r),
-  ),
-  side: BorderSide(
-    width: 2,
-    color: defaultColorScheme.primary,
-  ),
-  textStyle: customTextStyles.buttonLarge,
-  elevation: 0.0,
-);
-
-final _appTextButton = TextButton.styleFrom(
-  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
-  textStyle: customTextStyles.buttonLarge,
-  elevation: 0.0,
-);
-
-final _appSecondaryFilledButton = _appFilledButton.copyWith(
-  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) => getMaterialStatesColor(
-      states,
-      customColors.textColor!.shade500!,
-      defaultColorScheme.surface.shade500,
-      defaultColorScheme.onSurface.shade400,
-      customColors.textColor!.shade400,
-      customColors.textColor!.shade300,
-    ),
-  ),
-  foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) => getMaterialStatesColor(
-      states,
-      customColors.textColor!.shade100!,
-    ),
-  ),
-);
-
-final _appSecondaryOutlineButton = _appOutlineButton.copyWith(
-  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) => getMaterialStatesColor(
-      states,
-      defaultColorScheme.surface.shade400,
-      defaultColorScheme.surface.shade500,
-      defaultColorScheme.surface.shade300,
-      defaultColorScheme.surface.shade300,
-    ),
-  ),
-  foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) => getMaterialStatesColor(
-      states,
-      customColors.textColor!.shade500!,
-      null,
-      customColors.textColor!.shade300,
-    ),
-  ),
-  side: MaterialStateProperty.resolveWith<BorderSide?>(
-    (Set<MaterialState> states) => BorderSide(
-      color: customColors.textColor!.shade300!,
-    ),
-  ),
-);
-
-final _appSecondaryTextButton = _appTextButton.copyWith(
-  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) => getMaterialStatesColor(
-      states,
-      defaultColorScheme.surface.shade300,
-      defaultColorScheme.surface.shade500,
-      defaultColorScheme.surface.shade200,
-      defaultColorScheme.surface.shade200,
-    ),
-  ),
-  foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) => getMaterialStatesColor(
-      states,
-      customColors.textColor!.shade500!,
-      customColors.textColor!.shade300!,
-    ),
-  ),
-);

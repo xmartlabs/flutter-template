@@ -92,22 +92,3 @@ class CustomColors extends ThemeExtension<CustomColors> {
   @override
   Object get type => CustomColors;
 }
-
-extension ColorExtension on Color {
-
-  Color? _getShade(int shade) {
-    assert(this is MaterialColor, 'Expected this to be a MaterialColor');
-    return (this as MaterialColor)[shade]!;
-  }
-
-  Color? get shade100 => _getShade(100);
-  Color? get shade200 => _getShade(200);
-  Color? get shade300 => _getShade(300);
-  Color? get shade400 => _getShade(400);
-  Color? get shade500 => _getShade(500);
-  Color? get shade600 => _getShade(600);
-  Color? get shade700 => _getShade(700);
-  Color? get shade800 => _getShade(800);
-  Color? get shade900 => _getShade(900);
-  Color? get shade1000 => _getShade(1000);
-}

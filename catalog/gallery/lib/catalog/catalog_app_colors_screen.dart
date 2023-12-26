@@ -51,9 +51,9 @@ extension _CatalogScreenExtensions on _CatalogColors {
   Color color(BuildContext context) {
     switch (this) {
       case _CatalogColors.primary:
-        return context.theme.colors.primary;
+        return context.theme.colorScheme.primary;
       case _CatalogColors.secondary:
-        return context.theme.colors.secondary;
+        return context.theme.colorScheme.secondary;
       case _CatalogColors.success:
         return context.theme.customColors.success!;
       case _CatalogColors.info:
