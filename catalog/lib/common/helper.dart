@@ -28,5 +28,5 @@ MaterialStateProperty<Color?> getMaterialStatesColors(
       for (final element in states) {
         return _getMaterialStatesColor(element, baseColor);
       }
-      return null;
+      return baseColor;
     });

@@ -142,7 +142,7 @@ class AppColorScheme extends ColorScheme {
           },
         ),
         onSurface: const MaterialColor(
-          0xfff7fafd,
+          0xff5b5b5b,
           <int, Color>{
             100: Color(0xffffffff),
             200: Color(0xffadadad),
