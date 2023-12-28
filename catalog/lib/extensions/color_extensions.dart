@@ -2,15 +2,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 extension ColorExtension on Color {
-  Color _getShade(int shade) {
-    if (this is MaterialColor) {
-      return (this as MaterialColor)[shade]!;
-    } else {
-      return generateMaterialColor();
-    }
-  }
+  Color _getShade(int shade) => this is MaterialColor
+      ? (this as MaterialColor)[shade]!
+      : _generateMaterialColor();
 
-  MaterialColor generateMaterialColor() => MaterialColor(value, {
+  MaterialColor _generateMaterialColor() => MaterialColor(value, {
         50: _tintColor(0.9),
         100: _tintColor(0.8),
         200: _tintColor(0.6),
