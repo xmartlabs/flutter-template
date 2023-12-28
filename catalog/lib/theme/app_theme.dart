@@ -13,13 +13,16 @@ class AppTheme {
     final textTheme = AppTextStyles.getDefaultAppStyles().getThemeData();
     final colors = AppColorScheme.getDefaultColorScheme();
     final customColors = CustomColors.getCustomColors();
-    final customTextStyles = CustomTextStyles.getCustomTextStyles();
+    final customTextStyles = CustomTextStyles.getCustomTextStyles(customColors);
     final appDimension = AppDimension.getDefaultDimensions();
-    final buttonTheme =
-        AppButtonsStyle.getButtonTheme(customColors, customTextStyles, colors);
+    final buttonTheme = AppButtonsStyle.getDefaultButtonTheme(
+      customColors,
+      customTextStyles,
+      colors,
+    );
 
     return ThemeData(
-      extensions: [customColors, customTextStyles, appDimension],
+      extensions: [customColors, customTextStyles, appDimension, buttonTheme],
       primaryColor: colors.primary,
       colorScheme: colors,
       dialogTheme: DialogTheme(
@@ -153,4 +156,6 @@ extension ThemeExtensions on ThemeData {
   CustomTextStyles get customTextStyles => extension<CustomTextStyles>()!;
 
   TextTheme get textStyles => primaryTextTheme;
+
+  AppButtonsStyle get buttonsStyle => extension<AppButtonsStyle>()!;
 }

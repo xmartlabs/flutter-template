@@ -11,35 +11,35 @@ extension ColorExtension on Color {
   }
 
   MaterialColor generateMaterialColor() => MaterialColor(value, {
-        50: tintColor(this, 0.9),
-        100: tintColor(this, 0.8),
-        200: tintColor(this, 0.6),
-        300: tintColor(this, 0.4),
-        400: tintColor(this, 0.2),
+        50: _tintColor(0.9),
+        100: _tintColor(0.8),
+        200: _tintColor(0.6),
+        300: _tintColor(0.4),
+        400: _tintColor(0.2),
         500: this,
-        600: shadeColor(this, 0.1),
-        700: shadeColor(this, 0.2),
-        800: shadeColor(this, 0.3),
-        900: shadeColor(this, 0.4),
+        600: _shadeColor(0.1),
+        700: _shadeColor(0.2),
+        800: _shadeColor(0.3),
+        900: _shadeColor(0.4),
       });
 
-  int tintValue(int value, double factor) =>
+  int _tintValue(int value, double factor) =>
       max(0, min((value + ((255 - value) * factor)).round(), 255));
 
-  Color tintColor(Color color, double factor) => Color.fromRGBO(
-        tintValue(color.red, factor),
-        tintValue(color.green, factor),
-        tintValue(color.blue, factor),
+  Color _tintColor(double factor) => Color.fromRGBO(
+        _tintValue(red, factor),
+        _tintValue(green, factor),
+        _tintValue(blue, factor),
         1,
       );
 
-  int shadeValue(int value, double factor) =>
+  int _shadeValue(int value, double factor) =>
       max(0, min(value - (value * factor).round(), 255));
 
-  Color shadeColor(Color color, double factor) => Color.fromRGBO(
-        shadeValue(color.red, factor),
-        shadeValue(color.green, factor),
-        shadeValue(color.blue, factor),
+  Color _shadeColor(double factor) => Color.fromRGBO(
+        _shadeValue(red, factor),
+        _shadeValue(green, factor),
+        _shadeValue(blue, factor),
         1,
       );
 

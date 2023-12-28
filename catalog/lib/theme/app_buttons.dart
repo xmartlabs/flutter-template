@@ -8,7 +8,7 @@ import 'package:catalog/common/helper.dart';
 typedef StrokeButton = OutlinedButton;
 typedef GhostButton = TextButton;
 
-class AppButtonsStyle {
+class AppButtonsStyle extends ThemeExtension<AppButtonsStyle> {
   final CustomColors customColors;
   final CustomTextStyles customTextStyles;
   final ColorScheme colorScheme;
@@ -84,10 +84,29 @@ class AppButtonsStyle {
     );
   }
 
-  static AppButtonsStyle getButtonTheme(
-    CustomColors customColors2,
-    CustomTextStyles customTextStyles2,
-    ColorScheme colorScheme2,
+  static AppButtonsStyle getDefaultButtonTheme(
+    CustomColors customColors,
+    CustomTextStyles customTextStyles,
+    ColorScheme colorScheme,
   ) =>
-      AppButtonsStyle(customColors2, customTextStyles2, colorScheme2);
+      AppButtonsStyle(customColors, customTextStyles, colorScheme);
+
+  @override
+  AppButtonsStyle copyWith() => AppButtonsStyle.getDefaultButtonTheme(
+        customColors,
+        customTextStyles,
+        colorScheme,
+      );
+
+  @override
+  AppButtonsStyle lerp(AppButtonsStyle other, double t) {
+    if (other is! CustomTextStyles) {
+      return this;
+    }
+    return AppButtonsStyle(
+      customColors,
+      customTextStyles,
+      colorScheme,
+    );
+  }
 }

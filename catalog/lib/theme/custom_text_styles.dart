@@ -1,8 +1,10 @@
 // ignore_for_file: overridden_fields
 
+import 'package:catalog/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:catalog/theme/custom_colors.dart';
 
 const FontWeight _semiboldWeight = FontWeight.w600;
 
@@ -19,6 +21,7 @@ class CustomTextStyles extends ThemeExtension<CustomTextStyles> {
     required this.buttonTiny,
     required this.labelXSmall,
     required this.bodyXSmall,
+    required this.customColors,
   }) : super();
 
   final TextStyle tinyText;
@@ -31,33 +34,38 @@ class CustomTextStyles extends ThemeExtension<CustomTextStyles> {
   final TextStyle buttonTiny;
   final TextStyle bodyXSmall;
   final TextStyle labelXSmall;
+  final CustomColors customColors;
 
-  static CustomTextStyles getCustomTextStyles() =>  CustomTextStyles(
-    tinyText: _robotoTextStyle(10.sp, FontWeight.normal),
-    customOverline: _robotoTextStyle(10.sp, FontWeight.normal),
-    buttonXLarge: _robotoTextStyle(24.sp, _semiboldWeight),
-    buttonLarge: _robotoTextStyle(16.sp, _semiboldWeight),
-    buttonMedium: _robotoTextStyle(14.sp, _semiboldWeight),
-    buttonSmall: _robotoTextStyle(12.sp, _semiboldWeight),
-    buttonXSmall: _robotoTextStyle(10.sp, _semiboldWeight),
-    bodyXSmall: _robotoTextStyle(12.sp, _semiboldWeight),
-    labelXSmall: _robotoTextStyle(12.sp, _semiboldWeight),
-    buttonTiny: _robotoTextStyle(10.sp, _semiboldWeight),
-  );
+  static CustomTextStyles getCustomTextStyles(CustomColors customColors) =>
+      CustomTextStyles(
+        tinyText: _robotoTextStyle(10.sp, FontWeight.normal, customColors),
+        customOverline:
+            _robotoTextStyle(10.sp, FontWeight.normal, customColors),
+        buttonXLarge: _robotoTextStyle(24.sp, _semiboldWeight, customColors),
+        buttonLarge: _robotoTextStyle(16.sp, _semiboldWeight, customColors),
+        buttonMedium: _robotoTextStyle(14.sp, _semiboldWeight, customColors),
+        buttonSmall: _robotoTextStyle(12.sp, _semiboldWeight, customColors),
+        buttonXSmall: _robotoTextStyle(10.sp, _semiboldWeight, customColors),
+        bodyXSmall: _robotoTextStyle(12.sp, _semiboldWeight, customColors),
+        labelXSmall: _robotoTextStyle(12.sp, _semiboldWeight, customColors),
+        buttonTiny: _robotoTextStyle(10.sp, _semiboldWeight, customColors),
+        customColors: customColors,
+      );
 
   static TextStyle _robotoTextStyle(
-      double fontSize,
-      FontWeight fontWeight,
-      ) =>
+    double fontSize,
+    FontWeight fontWeight,
+    CustomColors customColors,
+  ) =>
       GoogleFonts.roboto(
         fontSize: fontSize,
         fontWeight: fontWeight,
-        color: Colors.white,
+        color: customColors.textColor!.shade500,
       );
 
   @override
   CustomTextStyles copyWith({MaterialColor? primary}) =>
-      CustomTextStyles.getCustomTextStyles();
+      CustomTextStyles.getCustomTextStyles(customColors);
 
   @override
   CustomTextStyles lerp(CustomTextStyles? other, double t) {
@@ -75,6 +83,7 @@ class CustomTextStyles extends ThemeExtension<CustomTextStyles> {
       buttonTiny: TextStyle.lerp(buttonTiny, other.buttonTiny, t)!,
       bodyXSmall: TextStyle.lerp(bodyXSmall, other.bodyXSmall, t)!,
       labelXSmall: TextStyle.lerp(labelXSmall, other.labelXSmall, t)!,
+      customColors: customColors,
     );
   }
 
