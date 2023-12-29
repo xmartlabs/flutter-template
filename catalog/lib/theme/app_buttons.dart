@@ -33,7 +33,7 @@ class AppButtonsStyle extends ThemeExtension<AppButtonsStyle> {
       shape: roundedRectangleBorder,
       textStyle: _customTextStyles.buttonLarge,
       elevation: 0.0,
-      foregroundColor: _customColors.textColor!.shade100,
+      foregroundColor: _customColors.textColor!.getShade(100),
     );
 
     outlineButton = OutlinedButton.styleFrom(
@@ -54,24 +54,20 @@ class AppButtonsStyle extends ThemeExtension<AppButtonsStyle> {
 
     secondaryFilledButton = filledButton.copyWith(
       backgroundColor:
-          getMaterialStatesColors(_customColors.textColor!.shade300!),
+          getMaterialStatesColors(_customColors.textColor!.getShade(300)),
       foregroundColor: getMaterialStatesColors(
-        _customColors.textColor!.shade100!,
+        _customColors.textColor!.getShade(100),
       ),
     );
 
     secondaryOutlineButton = outlineButton.copyWith(
       backgroundColor: getMaterialStatesColors(
-        _colorScheme.surface.shade100!,
+        _colorScheme.surface.getShade(100),
       ),
       foregroundColor: getMaterialStatesColors(
-        _customColors.textColor!.shade300!,
+        _customColors.textColor!.getShade(300),
       ),
-      side: MaterialStateProperty.resolveWith<BorderSide?>(
-        (Set<MaterialState> states) => BorderSide(
-          color: _customColors.textColor!.shade300!,
-        ),
-      ),
+      side: getBorderSidesStates(_customColors.textColor!.getShade(300)),
     );
 
     secondaryTextButton = textButton.copyWith(
@@ -79,7 +75,7 @@ class AppButtonsStyle extends ThemeExtension<AppButtonsStyle> {
         Colors.transparent,
       ),
       foregroundColor: getMaterialStatesColors(
-        _customColors.textColor!.shade300!,
+        _customColors.textColor!.getShade(300),
       ),
     );
   }

@@ -34,11 +34,11 @@ class _CatalogTextFieldsScreenState extends State<CatalogTextFieldsScreen> {
                 hintText: 'Text',
                 suffixIcon: Icon(
                   Icons.close,
-                  color: context.theme.customColors.textColor!.shade200,
+                  color: context.theme.customColors.textColor!.getShade(200),
                 ),
                 prefixIcon: Icon(
                   Icons.close,
-                  color: context.theme.customColors.textColor!.shade200,
+                  color: context.theme.customColors.textColor!.getShade(200),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),

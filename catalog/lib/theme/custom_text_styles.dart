@@ -60,7 +60,7 @@ class CustomTextStyles extends ThemeExtension<CustomTextStyles> {
       GoogleFonts.roboto(
         fontSize: fontSize,
         fontWeight: fontWeight,
-        color: customColors.textColor!.shade500,
+        color: customColors.textColor!.getShade(500),
       );
 
   @override

@@ -51,7 +51,7 @@ class AppTextField extends StatefulWidget {
 class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
-    final textColor = context.theme.customColors.textColor!.shade400;
+    final textColor = context.theme.customColors.textColor!.getShade(400);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

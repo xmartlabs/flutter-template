@@ -22,14 +22,14 @@ class CatalogScaffold extends StatelessWidget {
               ? IconButton(
                   icon: Icon(
                     Icons.chevron_left,
-                    color: context.theme.colorScheme.primary.shade100,
+                    color: context.theme.colorScheme.primary.getShade(100),
                   ),
                   onPressed: () => context.router.pop(),
                 )
               : null,
           title: Text(title),
         ),
-        backgroundColor: context.theme.customColors.textColor!.shade100,
+        backgroundColor: context.theme.customColors.textColor!.getShade(100),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

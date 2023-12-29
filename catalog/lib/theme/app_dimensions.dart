@@ -49,5 +49,6 @@ class AppDimension extends ThemeExtension<AppDimension> {
     );
   }
 
-  double _lerpInt(int a, int b, double t) => a + (b - a) * t;
+  double _lerpInt(int oldValue, int newValue, double factor) =>
+      oldValue + (newValue - oldValue) * factor;
 }

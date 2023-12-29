@@ -48,7 +48,7 @@ class _AppRadioButtonState<T> extends State<AppRadioButton<T>> {
           return SizedBox(
             width: 1.sw,
             child: RadioListTile<T>(
-              activeColor: context.theme.colorScheme.primary.shade600,
+              activeColor: context.theme.colorScheme.primary.getShade(600),
               title: Text(element.label),
               value: element.value,
               groupValue: selectedValue,

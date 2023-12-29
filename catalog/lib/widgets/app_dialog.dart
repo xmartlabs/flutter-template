@@ -29,7 +29,7 @@ class AppDialog extends StatelessWidget {
               onPressed: Navigator.of(context).pop,
               icon: Icon(
                 Icons.close,
-                color: context.theme.customColors.textColor!.shade300,
+                color: context.theme.customColors.textColor!.getShade(300),
               ),
             ),
           ],
@@ -49,7 +49,7 @@ class AppDialog extends StatelessWidget {
                       style:
                           context.theme.customTextStyles.buttonMedium.copyWith(
                         color:
-                            context.theme.customColors.textColor!.shade300,
+                            context.theme.customColors.textColor!.getShade(300),
                       ),
                     ),
                   ),
@@ -62,7 +62,7 @@ class AppDialog extends StatelessWidget {
                       style:
                           context.theme.customTextStyles.buttonMedium.copyWith(
                         color:
-                            context.theme.customColors.textColor!.shade100,
+                            context.theme.customColors.textColor!.getShade(100),
                       ),
                     ),
                     onPressed: () {
