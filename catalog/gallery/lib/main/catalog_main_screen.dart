@@ -15,7 +15,7 @@ class CatalogMainScreen extends StatelessWidget {
         child: ListView.separated(
           shrinkWrap: true,
           separatorBuilder: (BuildContext context, int index) => Divider(
-            color: context.theme.colors.primary,
+            color: context.theme.colorScheme.primary,
           ),
           itemCount: _CatalogScreen.values.length,
           itemBuilder: (BuildContext context, int index) {

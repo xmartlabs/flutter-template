@@ -23,9 +23,9 @@ class CatalogAppTypographyScreen extends StatelessWidget {
                   child: Center(
                     child: Text(
                       element.name.toUpperCase(),
-                      style: element
-                          .textStyle(context)
-                          .copyWith(color: context.theme.colors.textColor),
+                      style: element.textStyle(context).copyWith(
+                            color: context.theme.customColors.textColor,
+                          ),
                     ),
                   ),
                 ),
@@ -76,17 +76,17 @@ extension _CatalogScreenExtensions on _CatalogTypography {
       case _CatalogTypography.bodySmall:
         return context.theme.textStyles.bodySmall!;
       case _CatalogTypography.bodyXSmall:
-        return context.theme.textStyles.bodyXSmall;
+        return context.theme.customTextStyles.bodyXSmall;
       case _CatalogTypography.buttonXSmall:
-        return context.theme.textStyles.buttonXSmall;
+        return context.theme.customTextStyles.buttonXSmall;
       case _CatalogTypography.buttonLarge:
-        return context.theme.textStyles.buttonLarge;
+        return context.theme.customTextStyles.buttonLarge;
       case _CatalogTypography.buttonMedium:
-        return context.theme.textStyles.buttonMedium;
+        return context.theme.customTextStyles.buttonMedium;
       case _CatalogTypography.buttonSmall:
-        return context.theme.textStyles.buttonSmall;
+        return context.theme.customTextStyles.buttonSmall;
       case _CatalogTypography.buttonXLarge:
-        return context.theme.textStyles.buttonXLarge;
+        return context.theme.customTextStyles.buttonXLarge;
     }
   }
 }

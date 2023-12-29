@@ -1,4 +1,5 @@
 import 'package:catalog/catalog.dart';
+import 'package:catalog/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 
 typedef AppDropdownItems<T> = ({T value, String label});
@@ -27,7 +28,7 @@ class _AppDropdownMenuState<T> extends State<AppDropdownMenu<T>> {
         initialSelection: widget.initialValue,
         trailingIcon: Icon(
           Icons.arrow_drop_down_outlined,
-          color: context.theme.colors.textColor.shade200,
+          color: context.theme.customColors.textColor!.getShade(200),
         ),
         controller: _controller,
         onSelected: (T? value) => widget.onSelected(value),
@@ -39,11 +40,11 @@ class _AppDropdownMenuState<T> extends State<AppDropdownMenu<T>> {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color?>(
                     (Set<MaterialState> states) =>
-                        context.theme.colors.surface.shade100,
+                        context.theme.colorScheme.surface.getShade(100),
                   ),
                   foregroundColor: MaterialStateProperty.resolveWith<Color?>(
                     (Set<MaterialState> states) =>
-                        context.theme.colors.textColor.shade400,
+                        context.theme.customColors.textColor!.getShade(400),
                   ),
                 ),
               ),

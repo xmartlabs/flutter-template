@@ -1,5 +1,6 @@
 //ignore_for_file: prefer-moving-to-variable, unused-files, unused-code
 import 'package:catalog/catalog.dart';
+import 'package:catalog/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -50,7 +51,7 @@ class AppTextField extends StatefulWidget {
 class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
-    final colors = context.theme.colors;
+    final textColor = context.theme.customColors.textColor!.getShade(400);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -62,7 +63,7 @@ class _AppTextFieldState extends State<AppTextField> {
               textAlign: TextAlign.left,
               style: context.theme.textStyles.labelMedium!
                   .bold()
-                  .copyWith(color: colors.textColor.shade400),
+                  .copyWith(color: textColor),
             ),
           ),
         SizedBox(height: 5.h),
@@ -74,8 +75,8 @@ class _AppTextFieldState extends State<AppTextField> {
           textAlignVertical: TextAlignVertical.center,
           controller: widget.controller,
           onChanged: widget.onChange,
-          style: context.theme.textStyles.bodyMedium
-              ?.copyWith(color: colors.textColor.shade400),
+          style:
+              context.theme.textStyles.bodyMedium?.copyWith(color: textColor),
           decoration: InputDecoration(
             helperText: widget.helperText,
             hintText: widget.hintText,

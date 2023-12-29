@@ -1,4 +1,5 @@
 import 'package:catalog/catalog.dart';
+import 'package:catalog/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,52 +29,56 @@ class AppDialog extends StatelessWidget {
               onPressed: Navigator.of(context).pop,
               icon: Icon(
                 Icons.close,
-                color: context.theme.colors.textColor.shade300,
+                color: context.theme.customColors.textColor!.getShade(300),
               ),
             ),
           ],
         ),
         content: content != null ? Text(content!) : null,
-        actionsAlignment: _getAligment(),
+        actionsAlignment: _getAlignment(),
         actions: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                if (cancelButtonText != null)
-                  Expanded(
-                    child: TextButton(
-                      onPressed: Navigator.of(context).pop,
-                      child: Text(
-                        cancelButtonText!,
-                        style: context.theme.textStyles.buttonMedium.copyWith(
-                          color: context.theme.colors.textColor.shade300,
-                        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              if (cancelButtonText != null)
+                Expanded(
+                  child: TextButton(
+                    onPressed: Navigator.of(context).pop,
+                    child: Text(
+                      cancelButtonText!,
+                      style:
+                          context.theme.customTextStyles.buttonMedium.copyWith(
+                        color:
+                            context.theme.customColors.textColor!.getShade(300),
                       ),
                     ),
                   ),
-                if (actionButtonText != null)
-                  Expanded(
-                    child: FilledButton(
-                      child: Text(
-                        actionButtonText!,
-                        style: context.theme.textStyles.buttonMedium.copyWith(
-                          color: context.theme.colors.textColor.shade100,
-                        ),
+                ),
+              if (actionButtonText != null)
+                Expanded(
+                  child: FilledButton(
+                    child: Text(
+                      actionButtonText!,
+                      style:
+                          context.theme.customTextStyles.buttonMedium.copyWith(
+                        color:
+                            context.theme.customColors.textColor!.getShade(100),
                       ),
-                      onPressed: () {
-                        if (onActionPressed != null) {
-                          onActionPressed!();
-                        }
-                        Navigator.of(context).pop();
-                      },
                     ),
+                    onPressed: () {
+                      if (onActionPressed != null) {
+                        onActionPressed!();
+                      }
+                      Navigator.of(context).pop();
+                    },
                   ),
-              ],
-            ),
+                ),
+            ],
+          ),
         ],
       );
 
-  MainAxisAlignment _getAligment() {
+  MainAxisAlignment _getAlignment() {
     if (actionButtonText == null) {
       return MainAxisAlignment.start;
     } else if (cancelButtonText == null) {

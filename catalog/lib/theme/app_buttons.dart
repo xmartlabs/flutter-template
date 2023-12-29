@@ -1,132 +1,108 @@
-import 'package:catalog/theme/app_text_styles.dart';
+import 'package:catalog/catalog.dart';
+import 'package:catalog/extensions/color_extensions.dart';
+import 'package:catalog/theme/custom_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:catalog/theme/app_colors.dart';
+import 'package:catalog/common/helper.dart';
 
 typedef StrokeButton = OutlinedButton;
 typedef GhostButton = TextButton;
 
-class AppButtonsStyle {
-  final ButtonStyle filledButton = _appFilledButton;
-  final ButtonStyle outlineButton = _appOutlineButton;
-  final ButtonStyle textButton = _appTextButton;
-  final ButtonStyle secondaryFilledButton = _appSecondaryFilledButton;
-  final ButtonStyle secondaryOutlineButton = _appSecondaryOutlineButton;
-  final ButtonStyle secondaryTextButton = _appSecondaryTextButton;
+class AppButtonsStyle extends ThemeExtension<AppButtonsStyle> {
+  final CustomColors _customColors;
+  final CustomTextStyles _customTextStyles;
+  final ColorScheme _colorScheme;
 
-  AppButtonsStyle();
+  late final ButtonStyle filledButton;
+  late final ButtonStyle outlineButton;
+  late final ButtonStyle textButton;
+  late final ButtonStyle secondaryFilledButton;
+  late final ButtonStyle secondaryOutlineButton;
+  late final ButtonStyle secondaryTextButton;
 
-  static AppButtonsStyle getButtonTheme() => AppButtonsStyle();
+  AppButtonsStyle(
+    this._customColors,
+    this._customTextStyles,
+    this._colorScheme,
+  ) {
+    final roundedRectangleBorder = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.r),
+    );
+
+    filledButton = FilledButton.styleFrom(
+      shape: roundedRectangleBorder,
+      textStyle: _customTextStyles.buttonLarge,
+      elevation: 0.0,
+      foregroundColor: _customColors.textColor!.getShade(100),
+    );
+
+    outlineButton = OutlinedButton.styleFrom(
+      shape: roundedRectangleBorder,
+      side: BorderSide(
+        width: 2,
+        color: _colorScheme.primary,
+      ),
+      textStyle: _customTextStyles.buttonLarge,
+      elevation: 0.0,
+    );
+
+    textButton = TextButton.styleFrom(
+      shape: roundedRectangleBorder,
+      textStyle: _customTextStyles.buttonLarge,
+      elevation: 0.0,
+    );
+
+    secondaryFilledButton = filledButton.copyWith(
+      backgroundColor:
+          getMaterialStatesColors(_customColors.textColor!.getShade(300)),
+      foregroundColor: getMaterialStatesColors(
+        _customColors.textColor!.getShade(100),
+      ),
+    );
+
+    secondaryOutlineButton = outlineButton.copyWith(
+      backgroundColor: getMaterialStatesColors(
+        _colorScheme.surface.getShade(100),
+      ),
+      foregroundColor: getMaterialStatesColors(
+        _customColors.textColor!.getShade(300),
+      ),
+      side: getBorderSidesStates(_customColors.textColor!.getShade(300)),
+    );
+
+    secondaryTextButton = textButton.copyWith(
+      backgroundColor: getMaterialStatesColors(
+        Colors.transparent,
+      ),
+      foregroundColor: getMaterialStatesColors(
+        _customColors.textColor!.getShade(300),
+      ),
+    );
+  }
+
+  static AppButtonsStyle getDefaultButtonTheme(
+    CustomColors customColors,
+    CustomTextStyles customTextStyles,
+    ColorScheme colorScheme,
+  ) =>
+      AppButtonsStyle(customColors, customTextStyles, colorScheme);
+
+  @override
+  AppButtonsStyle copyWith() => AppButtonsStyle.getDefaultButtonTheme(
+        _customColors,
+        _customTextStyles,
+        _colorScheme,
+      );
+
+  @override
+  AppButtonsStyle lerp(AppButtonsStyle other, double t) {
+    if (other is! CustomTextStyles) {
+      return this;
+    }
+    return AppButtonsStyle(
+      _customColors,
+      _customTextStyles,
+      _colorScheme,
+    );
+  }
 }
-
-final _appFilledButton = FilledButton.styleFrom(
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16.r),
-  ),
-  textStyle: AppTextStyles.getAppStyles().buttonLarge,
-  elevation: 0.0,
-  foregroundColor: AppColors.getColorScheme().textColor.shade100,
-);
-
-final _appOutlineButton = OutlinedButton.styleFrom(
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16.r),
-  ),
-  side: BorderSide(
-    width: 2,
-    color: AppColors.getColorScheme().primary,
-  ),
-  textStyle: AppTextStyles.getAppStyles().buttonLarge,
-  elevation: 0.0,
-);
-
-final _appTextButton = TextButton.styleFrom(
-  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
-  textStyle: AppTextStyles.getAppStyles().buttonLarge,
-  elevation: 0.0,
-);
-
-final _appSecondaryFilledButton = _appFilledButton.copyWith(
-  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return AppColors.getColorScheme().textColor.shade500;
-      }
-      if (states.contains(MaterialState.disabled)) {
-        return AppColors.getColorScheme().surface.shade500;
-      }
-      if (states.contains(MaterialState.hovered)) {
-        return AppColors.getColorScheme().onSurface.shade400;
-      }
-      if (states.contains(MaterialState.focused)) {
-        return AppColors.getColorScheme().textColor.shade400;
-      }
-      return AppColors.getColorScheme().textColor.shade300;
-    },
-  ),
-  foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) =>
-        AppColors.getColorScheme().textColor.shade100,
-  ),
-);
-
-final _appSecondaryOutlineButton = _appOutlineButton.copyWith(
-  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return AppColors.getColorScheme().surface.shade400;
-      }
-      if (states.contains(MaterialState.disabled)) {
-        return AppColors.getColorScheme().surface.shade500;
-      }
-      if (states.contains(MaterialState.hovered)) {
-        return AppColors.getColorScheme().surface.shade300;
-      }
-      if (states.contains(MaterialState.focused)) {
-        return AppColors.getColorScheme().surface.shade300;
-      }
-      return Colors.transparent;
-    },
-  ),
-  foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return AppColors.getColorScheme().textColor.shade500;
-      }
-      return AppColors.getColorScheme().textColor.shade300;
-    },
-  ),
-  side: MaterialStateProperty.resolveWith<BorderSide?>(
-    (Set<MaterialState> states) => BorderSide(
-      color: AppColors.getColorScheme().textColor.shade300,
-    ),
-  ),
-);
-
-final _appSecondaryTextButton = _appTextButton.copyWith(
-  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return AppColors.getColorScheme().surface.shade300;
-      }
-      if (states.contains(MaterialState.disabled)) {
-        return AppColors.getColorScheme().surface.shade500;
-      }
-      if (states.contains(MaterialState.hovered)) {
-        return AppColors.getColorScheme().surface.shade200;
-      }
-      if (states.contains(MaterialState.focused)) {
-        return AppColors.getColorScheme().surface.shade200;
-      }
-      return Colors.transparent;
-    },
-  ),
-  foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return AppColors.getColorScheme().textColor.shade500;
-      }
-      return AppColors.getColorScheme().textColor.shade300;
-    },
-  ),
-);
