@@ -3,7 +3,7 @@ import 'package:flutter_template/core/model/service/service_response.dart';
 import 'package:flutter_template/core/source/common/http_service.dart';
 
 class AuthRemoteSource {
-  final HttpServiceDio _httpService;
+  final HttpService _httpService;
 
   static const _urlLogin = 'auth/v1/token';
 

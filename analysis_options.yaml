@@ -112,18 +112,16 @@ dart_code_metrics:
         allowed-duplicated-chains: 3
     - prefer-trailing-comma
 
-
-
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 analyzer:
   exclude:
-    - '**/*.freezed.dart'
-    - '**/*.g.dart'
-    - '**/*.gen.dart'
-    - '**/*.gr.dart'
-    - 'bricks'
-    - 'lib/generated_plugin_registrant.dart'
+    - "**/*.freezed.dart"
+    - "**/*.g.dart"
+    - "**/*.gen.dart"
+    - "**/*.gr.dart"
+    - "bricks"
+    - "lib/generated_plugin_registrant.dart"
   errors:
     invalid_annotation_target: ignore
     unused_element: ignore # https://github.com/dart-lang/sdk/issues/49025
