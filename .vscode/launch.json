@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Main Dev",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--flavor=dev",
+        "--dart-define=ENV=dev",
+        "--web-port=3003"
+      ]
+    },
+    {
+      "name": "Main prod",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--flavor=prod",
+        "--web-port=3003",
+        "--dart-define=ENV=prod"
+      ]
+    },
+    {
+      "name": "Main staging",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--flavor=staging",
+        "--web-port=3003",
+        "--dart-define=ENV=staging"
+      ]
+    }
+  ]
+}

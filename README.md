@@ -16,9 +16,6 @@ The router has two subgraphs, the `UnauthenticatedRouter` used for unauthenticat
 
 The [app router][app_router] is provided by [auto_route][auto_route], and contains the previous sections with some nested screens.
 
-The [theme folder][theme] contains the theme definitions, for example colors, styles and dimensions. 
-Another important plugin related to the UI is [flutter_screenutil][flutter_screenutil], used for adapting screen and font size.
-
 ### Core section
 
 The models are defined in the [models folder][models]. If you need to use different models for database or networking, you can create them in `db` and `service` folders respectively.
@@ -85,6 +82,24 @@ You can do that by executing `flutter pub run flutter_native_splash:create`.
 Although you can setup a bunch of features in this library, it doesn't provide a way to display animations.
 If you need a more personalized splash screen, you can edit the native code or just remove this library. 
 
+### Code generation
+
+Code generation is created using `build_runner` package.\
+To configure this package edit the `build.yaml`\
+To add new files to watch for code generation add the following lines:
+```
+targets:
+  $default:
+    builders:
+      # Previous configured builders
+      ...
+      builder_package_name:
+        generate_for:
+          # Example glob for only the Dart files under `lib/models`
+          - lib/models/*.dart
+```
+To create generated code run `clean_up.sh` under [scripts] folder or the following command: `flutter pub run build_runner build --delete-conflicting-outputs`
+
 ### Pre Push config
 
 In order to setup pre-push hook you need to go to the root of the project and run `git config core.hooksPath .github/hooks`
@@ -96,9 +111,9 @@ In order to setup pre-push hook you need to go to the root of the project and ru
 [app_router]: https://github.com/xmartlabs/flutter-template/blob/main/lib/ui/app_router.dart
 [bloc]: https://bloclibrary.dev
 [auto_route]: https://pub.dev/packages/auto_route
-[theme]: https://github.com/xmartlabs/flutter-template/tree/main/lib/ui/theme
 [flutter_screenutil]: https://pub.dev/packages/flutter_screenutil
 [models]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/model
 [repository_folder]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/repository
 [data_source_folder]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/source
 [get_it]: https://pub.dev/packages/get_it
+[scripts]: https://github.com/xmartlabs/flutter-template/tree/main/scripts

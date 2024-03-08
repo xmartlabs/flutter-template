@@ -15,7 +15,7 @@ class CatalogMainScreen extends StatelessWidget {
         child: ListView.separated(
           shrinkWrap: true,
           separatorBuilder: (BuildContext context, int index) => Divider(
-            color: context.theme.colors.primary,
+            color: context.theme.colorScheme.primary,
           ),
           itemCount: _CatalogScreen.values.length,
           itemBuilder: (BuildContext context, int index) {
@@ -40,6 +40,10 @@ enum _CatalogScreen {
   textFields,
   colors,
   typography,
+  dropdown,
+  dialog,
+  radioButtons,
+  checkbox,
 }
 
 extension _CatalogScreenExtensions on _CatalogScreen {
@@ -53,6 +57,14 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return 'Colors';
       case _CatalogScreen.typography:
         return 'Typography';
+      case _CatalogScreen.dropdown:
+        return 'Dropdown';
+      case _CatalogScreen.dialog:
+        return 'Dialog';
+      case _CatalogScreen.radioButtons:
+        return 'Radio Buttons';
+      case _CatalogScreen.checkbox:
+        return 'Checkbox';
     }
   }
 
@@ -66,6 +78,14 @@ extension _CatalogScreenExtensions on _CatalogScreen {
         return const CatalogAppColorsRoute();
       case _CatalogScreen.typography:
         return const CatalogAppTypographyRoute();
+      case _CatalogScreen.dropdown:
+        return const CatalogDropdownRoute();
+      case _CatalogScreen.dialog:
+        return const CatalogDialogRoute();
+      case _CatalogScreen.radioButtons:
+        return const CatalogAppRadioButtonRoute();
+      case _CatalogScreen.checkbox:
+        return const CatalogAppCheckboxRoute();
     }
   }
 }
