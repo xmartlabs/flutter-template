@@ -685,13 +685,13 @@ packages:
     source: hosted
     version: "1.0.4"
   mutex:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: mutex
-      sha256: "03116a4e46282a671b46c12de649d72c0ed18188ffe12a8d0fc63e83f4ad88f4"
+      sha256: "8827da25de792088eb33e572115a5eb0d61d61a3c01acbc8bcbe76ed78f1a1f2"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.0"
   nested:
     dependency: transitive
     description:

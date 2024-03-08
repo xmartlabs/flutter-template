@@ -1,8 +1,5 @@
-abstract interface class LocalStorage<Model, Key> {
-  Future<Model> putElement(
-    Key key,
-    Model response,
-  );
+abstract interface class LocalStorage<Key, Model> {
+  Future<Model> putElement(Key key, Model response);
 
   Future<List<Model>> putAllElements(Map<Key, Model> entries);
 
@@ -10,13 +7,9 @@ abstract interface class LocalStorage<Model, Key> {
 
   Future<void> deleteAllElements();
 
-  Future<Model?> getElement(
-    Key key,
-  );
+  Future<Model?> getElement(Key key);
 
-  Stream<Model?> getElementStream(
-    Key key,
-  );
+  Stream<Model?> getElementStream(Key key);
 
   Future<List<Model>> getElements();
 

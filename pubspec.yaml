@@ -42,6 +42,7 @@ dependencies:
   stock: 1.0.1
   hive: 2.2.3
   path_provider: 2.1.1
+  mutex: ^3.1.0
 
 # Remove when dart_code_metrics updates its dependencies
 dependency_overrides:

@@ -1,7 +1,7 @@
 import 'package:flutter_template/core/model/project.dart';
 import 'package:flutter_template/core/source/common/hive_base_source.dart';
 
-class ProjectLocalSource extends HiveBaseSource<Project, int> {
+class ProjectLocalSource extends HiveBaseSource<int, Project> {
   ProjectLocalSource()
       : super(
           dbParser: (project) => project.toJson(),

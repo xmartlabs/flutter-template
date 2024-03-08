@@ -8,7 +8,6 @@ import 'package:flutter_template/core/common/logger.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/ui/main/main_screen.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 
 Future main() async {
   await runZonedGuarded(

@@ -4,23 +4,25 @@ import 'dart:convert';
 import 'package:dartx/dartx.dart';
 import 'package:flutter_template/core/source/common/local_storage.dart';
 import 'package:hive/hive.dart';
+import 'package:mutex/mutex.dart';
 import 'package:rxdart/rxdart.dart';
 
-abstract class HiveBaseSource<Model, Key> implements LocalStorage<Model, Key> {
+abstract class HiveBaseSource<Key, Model> implements LocalStorage<Key, Model> {
   final Map<String, dynamic> Function(Model) dbParser;
   final Model Function(Map<String, dynamic>) modelParser;
+  final Mutex _mutex = Mutex();
   Box<String>? _box;
 
   HiveBaseSource({required this.dbParser, required this.modelParser});
 
-  Future<Box<String>> getBox() async {
-    if (_box != null && _box!.isOpen) {
-      return _box!;
-    } else {
-      _box = await Hive.openBox<String>(Model.toString());
-      return _box!;
-    }
-  }
+  Future<Box<String>> getBox() async => _mutex.protect(() async {
+        if (_box != null && _box!.isOpen) {
+          return _box!;
+        } else {
+          _box = await Hive.openBox<String>(Model.toString());
+          return _box!;
+        }
+      });
 
   Future<T> withBox<T>(Future<T> Function(Box<String>) body) async =>
       body(await getBox());
@@ -61,13 +63,7 @@ abstract class HiveBaseSource<Model, Key> implements LocalStorage<Model, Key> {
   ) =>
       withBox((box) async {
         final data = box.get(key);
-        return data == null
-            ? null
-            : modelParser(
-                jsonDecode(
-                  data,
-                ),
-              );
+        return data == null ? null : modelParser(jsonDecode(data));
       });
 
   @override
@@ -93,7 +89,7 @@ abstract class HiveBaseSource<Model, Key> implements LocalStorage<Model, Key> {
     final box = await getBox();
     yield await getElements();
     yield* box.watch().flatMap(
-          (event) => getElements().asStream(),
+          (event) => Stream.fromFuture(getElements()),
         );
   }
 }
