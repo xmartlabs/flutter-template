@@ -1,6 +1,4 @@
-import 'package:flutter_template/core/model/db/repository_db_entity.dart';
 import 'package:flutter_template/core/model/project.dart';
-import 'package:flutter_template/core/model/serializer/project_serializer.dart';
 import 'package:flutter_template/core/source/project_local_source.dart';
 import 'package:flutter_template/core/source/project_remote_source.dart';
 import 'package:stock/stock.dart';
@@ -19,10 +17,11 @@ class ProjectRepository {
           fetcher: Fetcher.ofFuture(
             (_) => _projectRemoteSource.getProjects(),
           ),
-          sourceOfTruth: SourceOfTruth<dynamic, List<ProjectDbEntity>>(
-            reader: (_) => _projectLocalSource.getProjects(),
-            writer: (_, value) => _projectLocalSource.replaceProjects(value),
-          ).mapToUsingMapper(ProjectListStockTypeMapper()),
+          sourceOfTruth: SourceOfTruth<dynamic, List<Project>>(
+            reader: (_) => _projectLocalSource.getElementsStream(),
+            writer: (_, value) =>
+                _projectLocalSource.replaceProjects(value ?? []),
+          ),
         );
 
   Stream<List<Project>?> getProjects() => _store

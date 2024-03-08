@@ -7,6 +7,7 @@ import 'package:flutter_template/core/common/environments.dart';
 import 'package:flutter_template/core/common/extension/string_extensions.dart';
 import 'package:flutter_template/core/common/helper/enum_helpers.dart';
 import 'package:flutter_template/core/common/helper/env_helper.dart';
+import 'package:path_provider/path_provider.dart';
 
 interface class Config {
   static const String environmentFolder = 'environments';
@@ -15,6 +16,7 @@ interface class Config {
 
   static late String apiBaseUrl;
   static late String supabaseApiKey;
+  static late String appDirectoryPath;
 
   static final _environment = enumFromString(
         Environments.values,
@@ -25,6 +27,7 @@ interface class Config {
   static Future<void> initialize() async {
     await _EnvConfig._setupEnv(_environment);
     _initializeEnvVariables();
+    appDirectoryPath = (await getApplicationDocumentsDirectory()).path;
   }
 
   static void _initializeEnvVariables() {

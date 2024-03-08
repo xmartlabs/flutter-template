@@ -7,6 +7,7 @@ import 'package:flutter_template/core/common/config.dart';
 import 'package:flutter_template/core/common/logger.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/ui/main/main_screen.dart';
+import 'package:hive/hive.dart';
 
 Future main() async {
   await runZonedGuarded(
@@ -26,6 +27,7 @@ Future _initSdks() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Logger.init();
   await Config.initialize();
+  Hive.init(Config.appDirectoryPath);
 
   await Future.wait([
     DiProvider.init(),
