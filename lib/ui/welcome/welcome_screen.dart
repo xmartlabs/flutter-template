@@ -29,7 +29,7 @@ class _WelcomeContentScreen extends StatelessWidget {
             title: Text(
               context.localizations.xmartlabs_projects,
               style: context.theme.textStyles.titleMedium
-                  ?.copyWith(color: context.theme.colors.onPrimary),
+                  ?.copyWith(color: context.theme.colorScheme.onPrimary),
             ),
             actions: [
               TextButton(
@@ -42,7 +42,7 @@ class _WelcomeContentScreen extends StatelessWidget {
                 child: Text(
                   context.localizations.log_out,
                   style: context.theme.textStyles.bodyMedium
-                      ?.copyWith(color: context.theme.colors.onPrimary),
+                      ?.copyWith(color: context.theme.colorScheme.onPrimary),
                 ),
               ),
             ],
