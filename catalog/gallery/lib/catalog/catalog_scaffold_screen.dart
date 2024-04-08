@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:catalog/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:catalog/catalog.dart';
 
@@ -21,13 +22,14 @@ class CatalogScaffold extends StatelessWidget {
               ? IconButton(
                   icon: Icon(
                     Icons.chevron_left,
-                    color: context.theme.colors.primary.shade100,
+                    color: context.theme.colorScheme.primary.getShade(100),
                   ),
                   onPressed: () => context.router.pop(),
                 )
               : null,
           title: Text(title),
         ),
+        backgroundColor: context.theme.customColors.textColor!.getShade(100),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

@@ -11,7 +11,6 @@ class CatalogAppColorsScreen extends StatelessWidget {
   Widget build(BuildContext context) => CatalogScaffold(
         title: 'COLORS',
         child: ListView.separated(
-          shrinkWrap: true,
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
           itemCount: _CatalogColors.values.length,
@@ -52,19 +51,19 @@ extension _CatalogScreenExtensions on _CatalogColors {
   Color color(BuildContext context) {
     switch (this) {
       case _CatalogColors.primary:
-        return context.theme.colors.primary;
+        return context.theme.colorScheme.primary;
       case _CatalogColors.secondary:
-        return context.theme.colors.secondary;
+        return context.theme.colorScheme.secondary;
       case _CatalogColors.success:
-        return context.theme.colors.success;
+        return context.theme.customColors.success!;
       case _CatalogColors.info:
-        return context.theme.colors.info;
+        return context.theme.customColors.info!;
       case _CatalogColors.warning:
-        return context.theme.colors.warning;
+        return context.theme.customColors.warning!;
       case _CatalogColors.danger:
-        return context.theme.colors.danger;
+        return context.theme.customColors.danger!;
       case _CatalogColors.text:
-        return context.theme.colors.textColor;
+        return context.theme.customColors.textColor!;
     }
   }
 }
