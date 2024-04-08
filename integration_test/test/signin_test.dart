@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/model/authentication_status.dart';
-import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:flutter_template/main.dart' as app;
 import 'package:flutter_template/ui/extensions/context_extensions.dart';
 import 'package:flutter_template/ui/router/app_router.dart';
@@ -14,8 +13,8 @@ import 'package:integration_test/integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rxdart/rxdart.dart';
 
-class MockSessionRepository extends Mock implements SessionRepository {}
-
+import '../common/general_helpers.dart';
+import '../common/repository_mocks.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
@@ -25,18 +24,13 @@ void main() {
   late StreamController<AuthenticationStatus> statusController;
 
   setUp(() async {
-    await app.initSdks();
     mockSessionRepository = MockSessionRepository();
     statusController = BehaviorSubject()
       ..add(AuthenticationStatus.unauthenticated);
     when(() => mockSessionRepository.status)
         .thenAnswer((_) => statusController.stream);
-    DiProvider.instance.unregister<SessionRepository>();
-    DiProvider.instance.unregister<AppRouter>();
-    DiProvider.instance
-        .registerSingleton<SessionRepository>(mockSessionRepository);
     appRouter = AppRouter(mockSessionRepository);
-    DiProvider.instance.registerSingleton<AppRouter>(appRouter);
+    await commonSetup(mockSessionRepository, appRouter);
   });
 
   tearDown(() {

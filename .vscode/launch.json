@@ -5,8 +5,8 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Integration Test: SignIn Test",
-      "program": "integration_test/signin_test.dart",
+      "name": "Integration Test",
+      "program": "integration_test/test/",
       "request": "launch",
       "type": "dart",
       "args": ["--flavor=dev"]
