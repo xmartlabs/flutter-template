@@ -54,7 +54,7 @@ app.*.map.json
 *.env.default
 
 # Fvm
-.fvm/flutter_sdk
+.fvm/
 
 # fastlane specific
 **/fastlane/report.xml
