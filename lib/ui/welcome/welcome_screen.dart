@@ -31,7 +31,7 @@ class _WelcomeContentScreen extends StatelessWidget {
               TextButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(
-                    context.theme.colors.onPrimary,
+                    context.theme.colorScheme.onPrimary,
                   ),
                 ),
                 onPressed: () => context.read<WelcomeCubit>().logOut(),
