@@ -29,3 +29,6 @@ echo ':: Run Catalog checks'
 echo ':: Run linter catalog ::'
 fvm flutter analyze catalog || error "Linter error - Flutter Analyze error - Catalog gallery"
 fvm flutter analyze catalog/gallery || error "Linter error - Flutter Analyze error - Catalog gallery"
+
+echo ':: Run tests ::'
+fvm flutter test || error "Tests failed"

@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:flutter_template/ui/signin/signin_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,7 +15,7 @@ void main() {
   late SignInCubit signInCubit;
 
   setUp(() {
-    getIt = GetIt.instance
+    getIt = DiProvider.instance
       ..registerSingleton<SessionRepository>(
         sessionRepository = MockSessionRepository(),
       );

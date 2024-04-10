@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/repository/project_repository.dart';
@@ -83,6 +81,7 @@ void main() {
     );
 
     blocTest(
+      // ignore: lines_longer_than_80_chars
       'Welcome cubit calls logOut from sessionRepository when the screen calls logOut method from cubit',
       build: () => welcomeCubit = WelcomeCubit(MockGlobalEventHandlerCubit()),
       setUp: () {
