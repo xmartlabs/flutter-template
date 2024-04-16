@@ -42,8 +42,8 @@ end
 desc "**Fetch flutter dependencies**"
 lane :fetch_dependencies do
   flutter_command(command: "pub get --suppress-analytics")
-  # Template does not depends on gallery
-  flutter_command(command: "pub get --suppress-analytics", subdirectory: "catalog/gallery")
+  # Template does not depends on design_system_galerry
+  flutter_command(command: "pub get --suppress-analytics", subdirectory: "design_system/design_system_gallery")
 end
 
 desc "**Generate flutter generated code**"
@@ -70,8 +70,8 @@ end
 desc "**Lint: Analyze code**"
 lane :lint_analyze do
   flutter_command(command: "analyze lib")
-  flutter_command(command: "analyze catalog/gallery")
-  flutter_command(command: "analyze catalog")
+  flutter_command(command: "analyze design_system/design_system_gallery")
+  flutter_command(command: "analyze design_system")
 end
 
 desc "**Lint: Code metrics**"
