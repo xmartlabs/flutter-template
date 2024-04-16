@@ -1,0 +1,42 @@
+name: Release iOS
+description: "Setup iOS for release"
+inputs:
+  xcode-version:
+    description: "Xcode version"
+    required: true
+    default: false
+  dist-certificate-base-64-content:
+    description: "Distribution certificate base64 encoded"
+    required: true
+    default: false
+  ios-app-folder:
+    description: "iOS app folder"
+    required: true
+    default: false
+  certificate-name:
+    description: "Certificate name"
+    required: true
+    default: false
+
+runs:
+  using: "composite"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 15
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ inputs.xcode-version }}.app/Contents/Developer
+
+      - name: Setup
+        uses: ./.github/workflows/actions/flutter_setup
+        with:
+          setup-ios: true
+
+      - name: Create distribution certificate
+        shell: bash
+        env:
+          CERTIFICATE_BASE64: ${{ inputs.dist-certificate-base-64-content }}
+        run: |
+          echo -n $CERTIFICATE_BASE64 | base64 --decode -o ${{ inputs.certificate-name }}
+        working-directory: ${{ inputs.ios-app-folder}}

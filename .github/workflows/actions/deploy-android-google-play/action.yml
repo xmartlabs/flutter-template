@@ -1,0 +1,48 @@
+name: Deploy Android Google Play
+description: "Deploy Android to Google Play"
+inputs:
+  keystore:
+    description: "Keystore"
+    required: true
+    default: false
+  key-properties-file:
+    description: "Key properties file"
+    required: true
+    default: false
+  android-app-folder:
+    description: "Android app folder"
+    required: true
+    default: false
+  app-env:
+    description: "App environment"
+    required: true
+    default: false
+  build-number:
+    description: "Build number"
+    required: true
+    default: false
+  google-play-service-account-credentials-content:
+    description: "Google Play service account credentials content"
+    required: true
+    default: false
+
+
+runs:
+  using: "composite"
+    steps:
+      - name: Setup android
+        uses: ./.github/workflows/actions/setup-android
+        with:
+          "keystore": ${{ inputs.keystore }}
+          "key-properties-file": ${{ inputs.key-properties-file }}
+          "android-app-folder": ${{ inputs.android-app-folder }}
+      
+      - name: Release to GooglePlay
+        env:
+          GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_CONTENT: ${{ inputs.google-play-service-account-credentials-content }}
+          BUILD_NUMBER: ${{ inputs.build-number }}
+          APP_ENV: ${{ inputs.app-env }}
+        uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: "publish_prod_google_play"
+          subdirectory: ${{ inputs.android-app-folder }}

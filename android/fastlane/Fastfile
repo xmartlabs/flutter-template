@@ -18,7 +18,6 @@ platform :android do
     build_flutter(
       build_platform: 'appbundle',
       build_type: 'release',
-      flavor: options[:env],
     )
   end
 
@@ -32,59 +31,34 @@ platform :android do
 
   desc "**Assemble prod apk release version**"
   lane :build_prod do
-    build_apk(env: "prod")
+    build_apk(env: 'prod')
   end
 
   desc "**Assemble dev apk release version**"
   lane :build_dev do
-    build_apk(env: "dev")
+    build_apk(env: 'staging')
+    integration_test
   end
 
   desc "**Submit a new Beta Build to Firebase app distribution**"
   desc "#### Envs\n" +
-  " * **`firebase_app_id`**: Firebase app id.\n" +
+  " * **`FIREBASE_APP_ID`**: Firebase app id.\n" +
   " * **`FIREBASE_SERVICE_ACCOUNT_FILE`**: The path to your Google service account json file.\n" +
   " * **`FIREBASE_TESTERS`**: The email addresses of the testers you want to invite.\n" +
   " You can specify the testers as a comma-separated list of email addresses: \"ali@example.com, bri@example.com, cal@example.com\"\n"
   " * **`FIREBASE_TESTER_GROUPS`**: The tester groups you want to invite." +
   " You can specify the groups as a comma-separated list: \"qa-team, trusted-testers\"\n"
- lane :deploy_firebase_app_distribution do |options|
-    env = options[:env]
-    firebase_app_id = options[:firebase_app_id]
+  lane :deploy_firebase_app_distribution do |options|
+    env = ENV['APP_ENV']
     clean
-    build_apk(env: env, include_git_version_suffix: true, build_type: 'release')
+    build_apk(env: env, build_type: 'release', build_number: ENV['BUILD_NUMBER'])
     firebase_app_distribution(
-      app: firebase_app_id,
+      app: ENV['FIREBASE_APP_ID'],
       service_credentials_file: ENV["FIREBASE_SERVICE_ACCOUNT_FILE"],
-      testers: ENV["FIREBASE_TESTERS"],
       groups: ENV["FIREBASE_TESTER_GROUPS"],
       release_notes: generate_snapshot_changelog,
       apk_path: "../build/app/outputs/flutter-apk/app-#{env}-release.apk",
     )
-  end
-
-  desc "**Deploy a new dev version to the Firebase App Distribution**"
-  desc "#### Envs\n" +
-  " * **`FIREBASE_APP_ID_DEV`**: Dev Firebase app id.\n" +
-  " * **`FIREBASE_SERVICE_ACCOUNT_FILE`**: The path to your Google service account json file.\n" +
-  " * **`FIREBASE_TESTERS`**: The email addresses of the testers you want to invite.\n" +
-  " You can specify the testers as a comma-separated list of email addresses: \"ali@example.com, bri@example.com, cal@example.com\"\n"
-  " * **`FIREBASE_TESTER_GROUPS`**: The tester groups you want to invite." +
-  " You can specify the groups as a comma-separated list: \"qa-team, trusted-testers\"\n"
-  lane :deploy_firebase_dev do
-    deploy_firebase_app_distribution(env: 'dev', firebase_app_id: ENV["FIREBASE_APP_ID_DEV"])
-  end
-
-  desc "**Deploy a new prod version to the Firebase App Distribution**"
-  desc "#### Envs\n" +
-  " * **`FIREBASE_APP_ID_PROD`**: Production Firebase app id.\n"
-  " * **`FIREBASE_SERVICE_ACCOUNT_FILE`**: The path to your Google service account json file.\n" +
-  " * **`FIREBASE_TESTERS`**: The email addresses of the testers you want to invite." +
-  " You can specify the testers as a comma-separated list of email addresses: \"ali@example.com, bri@example.com, cal@example.com\"\n"
-  " * **`FIREBASE_TESTER_GROUPS`**: The tester groups you want to invite." +
-  " You can specify the groups as a comma-separated list: \"qa-team, trusted-testers\"\n"
-  lane :deploy_firebase_prod do
-    deploy_firebase_app_distribution(env: 'prod', firebase_app_id: ENV["FIREBASE_APP_ID_PROD"])
   end
 
   desc "**Deploy a new version to the Google Play**"
@@ -92,8 +66,14 @@ platform :android do
   " * **`GOOGLE_PLAY_TRACK`**: Sets the release track. The default value is `internal`\n" +
   " * **`GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE`**: Sets the service account file.\n" +
   " * **`GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_CONTENT`**: Sets the service account content file."
-  lane :deploy_prod do
-    build_appbundle(env: 'prod')
+  lane :publish_prod_google_play do
+    build_flutter(
+      build_platform: 'appbundle',
+      build_type: 'release',
+      build_number: ENV.fetch('BUILD_NUMBER') { raise "BUILD_NUMBER is not set" },
+      env: ENV['APP_ENV'],
+    )
+
     upload_to_play_store(
       track: ENV['GOOGLE_PLAY_TRACK'] || 'internal',
       json_key: ENV['GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE'],

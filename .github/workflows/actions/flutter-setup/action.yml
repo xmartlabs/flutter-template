@@ -1,0 +1,57 @@
+name: Setup flutter
+description: "Setup infra"
+inputs:
+  setup-android:
+    description: "Setup Android"
+    required: true
+    default: false
+  setup-ios:
+    description: "Setup iOS"
+    required: true
+    default: false
+
+env:
+  ANDROID_APP_FOLDER: "android"
+  IOS_APP_FOLDER: "ios"
+  FVM_VERSION: "3.0.13"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-java@v3
+      with:
+        distribution: "zulu"
+        java-version: "11"
+    - uses: dart-lang/setup-dart@v1.4
+    - name: Cache FVM & Flutter
+      uses: actions/cache@v3
+      with:
+        path: /Users/runner/fvm/
+        key: ${{ runner.os }}-fvm-${{ hashFiles('**/fvm_config.json') }}
+        restore-keys: |
+          ${{ runner.os }}-fvm-
+    - name: Cache pub cache
+      uses: actions/cache@v3
+      with:
+        path: /Users/runner/.pub-cache/
+        key: ${{ runner.os }}-pub-cache
+    - name: Install FVM && Flutter
+      shell: bash
+      run: dart pub global activate fvm ${{ env.FVM_VERSION }} && fvm install --verbose && fvm use --force --verbose
+    - uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+    - uses: ruby/setup-ruby@v1
+      if: ${{ inputs.setup-android }}
+      with:
+        bundler-cache: true
+        working-directory: ${{ env.ANDROID_APP_FOLDER }}
+    - uses: ruby/setup-ruby@v1
+      if: ${{ inputs.setup-ios }}
+      with:
+        bundler-cache: true
+        working-directory: ${{ env.IOS_APP_FOLDER }}
+    - name: Get dependencies
+      uses: maierj/fastlane-action@v3.0.0
+      with:
+        lane: "fetch_dependencies"
