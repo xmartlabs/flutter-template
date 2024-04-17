@@ -5,7 +5,7 @@ on:
     branches:
       - main
     types:
-      - closed
+      - closed ## Trigger the workflow only when the PR is merged
 
 env:
   FIREBASE_ANDROID_APP_ID: "" ## Add your Firebase Android App ID here

@@ -3,8 +3,8 @@ description: "Deploy iOS to TestFlight"
 inputs:
   xcode-version:
     description: "Xcode version"
-    required: true
-    default: false
+    required: false
+    default: "15.1"
   dist-certificate-base-64-content:
     description: "Distribution certificate base64 encoded"
     required: true

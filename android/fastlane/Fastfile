@@ -26,6 +26,7 @@ platform :android do
     build_flutter(
       build_platform: 'apk',
       build_type: 'debug',
+      env: ENV['APP_ENV'],
     )
   end
 

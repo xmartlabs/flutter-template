@@ -1,10 +1,10 @@
 import "../../fastlane/Fastfile"
 
 PROD_ENV = 'prod'
-STAGING_ENV = 'staging'
-DEFAULT_ENV = PROD_ENV
+DEV_ENV = 'dev'
+DEFAULT_ENV = DEV_ENV
 PROD_BUNDLE_ID = "com.xmartlabs.template"
-STAGING_BUNDLE_ID = "com.xmartlabs.template.sta"
+DEV_BUNDLE_ID = "com.xmartlabs.template.dev"
 temp_keychain_name =  ENV['TEMP_KEYCHAIN_NAME'] || 'build.keychain'
 temp_keychain_password =  ENV['TEMP_KEYCHAIN_PASSWORD'] || '' ## Define default value
 test_groups = ENV['TESTFLIGHT_TESTER_GROUPS'] || '' ## Define default value
@@ -44,7 +44,7 @@ platform :ios do
   "* **`APPLE_TEAM_ID`**: The apple team id"
   private_lane :setup_provisioning do |options|
     env = options[:env] || DEFAULT_ENV
-    app_identifier = options[:env] == STAGING_ENV ? STAGING_BUNDLE_ID : PROD_BUNDLE_ID
+    app_identifier = options[:env] == DEV_ENV ? DEV_BUNDLE_ID : PROD_BUNDLE_ID
     build_export_method = options[:build_export_method] || 'app-store'
     adhoc = build_export_method == 'ad-hoc'
     profile_type_name = adhoc ? 'AdHoc' : 'AppStore'
@@ -53,6 +53,7 @@ platform :ios do
       adhoc: adhoc,
       team_id: ENV['APPLE_TEAM_ID'],
       force: true,
+      include_all_certificates: true,
       provisioning_name: "#{provisioning_name}-#{profile_type_name}-#{env}",
       app_identifier: app_identifier,
     )
@@ -137,7 +138,7 @@ platform :ios do
 
       increment_build_number(build_number: build_number)
 
-      app_identifier = options[:env] == STAGING_ENV ? STAGING_BUNDLE_ID : PROD_BUNDLE_ID
+      app_identifier = options[:env] == DEV_ENV ? DEV_BUNDLE_ID : PROD_BUNDLE_ID
 
       build_ios_app(
         clean: false,
@@ -168,7 +169,7 @@ platform :ios do
     "* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content"
   lane :deploy_firebase_app_distribution do |options|
     generate_release_ipa(
-      env: 'staging',
+      env: DEFAULT_ENV,
       build_export_method: 'ad-hoc',
       setup_signing: true,
       firebase_app_id: ENV['FIREBASE_APP_ID'],

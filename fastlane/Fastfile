@@ -201,4 +201,3 @@ lane :get_next_build_number do
   UI.message "Next Build Number: #{version}"
   version
 end
-
