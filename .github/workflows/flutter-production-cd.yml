@@ -57,7 +57,7 @@ jobs:
     timeout-minutes: 30
     env:
       IOS_APP_FOLDER: "ios"
-      FIREBASE_APP_ID_PRODUCTION: "1:412603275617:ios:4d6aca21fb8c6474bd0d20"
+      FIREBASE_APP_ID_PRODUCTION: "" ## Add your Firebase iOS App ID here
 
     runs-on: macos-13
     steps:
