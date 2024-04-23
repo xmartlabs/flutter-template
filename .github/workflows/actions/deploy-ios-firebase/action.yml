@@ -1,20 +1,12 @@
 name: Deploy iOS Firebase
 description: "Deploy iOS to Firebase"
 inputs:
-  xcode-version:
-    description: "Xcode version"
-    required: false
-    default: "15.1"
   dist-certificate-base-64-content:
     description: "Distribution certificate base64 encoded"
     required: true
     default: false
   ios-app-folder:
     description: "iOS app folder"
-    required: true
-    default: false
-  certificate-name:
-    description: "Certificate name"
     required: true
     default: false
   app-env:
@@ -66,11 +58,9 @@ runs:
       - name: Setup iOS
         uses: ./.github/workflows/actions/setup-ios
         with:
-          "xcode-version": ${{ inputs.xcode-version }}
           "dist-certificate-base-64-content": ${{ inputs.dist-certificate-base-64-content }}
           "ios-app-folder": ${{ inputs.ios-app-folder }}
-          "certificate-name": ${{ inputs.certificate-name }}
-      
+
       - name: Download Firebase Service Account
         shell: bash
         env:

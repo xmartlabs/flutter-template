@@ -1,20 +1,12 @@
 name: Release iOS
 description: "Setup iOS for release"
 inputs:
-  xcode-version:
-    description: "Xcode version"
-    required: false
-    default: "15.1"
   dist-certificate-base-64-content:
     description: "Distribution certificate base64 encoded"
     required: true
     default: false
   ios-app-folder:
     description: "iOS app folder"
-    required: true
-    default: false
-  certificate-name:
-    description: "Certificate name"
     required: true
     default: false
 
@@ -26,7 +18,9 @@ runs:
           fetch-depth: 15
 
       - name: Select Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_${{ inputs.xcode-version }}.app/Contents/Developer
+        env:
+          XCODE_VERSION: "15.1"
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app/Contents/Developer
 
       - name: Setup
         uses: ./.github/workflows/actions/flutter_setup
@@ -37,6 +31,7 @@ runs:
         shell: bash
         env:
           CERTIFICATE_BASE64: ${{ inputs.dist-certificate-base-64-content }}
+          CERTIFICATE_NAME: "ios_dist.p12"
         run: |
-          echo -n $CERTIFICATE_BASE64 | base64 --decode -o ${{ inputs.certificate-name }}
+          echo -n $CERTIFICATE_BASE64 | base64 --decode -o ${{ env.CERTIFICATE_NAME }}
         working-directory: ${{ inputs.ios-app-folder}}

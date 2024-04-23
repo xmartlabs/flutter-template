@@ -53,13 +53,11 @@ jobs:
     if: github.event.pull_request.merged == true
     timeout-minutes: 20
     env:
-      CERT_NAME: "ios_dist.p12"
       IOS_APP_FOLDER: "ios"
       SERVICE_ACCOUNT: "${{ github.workspace }}/ios/service_account.json"
       FIREBASE_APP_ID_STAGING: "" ## Add your Firebase iOS App ID here
       FIREBASE_TESTER_GROUPS: "" ## Add your Firebase tester groups here
       APP_ENV: "staging"
-      XCODE_VERSION: "15.1"
 
     runs-on: macos-13
     steps:
@@ -67,9 +65,7 @@ jobs:
         uses: ./.github/workflows/actions/deploy-ios-firebase
         with:
           "dist-certificate-base-64-content": ${{ secrets.IOS_DIST_CERTIFICATE_BASE_64_CONTENT }}
-          "xcode-version": ${{ env.XCODE_VERSION }}
           "ios-app-folder": ${{ env.IOS_APP_FOLDER }}
-          "certificate-name": ${{ env.CERT_NAME }}
           "firebase-service-account-base-64-content": ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CREDENTIALS_BASE_64 }}
           "appstore-connect-api-key-id": ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
           "appstore-connect-api-key-issuer-id": ${{ secrets.APPSTORE_CONNECT_API_KEY_ISSUER_ID }}

@@ -191,7 +191,8 @@ platform :ios do
     "* **`APPLE_TEAM_ID`**: The apple team id\n" +
     "* **`APPSTORE_CONNECT_API_KEY_ID`**: The connect api key id\n" +
     "* **`APPSTORE_CONNECT_API_KEY_ISSUER_ID`**: The connect api key issuer id\n" +
-    "* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content"
+    "* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content\n" +
+    "* **`TESTFLIGHT_TESTER_GROUPS`**: Testflight testing groups"
   lane :publish_prod_testflight do |options|
     generate_release_ipa(
       setup_signing: true,
