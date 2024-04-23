@@ -1,20 +1,30 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
-import 'package:flutter_template/core/repository/session_repository.dart';
+import 'package:flutter_template/core/source/auth_remote_source.dart';
+import 'package:flutter_template/core/source/project_remote_source.dart';
 import 'package:flutter_template/main.dart' as app;
-import 'package:flutter_template/ui/router/app_router.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'repository_mocks.dart';
 
-Future<void> commonSetup(
-  MockSessionRepository mockSessionRepository,
-  AppRouter appRouter,
-) async {
+Future<void> commonSetup({
+  required MockAuthRemoteSource mockAuthRemoteSource,
+  required MockProjectRemoteSource mockProjectRemoteSource,
+}) async {
   await app.initSdks();
 
-  DiProvider.instance.unregister<SessionRepository>();
-  DiProvider.instance.unregister<AppRouter>();
+  DiProvider.instance.unregister<AuthRemoteSource>();
+  DiProvider.instance.unregister<ProjectRemoteSource>();
 
+  DiProvider.instance.registerSingleton<AuthRemoteSource>(mockAuthRemoteSource);
   DiProvider.instance
-      .registerSingleton<SessionRepository>(mockSessionRepository);
-  DiProvider.instance.registerSingleton<AppRouter>(appRouter);
+      .registerSingleton<ProjectRemoteSource>(mockProjectRemoteSource);
+}
+
+extension WidgetTesterExtension on WidgetTester {
+  BuildContext contextOfType<T extends Widget>() {
+    final finder = find.byType(T);
+    expect(finder, findsOneWidget);
+    return element(finder);
+  }
 }
