@@ -28,7 +28,7 @@
     },
     {
       "name": "Integration Test",
-      "program": "integration_test/test/",
+      "program": "integration_test/test/signin_test.dart",
       "request": "launch",
       "type": "dart",
       "args": ["--flavor=dev"]
