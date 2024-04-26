@@ -1,3 +1,5 @@
+# IMPORTANT: CERTIFICATE_NAME has to be set on github variables
+
 name: Deploy iOS TestFlight
 description: "Deploy iOS to TestFlight"
 inputs:
@@ -50,7 +52,7 @@ runs:
           APPSTORE_CONNECT_API_KEY_ID: ${{ inputs.appstore-connect-api-key-id }}
           APPSTORE_CONNECT_API_KEY_ISSUER_ID: ${{ inputs.appstore-connect-api-key-issuer-id }}
           APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT: ${{ inputs.appstore-connect-api-key-base-64-content }}
-          DIST_CERTIFICATE_PATH: ${{ github.workspace }}/ios/${{ inputs.certificate-name }}
+          DIST_CERTIFICATE_PATH: ${{ github.workspace }}/ios/${{ vars.CERTIFICATE_NAME }}
           DIST_CERTIFICATE_PASSWORD: ${{ inputs.dist-cert-password }}
           FIREBASE_APP_ID: ${{ inputs.firebase-app-id }}
           BUILD_NUMBER: ${{ inputs.build-number }}

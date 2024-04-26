@@ -84,7 +84,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ANDROID_APP_FOLDER: "android"
-      PROD_KEYSTORE: "prod.keystore"
       SERVICE_ACCOUNT: "${{ github.workspace }}/android/service_account.json"
       PROD_KEY_PROPERTIES_FILE: "key.properties"
       FIREBASE_APP_ID_STAGING: "" ## Add your Firebase Android App ID here
@@ -95,7 +94,6 @@ jobs:
       - name: Deploy Andorid to Firebase
         uses: ./.github/workflows/actions/deploy-android-firebase
         with:
-          "keystore": ${{ inputs.keystore }}
           "key-properties-file": ${{ inputs.key-properties-file }}
           "firebase-base64-service-account-credentials": ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CREDENTIALS_BASE_64 }}
           "android-app-folder": ${{ env.ANDROID_APP_FOLDER }}

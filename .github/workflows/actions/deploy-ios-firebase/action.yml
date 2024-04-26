@@ -1,3 +1,5 @@
+# IMPORTANT: CERTIFICATE_NAME has to be set on github variables
+
 name: Deploy iOS Firebase
 description: "Deploy iOS to Firebase"
 inputs:
@@ -74,7 +76,7 @@ runs:
           APP_ENV: ${{ inputs.app-env }}
           FIREBASE_SERVICE_ACCOUNT_FILE: ${{ inputs.service-account }}
           FIREBASE_APP_ID: ${{ inputs.firebase-app-id }}
-          DIST_CERTIFICATE_PATH: ${{ github.workspace }}/ios/${{ inputs.certificate-name }}
+          DIST_CERTIFICATE_PATH: ${{ github.workspace }}/ios/${{ vars.CERTIFICATE_NAME }}
           DIST_CERTIFICATE_PASSWORD: ${{ inputs.dist-cert-password }}
           APPSTORE_CONNECT_API_KEY_ID: ${{ inputs.appstore-connect-api-key-id }}
           APPSTORE_CONNECT_API_KEY_ISSUER_ID: ${{ inputs.appstore-connect-api-key-issuer-id }}

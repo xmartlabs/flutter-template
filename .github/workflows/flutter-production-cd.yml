@@ -80,17 +80,14 @@ jobs:
     timeout-minutes: 30
     env:
       ANDROID_APP_FOLDER: "android"
-      PROD_KEYSTORE: "prod.keystore"
       PROD_KEY_PROPERTIES_FILE: "key.properties"
       APP_ENV: 'prod'
     steps:
       - name: Deploy Android to Google Play
         uses: ./.github/workflows/actions/deploy-android-google-play
         with:
-          "keystore": ${{ env.PROD_KEYSTORE }}
           "key-properties-file": ${{ env.PROD_KEY_PROPERTIES_FILE }}
           "android-app-folder": ${{ env.ANDROID_APP_FOLDER }}
           "google-play-service-account-credentials": ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_CONTENT }}
           "app-env": ${{ env.APP_ENV }}
           "build-number": ${{ needs.calculate_build_number.outputs.build_number }}
-          "android-app-folder": ${{ env.ANDROID_APP_FOLDER }}

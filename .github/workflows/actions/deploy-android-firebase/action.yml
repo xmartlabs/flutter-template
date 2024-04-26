@@ -1,10 +1,6 @@
 name: Deploy Android Firebase
 description: "Deploy Android to Firebase"
 inputs:
-  keystore:
-    description: "Keystore"
-    required: true
-    default: false
   key-properties-file:
     description: "Key properties file"
     required: true
@@ -45,7 +41,6 @@ runs:
       - name: Setup android
         uses: ./.github/workflows/actions/setup-android
         with:
-          "keystore": ${{ inputs.keystore }}
           "key-properties-file": ${{ inputs.key-properties-file }}
           "android-app-folder": ${{ inputs.android-app-folder }}
 
