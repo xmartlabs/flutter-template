@@ -44,7 +44,7 @@ For moking the projects uses [mocktail][mocktail], a library inspired on [mockit
 
 #### Integration test
 
-The integration tests for the project are defined in [integration_test][integration_test]. Dart package integration_test is used for the implementation. Are included two tests for the Sign In flow, covering both successful and failed sign-in attempts.
+The integration tests for the project are defined in [integration_test][integration_test]. Dart package integration_test is used for the implementation.
 
 ## Project Setup
 

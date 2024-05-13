@@ -1,6 +1,6 @@
-// IMPORTANT
-// To keep integration test working, after excecuting flavorizr for creating more schemas
-// you need to remove FLUTTER_TARGET line from all .xcconfig files on ios/Flutter directory
+# IMPORTANT
+# To keep integration test working, after excecuting flavorizr for creating more schemas
+# you need to remove FLUTTER_TARGET line from all .xcconfig files on ios/Flutter directory
 
 flavors:
   dev:

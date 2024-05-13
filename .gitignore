@@ -54,8 +54,6 @@ app.*.map.json
 *.env
 *.env.default
 
-# Fvm
-
 # fastlane specific
 **/fastlane/report.xml
 **/fastlane/Preview.html
