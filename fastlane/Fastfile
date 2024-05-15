@@ -89,7 +89,8 @@ end
 desc "**Run linters**"
 lane :lints do
   lint_format
-  lint_check_language_sorting
+  # Temporary removed until this issue is fixed: https://github.com/Rodsevich/arb_utils/issues/28#issue-2298911870
+  # lint_check_language_sorting
   lint_analyze
   lint_code_metrics
 end
