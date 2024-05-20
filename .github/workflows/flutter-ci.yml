@@ -34,10 +34,9 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      # Temporary removed until this issue is fixed: https://github.com/Rodsevich/arb_utils/issues/28#issue-2298911870
-      # - name: Activate arb_utils
-      #   run: |
-      #     dart pub global activate arb_utils
+      - name: Activate arb_utils
+        run: |
+          dart pub global activate arb_utils
       - name: Get dependencies
         uses: maierj/fastlane-action@v3.0.0
         with:
