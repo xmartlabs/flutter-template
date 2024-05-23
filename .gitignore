@@ -53,9 +53,6 @@ app.*.map.json
 *.env
 *.env.default
 
-# Fvm
-.fvm/
-
 # fastlane specific
 **/fastlane/report.xml
 **/fastlane/Preview.html
@@ -63,3 +60,6 @@ app.*.map.json
 **/fastlane/test_output
 .bundle/
 vendor/bundle/
+
+# FVM Version Cache
+.fvm/
