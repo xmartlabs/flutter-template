@@ -13,6 +13,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+### generate_docs
+
+```sh
+[bundle exec] fastlane generate_docs
+```
+
+
+
 ### fetch_dependencies
 
 ```sh
@@ -101,6 +109,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### get_next_build_number
+
+```sh
+[bundle exec] fastlane get_next_build_number
+```
+
+**Get next Build Number**
+
 ----
 
 
@@ -161,43 +177,16 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 **Submit a new Beta Build to Firebase app distribution**
 
 #### Envs
- * **`firebase_app_id`**: Firebase app id.
+ * **`FIREBASE_APP_ID`**: Firebase app id.
  * **`FIREBASE_SERVICE_ACCOUNT_FILE`**: The path to your Google service account json file.
  * **`FIREBASE_TESTERS`**: The email addresses of the testers you want to invite.
  You can specify the testers as a comma-separated list of email addresses: "ali@example.com, bri@example.com, cal@example.com"
 
 
-### android deploy_firebase_dev
+### android publish_prod_google_play
 
 ```sh
-[bundle exec] fastlane android deploy_firebase_dev
-```
-
-**Deploy a new dev version to the Firebase App Distribution**
-
-#### Envs
- * **`FIREBASE_APP_ID_DEV`**: Dev Firebase app id.
- * **`FIREBASE_SERVICE_ACCOUNT_FILE`**: The path to your Google service account json file.
- * **`FIREBASE_TESTERS`**: The email addresses of the testers you want to invite.
- You can specify the testers as a comma-separated list of email addresses: "ali@example.com, bri@example.com, cal@example.com"
-
-
-### android deploy_firebase_prod
-
-```sh
-[bundle exec] fastlane android deploy_firebase_prod
-```
-
-**Deploy a new prod version to the Firebase App Distribution**
-
-#### Envs
- * **`FIREBASE_APP_ID_PROD`**: Production Firebase app id.
-
-
-### android deploy_prod
-
-```sh
-[bundle exec] fastlane android deploy_prod
+[bundle exec] fastlane android publish_prod_google_play
 ```
 
 **Deploy a new version to the Google Play**

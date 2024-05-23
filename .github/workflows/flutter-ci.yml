@@ -54,6 +54,8 @@ jobs:
         with:
           lane: 'tests'
       - name: 'Build android app'
+        env:
+          APP_ENV: 'dev'
         uses: maierj/fastlane-action@v3.0.0
         with:
           lane: 'android build_dev_debug_apk'

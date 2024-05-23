@@ -2,16 +2,18 @@ import "../../fastlane/Fastfile"
 
 PROD_ENV = 'prod'
 DEV_ENV = 'dev'
-DEFAULT_ENV = PROD_ENV
+DEFAULT_ENV = DEV_ENV
 PROD_BUNDLE_ID = "com.xmartlabs.template"
-DEV_BUNDLE_ID = "#{PROD_BUNDLE_ID}.dev"
-
-default_platform(:ios)
+DEV_BUNDLE_ID = "com.xmartlabs.template.dev"
+temp_keychain_name =  ENV['TEMP_KEYCHAIN_NAME'] || 'build.keychain'
+temp_keychain_password =  ENV['TEMP_KEYCHAIN_PASSWORD'] || '' ## Define default value
+test_groups = ENV['TESTFLIGHT_TESTER_GROUPS'] || '' ## Define default value
 
 provisioning_name = 'FastlaneXL'
 
-platform :ios do
+default_platform(:ios)
 
+platform :ios do
   desc "Creates a temporal keystore and import the distribution certificate"
   desc "#### Envs\n" +
   "* **`TEMP_KEYCHAIN_NAME`**: The temporal keychain name\n" +
@@ -21,17 +23,19 @@ platform :ios do
   lane :set_signing do
     safe_delete_keychain
     create_keychain(
-      name: ENV['TEMP_KEYCHAIN_NAME'],
-      password: ENV['TEMP_KEYCHAIN_PASSWORD'],
+      name: temp_keychain_name,
+      password: temp_keychain_password,
       unlock: true,
       timeout: 3600,
       lock_when_sleeps: true
     )
+
     import_certificate(
-      keychain_name: ENV['TEMP_KEYCHAIN_NAME'],
-      keychain_password: ENV['TEMP_KEYCHAIN_PASSWORD'],
+      keychain_name: temp_keychain_name,
+      keychain_password: temp_keychain_password,
       certificate_path: ENV['DIST_CERTIFICATE_PATH'],
       certificate_password: ENV['DIST_CERTIFICATE_PASSWORD'],
+      log_output: true,
     )
   end
 
@@ -54,22 +58,13 @@ platform :ios do
       app_identifier: app_identifier,
     )
     update_code_signing_settings(
-	  use_automatic_signing: false,
-	  path: "Runner.xcodeproj",
-	  team_id: ENV['APPLE_TEAM_ID'],
-	  build_configurations: "Release-#{env}",
-	)
-    update_project_team(
+      use_automatic_signing: false,
       path: "Runner.xcodeproj",
-      teamid:  ENV['APPLE_TEAM_ID'],
+      team_id: ENV['APPLE_TEAM_ID'],
+      code_sign_identity: "Apple Distribution",
+      build_configurations: "Release-#{env}",
+      profile_uuid: lane_context[SharedValues::SIGH_UUID],
     )
-
-	update_project_provisioning(
-	  xcodeproj: "Runner.xcodeproj",
- 	  build_configuration: "Release-#{env}",
-	  profile: "./#{profile_type_name}_#{app_identifier}.mobileprovision",
-      code_signing_identity: "Apple Distribution"
-	)
   end
 
   private_lane :rollback_provisioning_setup do |options|
@@ -95,9 +90,9 @@ platform :ios do
     "* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content"
   lane :generate_release_ipa do |options|
     upload_symbols = options[:upload_symbols] || true
-    sign_enabled = options[:setup_signing] || true
+    sign_enabled = options[:setup_signing] || false
     if sign_enabled
-       set_signing
+      set_signing
     end
 
     env = options[:env] || DEFAULT_ENV
@@ -115,15 +110,36 @@ platform :ios do
         env: env,
         build_export_method: build_export_method,
       )
+
+      if ENV['BUILD_NUMBER'] && ENV['BUILD_NUMBER'].match(/^\d+$/)
+        autoincrement_version_number = false
+        build_number = ENV['BUILD_NUMBER'].to_i
+      else
+        autoincrement_version_number = options[:autoincrement_version_number] || true
+        build_number = flutter_version()["version_code"]
+        if autoincrement_version_number
+          version_name = calculate_version_name(
+            include_git_version_suffix: false,
+          )
+          build_number = latest_testflight_build_number(version: version_name) + 1
+        end
+      end
+
       build_flutter(
         build_platform: 'ipa',
         build_type: 'release',
-        flavor: env,
-        include_git_version_suffix: true,
+        env: env,
+        include_git_version_suffix: false,
         export_method: build_export_method,
+        sign_disabled: true,
+        build_number: build_number,
+        autoincrement_apple_version_number: autoincrement_version_number,
       )
 
+      increment_build_number(build_number: build_number)
+
       app_identifier = options[:env] == DEV_ENV ? DEV_BUNDLE_ID : PROD_BUNDLE_ID
+
       build_ios_app(
         clean: false,
         scheme: env,
@@ -131,15 +147,13 @@ platform :ios do
         export_method: build_export_method,
         xcargs: "-allowProvisioningUpdates",
         export_options: {
-          compileBitcode: true,
-          uploadBitcode: true,
           uploadSymbols: true,
           signingStyle: "manual",
         },
       )
-       if upload_symbols
-         upload_symbols_to_crashlytics(app_id: options[:firebase_app_id], debug: true)
-       end
+      if upload_symbols
+        upload_symbols_to_crashlytics(app_id: options[:firebase_app_id], debug: true)
+      end
     ensure
       rollback_provisioning_setup(env: env)
       safe_delete_keychain
@@ -153,17 +167,17 @@ platform :ios do
     "* **`APPSTORE_CONNECT_API_KEY_ID`**: The connect api key id\n" +
     "* **`APPSTORE_CONNECT_API_KEY_ISSUER_ID`**: The connect api key issuer id\n" +
     "* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content"
-  lane :publish_dev_firebase do |options|
+  lane :deploy_firebase_app_distribution do |options|
     generate_release_ipa(
-      env: 'dev',
+      env: DEFAULT_ENV,
       build_export_method: 'ad-hoc',
-      firebase_app_id: ENV['FIREBASE_APP_ID_DEV'],
+      setup_signing: true,
+      firebase_app_id: ENV['FIREBASE_APP_ID'],
     )
 
     firebase_app_distribution(
-      app: ENV['FIREBASE_APP_ID_DEV'],
+      app: ENV['FIREBASE_APP_ID'],
       service_credentials_file: ENV["FIREBASE_SERVICE_ACCOUNT_FILE"],
-      testers: ENV["FIREBASE_TESTERS"],
       groups: ENV["FIREBASE_TESTER_GROUPS"],
       release_notes: generate_snapshot_changelog,
       apk_path: "../Runner.ipa",
@@ -177,19 +191,26 @@ platform :ios do
     "* **`APPLE_TEAM_ID`**: The apple team id\n" +
     "* **`APPSTORE_CONNECT_API_KEY_ID`**: The connect api key id\n" +
     "* **`APPSTORE_CONNECT_API_KEY_ISSUER_ID`**: The connect api key issuer id\n" +
-    "* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content"
+    "* **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content\n" +
+    "* **`TESTFLIGHT_TESTER_GROUPS`**: Testflight testing groups"
   lane :publish_prod_testflight do |options|
     generate_release_ipa(
+      setup_signing: true,
       env: 'prod',
       build_export_method: 'app-store',
+      firebase_app_id: ENV['FIREBASE_APP_ID'],
     )
-    upload_to_testflight(skip_waiting_for_build_processing: true)
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      build_number: lane_context[SharedValues::BUILD_NUMBER],
+      groups: ENV["TESTFLIGHT_TESTER_GROUPS"],
+    )
   end
 
   private_lane :safe_delete_keychain do
     begin
-      FastlaneCore::Helper.keychain_path(ENV['TEMP_KEYCHAIN_NAME'])
-      delete_keychain(name: ENV['TEMP_KEYCHAIN_NAME'])
+      FastlaneCore::Helper.keychain_path(temp_keychain_name)
+      delete_keychain(name: temp_keychain_name)
     rescue => ex
       UI.important('Keystore not found')
     end

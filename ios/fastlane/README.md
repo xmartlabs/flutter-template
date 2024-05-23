@@ -13,6 +13,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+### generate_docs
+
+```sh
+[bundle exec] fastlane generate_docs
+```
+
+
+
 ### fetch_dependencies
 
 ```sh
@@ -101,6 +109,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### get_next_build_number
+
+```sh
+[bundle exec] fastlane get_next_build_number
+```
+
+**Get next Build Number**
+
 ----
 
 
@@ -137,10 +153,10 @@ Build deploy version
 * **`APPSTORE_CONNECT_API_KEY_ISSUER_ID`**: The connect api key issuer id
 * **`APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT`**: The api key base64 content
 
-### ios publish_dev_firebase
+### ios deploy_firebase_app_distribution
 
 ```sh
-[bundle exec] fastlane ios publish_dev_firebase
+[bundle exec] fastlane ios deploy_firebase_app_distribution
 ```
 
 Push a new beta build to Firebase

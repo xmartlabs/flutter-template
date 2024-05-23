@@ -13,6 +13,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
+### generate_docs
+
+```sh
+[bundle exec] fastlane generate_docs
+```
+
+
+
 ### fetch_dependencies
 
 ```sh
@@ -100,6 +108,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 ```
 
 
+
+### get_next_build_number
+
+```sh
+[bundle exec] fastlane get_next_build_number
+```
+
+**Get next Build Number**
 
 ----
 
