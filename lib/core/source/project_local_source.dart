@@ -1,33 +1,21 @@
-import 'dart:async';
+import 'package:flutter_template/core/model/project.dart';
+import 'package:flutter_template/core/source/common/hive_base_source.dart';
 
-import 'package:floor/floor.dart';
-import 'package:flutter_template/core/model/db/repository_db_entity.dart';
+class ProjectLocalSource extends HiveBaseSource<int, Project> {
+  ProjectLocalSource()
+      : super(
+          dbParser: (project) => project.toJson(),
+          modelParser: (project) => Project.fromJson(project),
+        );
 
-@dao
-abstract class ProjectLocalSource {
-  // It's set in the DAO creation
-  late final StreamController<String> changeListener;
-
-  @Query('SELECT * FROM projects')
-  Stream<List<ProjectDbEntity>> getProjects();
-
-  @Insert(onConflict: OnConflictStrategy.replace)
-  Future<void> insertProjects(List<ProjectDbEntity> projects);
-
-  @Query('DELETE FROM projects')
-  Future<void> deleteAllProjects();
-
-  @transaction
-  Future<void> replaceProjects(List<ProjectDbEntity>? projects) async {
-    await deleteAllProjects();
-    if (projects != null) {
-      await insertProjects(projects);
-    }
-    // Floor notifier does not work very well
-    // https://github.com/pinchbv/floor/issues/360
-    // https://github.com/pinchbv/floor/issues/603
-    if (projects == null || projects.isEmpty) {
-      changeListener.add('projects');
-    }
+  Future<List<Project>> replaceProjects(List<Project> elements) async {
+    await deleteAllElements();
+    return putAllElements(
+      Map.fromEntries(
+        elements.map(
+          (e) => MapEntry(e.id, e),
+        ),
+      ),
+    );
   }
 }
