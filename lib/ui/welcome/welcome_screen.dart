@@ -30,7 +30,7 @@ class _WelcomeContentScreen extends StatelessWidget {
             actions: [
               TextButton(
                 style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(
+                  foregroundColor: WidgetStateProperty.all<Color>(
                     context.theme.colorScheme.onPrimary,
                   ),
                 ),

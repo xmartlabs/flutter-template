@@ -38,12 +38,12 @@ class _AppDropdownMenuState<T> extends State<AppDropdownMenu<T>> {
                 value: item.value,
                 label: item.label,
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                    (Set<MaterialState> states) =>
+                  backgroundColor: WidgetStateColor.resolveWith(
+                    (Set<WidgetState> states) =>
                         context.theme.colorScheme.surface.getShade(100),
                   ),
-                  foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-                    (Set<MaterialState> states) =>
+                  foregroundColor: WidgetStateColor.resolveWith(
+                    (Set<WidgetState> states) =>
                         context.theme.customColors.textColor!.getShade(400),
                   ),
                 ),

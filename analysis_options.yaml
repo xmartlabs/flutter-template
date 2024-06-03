@@ -83,7 +83,7 @@ linter:
     - use_key_in_widget_constructors
     - valid_regexps
 
-dart_code_metrics:
+dart_code_linter:
   anti-patterns:
     - long-method
     - long-parameter-list
