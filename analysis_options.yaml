@@ -14,8 +14,6 @@ linter:
     - avoid_relative_lib_imports
     - avoid_renaming_method_parameters
     - avoid_return_types_on_setters
-    - avoid_returning_null
-    - avoid_returning_null_for_future
     - avoid_returning_null_for_void
     - avoid_returning_this
     - avoid_shadowing_type_parameters
@@ -112,18 +110,16 @@ dart_code_metrics:
         allowed-duplicated-chains: 3
     - prefer-trailing-comma
 
-
-
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 analyzer:
   exclude:
-    - '**/*.freezed.dart'
-    - '**/*.g.dart'
-    - '**/*.gen.dart'
-    - '**/*.gr.dart'
-    - 'bricks'
-    - 'lib/generated_plugin_registrant.dart'
+    - "**/*.freezed.dart"
+    - "**/*.g.dart"
+    - "**/*.gen.dart"
+    - "**/*.gr.dart"
+    - "bricks"
+    - "lib/generated_plugin_registrant.dart"
   errors:
     invalid_annotation_target: ignore
     unused_element: ignore # https://github.com/dart-lang/sdk/issues/49025
