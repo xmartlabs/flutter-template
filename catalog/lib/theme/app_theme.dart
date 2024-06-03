@@ -1,10 +1,10 @@
 import 'package:catalog/catalog.dart';
 import 'package:catalog/common/helper.dart';
 import 'package:catalog/extensions/color_extensions.dart';
+import 'package:catalog/theme/app_buttons.dart';
 import 'package:catalog/theme/app_color_scheme.dart';
 import 'package:catalog/theme/custom_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:catalog/theme/app_buttons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTheme {
@@ -99,8 +99,8 @@ class AppTheme {
           color: colors.primary.shade500,
         ),
         menuStyle: MenuStyle(
-          maximumSize: MaterialStateProperty.resolveWith<Size?>(
-            (Set<MaterialState> states) => Size(1.sw, 35.h * 6),
+          maximumSize: WidgetStateProperty.resolveWith<Size?>(
+            (Set<WidgetState> states) => Size(1.sw, 35.h * 6),
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(
