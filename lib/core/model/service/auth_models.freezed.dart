@@ -12,7 +12,7 @@ part of 'auth_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 SignInResponse _$SignInResponseFromJson(Map<String, dynamic> json) {
   return _SignInResponse.fromJson(json);
@@ -78,11 +78,11 @@ class _$SignInResponseCopyWithImpl<$Res, $Val extends SignInResponse>
 }
 
 /// @nodoc
-abstract class _$$_SignInResponseCopyWith<$Res>
+abstract class _$$SignInResponseImplCopyWith<$Res>
     implements $SignInResponseCopyWith<$Res> {
-  factory _$$_SignInResponseCopyWith(
-          _$_SignInResponse value, $Res Function(_$_SignInResponse) then) =
-      __$$_SignInResponseCopyWithImpl<$Res>;
+  factory _$$SignInResponseImplCopyWith(_$SignInResponseImpl value,
+          $Res Function(_$SignInResponseImpl) then) =
+      __$$SignInResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String accessToken, User user});
@@ -92,11 +92,11 @@ abstract class _$$_SignInResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SignInResponseCopyWithImpl<$Res>
-    extends _$SignInResponseCopyWithImpl<$Res, _$_SignInResponse>
-    implements _$$_SignInResponseCopyWith<$Res> {
-  __$$_SignInResponseCopyWithImpl(
-      _$_SignInResponse _value, $Res Function(_$_SignInResponse) _then)
+class __$$SignInResponseImplCopyWithImpl<$Res>
+    extends _$SignInResponseCopyWithImpl<$Res, _$SignInResponseImpl>
+    implements _$$SignInResponseImplCopyWith<$Res> {
+  __$$SignInResponseImplCopyWithImpl(
+      _$SignInResponseImpl _value, $Res Function(_$SignInResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -105,7 +105,7 @@ class __$$_SignInResponseCopyWithImpl<$Res>
     Object? accessToken = null,
     Object? user = null,
   }) {
-    return _then(_$_SignInResponse(
+    return _then(_$SignInResponseImpl(
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -121,11 +121,11 @@ class __$$_SignInResponseCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable()
-class _$_SignInResponse implements _SignInResponse {
-  _$_SignInResponse({required this.accessToken, required this.user});
+class _$SignInResponseImpl implements _SignInResponse {
+  _$SignInResponseImpl({required this.accessToken, required this.user});
 
-  factory _$_SignInResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_SignInResponseFromJson(json);
+  factory _$SignInResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SignInResponseImplFromJson(json);
 
   @override
   final String accessToken;
@@ -138,10 +138,10 @@ class _$_SignInResponse implements _SignInResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SignInResponse &&
+            other is _$SignInResponseImpl &&
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
             (identical(other.user, user) || other.user == user));
@@ -154,12 +154,13 @@ class _$_SignInResponse implements _SignInResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SignInResponseCopyWith<_$_SignInResponse> get copyWith =>
-      __$$_SignInResponseCopyWithImpl<_$_SignInResponse>(this, _$identity);
+  _$$SignInResponseImplCopyWith<_$SignInResponseImpl> get copyWith =>
+      __$$SignInResponseImplCopyWithImpl<_$SignInResponseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SignInResponseToJson(
+    return _$$SignInResponseImplToJson(
       this,
     );
   }
@@ -168,10 +169,10 @@ class _$_SignInResponse implements _SignInResponse {
 abstract class _SignInResponse implements SignInResponse {
   factory _SignInResponse(
       {required final String accessToken,
-      required final User user}) = _$_SignInResponse;
+      required final User user}) = _$SignInResponseImpl;
 
   factory _SignInResponse.fromJson(Map<String, dynamic> json) =
-      _$_SignInResponse.fromJson;
+      _$SignInResponseImpl.fromJson;
 
   @override
   String get accessToken;
@@ -179,7 +180,7 @@ abstract class _SignInResponse implements SignInResponse {
   User get user;
   @override
   @JsonKey(ignore: true)
-  _$$_SignInResponseCopyWith<_$_SignInResponse> get copyWith =>
+  _$$SignInResponseImplCopyWith<_$SignInResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -241,11 +242,11 @@ class _$SignInRequestCopyWithImpl<$Res, $Val extends SignInRequest>
 }
 
 /// @nodoc
-abstract class _$$_SignInRequestCopyWith<$Res>
+abstract class _$$SignInRequestImplCopyWith<$Res>
     implements $SignInRequestCopyWith<$Res> {
-  factory _$$_SignInRequestCopyWith(
-          _$_SignInRequest value, $Res Function(_$_SignInRequest) then) =
-      __$$_SignInRequestCopyWithImpl<$Res>;
+  factory _$$SignInRequestImplCopyWith(
+          _$SignInRequestImpl value, $Res Function(_$SignInRequestImpl) then) =
+      __$$SignInRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -254,11 +255,11 @@ abstract class _$$_SignInRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SignInRequestCopyWithImpl<$Res>
-    extends _$SignInRequestCopyWithImpl<$Res, _$_SignInRequest>
-    implements _$$_SignInRequestCopyWith<$Res> {
-  __$$_SignInRequestCopyWithImpl(
-      _$_SignInRequest _value, $Res Function(_$_SignInRequest) _then)
+class __$$SignInRequestImplCopyWithImpl<$Res>
+    extends _$SignInRequestCopyWithImpl<$Res, _$SignInRequestImpl>
+    implements _$$SignInRequestImplCopyWith<$Res> {
+  __$$SignInRequestImplCopyWithImpl(
+      _$SignInRequestImpl _value, $Res Function(_$SignInRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -267,7 +268,7 @@ class __$$_SignInRequestCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
   }) {
-    return _then(_$_SignInRequest(
+    return _then(_$SignInRequestImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -283,13 +284,13 @@ class __$$_SignInRequestCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable()
-class _$_SignInRequest implements _SignInRequest {
-  _$_SignInRequest(
+class _$SignInRequestImpl implements _SignInRequest {
+  _$SignInRequestImpl(
       {@JsonKey(name: 'email') required this.email,
       @JsonKey(name: 'password') required this.password});
 
-  factory _$_SignInRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_SignInRequestFromJson(json);
+  factory _$SignInRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SignInRequestImplFromJson(json);
 
   @override
   @JsonKey(name: 'email')
@@ -304,10 +305,10 @@ class _$_SignInRequest implements _SignInRequest {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SignInRequest &&
+            other is _$SignInRequestImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -320,12 +321,12 @@ class _$_SignInRequest implements _SignInRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SignInRequestCopyWith<_$_SignInRequest> get copyWith =>
-      __$$_SignInRequestCopyWithImpl<_$_SignInRequest>(this, _$identity);
+  _$$SignInRequestImplCopyWith<_$SignInRequestImpl> get copyWith =>
+      __$$SignInRequestImplCopyWithImpl<_$SignInRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SignInRequestToJson(
+    return _$$SignInRequestImplToJson(
       this,
     );
   }
@@ -335,10 +336,10 @@ abstract class _SignInRequest implements SignInRequest {
   factory _SignInRequest(
           {@JsonKey(name: 'email') required final String email,
           @JsonKey(name: 'password') required final String password}) =
-      _$_SignInRequest;
+      _$SignInRequestImpl;
 
   factory _SignInRequest.fromJson(Map<String, dynamic> json) =
-      _$_SignInRequest.fromJson;
+      _$SignInRequestImpl.fromJson;
 
   @override
   @JsonKey(name: 'email')
@@ -348,6 +349,6 @@ abstract class _SignInRequest implements SignInRequest {
   String get password;
   @override
   @JsonKey(ignore: true)
-  _$$_SignInRequestCopyWith<_$_SignInRequest> get copyWith =>
+  _$$SignInRequestImplCopyWith<_$SignInRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
