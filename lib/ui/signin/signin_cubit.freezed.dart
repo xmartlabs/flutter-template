@@ -12,7 +12,7 @@ part of 'signin_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SignInBaseState {
@@ -102,22 +102,22 @@ class _$SignInBaseStateCopyWithImpl<$Res, $Val extends SignInBaseState>
 }
 
 /// @nodoc
-abstract class _$$SignInStateCopyWith<$Res>
+abstract class _$$SignInStateImplCopyWith<$Res>
     implements $SignInBaseStateCopyWith<$Res> {
-  factory _$$SignInStateCopyWith(
-          _$SignInState value, $Res Function(_$SignInState) then) =
-      __$$SignInStateCopyWithImpl<$Res>;
+  factory _$$SignInStateImplCopyWith(
+          _$SignInStateImpl value, $Res Function(_$SignInStateImpl) then) =
+      __$$SignInStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? email, String? password, String error});
 }
 
 /// @nodoc
-class __$$SignInStateCopyWithImpl<$Res>
-    extends _$SignInBaseStateCopyWithImpl<$Res, _$SignInState>
-    implements _$$SignInStateCopyWith<$Res> {
-  __$$SignInStateCopyWithImpl(
-      _$SignInState _value, $Res Function(_$SignInState) _then)
+class __$$SignInStateImplCopyWithImpl<$Res>
+    extends _$SignInBaseStateCopyWithImpl<$Res, _$SignInStateImpl>
+    implements _$$SignInStateImplCopyWith<$Res> {
+  __$$SignInStateImplCopyWithImpl(
+      _$SignInStateImpl _value, $Res Function(_$SignInStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -127,7 +127,7 @@ class __$$SignInStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? error = null,
   }) {
-    return _then(_$SignInState(
+    return _then(_$SignInStateImpl(
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -146,8 +146,8 @@ class __$$SignInStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SignInState implements SignInState {
-  const _$SignInState(
+class _$SignInStateImpl implements SignInState {
+  const _$SignInStateImpl(
       {required this.email, required this.password, required this.error});
 
   @override
@@ -163,10 +163,10 @@ class _$SignInState implements SignInState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SignInState &&
+            other is _$SignInStateImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
@@ -179,8 +179,8 @@ class _$SignInState implements SignInState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SignInStateCopyWith<_$SignInState> get copyWith =>
-      __$$SignInStateCopyWithImpl<_$SignInState>(this, _$identity);
+  _$$SignInStateImplCopyWith<_$SignInStateImpl> get copyWith =>
+      __$$SignInStateImplCopyWithImpl<_$SignInStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -244,7 +244,7 @@ abstract class SignInState implements SignInBaseState {
   const factory SignInState(
       {required final String? email,
       required final String? password,
-      required final String error}) = _$SignInState;
+      required final String error}) = _$SignInStateImpl;
 
   @override
   String? get email;
@@ -254,6 +254,6 @@ abstract class SignInState implements SignInBaseState {
   String get error;
   @override
   @JsonKey(ignore: true)
-  _$$SignInStateCopyWith<_$SignInState> get copyWith =>
+  _$$SignInStateImplCopyWith<_$SignInStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'project.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Project _$ProjectFromJson(Map<String, dynamic> json) {
   return _Project.fromJson(json);
@@ -96,10 +96,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
 }
 
 /// @nodoc
-abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
-  factory _$$_ProjectCopyWith(
-          _$_Project value, $Res Function(_$_Project) then) =
-      __$$_ProjectCopyWithImpl<$Res>;
+abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
+  factory _$$ProjectImplCopyWith(
+          _$ProjectImpl value, $Res Function(_$ProjectImpl) then) =
+      __$$ProjectImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -112,10 +112,11 @@ abstract class _$$_ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ProjectCopyWithImpl<$Res>
-    extends _$ProjectCopyWithImpl<$Res, _$_Project>
-    implements _$$_ProjectCopyWith<$Res> {
-  __$$_ProjectCopyWithImpl(_$_Project _value, $Res Function(_$_Project) _then)
+class __$$ProjectImplCopyWithImpl<$Res>
+    extends _$ProjectCopyWithImpl<$Res, _$ProjectImpl>
+    implements _$$ProjectImplCopyWith<$Res> {
+  __$$ProjectImplCopyWithImpl(
+      _$ProjectImpl _value, $Res Function(_$ProjectImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -128,7 +129,7 @@ class __$$_ProjectCopyWithImpl<$Res>
     Object? imageUrl = null,
     Object? language = null,
   }) {
-    return _then(_$_Project(
+    return _then(_$ProjectImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -160,8 +161,8 @@ class __$$_ProjectCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable()
-class _$_Project implements _Project {
-  _$_Project(
+class _$ProjectImpl implements _Project {
+  _$ProjectImpl(
       {required this.id,
       required this.name,
       required this.description,
@@ -169,8 +170,8 @@ class _$_Project implements _Project {
       required this.imageUrl,
       required this.language});
 
-  factory _$_Project.fromJson(Map<String, dynamic> json) =>
-      _$$_ProjectFromJson(json);
+  factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectImplFromJson(json);
 
   @override
   final int id;
@@ -191,10 +192,10 @@ class _$_Project implements _Project {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Project &&
+            other is _$ProjectImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
@@ -214,12 +215,12 @@ class _$_Project implements _Project {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProjectCopyWith<_$_Project> get copyWith =>
-      __$$_ProjectCopyWithImpl<_$_Project>(this, _$identity);
+  _$$ProjectImplCopyWith<_$ProjectImpl> get copyWith =>
+      __$$ProjectImplCopyWithImpl<_$ProjectImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProjectToJson(
+    return _$$ProjectImplToJson(
       this,
     );
   }
@@ -232,9 +233,9 @@ abstract class _Project implements Project {
       required final String description,
       required final String url,
       required final String imageUrl,
-      required final String language}) = _$_Project;
+      required final String language}) = _$ProjectImpl;
 
-  factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
+  factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
 
   @override
   int get id;
@@ -250,6 +251,6 @@ abstract class _Project implements Project {
   String get language;
   @override
   @JsonKey(ignore: true)
-  _$$_ProjectCopyWith<_$_Project> get copyWith =>
+  _$$ProjectImplCopyWith<_$ProjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

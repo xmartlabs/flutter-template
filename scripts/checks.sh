@@ -18,11 +18,11 @@ fvm dart format --set-exit-if-changed lib || error "Linter error: Invalid format
 echo ':: Run linter ::'
 fvm flutter analyze . || error "Linter error - Flutter Analyze error"
 
-result=$(fvm flutter pub run dart_code_metrics:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings)
+result=$(fvm dart run dart_code_linter:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings)
 echo "$result"
 [[ $result == *'✔ no issues found!'* ]] || error "Linter error - Dart Code Metrics linter error"
 
-fvm flutter pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused || error "Linter error - Dart Code Metrics unused code error"
+fvm dart run dart_code_linter:metrics check-unused-code lib --fatal-unused || error "Linter error - Dart Code Metrics unused code error"
 
 echo ':: Run Design System checks'
 

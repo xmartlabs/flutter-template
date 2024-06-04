@@ -12,7 +12,7 @@ part of 'welcome_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$WelcomeBaseState {
@@ -89,22 +89,22 @@ class _$WelcomeBaseStateCopyWithImpl<$Res, $Val extends WelcomeBaseState>
 }
 
 /// @nodoc
-abstract class _$$WelcomeStateCopyWith<$Res>
+abstract class _$$WelcomeStateImplCopyWith<$Res>
     implements $WelcomeBaseStateCopyWith<$Res> {
-  factory _$$WelcomeStateCopyWith(
-          _$WelcomeState value, $Res Function(_$WelcomeState) then) =
-      __$$WelcomeStateCopyWithImpl<$Res>;
+  factory _$$WelcomeStateImplCopyWith(
+          _$WelcomeStateImpl value, $Res Function(_$WelcomeStateImpl) then) =
+      __$$WelcomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Project> projects});
 }
 
 /// @nodoc
-class __$$WelcomeStateCopyWithImpl<$Res>
-    extends _$WelcomeBaseStateCopyWithImpl<$Res, _$WelcomeState>
-    implements _$$WelcomeStateCopyWith<$Res> {
-  __$$WelcomeStateCopyWithImpl(
-      _$WelcomeState _value, $Res Function(_$WelcomeState) _then)
+class __$$WelcomeStateImplCopyWithImpl<$Res>
+    extends _$WelcomeBaseStateCopyWithImpl<$Res, _$WelcomeStateImpl>
+    implements _$$WelcomeStateImplCopyWith<$Res> {
+  __$$WelcomeStateImplCopyWithImpl(
+      _$WelcomeStateImpl _value, $Res Function(_$WelcomeStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +112,7 @@ class __$$WelcomeStateCopyWithImpl<$Res>
   $Res call({
     Object? projects = null,
   }) {
-    return _then(_$WelcomeState(
+    return _then(_$WelcomeStateImpl(
       projects: null == projects
           ? _value._projects
           : projects // ignore: cast_nullable_to_non_nullable
@@ -123,8 +123,8 @@ class __$$WelcomeStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WelcomeState implements WelcomeState {
-  const _$WelcomeState({final List<Project> projects = const []})
+class _$WelcomeStateImpl implements WelcomeState {
+  const _$WelcomeStateImpl({final List<Project> projects = const []})
       : _projects = projects;
 
   final List<Project> _projects;
@@ -142,10 +142,10 @@ class _$WelcomeState implements WelcomeState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WelcomeState &&
+            other is _$WelcomeStateImpl &&
             const DeepCollectionEquality().equals(other._projects, _projects));
   }
 
@@ -156,8 +156,8 @@ class _$WelcomeState implements WelcomeState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$WelcomeStateCopyWith<_$WelcomeState> get copyWith =>
-      __$$WelcomeStateCopyWithImpl<_$WelcomeState>(this, _$identity);
+  _$$WelcomeStateImplCopyWith<_$WelcomeStateImpl> get copyWith =>
+      __$$WelcomeStateImplCopyWithImpl<_$WelcomeStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -217,12 +217,13 @@ class _$WelcomeState implements WelcomeState {
 }
 
 abstract class WelcomeState implements WelcomeBaseState {
-  const factory WelcomeState({final List<Project> projects}) = _$WelcomeState;
+  const factory WelcomeState({final List<Project> projects}) =
+      _$WelcomeStateImpl;
 
   @override
   List<Project> get projects;
   @override
   @JsonKey(ignore: true)
-  _$$WelcomeStateCopyWith<_$WelcomeState> get copyWith =>
+  _$$WelcomeStateImplCopyWith<_$WelcomeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

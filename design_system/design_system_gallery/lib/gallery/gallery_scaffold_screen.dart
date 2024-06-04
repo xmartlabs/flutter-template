@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:design_system/design_system.dart';
 import 'package:design_system/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:design_system/design_system.dart';
 
 class GalleryScaffold extends StatelessWidget {
   final Widget child;
@@ -24,7 +24,7 @@ class GalleryScaffold extends StatelessWidget {
                     Icons.chevron_left,
                     color: context.theme.colorScheme.primary.getShade(100),
                   ),
-                  onPressed: () => context.router.pop(),
+                  onPressed: () => context.router.maybePop(),
                 )
               : null,
           title: Text(title),

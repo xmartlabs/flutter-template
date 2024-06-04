@@ -76,13 +76,13 @@ end
 
 desc "**Lint: Code metrics**"
 lane :lint_code_metrics do
-  result = flutter_command(command: "pub run dart_code_metrics:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings")
+  result = flutter_command(command: "pub run dart_code_linter:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings")
   UI.message(result)
   unless result.include? "✔ no issues found!"
     UI.user_error!("Code metrics error happened")
   end
 
-  flutter_command(command: "pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused")
+  flutter_command(command: "pub run dart_code_linter:metrics check-unused-code lib --fatal-unused")
 end
 
 
