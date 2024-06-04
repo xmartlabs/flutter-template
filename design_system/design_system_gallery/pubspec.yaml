@@ -1,0 +1,60 @@
+name: design_system_gallery
+description: A new Flutter project.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: 3.22.1
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  design_system:
+    path: ../
+
+  auto_route: 8.1.3
+  flutter_screenutil: 5.9.3
+  flutter_native_splash: 2.3.2
+  material_color_generator: 1.1.0
+  google_fonts: 6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  auto_route_generator: 8.0.0
+  flutter_lints: 3.0.1
+  flutter_gen_runner: 5.3.1
+  flutter_flavorizr: 2.2.1
+  flutter_launcher_icons: 0.13.1
+  build_runner: 2.4.6
+  lints: 3.0.0
+
+flutter:
+  uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "icons/ic_launcher.png"
+  image_path_ios: "icons/ic_launcher_ios.png" # Transparency not supported on IOS
+  adaptive_icon_foreground: "icons/ic_launcher_foreground.png"
+  adaptive_icon_background: "#ee1a64"
+  remove_alpha_ios: true
+  web:
+    generate: false
+  windows:
+    generate: false
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: "icons/splash_logo.png"
+  android_12:
+    image: "icons/splash_logo_android_12.png"
+    branding: "icons/splash_branding.png"
