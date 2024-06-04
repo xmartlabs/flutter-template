@@ -42,8 +42,8 @@ end
 desc "**Fetch flutter dependencies**"
 lane :fetch_dependencies do
   flutter_command(command: "pub get --suppress-analytics")
-  # Template does not depends on gallery
-  flutter_command(command: "pub get --suppress-analytics", subdirectory: "catalog/gallery")
+  # Template does not depends on design_system_galerry
+  flutter_command(command: "pub get --suppress-analytics", subdirectory: "design_system/design_system_gallery")
 end
 
 desc "**Generate flutter generated code**"
@@ -70,19 +70,19 @@ end
 desc "**Lint: Analyze code**"
 lane :lint_analyze do
   flutter_command(command: "analyze lib")
-  flutter_command(command: "analyze catalog/gallery")
-  flutter_command(command: "analyze catalog")
+  flutter_command(command: "analyze design_system/design_system_gallery")
+  flutter_command(command: "analyze design_system")
 end
 
 desc "**Lint: Code metrics**"
 lane :lint_code_metrics do
-  result = flutter_command(command: "pub run dart_code_metrics:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings")
+  result = flutter_command(command: "pub run dart_code_linter:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings")
   UI.message(result)
   unless result.include? "✔ no issues found!"
     UI.user_error!("Code metrics error happened")
   end
 
-  flutter_command(command: "pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused")
+  flutter_command(command: "pub run dart_code_linter:metrics check-unused-code lib --fatal-unused")
 end
 
 
