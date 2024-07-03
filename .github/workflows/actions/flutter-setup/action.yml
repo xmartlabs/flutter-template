@@ -6,11 +6,9 @@ inputs:
   setup-android:
     description: "Setup Android"
     required: true
-    default: false
   setup-ios:
     description: "Setup iOS"
     required: true
-    default: false
 
 runs:
   using: "composite"
@@ -18,7 +16,7 @@ runs:
     - uses: actions/setup-java@v3
       with:
         distribution: "zulu"
-        java-version: "11"
+        java-version: "17"
     - uses: dart-lang/setup-dart@v1.4
     - name: Cache FVM & Flutter
       uses: actions/cache@v3

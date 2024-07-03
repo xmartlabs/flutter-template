@@ -6,11 +6,9 @@ inputs:
   dist-certificate-base-64-content:
     description: "Distribution certificate base64 encoded"
     required: true
-    default: false
   ios-app-folder:
     description: "iOS app folder"
     required: true
-    default: false
 
 runs:
   using: "composite"

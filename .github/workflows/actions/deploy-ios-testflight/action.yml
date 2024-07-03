@@ -6,35 +6,27 @@ inputs:
   dist-certificate-base-64-content:
     description: "Distribution certificate base64 encoded"
     required: true
-    default: false
   ios-app-folder:
     description: "iOS app folder"
     required: true
-    default: false
   build-number:
     description: "Build number"
     required: true
-    default: false
   firebase-app-id:
     description: "Firebase app ID"
     required: true
-    default: false
   dist-cert-password:
     description: "Distribution certificate password"
     required: true
-    default: false
   appstore-connect-api-key-id:
     description: "Appstore connect API key ID"
     required: true
-    default: false
   appstore-connect-api-key-issuer-id:
     description: "Appstore connect API key issuer ID"
     required: true
-    default: false
   appstore-connect-api-key-base-64-content:
     description: "Appstore connect API key base64 encoded"
     required: true
-    default: false
 
 
 

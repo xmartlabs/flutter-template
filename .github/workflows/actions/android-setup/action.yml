@@ -6,11 +6,9 @@ inputs:
   key-properties-file:
     description: "Key properties file"
     required: true
-    default: false
   android-app-folder:
     description: "Android app folder"
     required: true
-    default: false
   
 
 runs:

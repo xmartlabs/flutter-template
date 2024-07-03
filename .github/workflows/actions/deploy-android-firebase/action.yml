@@ -4,35 +4,27 @@ inputs:
   key-properties-file:
     description: "Key properties file"
     required: true
-    default: false
   firebase-base64-service-account-credentials:
     description: "Firebase service account credentials base64 encoded"
     required: true
-    default: false
   service-account:
     description: "Service account"
     required: true
-    default: false
   android-app-folder:
     description: "Android app folder"
     required: true
-    default: false
   app-env:
     description: "App environment"
     required: true
-    default: false
   build-number:
     description: "Build number"
     required: true
-    default: false
   firebase-app-id:
     description: "Firebase app ID"
     required: true
-    default: false
   firebase-tester-groups:
     description: "Firebase tester groups"
     required: true
-    default: false
 
 
 runs:
