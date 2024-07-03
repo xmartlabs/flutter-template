@@ -1,0 +1,25 @@
+name: design_system
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: "none"
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: 3.22.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  auto_route: 8.1.3
+  flutter_screenutil: 5.9.3
+  material_color_generator: 1.1.0
+  google_fonts: 6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 3.0.1
+  auto_route_generator: 8.0.0
+  flutter_gen_runner: 5.3.1
+  build_runner: 2.4.6
+  lints: 3.0.0

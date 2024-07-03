@@ -12,7 +12,7 @@ part of 'global_event_handler_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$GlobalEventHandlerState {
@@ -82,30 +82,30 @@ class _$GlobalEventHandlerStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$IdleGlobalEventHandlerStateCopyWith<$Res> {
-  factory _$$IdleGlobalEventHandlerStateCopyWith(
-          _$IdleGlobalEventHandlerState value,
-          $Res Function(_$IdleGlobalEventHandlerState) then) =
-      __$$IdleGlobalEventHandlerStateCopyWithImpl<$Res>;
+abstract class _$$IdleGlobalEventHandlerStateImplCopyWith<$Res> {
+  factory _$$IdleGlobalEventHandlerStateImplCopyWith(
+          _$IdleGlobalEventHandlerStateImpl value,
+          $Res Function(_$IdleGlobalEventHandlerStateImpl) then) =
+      __$$IdleGlobalEventHandlerStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$IdleGlobalEventHandlerStateCopyWithImpl<$Res>
+class __$$IdleGlobalEventHandlerStateImplCopyWithImpl<$Res>
     extends _$GlobalEventHandlerStateCopyWithImpl<$Res,
-        _$IdleGlobalEventHandlerState>
-    implements _$$IdleGlobalEventHandlerStateCopyWith<$Res> {
-  __$$IdleGlobalEventHandlerStateCopyWithImpl(
-      _$IdleGlobalEventHandlerState _value,
-      $Res Function(_$IdleGlobalEventHandlerState) _then)
+        _$IdleGlobalEventHandlerStateImpl>
+    implements _$$IdleGlobalEventHandlerStateImplCopyWith<$Res> {
+  __$$IdleGlobalEventHandlerStateImplCopyWithImpl(
+      _$IdleGlobalEventHandlerStateImpl _value,
+      $Res Function(_$IdleGlobalEventHandlerStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$IdleGlobalEventHandlerState
+class _$IdleGlobalEventHandlerStateImpl
     with DiagnosticableTreeMixin
     implements IdleGlobalEventHandlerState {
-  const _$IdleGlobalEventHandlerState();
+  const _$IdleGlobalEventHandlerStateImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -119,10 +119,10 @@ class _$IdleGlobalEventHandlerState
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$IdleGlobalEventHandlerState);
+            other is _$IdleGlobalEventHandlerStateImpl);
   }
 
   @override
@@ -198,15 +198,16 @@ class _$IdleGlobalEventHandlerState
 }
 
 abstract class IdleGlobalEventHandlerState implements GlobalEventHandlerState {
-  const factory IdleGlobalEventHandlerState() = _$IdleGlobalEventHandlerState;
+  const factory IdleGlobalEventHandlerState() =
+      _$IdleGlobalEventHandlerStateImpl;
 }
 
 /// @nodoc
-abstract class _$$ErrorGlobalEventHandlerStateCopyWith<$Res> {
-  factory _$$ErrorGlobalEventHandlerStateCopyWith(
-          _$ErrorGlobalEventHandlerState value,
-          $Res Function(_$ErrorGlobalEventHandlerState) then) =
-      __$$ErrorGlobalEventHandlerStateCopyWithImpl<$Res>;
+abstract class _$$ErrorGlobalEventHandlerStateImplCopyWith<$Res> {
+  factory _$$ErrorGlobalEventHandlerStateImplCopyWith(
+          _$ErrorGlobalEventHandlerStateImpl value,
+          $Res Function(_$ErrorGlobalEventHandlerStateImpl) then) =
+      __$$ErrorGlobalEventHandlerStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({GlobalEventHandlerStateError error});
 
@@ -214,13 +215,13 @@ abstract class _$$ErrorGlobalEventHandlerStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ErrorGlobalEventHandlerStateCopyWithImpl<$Res>
+class __$$ErrorGlobalEventHandlerStateImplCopyWithImpl<$Res>
     extends _$GlobalEventHandlerStateCopyWithImpl<$Res,
-        _$ErrorGlobalEventHandlerState>
-    implements _$$ErrorGlobalEventHandlerStateCopyWith<$Res> {
-  __$$ErrorGlobalEventHandlerStateCopyWithImpl(
-      _$ErrorGlobalEventHandlerState _value,
-      $Res Function(_$ErrorGlobalEventHandlerState) _then)
+        _$ErrorGlobalEventHandlerStateImpl>
+    implements _$$ErrorGlobalEventHandlerStateImplCopyWith<$Res> {
+  __$$ErrorGlobalEventHandlerStateImplCopyWithImpl(
+      _$ErrorGlobalEventHandlerStateImpl _value,
+      $Res Function(_$ErrorGlobalEventHandlerStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -228,7 +229,7 @@ class __$$ErrorGlobalEventHandlerStateCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$ErrorGlobalEventHandlerState(
+    return _then(_$ErrorGlobalEventHandlerStateImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -247,10 +248,10 @@ class __$$ErrorGlobalEventHandlerStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorGlobalEventHandlerState
+class _$ErrorGlobalEventHandlerStateImpl
     with DiagnosticableTreeMixin
     implements ErrorGlobalEventHandlerState {
-  const _$ErrorGlobalEventHandlerState(this.error);
+  const _$ErrorGlobalEventHandlerStateImpl(this.error);
 
   @override
   final GlobalEventHandlerStateError error;
@@ -269,10 +270,10 @@ class _$ErrorGlobalEventHandlerState
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorGlobalEventHandlerState &&
+            other is _$ErrorGlobalEventHandlerStateImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -282,9 +283,10 @@ class _$ErrorGlobalEventHandlerState
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorGlobalEventHandlerStateCopyWith<_$ErrorGlobalEventHandlerState>
-      get copyWith => __$$ErrorGlobalEventHandlerStateCopyWithImpl<
-          _$ErrorGlobalEventHandlerState>(this, _$identity);
+  _$$ErrorGlobalEventHandlerStateImplCopyWith<
+          _$ErrorGlobalEventHandlerStateImpl>
+      get copyWith => __$$ErrorGlobalEventHandlerStateImplCopyWithImpl<
+          _$ErrorGlobalEventHandlerStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -358,39 +360,40 @@ class _$ErrorGlobalEventHandlerState
 abstract class ErrorGlobalEventHandlerState implements GlobalEventHandlerState {
   const factory ErrorGlobalEventHandlerState(
           final GlobalEventHandlerStateError error) =
-      _$ErrorGlobalEventHandlerState;
+      _$ErrorGlobalEventHandlerStateImpl;
 
   GlobalEventHandlerStateError get error;
   @JsonKey(ignore: true)
-  _$$ErrorGlobalEventHandlerStateCopyWith<_$ErrorGlobalEventHandlerState>
+  _$$ErrorGlobalEventHandlerStateImplCopyWith<
+          _$ErrorGlobalEventHandlerStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadingGlobalEventHandlerStateCopyWith<$Res> {
-  factory _$$LoadingGlobalEventHandlerStateCopyWith(
-          _$LoadingGlobalEventHandlerState value,
-          $Res Function(_$LoadingGlobalEventHandlerState) then) =
-      __$$LoadingGlobalEventHandlerStateCopyWithImpl<$Res>;
+abstract class _$$LoadingGlobalEventHandlerStateImplCopyWith<$Res> {
+  factory _$$LoadingGlobalEventHandlerStateImplCopyWith(
+          _$LoadingGlobalEventHandlerStateImpl value,
+          $Res Function(_$LoadingGlobalEventHandlerStateImpl) then) =
+      __$$LoadingGlobalEventHandlerStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingGlobalEventHandlerStateCopyWithImpl<$Res>
+class __$$LoadingGlobalEventHandlerStateImplCopyWithImpl<$Res>
     extends _$GlobalEventHandlerStateCopyWithImpl<$Res,
-        _$LoadingGlobalEventHandlerState>
-    implements _$$LoadingGlobalEventHandlerStateCopyWith<$Res> {
-  __$$LoadingGlobalEventHandlerStateCopyWithImpl(
-      _$LoadingGlobalEventHandlerState _value,
-      $Res Function(_$LoadingGlobalEventHandlerState) _then)
+        _$LoadingGlobalEventHandlerStateImpl>
+    implements _$$LoadingGlobalEventHandlerStateImplCopyWith<$Res> {
+  __$$LoadingGlobalEventHandlerStateImplCopyWithImpl(
+      _$LoadingGlobalEventHandlerStateImpl _value,
+      $Res Function(_$LoadingGlobalEventHandlerStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingGlobalEventHandlerState
+class _$LoadingGlobalEventHandlerStateImpl
     with DiagnosticableTreeMixin
     implements LoadingGlobalEventHandlerState {
-  const _$LoadingGlobalEventHandlerState();
+  const _$LoadingGlobalEventHandlerStateImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -405,10 +408,10 @@ class _$LoadingGlobalEventHandlerState
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadingGlobalEventHandlerState);
+            other is _$LoadingGlobalEventHandlerStateImpl);
   }
 
   @override
@@ -486,7 +489,7 @@ class _$LoadingGlobalEventHandlerState
 abstract class LoadingGlobalEventHandlerState
     implements GlobalEventHandlerState {
   const factory LoadingGlobalEventHandlerState() =
-      _$LoadingGlobalEventHandlerState;
+      _$LoadingGlobalEventHandlerStateImpl;
 }
 
 /// @nodoc
@@ -583,22 +586,22 @@ class _$GlobalEventHandlerStateErrorCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$UnknownErrorCopyWith<$Res>
+abstract class _$$UnknownErrorImplCopyWith<$Res>
     implements $GlobalEventHandlerStateErrorCopyWith<$Res> {
-  factory _$$UnknownErrorCopyWith(
-          _$UnknownError value, $Res Function(_$UnknownError) then) =
-      __$$UnknownErrorCopyWithImpl<$Res>;
+  factory _$$UnknownErrorImplCopyWith(
+          _$UnknownErrorImpl value, $Res Function(_$UnknownErrorImpl) then) =
+      __$$UnknownErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Object? error, VoidCallback? retry});
 }
 
 /// @nodoc
-class __$$UnknownErrorCopyWithImpl<$Res>
-    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$UnknownError>
-    implements _$$UnknownErrorCopyWith<$Res> {
-  __$$UnknownErrorCopyWithImpl(
-      _$UnknownError _value, $Res Function(_$UnknownError) _then)
+class __$$UnknownErrorImplCopyWithImpl<$Res>
+    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$UnknownErrorImpl>
+    implements _$$UnknownErrorImplCopyWith<$Res> {
+  __$$UnknownErrorImplCopyWithImpl(
+      _$UnknownErrorImpl _value, $Res Function(_$UnknownErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -607,7 +610,7 @@ class __$$UnknownErrorCopyWithImpl<$Res>
     Object? error = freezed,
     Object? retry = freezed,
   }) {
-    return _then(_$UnknownError(
+    return _then(_$UnknownErrorImpl(
       freezed == error ? _value.error : error,
       freezed == retry
           ? _value.retry
@@ -619,8 +622,8 @@ class __$$UnknownErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UnknownError with DiagnosticableTreeMixin implements UnknownError {
-  const _$UnknownError(this.error, [this.retry]);
+class _$UnknownErrorImpl with DiagnosticableTreeMixin implements UnknownError {
+  const _$UnknownErrorImpl(this.error, [this.retry]);
 
   @override
   final Object? error;
@@ -645,8 +648,8 @@ class _$UnknownError with DiagnosticableTreeMixin implements UnknownError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UnknownErrorCopyWith<_$UnknownError> get copyWith =>
-      __$$UnknownErrorCopyWithImpl<_$UnknownError>(this, _$identity);
+  _$$UnknownErrorImplCopyWith<_$UnknownErrorImpl> get copyWith =>
+      __$$UnknownErrorImplCopyWithImpl<_$UnknownErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -723,34 +726,34 @@ class _$UnknownError with DiagnosticableTreeMixin implements UnknownError {
 
 abstract class UnknownError implements GlobalEventHandlerStateError {
   const factory UnknownError(final Object? error, [final VoidCallback? retry]) =
-      _$UnknownError;
+      _$UnknownErrorImpl;
 
   Object? get error;
   @override
   VoidCallback? get retry;
   @override
   @JsonKey(ignore: true)
-  _$$UnknownErrorCopyWith<_$UnknownError> get copyWith =>
+  _$$UnknownErrorImplCopyWith<_$UnknownErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$InternetErrorCopyWith<$Res>
+abstract class _$$InternetErrorImplCopyWith<$Res>
     implements $GlobalEventHandlerStateErrorCopyWith<$Res> {
-  factory _$$InternetErrorCopyWith(
-          _$InternetError value, $Res Function(_$InternetError) then) =
-      __$$InternetErrorCopyWithImpl<$Res>;
+  factory _$$InternetErrorImplCopyWith(
+          _$InternetErrorImpl value, $Res Function(_$InternetErrorImpl) then) =
+      __$$InternetErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({VoidCallback? retry});
 }
 
 /// @nodoc
-class __$$InternetErrorCopyWithImpl<$Res>
-    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$InternetError>
-    implements _$$InternetErrorCopyWith<$Res> {
-  __$$InternetErrorCopyWithImpl(
-      _$InternetError _value, $Res Function(_$InternetError) _then)
+class __$$InternetErrorImplCopyWithImpl<$Res>
+    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res,
+        _$InternetErrorImpl> implements _$$InternetErrorImplCopyWith<$Res> {
+  __$$InternetErrorImplCopyWithImpl(
+      _$InternetErrorImpl _value, $Res Function(_$InternetErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -758,7 +761,7 @@ class __$$InternetErrorCopyWithImpl<$Res>
   $Res call({
     Object? retry = freezed,
   }) {
-    return _then(_$InternetError(
+    return _then(_$InternetErrorImpl(
       freezed == retry
           ? _value.retry
           : retry // ignore: cast_nullable_to_non_nullable
@@ -769,8 +772,10 @@ class __$$InternetErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InternetError with DiagnosticableTreeMixin implements InternetError {
-  const _$InternetError([this.retry]);
+class _$InternetErrorImpl
+    with DiagnosticableTreeMixin
+    implements InternetError {
+  const _$InternetErrorImpl([this.retry]);
 
   @override
   final VoidCallback? retry;
@@ -792,8 +797,8 @@ class _$InternetError with DiagnosticableTreeMixin implements InternetError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InternetErrorCopyWith<_$InternetError> get copyWith =>
-      __$$InternetErrorCopyWithImpl<_$InternetError>(this, _$identity);
+  _$$InternetErrorImplCopyWith<_$InternetErrorImpl> get copyWith =>
+      __$$InternetErrorImplCopyWithImpl<_$InternetErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -869,33 +874,34 @@ class _$InternetError with DiagnosticableTreeMixin implements InternetError {
 }
 
 abstract class InternetError implements GlobalEventHandlerStateError {
-  const factory InternetError([final VoidCallback? retry]) = _$InternetError;
+  const factory InternetError([final VoidCallback? retry]) =
+      _$InternetErrorImpl;
 
   @override
   VoidCallback? get retry;
   @override
   @JsonKey(ignore: true)
-  _$$InternetErrorCopyWith<_$InternetError> get copyWith =>
+  _$$InternetErrorImplCopyWith<_$InternetErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GeneralErrorCopyWith<$Res>
+abstract class _$$GeneralErrorImplCopyWith<$Res>
     implements $GlobalEventHandlerStateErrorCopyWith<$Res> {
-  factory _$$GeneralErrorCopyWith(
-          _$GeneralError value, $Res Function(_$GeneralError) then) =
-      __$$GeneralErrorCopyWithImpl<$Res>;
+  factory _$$GeneralErrorImplCopyWith(
+          _$GeneralErrorImpl value, $Res Function(_$GeneralErrorImpl) then) =
+      __$$GeneralErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? title, String description, VoidCallback? retry});
 }
 
 /// @nodoc
-class __$$GeneralErrorCopyWithImpl<$Res>
-    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$GeneralError>
-    implements _$$GeneralErrorCopyWith<$Res> {
-  __$$GeneralErrorCopyWithImpl(
-      _$GeneralError _value, $Res Function(_$GeneralError) _then)
+class __$$GeneralErrorImplCopyWithImpl<$Res>
+    extends _$GlobalEventHandlerStateErrorCopyWithImpl<$Res, _$GeneralErrorImpl>
+    implements _$$GeneralErrorImplCopyWith<$Res> {
+  __$$GeneralErrorImplCopyWithImpl(
+      _$GeneralErrorImpl _value, $Res Function(_$GeneralErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -905,7 +911,7 @@ class __$$GeneralErrorCopyWithImpl<$Res>
     Object? description = null,
     Object? retry = freezed,
   }) {
-    return _then(_$GeneralError(
+    return _then(_$GeneralErrorImpl(
       freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -924,8 +930,8 @@ class __$$GeneralErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GeneralError with DiagnosticableTreeMixin implements GeneralError {
-  const _$GeneralError(this.title, this.description, [this.retry]);
+class _$GeneralErrorImpl with DiagnosticableTreeMixin implements GeneralError {
+  const _$GeneralErrorImpl(this.title, this.description, [this.retry]);
 
   @override
   final String? title;
@@ -953,8 +959,8 @@ class _$GeneralError with DiagnosticableTreeMixin implements GeneralError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GeneralErrorCopyWith<_$GeneralError> get copyWith =>
-      __$$GeneralErrorCopyWithImpl<_$GeneralError>(this, _$identity);
+  _$$GeneralErrorImplCopyWith<_$GeneralErrorImpl> get copyWith =>
+      __$$GeneralErrorImplCopyWithImpl<_$GeneralErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1031,7 +1037,7 @@ class _$GeneralError with DiagnosticableTreeMixin implements GeneralError {
 
 abstract class GeneralError implements GlobalEventHandlerStateError {
   const factory GeneralError(final String? title, final String description,
-      [final VoidCallback? retry]) = _$GeneralError;
+      [final VoidCallback? retry]) = _$GeneralErrorImpl;
 
   String? get title;
   String get description;
@@ -1039,6 +1045,6 @@ abstract class GeneralError implements GlobalEventHandlerStateError {
   VoidCallback? get retry;
   @override
   @JsonKey(ignore: true)
-  _$$GeneralErrorCopyWith<_$GeneralError> get copyWith =>
+  _$$GeneralErrorImplCopyWith<_$GeneralErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

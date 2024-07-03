@@ -18,14 +18,14 @@ fvm dart format --set-exit-if-changed lib || error "Linter error: Invalid format
 echo ':: Run linter ::'
 fvm flutter analyze . || error "Linter error - Flutter Analyze error"
 
-result=$(fvm flutter pub run dart_code_metrics:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings)
+result=$(fvm dart run dart_code_linter:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings)
 echo "$result"
 [[ $result == *'✔ no issues found!'* ]] || error "Linter error - Dart Code Metrics linter error"
 
-fvm flutter pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused || error "Linter error - Dart Code Metrics unused code error"
+fvm dart run dart_code_linter:metrics check-unused-code lib --fatal-unused || error "Linter error - Dart Code Metrics unused code error"
 
-echo ':: Run Catalog checks'
+echo ':: Run Design System checks'
 
-echo ':: Run linter catalog ::'
-fvm flutter analyze catalog || error "Linter error - Flutter Analyze error - Catalog gallery"
-fvm flutter analyze catalog/gallery || error "Linter error - Flutter Analyze error - Catalog gallery"
+echo ':: Run linter design system ::'
+fvm flutter analyze design_system || error "Linter error - Flutter Analyze error - Design System gallery"
+fvm flutter analyze design_system/design_system_gallery || error "Linter error - Flutter Analyze error - Design System gallery"
