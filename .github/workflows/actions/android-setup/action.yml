@@ -1,0 +1,34 @@
+# IMPORTANT: ANDROID_KEYSTORE_NAME has to be set on github variables
+
+name: Release Android
+description: "Setup Android for release"
+inputs:
+  key-properties-file:
+    description: "Key properties file"
+    required: true
+  android-app-folder:
+    description: "Android app folder"
+    required: true
+  
+
+runs:
+  using: "composite"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 15
+
+      - name: Setup
+        uses: ./.github/workflows/actions/flutter_setup
+        with:
+          setup-android: true
+
+      - name: Download Android Keystore
+        shell: bash
+        env:
+          KEYSTORE_BASE_64: ${{ secrets.ANDROID_KEYSTORE_BASE_64_CONTENT }}
+          KEY_PROPERTIES_BASE_64: ${{ secrets.ANDROID_KEY_PROPERTIES_BASE_64 }}
+        run: |
+          echo -n $KEYSTORE_BASE_64 | base64 -d > ${{ vars.ANDROID_KEYSTORE_NAME }}
+          echo -n $KEY_PROPERTIES_BASE_64 | base64 -d > ${{ inputs.key-properties-file }}
+        working-directory: ${{ inputs.android-app-folder }}
