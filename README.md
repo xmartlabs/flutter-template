@@ -7,6 +7,8 @@ The project is divided into two main folders:
 - The UI contains all app screens.
 - The Core contains the models and the data layer.
 
+The design system is located on a package called [design_system][design_system], 
+
 ### UI section
 
 [Flutter Bloc][bloc] is used for state management, specifically, we use Cubit to manage the screen state.
@@ -119,6 +121,7 @@ To create generated code run `clean_up.sh` under [scripts] folder or the followi
 
 In order to setup pre-push hook you need to go to the root of the project and run `git config core.hooksPath .github/hooks`
 
+[design_system]: https://github.com/xmartlabs/flutter-template/tree/main/design_system
 [flavorizr]: https://pub.dev/packages/flutter_flavorizr
 [flutter_launcher_icons]: https://pub.dev/packages/flutter_launcher_icons
 [flutter_native_splash]: https://pub.dev/packages/flutter_native_splash
