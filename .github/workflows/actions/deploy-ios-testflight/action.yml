@@ -1,0 +1,55 @@
+# IMPORTANT: IOS_CERTIFICATE_NAME has to be set on github variables
+
+name: Deploy iOS TestFlight
+description: "Deploy iOS to TestFlight"
+inputs:
+  dist-certificate-base-64-content:
+    description: "Distribution certificate base64 encoded"
+    required: true
+  ios-app-folder:
+    description: "iOS app folder"
+    required: true
+  build-number:
+    description: "Build number"
+    required: true
+  firebase-app-id:
+    description: "Firebase app ID"
+    required: true
+  dist-cert-password:
+    description: "Distribution certificate password"
+    required: true
+  appstore-connect-api-key-id:
+    description: "Appstore connect API key ID"
+    required: true
+  appstore-connect-api-key-issuer-id:
+    description: "Appstore connect API key issuer ID"
+    required: true
+  appstore-connect-api-key-base-64-content:
+    description: "Appstore connect API key base64 encoded"
+    required: true
+
+
+
+runs:
+  using: "composite"
+    steps:
+      - name: Setup iOS
+        uses: ./.github/workflows/actions/setup-ios
+        with:
+          "dist-certificate-base-64-content": ${{ inputs.dist-certificate-base-64-content }}
+          "ios-app-folder": ${{ inputs.ios-app-folder }}
+      
+      - name: Release to testflight
+        env:
+          APPSTORE_CONNECT_API_KEY_ID: ${{ inputs.appstore-connect-api-key-id }}
+          APPSTORE_CONNECT_API_KEY_ISSUER_ID: ${{ inputs.appstore-connect-api-key-issuer-id }}
+          APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT: ${{ inputs.appstore-connect-api-key-base-64-content }}
+          DIST_CERTIFICATE_PATH: ${{ github.workspace }}/ios/${{ vars.IOS_CERTIFICATE_NAME }}
+          DIST_CERTIFICATE_PASSWORD: ${{ inputs.dist-cert-password }}
+          FIREBASE_APP_ID: ${{ inputs.firebase-app-id }}
+          BUILD_NUMBER: ${{ inputs.build-number }}
+
+        uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: "publish_prod_testflight"
+          subdirectory: ${{ inputs.ios-app-folder }}

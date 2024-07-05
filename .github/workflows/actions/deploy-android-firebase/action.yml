@@ -1,0 +1,57 @@
+name: Deploy Android Firebase
+description: "Deploy Android to Firebase"
+inputs:
+  key-properties-file:
+    description: "Key properties file"
+    required: true
+  firebase-base64-service-account-credentials:
+    description: "Firebase service account credentials base64 encoded"
+    required: true
+  service-account:
+    description: "Service account"
+    required: true
+  android-app-folder:
+    description: "Android app folder"
+    required: true
+  app-env:
+    description: "App environment"
+    required: true
+  build-number:
+    description: "Build number"
+    required: true
+  firebase-app-id:
+    description: "Firebase app ID"
+    required: true
+  firebase-tester-groups:
+    description: "Firebase tester groups"
+    required: true
+
+
+runs:
+  using: "composite"
+    steps:
+      - name: Setup android
+        uses: ./.github/workflows/actions/setup-android
+        with:
+          "key-properties-file": ${{ inputs.key-properties-file }}
+          "android-app-folder": ${{ inputs.android-app-folder }}
+
+      - name: Download Firebase Service Account
+        shell: bash
+        env:
+          SERVICE_ACCOUNT_CONTENT: ${{ inputs.firebase-base64-service-account-credentials }}
+        run: |
+          echo -n $SERVICE_ACCOUNT_CONTENT | base64 -d  > ${{ inputs.service-account }}
+        working-directory: ${{ inputs.android-app-folder }}
+
+      - name: Deploy Android Staging to Firebase App Distribution
+        env:
+          APP_ENV: ${{ inputs.app-env }}
+          BUILD_NUMBER: ${{ inputs.build-number }}
+          FIREBASE_SERVICE_ACCOUNT_FILE: ${{ inputs.service-account }}
+          FIREBASE_APP_ID: ${{ inputs.firebase-app-id }}
+          FIREBASE_TESTER_GROUPS: ${{ inputs.firebase-tester-groups }}
+        uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: "deploy_firebase_app_distribution"
+          subdirectory: ${{ inputs.android-app-folder }}

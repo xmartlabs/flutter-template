@@ -1,0 +1,78 @@
+# IMPORTANT: IOS_CERTIFICATE_NAME has to be set on github variables
+
+name: Deploy iOS Firebase
+description: "Deploy iOS to Firebase"
+inputs:
+  dist-certificate-base-64-content:
+    description: "Distribution certificate base64 encoded"
+    required: true
+  ios-app-folder:
+    description: "iOS app folder"
+    required: true
+  app-env:
+    description: "App environment"
+    required: true
+  build-number:
+    description: "Build number"
+    required: true
+  firebase-app-id:
+    description: "Firebase app ID"
+    required: true
+  firebase-tester-groups:
+    description: "Firebase tester groups"
+    required: true
+  service-account:
+    description: "Service account"
+    required: true
+  firebase-service-account-base-64-content:
+    description: "Firebase service account base64 encoded"
+    required: true
+  dist-cert-password:
+    description: "Distribution certificate password"
+    required: true
+  appstore-connect-api-key-id:
+    description: "Appstore connect API key ID"
+    required: true
+  appstore-connect-api-key-issuer-id:
+    description: "Appstore connect API key issuer ID"
+    required: true
+  appstore-connect-api-key-base-64-content:
+    description: "Appstore connect API key base64 encoded"
+    required: true
+
+
+
+runs:
+  using: "composite"
+    steps:
+      - name: Setup iOS
+        uses: ./.github/workflows/actions/setup-ios
+        with:
+          "dist-certificate-base-64-content": ${{ inputs.dist-certificate-base-64-content }}
+          "ios-app-folder": ${{ inputs.ios-app-folder }}
+
+      - name: Download Firebase Service Account
+        shell: bash
+        env:
+          SERVICE_ACCOUNT_CONTENT: ${{ inputs.firebase-service-account-base-64-content }}
+        run: |
+          echo -n $SERVICE_ACCOUNT_CONTENT | base64 -d  > ${{ inputs.service-account }}
+        working-directory: ${{ inputs.ios-app-folder }}
+
+      - name: Release to Firebase
+        env:
+          APP_ENV: ${{ inputs.app-env }}
+          FIREBASE_SERVICE_ACCOUNT_FILE: ${{ inputs.service-account }}
+          FIREBASE_APP_ID: ${{ inputs.firebase-app-id }}
+          DIST_CERTIFICATE_PATH: ${{ github.workspace }}/ios/${{ vars.IOS_CERTIFICATE_NAME }}
+          DIST_CERTIFICATE_PASSWORD: ${{ inputs.dist-cert-password }}
+          APPSTORE_CONNECT_API_KEY_ID: ${{ inputs.appstore-connect-api-key-id }}
+          APPSTORE_CONNECT_API_KEY_ISSUER_ID: ${{ inputs.appstore-connect-api-key-issuer-id }}
+          APPSTORE_CONNECT_API_KEY_BASE_64_CONTENT: ${{ inputs.appstore-connect-api-key-base-64-content }}
+          BUILD_NUMBER: ${{ inputs.build-number }}
+          FIREBASE_TESTER_GROUPS: ${{ inputs.firebase-tester-groups }}
+
+        uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: "deploy_firebase_app_distribution"
+          subdirectory: ${{ inputs.ios-app-folder}}

@@ -1,0 +1,32 @@
+# IMPORTANT: IOS_CERTIFICATE_NAME and XCODE_VERSION have to be set on github variables
+
+name: Release iOS
+description: "Setup iOS for release"
+inputs:
+  dist-certificate-base-64-content:
+    description: "Distribution certificate base64 encoded"
+    required: true
+  ios-app-folder:
+    description: "iOS app folder"
+    required: true
+
+runs:
+  using: "composite"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 15
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ vars.XCODE_VERSION }}.app/Contents/Developer
+
+      - name: Setup
+        uses: ./.github/workflows/actions/flutter_setup
+        with:
+          setup-ios: true
+
+      - name: Create distribution certificate
+        shell: bash
+        run: |
+          echo -n ${{ inputs.dist-certificate-base-64-content }} | base64 --decode -o ${{ vars.IOS_CERTIFICATE_NAME }}
+        working-directory: ${{ inputs.ios-app-folder}}
