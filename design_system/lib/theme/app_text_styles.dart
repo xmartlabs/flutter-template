@@ -1,13 +1,16 @@
 //ignore_for_file: unused-files, unused-code
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 const FontWeight _semiboldWeight = FontWeight.w600;
 
-class AppTextStyles extends TextTheme {
+final _isTesting = Platform.environment.containsKey('FLUTTER_TEST');
 
+class AppTextStyles extends TextTheme {
   const AppTextStyles({
     super.headlineLarge,
     super.headlineMedium,
@@ -45,13 +48,28 @@ class AppTextStyles extends TextTheme {
     double fontSize,
     FontWeight fontWeight,
   ) =>
-      GoogleFonts.roboto(
-        fontSize: fontSize,
-        fontWeight: fontWeight,
+      _isTesting
+          ? TextStyle(fontSize: fontSize, fontWeight: fontWeight)
+          : GoogleFonts.roboto(
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+            );
+
+  static AppTextStyles getDefaultAppStyles() =>
+      _isTesting ? _testingTextTheme() : _appTextTheme();
+
+  static AppTextStyles _appTextTheme() => AppTextStyles.fromTextTheme(
+        textTheme: GoogleFonts.robotoTextTheme().copyWith(
+          labelLarge: _robotoTextStyle(20.sp, FontWeight.normal),
+          labelMedium: _robotoTextStyle(16.sp, FontWeight.normal),
+          labelSmall: _robotoTextStyle(14.sp, FontWeight.normal),
+          headlineMedium: _robotoTextStyle(20.sp, FontWeight.bold),
+          headlineLarge: _robotoTextStyle(24.sp, FontWeight.bold),
+        ),
       );
 
-  static AppTextStyles getDefaultAppStyles() => AppTextStyles.fromTextTheme(
-        textTheme: GoogleFonts.robotoTextTheme().copyWith(
+  static AppTextStyles _testingTextTheme() => AppTextStyles.fromTextTheme(
+        textTheme: TextTheme(
           labelLarge: _robotoTextStyle(20.sp, FontWeight.normal),
           labelMedium: _robotoTextStyle(16.sp, FontWeight.normal),
           labelSmall: _robotoTextStyle(14.sp, FontWeight.normal),
