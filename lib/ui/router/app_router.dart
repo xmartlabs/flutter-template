@@ -13,10 +13,11 @@ part 'app_router.gr.dart';
 class AppRouter extends _$AppRouter {
   @override
   final List<AutoRoute> routes;
+  final String? initialRoute;
 
   ReevaluateListenable authReevaluateListenable;
 
-  AppRouter(SessionRepository sessionRepository)
+  AppRouter({required SessionRepository sessionRepository, this.initialRoute})
       : authReevaluateListenable = ReevaluateListenable.stream(
           sessionRepository.status.distinct().skip(1),
         ),
@@ -26,7 +27,7 @@ class AppRouter extends _$AppRouter {
             path: '/',
             guards: [UnauthenticatedGuard(sessionRepository)],
             children: [
-              RedirectRoute(path: '', redirectTo: 'login'),
+              RedirectRoute(path: '', redirectTo: initialRoute ?? 'login'),
               AutoRoute(path: 'login', page: SignInRoute.page),
             ],
           ),
@@ -35,7 +36,7 @@ class AppRouter extends _$AppRouter {
             guards: [AuthenticatedGuard(sessionRepository)],
             path: '/',
             children: [
-              RedirectRoute(path: '', redirectTo: 'welcome'),
+              RedirectRoute(path: '', redirectTo: initialRoute ?? 'welcome'),
               AutoRoute(path: 'welcome', page: WelcomeRoute.page),
             ],
           ),

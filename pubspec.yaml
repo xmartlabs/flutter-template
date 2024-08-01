@@ -62,6 +62,8 @@ dev_dependencies:
   json_serializable: 6.8.0
   lints: 4.0.0
   mocktail: 1.0.3
+  path_provider_platform_interface: 2.1.2
+  plugin_platform_interface: 2.1.8
 
 ## TODO remove this when dart_code_linter updates the dependencies
 dependency_overrides:

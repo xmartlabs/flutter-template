@@ -1,10 +1,12 @@
 // ignore_for_file: overridden_fields
 
+import 'dart:io';
+
 import 'package:design_system/extensions/color_extensions.dart';
+import 'package:design_system/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:design_system/theme/custom_colors.dart';
 
 const FontWeight _semiboldWeight = FontWeight.w600;
 
@@ -57,11 +59,17 @@ class CustomTextStyles extends ThemeExtension<CustomTextStyles> {
     FontWeight fontWeight,
     CustomColors customColors,
   ) =>
-      GoogleFonts.roboto(
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        color: customColors.textColor!.getShade(500),
-      );
+      Platform.environment.containsKey('FLUTTER_TEST')
+          ? TextStyle(
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+              color: customColors.textColor!.getShade(500),
+            )
+          : GoogleFonts.roboto(
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+              color: customColors.textColor!.getShade(500),
+            );
 
   @override
   CustomTextStyles copyWith({MaterialColor? primary}) =>

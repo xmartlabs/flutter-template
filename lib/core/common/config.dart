@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_template/core/common/environments.dart';
@@ -13,7 +14,7 @@ interface class Config {
   static const String environmentFolder = 'environments';
 
   static const debugMode = kDebugMode;
-
+  static bool testingMode = Platform.environment.containsKey('FLUTTER_TEST');
   static late String apiBaseUrl;
   static late String supabaseApiKey;
   static late String appDirectoryPath;

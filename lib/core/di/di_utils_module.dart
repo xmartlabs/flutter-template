@@ -13,6 +13,6 @@ class UtilsDiModule {
 
 extension _GetItDiModuleExtensions on GetIt {
   void _setupModule() {
-    registerLazySingleton(() => AppRouter(get()));
+    registerLazySingleton(() => AppRouter(sessionRepository: get()));
   }
 }
