@@ -6,22 +6,14 @@
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
-      "args": [
-        "--flavor=dev",
-        "--dart-define=ENV=dev",
-        "--web-port=3003"
-      ]
+      "args": ["--flavor=dev", "--dart-define=ENV=dev", "--web-port=3003"]
     },
     {
       "name": "Main prod",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
-      "args": [
-        "--flavor=prod",
-        "--web-port=3003",
-        "--dart-define=ENV=prod"
-      ]
+      "args": ["--flavor=prod", "--web-port=3003", "--dart-define=ENV=prod"]
     },
     {
       "name": "Main staging",
@@ -33,6 +25,13 @@
         "--web-port=3003",
         "--dart-define=ENV=staging"
       ]
+    },
+    {
+      "name": "Integration Test",
+      "program": "integration_test/test",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--flavor=dev"]
     }
   ]
 }

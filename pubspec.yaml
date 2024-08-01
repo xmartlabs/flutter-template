@@ -47,6 +47,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
 
   auto_route_generator: 8.0.0
   build_runner: 2.4.10
@@ -59,6 +61,12 @@ dev_dependencies:
   freezed: 2.5.2
   json_serializable: 6.8.0
   lints: 4.0.0
+  mocktail: 1.0.3
+
+## TODO remove this when dart_code_linter updates the dependencies
+dependency_overrides:
+  file: 7.0.0
+  pub_updater: 0.4.0
 
 flutter:
   generate: true
