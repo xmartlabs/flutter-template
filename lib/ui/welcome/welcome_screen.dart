@@ -6,6 +6,7 @@ import 'package:flutter_template/ui/extensions/context_extensions.dart';
 import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
 import 'package:flutter_template/ui/welcome/welcome_cubit.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:go_router/go_router.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -67,7 +68,7 @@ class _ProjectWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => FlutterWebBrowser.openWebPage(url: project.url),
+        onTap: () => context.push('/details'),
         child: Card(
           child: Column(
             children: [

@@ -6,6 +6,7 @@ import 'package:flutter_template/ui/welcome/welcome_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
+  initialLocation: '/',
   routes: <RouteBase>[
     GoRoute(
       path: '/',
@@ -14,6 +15,11 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: '/welcome',
+      builder: (BuildContext context, GoRouterState state) =>
+          const WelcomeScreen(),
+    ),
+    GoRoute(
+      path: '/details',
       builder: (BuildContext context, GoRouterState state) =>
           const WelcomeScreen(),
     ),
