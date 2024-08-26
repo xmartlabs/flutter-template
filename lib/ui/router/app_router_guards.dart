@@ -1,54 +1,34 @@
-import 'dart:async';
-
-import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/model/authentication_status.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
-import 'package:flutter_template/ui/router/app_router.dart';
 
-class _AppAuthStatusGuard extends AutoRouteGuard {
-  final SessionRepository _sessionRepository;
-  final AuthenticationStatus _requiredAppStatus;
-  final PageRouteInfo _redirectPage;
+class AuthenticationScope extends InheritedNotifier<StreamAuthNotifier> {
+  /// Creates a [AuthenticationScope] sign in scope.
+  AuthenticationScope({
+    required super.child,
+    super.key,
+  }) : super(
+          notifier: StreamAuthNotifier(),
+        );
 
-  _AppAuthStatusGuard({
-    required SessionRepository sessionRepository,
-    required AuthenticationStatus requiredAppStatus,
-    required PageRouteInfo redirectPage,
-  })  : _sessionRepository = sessionRepository,
-        _requiredAppStatus = requiredAppStatus,
-        _redirectPage = redirectPage;
+  /// Gets the [StreamAuth].
+  static AuthenticationStatus? of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<AuthenticationScope>()!
+      .notifier!
+      .authenticationStatus;
+}
 
-  Future<bool> _canNavigate(RouteMatch route) => _sessionRepository.status.first
-      .then((value) => value == _requiredAppStatus);
+class StreamAuthNotifier extends ChangeNotifier {
+  final SessionRepository _sessionRepository = DiProvider.get();
 
-  @override
-  Future<void> onNavigation(
-    NavigationResolver resolver,
-    StackRouter router,
-  ) async {
-    if (await _canNavigate(resolver.route)) {
-      resolver.resolveNext(true);
-    } else {
-      unawaited(resolver.redirect(_redirectPage, replace: true));
-      resolver.next(false);
-    }
+  /// Creates a [StreamAuthNotifier].
+  StreamAuthNotifier() {
+    _sessionRepository.status.listen((event) {
+      authenticationStatus = event;
+      notifyListeners();
+    });
   }
-}
 
-class UnauthenticatedGuard extends _AppAuthStatusGuard {
-  UnauthenticatedGuard(SessionRepository sessionRepository)
-      : super(
-          requiredAppStatus: AuthenticationStatus.unauthenticated,
-          redirectPage: const AuthenticatedSectionRoute(),
-          sessionRepository: sessionRepository,
-        );
-}
-
-class AuthenticatedGuard extends _AppAuthStatusGuard {
-  AuthenticatedGuard(SessionRepository sessionRepository)
-      : super(
-          requiredAppStatus: AuthenticationStatus.authenticated,
-          redirectPage: const UnauthenticatedSectionRoute(),
-          sessionRepository: sessionRepository,
-        );
+  AuthenticationStatus? authenticationStatus;
 }
