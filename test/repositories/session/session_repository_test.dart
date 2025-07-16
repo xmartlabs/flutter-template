@@ -8,7 +8,6 @@ import 'package:flutter_template/core/model/user.dart';
 import 'package:flutter_template/core/repository/session_repository.dart';
 import 'package:flutter_template/core/source/auth_local_source.dart';
 import 'package:flutter_template/core/source/auth_remote_source.dart';
-import 'package:flutter_template/core/source/common/app_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -18,19 +17,16 @@ import '../../common/general_helpers.dart';
 void main() {
   late AuthLocalSource authLocalSource;
   late AuthRemoteSource authRemoteSource;
-  late AppDatabase appDatabase;
   late SessionRepository sessionRepository;
+  late Directory tempDir;
 
   setUp(() async {
     authLocalSource = AuthLocalSourceMock();
     authRemoteSource = AuthRemoteSourceMock();
-    appDatabase = await setupFloorDatabase();
-    sessionRepository =
-        SessionRepository(appDatabase, authLocalSource, authRemoteSource);
+    tempDir = initHive();
+    sessionRepository = SessionRepository(authLocalSource, authRemoteSource);
   });
-  tearDown(() async {
-    await appDatabase.close();
-  });
+  tearDown(() async => closeHive(tempDir));
 
   group('status stream tests', () {
     test(

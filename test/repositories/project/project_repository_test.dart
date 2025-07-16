@@ -1,5 +1,6 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'package:flutter_template/core/model/project.dart';
 import 'package:flutter_template/core/repository/project_repository.dart';
 import 'package:flutter_template/core/source/project_local_source.dart';
 import 'package:flutter_template/core/source/project_remote_source.dart';
@@ -28,9 +29,8 @@ void main() {
     when(() => projectRemoteSource.getProjects()).thenAnswer(
       (_) async => [],
     );
-    //Default case for creating the repository
     when(() => projectLocalSource.replaceProjects(any()))
-        .thenAnswer((_) async {});
+        .thenAnswer((_) => Future.value(List<Project>.empty()));
 
     final projects = await projectRepository.getProjects().first;
 
@@ -47,11 +47,11 @@ void main() {
       final projects = generateProjects(2);
       when(() => projectLocalSource.getProjects()).thenAnswer(
         (_) => Stream.value(
-          generateProjectDbEntities(2),
+          generateProjects(2),
         ),
       );
       when(() => projectLocalSource.replaceProjects(any()))
-          .thenAnswer((_) async {});
+          .thenAnswer((_) => Future.value(List<Project>.empty()));
       when(() => projectRemoteSource.getProjects()).thenAnswer(
         (_) async => generateProjects(2),
       );

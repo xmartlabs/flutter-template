@@ -1,7 +1,6 @@
+import 'dart:io';
 import 'dart:math';
-
-import 'package:flutter_template/core/model/db/repository_db_entity.dart';
-import 'package:flutter_template/core/source/common/app_database.dart';
+import 'package:flutter_template/core/model/project.dart';
 import 'package:flutter_template/core/source/project_local_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -9,17 +8,15 @@ import '../../common/general_helpers.dart';
 import '../../common/project_helpers.dart';
 
 void main() {
-  late AppDatabase database;
   late ProjectLocalSource projectDao;
+  late Directory tempDir;
 
   setUp(() async {
-    database = await setupFloorDatabase();
-    projectDao = database.projectLocalSource;
+    projectDao = ProjectLocalSource();
+    tempDir = initHive();
   });
 
-  tearDown(() async {
-    await database.close();
-  });
+  tearDown(() async => closeHive(tempDir));
 
   group('Test projects db', () {
     test('Get projects from empty db, should return an empty list', () async {
@@ -27,7 +24,7 @@ void main() {
       expect(projects, []);
     });
     test('Insert one project to empty db, should return 1 project', () async {
-      final projects = generateProjectDbEntities(1);
+      final projects = generateProjects(1);
       await projectDao.insertProjects(projects);
       expect(
         await projectDao.getProjects().first,
@@ -35,23 +32,23 @@ void main() {
       );
     });
     test('get all projects from db, should return 10', () async {
-      final projects = generateProjectDbEntities(10);
+      final projects = generateProjects(10);
       await projectDao.insertProjects(projects);
       expect(await projectDao.getProjects().first, projects);
     });
     test('Delete all projects from db, should return empty list', () async {
-      final projects = generateProjectDbEntities(10);
+      final projects = generateProjects(10);
       await projectDao.insertProjects(projects);
       await projectDao.deleteAllProjects();
       expect(await projectDao.getProjects().first, []);
     });
     test('Replace 2 projects from db, should return two new projects',
         () async {
-      final projects = generateProjectDbEntities(2);
+      final projects = generateProjects(2);
       await projectDao.insertProjects(projects);
       final replacement = projects
           .map(
-            (e) => ProjectDbEntity(
+            (e) => Project(
               id: Random().nextInt(100),
               name: 'Test replace project',
               description: 'Test  project description',
