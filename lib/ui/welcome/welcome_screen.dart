@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:catalog/catalog.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/model/project.dart';
@@ -26,16 +26,24 @@ class _WelcomeContentScreen extends StatelessWidget {
       BlocBuilder<WelcomeCubit, WelcomeBaseState>(
         builder: (context, state) => Scaffold(
           appBar: AppBar(
-            title: Text(context.localizations.xmartlabs_projects),
+            title: Text(
+              context.localizations.xmartlabs_projects,
+              style: context.theme.textStyles.titleMedium
+                  ?.copyWith(color: context.theme.colorScheme.onPrimary),
+            ),
             actions: [
               TextButton(
                 style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(
+                  foregroundColor: WidgetStateProperty.all<Color>(
                     context.theme.colorScheme.onPrimary,
                   ),
                 ),
                 onPressed: () => context.read<WelcomeCubit>().logOut(),
-                child: Text(context.localizations.log_out),
+                child: Text(
+                  context.localizations.log_out,
+                  style: context.theme.textStyles.bodyMedium
+                      ?.copyWith(color: context.theme.colorScheme.onPrimary),
+                ),
               ),
             ],
           ),

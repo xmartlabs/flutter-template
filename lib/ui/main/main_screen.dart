@@ -1,10 +1,10 @@
+import 'package:design_system/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/ui/resources.dart';
 import 'package:flutter_template/ui/router/app_router.dart';
-import 'package:catalog/catalog.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});

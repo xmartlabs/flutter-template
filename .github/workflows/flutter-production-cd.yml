@@ -1,0 +1,93 @@
+name: Flutter Production CD
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed ## Trigger the workflow only when the PR is merged
+
+env:
+  FIREBASE_ANDROID_APP_ID: "" ## Add your Firebase Android App ID here
+
+jobs:
+  calculate_build_number:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      build_number: ${{ steps.build_number.outputs.build_number }}
+    env:
+      GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_CONTENT: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_CONTENT }}
+      SERVICE_ACCOUNT: "${{ github.workspace }}/service_account.json"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ruby dependencies
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Download Firebase Service Account
+        shell: bash
+        env:
+          SERVICE_ACCOUNT_CONTENT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CREDENTIALS_BASE_64 }}
+        run: |
+          echo -n $SERVICE_ACCOUNT_CONTENT | base64 -d  > $SERVICE_ACCOUNT
+
+      - name: Calculate next build number
+        id: build_number
+        env:
+          SERVICE_ACCOUNT: ${{ env.SERVICE_ACCOUNT }}
+          FIREBASE_APP_ID: ${{ env.FIREBASE_ANDROID_APP_ID }}
+        run: |
+          set -e
+          command_result=$(bundle exec fastlane get_next_build_number)
+          echo -n -e "Result: $command_result"
+          build_number=$(echo -e -n $command_result | grep -o 'Next Build Number: [0-9]\+' | awk '{print $NF}')
+          if [[ $build_number =~ ^[0-9]+$ ]]; then
+            echo "Incremented build number: $build_number"
+            echo "build_number=$build_number" >> $GITHUB_OUTPUT
+          else
+            echo "Error: $build_number is not a valid number"
+            exit 1
+          fi
+
+  build_and_release_testflight:
+    needs: [calculate_build_number]
+    if: github.event.pull_request.merged == true
+    timeout-minutes: 30
+    env:
+      IOS_APP_FOLDER: "ios"
+      FIREBASE_APP_ID_PRODUCTION: "" ## Add your Firebase iOS App ID here
+
+    runs-on: macos-13
+    steps:
+      - name: Deploy iOS to TestFlight
+        uses: ./.github/workflows/actions/deploy-ios-testflight
+        with:
+          "dist-certificate-base-64-content": ${{ secrets.IOS_DIST_CERTIFICATE_BASE_64 }}
+          "ios-app-folder": ${{ env.IOS_APP_FOLDER }}
+          "firebase-app-id": ${{ env.FIREBASE_APP_ID_PRODUCTION }}
+          "build-number": ${{ needs.calculate_build_number.outputs.build_number }}
+          "dist-cert-password": ${{ secrets.DIST_CERTIFICATE_PASSWORD }}
+          "appstore-connect-api-key-id": ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
+          "appstore-connect-api-key-issuer-id": ${{ secrets.APPSTORE_CONNECT_API_KEY_ISSUER_ID }}
+          "appstore-connect-api-key-base-64-content": ${{ secrets.APPSTORE_CONNECT_API_KEY_BASE_64 }}
+
+  build_and_release_google_play:
+    needs: [calculate_build_number]
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ANDROID_APP_FOLDER: "android"
+      PROD_KEY_PROPERTIES_FILE: "key.properties"
+      APP_ENV: 'prod'
+    steps:
+      - name: Deploy Android to Google Play
+        uses: ./.github/workflows/actions/deploy-android-google-play
+        with:
+          "key-properties-file": ${{ env.PROD_KEY_PROPERTIES_FILE }}
+          "android-app-folder": ${{ env.ANDROID_APP_FOLDER }}
+          "google-play-service-account-credentials": ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_CONTENT }}
+          "app-env": ${{ env.APP_ENV }}
+          "build-number": ${{ needs.calculate_build_number.outputs.build_number }}

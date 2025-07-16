@@ -22,6 +22,7 @@ mason-lock.json
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
+.vscode/
 .vscode/settings.json
 
 # Flutter/Dart/Pub related
@@ -53,9 +54,6 @@ app.*.map.json
 *.env
 *.env.default
 
-# Fvm
-.fvm/
-
 # fastlane specific
 **/fastlane/report.xml
 **/fastlane/Preview.html
@@ -63,3 +61,6 @@ app.*.map.json
 **/fastlane/test_output
 .bundle/
 vendor/bundle/
+
+# FVM Version Cache
+.fvm/

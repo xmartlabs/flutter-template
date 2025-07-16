@@ -29,7 +29,7 @@ class AuthLocalSource {
   Future<void> saveUserInfo(User? user) => _userStorage.write(_keyUser, user);
 }
 
-class UserStockTypeMapper extends StockTypeMapper<String, User> {
+class UserStockTypeMapper implements StockTypeMapper<String, User> {
   @override
   User fromInput(String value) => User.fromJson(json.decode(value));
 

@@ -23,6 +23,12 @@ private_lane :sh_on_root do |options|
   sh("cd #{full_path} && #{command}")
 end
 
+lane :generate_docs do 
+  sh("bundle exec fastlane actions docs")
+  sh("cd ../android && bundle exec fastlane actions docs")
+  sh("cd ../ios && bundle exec fastlane actions docs")
+end
+
 private_lane :flutter_command do |options|
   command = options[:command]
   subdirectory = options[:subdirectory]
@@ -42,8 +48,8 @@ end
 desc "**Fetch flutter dependencies**"
 lane :fetch_dependencies do
   flutter_command(command: "pub get --suppress-analytics")
-  # Template does not depends on gallery
-  flutter_command(command: "pub get --suppress-analytics", subdirectory: "catalog/gallery")
+  # Template does not depends on design_system_galerry
+  flutter_command(command: "pub get --suppress-analytics", subdirectory: "design_system/design_system_gallery")
 end
 
 desc "**Generate flutter generated code**"
@@ -70,21 +76,20 @@ end
 desc "**Lint: Analyze code**"
 lane :lint_analyze do
   flutter_command(command: "analyze lib")
-  flutter_command(command: "analyze catalog/gallery")
-  flutter_command(command: "analyze catalog")
+  flutter_command(command: "analyze design_system/design_system_gallery")
+  flutter_command(command: "analyze design_system")
 end
 
 desc "**Lint: Code metrics**"
 lane :lint_code_metrics do
-  result = flutter_command(command: "pub run dart_code_metrics:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings")
+  result = flutter_command(command: "pub run dart_code_linter:metrics analyze lib  --fatal-style --fatal-performance --fatal-warnings")
   UI.message(result)
   unless result.include? "✔ no issues found!"
     UI.user_error!("Code metrics error happened")
   end
 
-  flutter_command(command: "pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused")
+  flutter_command(command: "pub run dart_code_linter:metrics check-unused-code lib --fatal-unused")
 end
-
 
 desc "**Run linters**"
 lane :lints do
@@ -124,9 +129,10 @@ lane :build_flutter do |options|
   build_platform = options[:build_platform]
 
   config_only = options[:config_only] || false
-  flavor = options[:flavor] || 'dev'
   config_param = config_only ? '--config-only' : ''
-
+  
+  flavor = options[:env] || ''
+  
   version_name = calculate_version_name(
     include_git_version_suffix: options[:include_git_version_suffix] || false
   )
@@ -147,9 +153,9 @@ end
 
 private_lane :generate_snapshot_changelog do
   changelog_from_git_commits(
-     between: ["HEAD^", "HEAD"],
-     pretty: "%s%n%nAuthor: %an <%ae>",
-     date_format: "short",
+    between: ["HEAD^", "HEAD"],
+    pretty: "%s%n%nAuthor: %an <%ae>",
+    date_format: "short",
   )
   header = Actions.lane_context[SharedValues::FL_CHANGELOG]
   changelog_from_git_commits(
@@ -162,4 +168,36 @@ private_lane :generate_snapshot_changelog do
     .join("\n")
   ENV["CHANGELOG"] = "#{header}\n\nLast changes:\n#{body}"
   ENV["CHANGELOG"]
+end
+
+desc "**Get next Production Build Number**"
+private_lane :get_next_production_build_number do
+  version = ['prod', 'beta', 'alpha', 'internal'].map { |track|
+    google_play_track_version_codes(
+      track: track,
+      json_key: ENV['GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE'],
+      json_key_data: ENV['GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_CONTENT']
+    )
+  }.flatten.map(&:to_i).max + 1
+  version
+end
+
+desc "**Get next Staging Build Number**"
+private_lane :get_next_staging_build_number do
+  latest_release = firebase_app_distribution_get_latest_release(
+    app: ENV['FIREBASE_APP_ID'],
+    service_credentials_file: ENV['SERVICE_ACCOUNT']
+  )
+  version = latest_release[:buildVersion].to_i + 1
+  version
+end
+
+desc "**Get next Build Number**"
+lane :get_next_build_number do
+  next_staging_build_number = get_next_staging_build_number
+  next_production_build_number = get_next_production_build_number
+
+  version = [next_staging_build_number, next_production_build_number].max
+  UI.message "Next Build Number: #{version}"
+  version
 end
