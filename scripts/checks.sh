@@ -29,3 +29,6 @@ echo ':: Run Design System checks'
 echo ':: Run linter design system ::'
 fvm flutter analyze design_system || error "Linter error - Flutter Analyze error - Design System gallery"
 fvm flutter analyze design_system/design_system_gallery || error "Linter error - Flutter Analyze error - Design System gallery"
+
+echo ':: Run tests ::'
+fvm flutter test || error "Tests failed"

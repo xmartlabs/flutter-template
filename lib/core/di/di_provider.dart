@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/di/app_providers_module.dart';
 import 'package:flutter_template/core/di/di_repository_module.dart';

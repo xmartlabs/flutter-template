@@ -8,6 +8,15 @@ class ProjectLocalSource extends HiveBaseSource<int, Project> {
           modelParser: (project) => Project.fromJson(project),
         );
 
+  Stream<List<Project>> getProjects() => getElementsStream();
+
+  Future<void> insertProjects(List<Project> projects) async {
+    final projectMap = Map.fromEntries(
+      projects.map((e) => MapEntry(e.id, e)),
+    );
+    await putAllElements(projectMap);
+  }
+
   Future<List<Project>> replaceProjects(List<Project> elements) async {
     await deleteAllElements();
     return putAllElements(
@@ -17,5 +26,9 @@ class ProjectLocalSource extends HiveBaseSource<int, Project> {
         ),
       ),
     );
+  }
+
+  Future<void> deleteAllProjects() async {
+    await deleteAllElements();
   }
 }
