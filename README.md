@@ -1,8 +1,9 @@
 # Xmartlabs' Flutter template
 
-## Arch Overview 
+## Arch Overview
 
 The project is divided into two main folders:
+
 - The UI contains all app screens.
 - The Core contains the models and the data layer.
 
@@ -29,12 +30,23 @@ These components are injected in the Cubits using [get_it][get_it].
 ## Project Overview
 
 ### Assets
+
 The [`/assets/`](./assets) folder contains the assets used by the application, such as images, fonts, and other files.
 
 ### Environments
 
 The environment variables are defined in the `default.env` file located in [`/environments/`](./environments) folder.
 You can read more information about the environment variables in the [README.md](./environments/README.md) file.
+
+### Testing
+
+#### Mocks
+
+For moking the projects uses [mocktail][mocktail], a library inspired on [mockito][mockito] which deletes the code generation part.
+
+#### Integration test
+
+The integration tests for the project are defined in [integration_test][integration_test]. Dart package integration_test is used for the implementation.
 
 ## Project Setup
 
@@ -43,20 +55,22 @@ The project setup is based on some plugins which generate the required native co
 You can use [project_setup.sh](scripts/project_setup.sh) to reload all project setups.
 
 ### Flavor setup: Project name, properties BundleId & Application id
-This information is set using [flavorizr], a flutter utility to easily create flavors in your flutter application. 
+
+This information is set using [flavorizr], a flutter utility to easily create flavors in your flutter application.
 To change it go to `flavorizr` section in the [pubspec] file.
 
 For example, to add a new flavour, you can do something like:
+
 ```yaml
 flavorizr:
   flavors:
     qa:
       app:
-        name: 'My Project - QA'
+        name: "My Project - QA"
       android:
-        applicationId: 'com.xmartlabs.myproject.qa'
+        applicationId: "com.xmartlabs.myproject.qa"
       ios:
-        bundleId: 'com.xmartlabs.myproject.qa'
+        bundleId: "com.xmartlabs.myproject.qa"
 ```
 
 After a change is made, you need to regenerate your native files.
@@ -72,7 +86,6 @@ To change it go to `flutter_icons` section in the [pubspec] file.
 After a change is made, you need to regenerate your native files.
 You can do that by executing `flutter pub run flutter_launcher_icons:main`.
 
-
 ### Splash screen
 
 Splash screen is generated using [flutter_native_splash].
@@ -82,13 +95,14 @@ After a change is made, you need to regenerate your native files.
 You can do that by executing `flutter pub run flutter_native_splash:create`.
 
 Although you can setup a bunch of features in this library, it doesn't provide a way to display animations.
-If you need a more personalized splash screen, you can edit the native code or just remove this library. 
+If you need a more personalized splash screen, you can edit the native code or just remove this library.
 
 ### Code generation
 
 Code generation is created using `build_runner` package.\
 To configure this package edit the `build.yaml`\
 To add new files to watch for code generation add the following lines:
+
 ```
 targets:
   $default:
@@ -100,6 +114,7 @@ targets:
           # Example glob for only the Dart files under `lib/models`
           - lib/models/*.dart
 ```
+
 To create generated code run `clean_up.sh` under [scripts] folder or the following command: `flutter pub run build_runner build --delete-conflicting-outputs`
 
 ### Pre Push config
@@ -120,3 +135,6 @@ In order to setup pre-push hook you need to go to the root of the project and ru
 [data_source_folder]: https://github.com/xmartlabs/flutter-template/tree/main/lib/core/source
 [get_it]: https://pub.dev/packages/get_it
 [scripts]: https://github.com/xmartlabs/flutter-template/tree/main/scripts
+[integration_test]: https://github.com/xmartlabs/flutter-template/tree/main/intgration_test
+[mocktail]: https://pub.dev/packages/mocktail
+[mockito]: https://pub.dev/packages/mockito
