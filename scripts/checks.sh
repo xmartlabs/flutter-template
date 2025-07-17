@@ -7,7 +7,7 @@ error () {
 echo ':: Sorting translation files ::'
 if ! command -v dart >/dev/null 2>&1 || ! dart pub global list | grep -q arb_utils; then
   echo "arb_utils is missing. Installing..."
-  dart pub global activate arb_utils 0.8.1
+  dart pub global activate arb_utils 0.8.3
 fi
 arb_utils sort lib/l10n/intl_en.arb
 
@@ -29,3 +29,6 @@ echo ':: Run Design System checks'
 echo ':: Run linter design system ::'
 fvm flutter analyze design_system || error "Linter error - Flutter Analyze error - Design System gallery"
 fvm flutter analyze design_system/design_system_gallery || error "Linter error - Flutter Analyze error - Design System gallery"
+
+echo ':: Run tests ::'
+fvm flutter test || error "Tests failed"

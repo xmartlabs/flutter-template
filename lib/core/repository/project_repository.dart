@@ -18,7 +18,7 @@ class ProjectRepository {
             (_) => _projectRemoteSource.getProjects(),
           ),
           sourceOfTruth: SourceOfTruth<dynamic, List<Project>>(
-            reader: (_) => _projectLocalSource.getElementsStream(),
+            reader: (_) => _projectLocalSource.getProjects(),
             writer: (_, value) =>
                 _projectLocalSource.replaceProjects(value ?? []),
           ),
