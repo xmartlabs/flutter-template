@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:dartx/dartx.dart';
 import 'package:flutter_template/core/source/common/local_storage.dart';
@@ -8,8 +7,8 @@ import 'package:mutex/mutex.dart';
 import 'package:rxdart/rxdart.dart';
 
 abstract class HiveBaseSource<Key, Model> implements LocalStorage<Key, Model> {
-  final Map<String, dynamic> Function(Model) dbParser;
-  final Model Function(Map<String, dynamic>) modelParser;
+  final String Function(Model) dbParser;
+  final Model Function(String) modelParser;
   final Mutex _mutex = Mutex();
   Box<String>? _box;
 
@@ -35,7 +34,7 @@ abstract class HiveBaseSource<Key, Model> implements LocalStorage<Key, Model> {
       withBox((box) async {
         await box.put(
           key,
-          jsonEncode(dbParser(response)),
+          dbParser(response),
         );
         return response;
       });
@@ -45,7 +44,7 @@ abstract class HiveBaseSource<Key, Model> implements LocalStorage<Key, Model> {
       withBox((box) async {
         await box.putAll(
           entries.mapValues(
-            (entry) => jsonEncode(dbParser(entry.value)),
+            (entry) => dbParser(entry.value),
           ),
         );
         return getElements();
@@ -63,7 +62,7 @@ abstract class HiveBaseSource<Key, Model> implements LocalStorage<Key, Model> {
   ) =>
       withBox((box) async {
         final data = box.get(key);
-        return data == null ? null : modelParser(jsonDecode(data));
+        return data == null ? null : modelParser(data);
       });
 
   @override
@@ -73,14 +72,14 @@ abstract class HiveBaseSource<Key, Model> implements LocalStorage<Key, Model> {
     final box = await getBox();
     yield await getElement(key);
     yield* box.watch(key: key).map(
-          (event) => modelParser(jsonDecode(event.value)),
+          (event) => modelParser(event.value),
         );
   }
 
   @override
   Future<List<Model>> getElements() => withBox(
         (box) => Future.value(
-          box.values.map((e) => modelParser(jsonDecode(e))).toList(),
+          box.values.map((e) => modelParser(e)).toList(),
         ),
       );
 
