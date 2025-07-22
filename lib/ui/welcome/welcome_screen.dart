@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -68,9 +70,9 @@ class _ProjectWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () async {
+        onTap: () {
           final uri = Uri.parse(project.url);
-          await launchUrl(uri);
+          unawaited(launchUrl(uri));
         },
         child: Card(
           child: Column(

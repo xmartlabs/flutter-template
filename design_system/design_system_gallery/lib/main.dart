@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 class _GalleryAppContentScreen extends StatelessWidget {
   final GalleryRouter _router;
 
-  const _GalleryAppContentScreen(this._router, {super.key});
+  const _GalleryAppContentScreen(this._router);
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
