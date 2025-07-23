@@ -60,7 +60,7 @@ end
 desc "**Lint: Check code format**"
 lane :lint_format do
   # https://github.com/dart-lang/dart_style/issues/864#issuecomment-1092199174
-  dart_command(command: "format --set-exit-if-changed lib")
+  dart_command(command: "format -o show --set-exit-if-changed lib")
 end
 
 desc "**Lint: Check code format**"
