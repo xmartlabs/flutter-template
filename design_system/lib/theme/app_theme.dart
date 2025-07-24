@@ -37,7 +37,7 @@ class AppTheme {
             .semibold(),
         contentTextStyle: textTheme.bodyMedium
             ?.copyWith(color: customColors.textColor!.getShade(400)),
-      ),
+      ).data,
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: textTheme.bodyMedium
             ?.copyWith(color: customColors.textColor!.getShade(400)),

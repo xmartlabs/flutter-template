@@ -6,7 +6,7 @@ extension ColorExtension on Color {
       ? (this as MaterialColor)[shade]!
       : _generateMaterialColor();
 
-  MaterialColor _generateMaterialColor() => MaterialColor(value, {
+  MaterialColor _generateMaterialColor() => MaterialColor(toARGB32(), {
         50: _tintColor(0.9),
         100: _tintColor(0.8),
         200: _tintColor(0.6),
@@ -23,9 +23,9 @@ extension ColorExtension on Color {
       max(0, min((value + ((255 - value) * factor)).round(), 255));
 
   Color _tintColor(double factor) => Color.fromRGBO(
-        _tintValue(red, factor),
-        _tintValue(green, factor),
-        _tintValue(blue, factor),
+        _tintValue((r * 255.0).round() & 0xff, factor),
+        _tintValue((g * 255.0).round() & 0xff, factor),
+        _tintValue((b * 255.0).round() & 0xff, factor),
         1,
       );
 
@@ -33,9 +33,9 @@ extension ColorExtension on Color {
       max(0, min(value - (value * factor).round(), 255));
 
   Color _shadeColor(double factor) => Color.fromRGBO(
-        _shadeValue(red, factor),
-        _shadeValue(green, factor),
-        _shadeValue(blue, factor),
+        _shadeValue((r * 255.0).round() & 0xff, factor),
+        _shadeValue((g * 255.0).round() & 0xff, factor),
+        _shadeValue((b * 255.0).round() & 0xff, factor),
         1,
       );
 

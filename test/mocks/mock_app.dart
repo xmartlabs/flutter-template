@@ -20,7 +20,6 @@ class SimpleTesteableApp extends MyApp {
 
   final String initialRoute;
   const SimpleTesteableApp._({
-    super.key,
     this.apiOverrides,
     this.initialRoute = '/',
   }) : super();

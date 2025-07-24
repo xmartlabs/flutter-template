@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,7 @@ import 'package:flutter_template/core/model/project.dart';
 import 'package:flutter_template/ui/extensions/context_extensions.dart';
 import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
 import 'package:flutter_template/ui/welcome/welcome_cubit.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class WelcomeScreen extends StatelessWidget {
@@ -62,14 +64,16 @@ class _WelcomeContentScreen extends StatelessWidget {
 class _ProjectWidget extends StatelessWidget {
   const _ProjectWidget({
     required this.project,
-    super.key,
   });
 
   final Project project;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => FlutterWebBrowser.openWebPage(url: project.url),
+        onTap: () {
+          final uri = Uri.parse(project.url);
+          unawaited(launchUrl(uri));
+        },
         child: Card(
           child: Column(
             children: [
