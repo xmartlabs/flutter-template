@@ -59,8 +59,7 @@ end
 
 desc "**Lint: Check code format**"
 lane :lint_format do
-  # https://github.com/dart-lang/dart_style/issues/864#issuecomment-1092199174
-  dart_command(command: "format -o none --set-exit-if-changed lib")
+  sh_on_root(command: "find lib -name '*.dart' ! -path 'lib/l10n/*' -print0 | xargs -0 fvm dart format -o none --set-exit-if-changed")
 end
 
 desc "**Lint: Check code format**"
