@@ -94,7 +94,7 @@ class _CrashReportWrappedPrinter extends LogPrinter {
 }
 
 class _PrintableTrace extends Trace {
-  _PrintableTrace(super.frames, {super.original});
+  _PrintableTrace(super.frames);
 
   // It's equal to VMTrace.toString() Method.
   // Firebase use it to generate the stacktrace
