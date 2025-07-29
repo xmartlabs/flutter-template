@@ -1,4 +1,4 @@
-# IMPORTANT: FVM_VERSION, ANDROID_APP_FOLDER and IOS_APP_FOLDER have to be set on github variables
+# IMPORTANT: FVM_VERSION, JAVA_VERSION, ANDROID_APP_FOLDER and IOS_APP_FOLDER have to be set on github variables
 
 name: Setup flutter
 description: "Setup infra"
@@ -16,7 +16,7 @@ runs:
     - uses: actions/setup-java@v3
       with:
         distribution: "zulu"
-        java-version: "17"
+        java-version: ${{ vars.JAVA_VERSION }}
     - uses: dart-lang/setup-dart@v1.4
     - name: Cache FVM & Flutter
       uses: actions/cache@v3

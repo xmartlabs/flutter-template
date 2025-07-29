@@ -1,3 +1,5 @@
+## IMPORTANT: JAVA_VERSION has to be set on github variables
+
 name: Flutter CI
 on:
   pull_request:
@@ -13,7 +15,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: ${{ vars.JAVA_VERSION }}
       - uses: dart-lang/setup-dart@v1.4
       - uses: subosito/flutter-action@v2
         with:
