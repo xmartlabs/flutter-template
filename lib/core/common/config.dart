@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 
 interface class Config {
   static const String environmentFolder = 'environments';
+  static const Duration defaultTimeout = Duration(seconds: 30);
 
   static const debugMode = kDebugMode;
   static bool testingMode = Platform.environment.containsKey('FLUTTER_TEST');
