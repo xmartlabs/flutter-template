@@ -52,9 +52,9 @@ class HttpServiceDio implements HttpService {
   HttpServiceDio(List<Interceptor> interceptors) {
     final options = BaseOptions(
       baseUrl: Config.apiBaseUrl,
-      connectTimeout: const Duration(seconds: 30),
-      sendTimeout: const Duration(seconds: 60),
-      receiveTimeout: const Duration(seconds: 60),
+      connectTimeout: Config.defaultTimeout,
+      sendTimeout: Config.defaultTimeout,
+      receiveTimeout: Config.defaultTimeout,
       // TODO: Remove api key. It's only needed for Supabase
       headers: {'apikey': Config.supabaseApiKey},
       contentType: Headers.jsonContentType,
