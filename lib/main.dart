@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,8 +15,16 @@ Future main() async {
     () async {
       final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+      await EasyLocalization.ensureInitialized();
       await initSdks();
-      runApp(const MyApp());
+      runApp(
+        EasyLocalization(
+          supportedLocales: const [Locale('en', 'US')],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('en', 'US'),
+          child: const MyApp(),
+        ),
+      );
       FlutterNativeSplash.remove();
     },
     (exception, stackTrace) =>

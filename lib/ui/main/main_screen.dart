@@ -1,9 +1,7 @@
 import 'package:design_system/theme/app_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
-import 'package:flutter_template/l10n/app_localizations.dart';
-import 'package:flutter_template/ui/resources.dart';
 import 'package:flutter_template/ui/router/app_router.dart';
 
 class MainScreen extends StatelessWidget {
@@ -16,17 +14,10 @@ class MainScreen extends StatelessWidget {
       theme: AppTheme.provideAppTheme(context),
       routerConfig:
           router.config(reevaluateListenable: router.authReevaluateListenable),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      builder: (context, child) {
-        Resources.setup(context);
-        return child!;
-      },
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      builder: (context, child) => child!,
     );
   }
 }

@@ -1,11 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/common/network_exceptions.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/model/service/auth_models.dart';
 import 'package:flutter_template/core/model/user.dart';
+import 'package:flutter_template/gen/locale_keys.g.dart';
 import 'package:flutter_template/main.dart' as app;
-import 'package:flutter_template/ui/extensions/context_extensions.dart';
-import 'package:flutter_template/ui/signin/signin_screen.dart';
 import 'package:flutter_template/ui/welcome/welcome_screen.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -42,20 +42,26 @@ void main() {
         ),
       );
 
-      await tester.pumpWidget(const app.MyApp());
+      await tester.pumpWidget(
+        EasyLocalization(
+          supportedLocales: const [Locale('en', 'US')],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('en', 'US'),
+          child: const app.MyApp(),
+        ),
+      );
       await tester.pumpAndSettle();
 
-      final context = tester.contextOfType<SignInScreen>();
       await tester.enterText(
-        find.widgetWithText(TextField, context.localizations.mail),
+        find.widgetWithText(TextField, LocaleKeys.mail.tr()),
         email,
       );
       await tester.enterText(
-        find.widgetWithText(TextField, context.localizations.password),
+        find.widgetWithText(TextField, LocaleKeys.password.tr()),
         password,
       );
       await tester.tap(
-        find.widgetWithText(TextButton, context.localizations.sign_in),
+        find.widgetWithText(TextButton, LocaleKeys.sign_in.tr()),
       );
       await tester.pumpAndSettle();
       expect(find.byType(AlertDialog), findsOneWidget);
@@ -72,20 +78,27 @@ void main() {
       when(() => mockProjectRemoteSource.getProjects())
           .thenAnswer((_) => Future.value([]));
 
-      await tester.pumpWidget(const app.MyApp());
+      await tester.pumpWidget(
+        EasyLocalization(
+          supportedLocales: const [Locale('en', 'US')],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('en', 'US'),
+          child: const app.MyApp(),
+        ),
+      );
       await tester.pumpAndSettle();
 
-      final context = tester.contextOfType<SignInScreen>();
       await tester.enterText(
-        find.widgetWithText(TextField, context.localizations.mail),
+        find.widgetWithText(TextField, LocaleKeys.mail.tr()),
         email,
       );
       await tester.enterText(
-        find.widgetWithText(TextField, context.localizations.password),
+        find.widgetWithText(TextField, LocaleKeys.password.tr()),
         password,
       );
-      await tester
-          .tap(find.widgetWithText(TextButton, context.localizations.sign_in));
+      await tester.tap(
+        find.widgetWithText(TextButton, LocaleKeys.sign_in.tr()),
+      );
       await tester.pumpAndSettle();
       expect(find.byType(WelcomeScreen), findsOneWidget);
     });

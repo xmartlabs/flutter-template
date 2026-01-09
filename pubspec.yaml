@@ -21,6 +21,7 @@ dependencies:
   cupertino_icons: 1.0.8
   dartx: 1.2.0
   dio: 5.4.3+1
+  easy_localization: 3.0.8
   equatable: 2.0.5
   flutter_bloc: 8.1.5
   flutter_dotenv: 5.1.0
@@ -71,10 +72,10 @@ dependency_overrides:
   pub_updater: 0.4.0
 
 flutter:
-  generate: true
   uses-material-design: true
   assets:
     - assets/
+    - assets/translations/
     - environments/
 
 flutter_gen:
@@ -82,6 +83,7 @@ flutter_gen:
     exclude:
       - environments/*
       - assets/README.md
+      - assets/translations/*
 
 # Run command: flutter pub run flutter_launcher_icons:main
 flutter_launcher_icons:

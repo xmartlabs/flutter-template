@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ui/extensions/context_extensions.dart';
+import 'package:flutter_template/gen/locale_keys.g.dart';
 import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
 
 import 'package:flutter_template/ui/signin/signin_cubit.dart';
@@ -24,7 +25,9 @@ class _SignInContentScreen extends StatelessWidget {
       BlocBuilder<SignInCubit, SignInBaseState>(
         builder: (context, state) => Scaffold(
           appBar: AppBar(
-            title: Text(context.localizations.sign_in),
+            title: Text(
+              LocaleKeys.sign_in_test.tr(),
+            ),
           ),
           body: Column(
             mainAxisSize: MainAxisSize.min,
@@ -32,14 +35,17 @@ class _SignInContentScreen extends StatelessWidget {
               Expanded(child: _SignInForm()),
               if (context.read<SignInCubit>().state.error.isNotEmpty)
                 Text(
-                  context.localizations
-                      .error(context.read<SignInCubit>().state.error),
+                  LocaleKeys.error.tr(
+                    namedArgs: {
+                      'text': context.read<SignInCubit>().state.error,
+                    },
+                  ),
                 ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30.0),
                 child: TextButton(
                   onPressed: () => context.read<SignInCubit>().signIn(),
-                  child: Text(context.localizations.sign_in),
+                  child: Text(LocaleKeys.sign_in.tr()),
                 ),
               ),
             ],
@@ -85,7 +91,7 @@ class _SignInFormState extends State<_SignInForm> {
               onChanged: (String text) => _signInCubit.changeEmail(text),
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                labelText: context.localizations.mail,
+                labelText: LocaleKeys.mail.tr(),
               ),
             ),
           ),
@@ -98,7 +104,7 @@ class _SignInFormState extends State<_SignInForm> {
                   _signInCubit.changePassword(password),
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                labelText: context.localizations.password,
+                labelText: LocaleKeys.password.tr(),
               ),
             ),
           ),
