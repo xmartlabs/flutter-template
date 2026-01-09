@@ -1,14 +1,5 @@
 {
   "error": "Error: {text}",
-  "@error": {
-    "description": "Gives the user an error explanation",
-    "placeholders": {
-      "text": {
-        "type": "String",
-        "example": "Something went wrong try again"
-      }
-    }
-  },
   "error_button_ok": "Ok",
   "error_button_retry": "Retry",
   "error_no_internet_connection_error_description": "You have no internet connection",

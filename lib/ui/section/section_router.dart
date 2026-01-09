@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/ui/extensions/context_extensions.dart';
+import 'package:flutter_template/gen/locale_keys.g.dart';
 import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
 
 @RoutePage()
@@ -31,9 +32,9 @@ class SectionRouter extends StatelessWidget {
     GlobalEventHandlerState event,
   ) =>
       event.when(
-        idle: () => {},
+        idle: () => null,
         error: (errorType) => _showError(errorType, context),
-        loading: () => {},
+        loading: () => null,
       );
 
   void _showError(
@@ -43,15 +44,14 @@ class SectionRouter extends StatelessWidget {
       switch (errorType) {
         UnknownError(retry: final retry) => _showDialog(
             context,
-            context.localizations.error_unknown_error_title,
-            context.localizations.error_unknown_error_description,
+            LocaleKeys.error_unknown_error_title.tr(),
+            LocaleKeys.error_unknown_error_description.tr(),
             retry,
           ),
         InternetError(retry: final retry) => _showDialog(
             context,
-            context.localizations.error_no_internet_connection_error_title,
-            context
-                .localizations.error_no_internet_connection_error_description,
+            LocaleKeys.error_no_internet_connection_error_title.tr(),
+            LocaleKeys.error_no_internet_connection_error_description.tr(),
             retry,
           ),
         GeneralError(
@@ -72,18 +72,18 @@ class SectionRouter extends StatelessWidget {
         context: context,
         builder: (context) => AlertDialog(
           title: Text(
-            title ?? context.localizations.error_unknown_error_title,
+            title ?? LocaleKeys.error_unknown_error_title.tr(),
           ),
           content: Text(description),
           actions: <Widget>[
             if (retry != null)
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text(context.localizations.error_button_retry),
+                child: Text(LocaleKeys.error_button_retry.tr()),
               ),
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text(context.localizations.error_button_ok),
+              child: Text(LocaleKeys.error_button_ok.tr()),
             ),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/core/di/di_provider.dart';
 import 'package:flutter_template/core/source/auth_remote_source.dart';
@@ -11,6 +12,7 @@ Future<void> commonSetup({
   required MockAuthRemoteSource mockAuthRemoteSource,
   required MockProjectRemoteSource mockProjectRemoteSource,
 }) async {
+  await EasyLocalization.ensureInitialized();
   await app.initSdks();
 
   DiProvider.instance.unregister<AuthRemoteSource>();

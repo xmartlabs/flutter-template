@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/core/model/project.dart';
-import 'package:flutter_template/ui/extensions/context_extensions.dart';
+import 'package:flutter_template/gen/locale_keys.g.dart';
 import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
 import 'package:flutter_template/ui/welcome/welcome_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -29,7 +30,7 @@ class _WelcomeContentScreen extends StatelessWidget {
         builder: (context, state) => Scaffold(
           appBar: AppBar(
             title: Text(
-              context.localizations.xmartlabs_projects,
+              LocaleKeys.xmartlabs_projects.tr(),
               style: context.theme.textStyles.titleMedium
                   ?.copyWith(color: context.theme.colorScheme.onPrimary),
             ),
@@ -42,7 +43,7 @@ class _WelcomeContentScreen extends StatelessWidget {
                 ),
                 onPressed: () => context.read<WelcomeCubit>().logOut(),
                 child: Text(
-                  context.localizations.log_out,
+                  LocaleKeys.log_out.tr(),
                   style: context.theme.textStyles.bodyMedium
                       ?.copyWith(color: context.theme.colorScheme.onPrimary),
                 ),
