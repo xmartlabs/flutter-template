@@ -6,16 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This project uses [FVM](https://fvm.app) to pin the Flutter SDK version (see `.fvmrc`). Prefix Flutter/Dart commands with `fvm` (e.g. `fvm flutter ...`, `fvm dart ...`).
 
+Day-to-day commands:
+
 ```bash
 # Install dependencies
 fvm flutter pub get
-
-# Run the app
-fvm flutter run
-
-# Run all tests (app + design_system)
-fvm flutter test
-cd design_system && fvm flutter test
 
 # Run a single test file
 fvm flutter test test/cubits/signin_cubit_test.dart
@@ -23,31 +18,27 @@ fvm flutter test test/cubits/signin_cubit_test.dart
 # Run a single test by name
 fvm flutter test --plain-name "test description"
 
-# Format check (must produce no diff)
-fvm dart format --set-exit-if-changed lib
-
-# Static analysis
-fvm flutter analyze .
-fvm flutter analyze design_system
-fvm flutter analyze design_system/design_system_gallery
-
-# Dart Code Metrics lint (style/performance/warnings + unused code)
-fvm dart run dart_code_linter:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings
-fvm dart run dart_code_linter:metrics check-unused-code lib --fatal-unused
-
-# Run everything CI checks locally
-./scripts/checks.sh
-
 # Regenerate code (freezed, json_serializable, auto_route, asset gen)
 fvm dart run build_runner build --delete-conflicting-outputs
-# or
-./scripts/clean_up.sh
-
-# Regenerate native project setup after editing flavorizr/icons/splash config in pubspec.yaml
-./scripts/project_setup.sh
 ```
 
+Everything else — formatting, static analysis, linting, full test runs, code (re)generation, native project setup — is driven by the scripts in `scripts/`, which are also what CI and the pre-push hook run, so prefer them over reinventing the equivalent `fvm flutter`/`fvm dart` invocation by hand:
+
+- `./scripts/checks.sh` — sorts `lib/l10n/intl_en.arb`, checks `dart format`, runs `flutter analyze` (root + `design_system` + `design_system/design_system_gallery`), runs `dart_code_linter:metrics` (style/performance/warnings + unused-code), then `flutter test`. This is what `.github/hooks/pre-push` and `flutter-ci.yml` run — see `.claude/rules/workflows.md`.
+- `./scripts/clean_up.sh` — `flutter clean` + `pub get` + `build_runner build --delete-conflicting-outputs`, for when generated code needs a clean rebuild.
+- `./scripts/project_setup.sh` — reruns `flutter_flavorizr`, `flutter_launcher_icons`, and `flutter_native_splash` to regenerate native (Android/iOS) project files after editing their config in `pubspec.yaml` (flavor names/ids, icons, splash screen).
+
 Pre-push hooks live in `.github/hooks`; enable them once per clone with `git config core.hooksPath .github/hooks`.
+
+### Flavors
+
+The app has three flavors — `dev`, `staging`, `prod` — generated into the native Android/iOS projects by `flutter_flavorizr` (config in `pubspec.yaml`, applied via `./scripts/project_setup.sh`; see e.g. the `productFlavors` block in `android/app/build.gradle`). Running/building **must** target one:
+
+```bash
+fvm flutter run --flavor dev --dart-define=ENV=dev
+```
+
+The `--dart-define=ENV=<flavor>` must match `--flavor` — `Config` (`lib/core/common/config.dart`, `Environments` enum in `lib/core/common/environments.dart`) reads the `ENV` define to decide which `environments/<flavor>.env` file to load (falling back to `dev` if unset). Check `lib/core/common/environments.dart` for the current list of valid flavor names before running/building.
 
 ## Guidelines
 
