@@ -5,7 +5,7 @@ part 'project.freezed.dart';
 part 'project.g.dart';
 
 @freezed
-class Project with _$Project {
+abstract class Project with _$Project {
   @JsonSerializable()
   factory Project({
     required int id,

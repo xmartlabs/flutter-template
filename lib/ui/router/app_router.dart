@@ -7,10 +7,8 @@ import 'package:flutter_template/ui/welcome/welcome_screen.dart';
 
 part 'app_router.gr.dart';
 
-@AutoRouterConfig(
-  replaceInRouteName: 'Page|Screen|Router,Route',
-)
-class AppRouter extends _$AppRouter {
+@AutoRouterConfig(replaceInRouteName: 'Page|Screen|Router,Route')
+class AppRouter extends RootStackRouter {
   @override
   final List<AutoRoute> routes;
   final String? initialRoute;
@@ -18,27 +16,27 @@ class AppRouter extends _$AppRouter {
   ReevaluateListenable authReevaluateListenable;
 
   AppRouter({required SessionRepository sessionRepository, this.initialRoute})
-      : authReevaluateListenable = ReevaluateListenable.stream(
-          sessionRepository.status.distinct().skip(1),
+    : authReevaluateListenable = ReevaluateListenable.stream(
+        sessionRepository.status.distinct().skip(1),
+      ),
+      routes = [
+        AutoRoute(
+          page: UnauthenticatedSectionRoute.page,
+          path: '/',
+          guards: [UnauthenticatedGuard(sessionRepository)],
+          children: [
+            RedirectRoute(path: '', redirectTo: initialRoute ?? 'login'),
+            AutoRoute(path: 'login', page: SignInRoute.page),
+          ],
         ),
-        routes = [
-          AutoRoute(
-            page: UnauthenticatedSectionRoute.page,
-            path: '/',
-            guards: [UnauthenticatedGuard(sessionRepository)],
-            children: [
-              RedirectRoute(path: '', redirectTo: initialRoute ?? 'login'),
-              AutoRoute(path: 'login', page: SignInRoute.page),
-            ],
-          ),
-          AutoRoute(
-            page: AuthenticatedSectionRoute.page,
-            guards: [AuthenticatedGuard(sessionRepository)],
-            path: '/',
-            children: [
-              RedirectRoute(path: '', redirectTo: initialRoute ?? 'welcome'),
-              AutoRoute(path: 'welcome', page: WelcomeRoute.page),
-            ],
-          ),
-        ];
+        AutoRoute(
+          page: AuthenticatedSectionRoute.page,
+          guards: [AuthenticatedGuard(sessionRepository)],
+          path: '/',
+          children: [
+            RedirectRoute(path: '', redirectTo: initialRoute ?? 'welcome'),
+            AutoRoute(path: 'welcome', page: WelcomeRoute.page),
+          ],
+        ),
+      ];
 }

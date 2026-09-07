@@ -35,17 +35,21 @@ class AppTheme {
         titleTextStyle: customTextStyles.customOverline
             .copyWith(color: customColors.textColor!.getShade(300))
             .semibold(),
-        contentTextStyle: textTheme.bodyMedium
-            ?.copyWith(color: customColors.textColor!.getShade(400)),
+        contentTextStyle: textTheme.bodyMedium?.copyWith(
+          color: customColors.textColor!.getShade(400),
+        ),
       ).data,
       inputDecorationTheme: InputDecorationTheme(
-        labelStyle: textTheme.bodyMedium
-            ?.copyWith(color: customColors.textColor!.getShade(400)),
+        labelStyle: textTheme.bodyMedium?.copyWith(
+          color: customColors.textColor!.getShade(400),
+        ),
         filled: true,
-        helperStyle: textTheme.bodySmall
-            ?.copyWith(color: customColors.textColor!..getShade(300)),
-        hintStyle: textTheme.bodyMedium
-            ?.copyWith(color: customColors.textColor!.getShade(300)),
+        helperStyle: textTheme.bodySmall?.copyWith(
+          color: customColors.textColor!..getShade(300),
+        ),
+        hintStyle: textTheme.bodyMedium?.copyWith(
+          color: customColors.textColor!.getShade(300),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.r),
           borderSide: BorderSide(
@@ -70,10 +74,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.r),
-          borderSide: BorderSide(
-            width: 2,
-            color: colors.primary.shade800,
-          ),
+          borderSide: BorderSide(width: 2, color: colors.primary.shade800),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.r),
@@ -84,10 +85,7 @@ class AppTheme {
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.r),
-          borderSide: BorderSide(
-            width: 2,
-            color: colors.error,
-          ),
+          borderSide: BorderSide(width: 2, color: colors.error),
         ),
         errorStyle: textTheme.labelSmall?.copyWith(color: customColors.danger),
         errorMaxLines: 2,
@@ -106,22 +104,16 @@ class AppTheme {
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: colors.onSurface.shade200,
-            ),
+            borderSide: BorderSide(color: colors.onSurface.shade200),
             borderRadius: BorderRadius.all(Radius.circular(4.r)),
           ),
         ),
       ),
-      filledButtonTheme: FilledButtonThemeData(
-        style: buttonTheme.filledButton,
-      ),
+      filledButtonTheme: FilledButtonThemeData(style: buttonTheme.filledButton),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: buttonTheme.outlineButton,
       ),
-      textButtonTheme: TextButtonThemeData(
-        style: buttonTheme.textButton,
-      ),
+      textButtonTheme: TextButtonThemeData(style: buttonTheme.textButton),
       textTheme: textTheme.apply(
         bodyColor: CustomColors.getCustomColors().textColor,
         displayColor: CustomColors.getCustomColors().textColor!.getShade(500),
@@ -135,16 +127,18 @@ class AppTheme {
       primaryTextTheme: textTheme,
       checkboxTheme: CheckboxThemeData(
         checkColor: getMaterialStatesColors(colors.primary.shade600),
-        fillColor:
-            getMaterialStatesColors(customColors.textColor!..getShade(100)),
+        fillColor: getMaterialStatesColors(
+          customColors.textColor!..getShade(100),
+        ),
         side: BorderSide(
           width: 2,
           color: customColors.textColor!.getShade(400),
         ),
       ),
       radioTheme: RadioThemeData(
-        fillColor:
-            getMaterialStatesColors(customColors.textColor!.getShade(400)),
+        fillColor: getMaterialStatesColors(
+          customColors.textColor!.getShade(400),
+        ),
       ),
     );
   }

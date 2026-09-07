@@ -1,6 +1,6 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint
+// coverage:ignore-file
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'service_response.dart';
@@ -9,350 +9,312 @@ part of 'service_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$ServiceResponse<T> {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(T data) data,
-    required TResult Function(NetworkException error) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T data)? data,
-    TResult? Function(NetworkException error)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T data)? data,
-    TResult Function(NetworkException error)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ServiceResponseData<T> value) data,
-    required TResult Function(ServiceResponseError<T> value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ServiceResponseData<T> value)? data,
-    TResult? Function(ServiceResponseError<T> value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ServiceResponseData<T> value)? data,
-    TResult Function(ServiceResponseError<T> value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ServiceResponse<T>);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+    return 'ServiceResponse<$T>()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ServiceResponseCopyWith<T, $Res> {
-  factory $ServiceResponseCopyWith(
-          ServiceResponse<T> value, $Res Function(ServiceResponse<T>) then) =
-      _$ServiceResponseCopyWithImpl<T, $Res, ServiceResponse<T>>;
+class $ServiceResponseCopyWith<T,$Res>  {
+$ServiceResponseCopyWith(ServiceResponse<T> _, $Res Function(ServiceResponse<T>) __);
+}
+
+
+/// Adds pattern-matching-related methods to [ServiceResponse].
+extension ServiceResponsePatterns<T> on ServiceResponse<T> {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( ServiceResponseData<T> value)?  data,TResult Function( ServiceResponseError<T> value)?  error,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case ServiceResponseData() when data != null:
+return data(_that);case ServiceResponseError() when error != null:
+return error(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( ServiceResponseData<T> value)  data,required TResult Function( ServiceResponseError<T> value)  error,}){
+final _that = this;
+switch (_that) {
+case ServiceResponseData():
+return data(_that);case ServiceResponseError():
+return error(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( ServiceResponseData<T> value)?  data,TResult? Function( ServiceResponseError<T> value)?  error,}){
+final _that = this;
+switch (_that) {
+case ServiceResponseData() when data != null:
+return data(_that);case ServiceResponseError() when error != null:
+return error(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T data)?  data,TResult Function( NetworkException error)?  error,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case ServiceResponseData() when data != null:
+return data(_that.data);case ServiceResponseError() when error != null:
+return error(_that.error);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T data)  data,required TResult Function( NetworkException error)  error,}) {final _that = this;
+switch (_that) {
+case ServiceResponseData():
+return data(_that.data);case ServiceResponseError():
+return error(_that.error);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T data)?  data,TResult? Function( NetworkException error)?  error,}) {final _that = this;
+switch (_that) {
+case ServiceResponseData() when data != null:
+return data(_that.data);case ServiceResponseError() when error != null:
+return error(_that.error);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-class _$ServiceResponseCopyWithImpl<T, $Res, $Val extends ServiceResponse<T>>
-    implements $ServiceResponseCopyWith<T, $Res> {
-  _$ServiceResponseCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+
+class ServiceResponseData<T> implements ServiceResponse<T> {
+  const ServiceResponseData(this.data);
+  
+
+ final  T data;
+
+/// Create a copy of ServiceResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ServiceResponseDataCopyWith<T, ServiceResponseData<T>> get copyWith => _$ServiceResponseDataCopyWithImpl<T, ServiceResponseData<T>>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ServiceResponseData<T>&&const DeepCollectionEquality().equals(other.data, data));
 }
 
-/// @nodoc
-abstract class _$$ServiceResponseDataImplCopyWith<T, $Res> {
-  factory _$$ServiceResponseDataImplCopyWith(_$ServiceResponseDataImpl<T> value,
-          $Res Function(_$ServiceResponseDataImpl<T>) then) =
-      __$$ServiceResponseDataImplCopyWithImpl<T, $Res>;
-  @useResult
-  $Res call({T data});
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(data));
 }
 
-/// @nodoc
-class __$$ServiceResponseDataImplCopyWithImpl<T, $Res>
-    extends _$ServiceResponseCopyWithImpl<T, $Res, _$ServiceResponseDataImpl<T>>
-    implements _$$ServiceResponseDataImplCopyWith<T, $Res> {
-  __$$ServiceResponseDataImplCopyWithImpl(_$ServiceResponseDataImpl<T> _value,
-      $Res Function(_$ServiceResponseDataImpl<T>) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$ServiceResponseDataImpl<T>(
-      freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ServiceResponseDataImpl<T> implements ServiceResponseData<T> {
-  const _$ServiceResponseDataImpl(this.data);
-
-  @override
-  final T data;
-
-  @override
-  String toString() {
+@override
+String toString() {
     return 'ServiceResponse<$T>.data(data: $data)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ServiceResponseDataImpl<T> &&
-            const DeepCollectionEquality().equals(other.data, data));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ServiceResponseDataImplCopyWith<T, _$ServiceResponseDataImpl<T>>
-      get copyWith => __$$ServiceResponseDataImplCopyWithImpl<T,
-          _$ServiceResponseDataImpl<T>>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(T data) data,
-    required TResult Function(NetworkException error) error,
-  }) {
-    return data(this.data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T data)? data,
-    TResult? Function(NetworkException error)? error,
-  }) {
-    return data?.call(this.data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T data)? data,
-    TResult Function(NetworkException error)? error,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this.data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ServiceResponseData<T> value) data,
-    required TResult Function(ServiceResponseError<T> value) error,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ServiceResponseData<T> value)? data,
-    TResult? Function(ServiceResponseError<T> value)? error,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ServiceResponseData<T> value)? data,
-    TResult Function(ServiceResponseError<T> value)? error,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
-  }
 }
 
-abstract class ServiceResponseData<T> implements ServiceResponse<T> {
-  const factory ServiceResponseData(final T data) =
-      _$ServiceResponseDataImpl<T>;
 
-  T get data;
-  @JsonKey(ignore: true)
-  _$$ServiceResponseDataImplCopyWith<T, _$ServiceResponseDataImpl<T>>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ServiceResponseErrorImplCopyWith<T, $Res> {
-  factory _$$ServiceResponseErrorImplCopyWith(
-          _$ServiceResponseErrorImpl<T> value,
-          $Res Function(_$ServiceResponseErrorImpl<T>) then) =
-      __$$ServiceResponseErrorImplCopyWithImpl<T, $Res>;
-  @useResult
-  $Res call({NetworkException error});
+abstract mixin class $ServiceResponseDataCopyWith<T,$Res> implements $ServiceResponseCopyWith<T, $Res> {
+  factory $ServiceResponseDataCopyWith(ServiceResponseData<T> value, $Res Function(ServiceResponseData<T>) _then) = _$ServiceResponseDataCopyWithImpl;
+@useResult
+$Res call({
+ T data
+});
 
-  $NetworkExceptionCopyWith<$Res> get error;
+
+
+
+}
+/// @nodoc
+class _$ServiceResponseDataCopyWithImpl<T,$Res>
+    implements $ServiceResponseDataCopyWith<T, $Res> {
+  _$ServiceResponseDataCopyWithImpl(this._self, this._then);
+
+  final ServiceResponseData<T> _self;
+  final $Res Function(ServiceResponseData<T>) _then;
+
+/// Create a copy of ServiceResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? data = freezed,}) {
+  return _then(ServiceResponseData<T>(
+freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as T,
+  ));
 }
 
-/// @nodoc
-class __$$ServiceResponseErrorImplCopyWithImpl<T, $Res>
-    extends _$ServiceResponseCopyWithImpl<T, $Res,
-        _$ServiceResponseErrorImpl<T>>
-    implements _$$ServiceResponseErrorImplCopyWith<T, $Res> {
-  __$$ServiceResponseErrorImplCopyWithImpl(_$ServiceResponseErrorImpl<T> _value,
-      $Res Function(_$ServiceResponseErrorImpl<T>) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$ServiceResponseErrorImpl<T>(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as NetworkException,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $NetworkExceptionCopyWith<$Res> get error {
-    return $NetworkExceptionCopyWith<$Res>(_value.error, (value) {
-      return _then(_value.copyWith(error: value));
-    });
-  }
 }
 
 /// @nodoc
 
-class _$ServiceResponseErrorImpl<T> implements ServiceResponseError<T> {
-  const _$ServiceResponseErrorImpl(this.error);
 
-  @override
-  final NetworkException error;
+class ServiceResponseError<T> implements ServiceResponse<T> {
+  const ServiceResponseError(this.error);
+  
 
-  @override
-  String toString() {
+ final  NetworkException error;
+
+/// Create a copy of ServiceResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ServiceResponseErrorCopyWith<T, ServiceResponseError<T>> get copyWith => _$ServiceResponseErrorCopyWithImpl<T, ServiceResponseError<T>>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ServiceResponseError<T>&&(identical(other.error, error) || other.error == error));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,error);
+}
+
+@override
+String toString() {
     return 'ServiceResponse<$T>.error(error: $error)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ServiceResponseErrorImpl<T> &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ServiceResponseErrorImplCopyWith<T, _$ServiceResponseErrorImpl<T>>
-      get copyWith => __$$ServiceResponseErrorImplCopyWithImpl<T,
-          _$ServiceResponseErrorImpl<T>>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(T data) data,
-    required TResult Function(NetworkException error) error,
-  }) {
-    return error(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T data)? data,
-    TResult? Function(NetworkException error)? error,
-  }) {
-    return error?.call(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T data)? data,
-    TResult Function(NetworkException error)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ServiceResponseData<T> value) data,
-    required TResult Function(ServiceResponseError<T> value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ServiceResponseData<T> value)? data,
-    TResult? Function(ServiceResponseError<T> value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ServiceResponseData<T> value)? data,
-    TResult Function(ServiceResponseError<T> value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
 }
 
-abstract class ServiceResponseError<T> implements ServiceResponse<T> {
-  const factory ServiceResponseError(final NetworkException error) =
-      _$ServiceResponseErrorImpl<T>;
 
-  NetworkException get error;
-  @JsonKey(ignore: true)
-  _$$ServiceResponseErrorImplCopyWith<T, _$ServiceResponseErrorImpl<T>>
-      get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+abstract mixin class $ServiceResponseErrorCopyWith<T,$Res> implements $ServiceResponseCopyWith<T, $Res> {
+  factory $ServiceResponseErrorCopyWith(ServiceResponseError<T> value, $Res Function(ServiceResponseError<T>) _then) = _$ServiceResponseErrorCopyWithImpl;
+@useResult
+$Res call({
+ NetworkException error
+});
+
+
+$NetworkExceptionCopyWith<$Res> get error;
+
+}
+/// @nodoc
+class _$ServiceResponseErrorCopyWithImpl<T,$Res>
+    implements $ServiceResponseErrorCopyWith<T, $Res> {
+  _$ServiceResponseErrorCopyWithImpl(this._self, this._then);
+
+  final ServiceResponseError<T> _self;
+  final $Res Function(ServiceResponseError<T>) _then;
+
+/// Create a copy of ServiceResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
+  return _then(ServiceResponseError<T>(
+null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as NetworkException,
+  ));
+}
+
+/// Create a copy of ServiceResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$NetworkExceptionCopyWith<$Res> get error {
+  
+  return $NetworkExceptionCopyWith<$Res>(_self.error, (value) {
+    return _then(_self.copyWith(error: value));
+  });
+}
+}
+
+// dart format on

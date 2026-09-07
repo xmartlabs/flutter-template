@@ -14,13 +14,13 @@ class SignInCubit extends Cubit<SignInBaseState> {
   final SessionRepository _sessionRepository = DiProvider.get();
 
   SignInCubit(this._globalEventHandler)
-      : super(
-          const SignInBaseState.state(
-            email: 'hi@xmartlabs.com',
-            password: 'xmartlabs',
-            error: '',
-          ),
-        );
+    : super(
+        const SignInBaseState.state(
+          email: 'hi@xmartlabs.com',
+          password: 'xmartlabs',
+          error: '',
+        ),
+      );
 
   void changeEmail(String email) => emit(state.copyWith(email: email));
 

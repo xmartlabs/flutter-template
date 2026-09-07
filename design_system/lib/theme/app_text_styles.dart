@@ -26,9 +26,7 @@ class AppTextStyles extends TextTheme {
     super.labelSmall,
   });
 
-  factory AppTextStyles.fromTextTheme({
-    required TextTheme textTheme,
-  }) =>
+  factory AppTextStyles.fromTextTheme({required TextTheme textTheme}) =>
       AppTextStyles(
         headlineSmall: textTheme.headlineSmall,
         headlineMedium: textTheme.headlineMedium,
@@ -44,49 +42,43 @@ class AppTextStyles extends TextTheme {
         labelSmall: textTheme.labelSmall,
       );
 
-  static TextStyle _robotoTextStyle(
-    double fontSize,
-    FontWeight fontWeight,
-  ) =>
+  static TextStyle _robotoTextStyle(double fontSize, FontWeight fontWeight) =>
       _isTesting
-          ? TextStyle(fontSize: fontSize, fontWeight: fontWeight)
-          : GoogleFonts.roboto(
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-            );
+      ? TextStyle(fontSize: fontSize, fontWeight: fontWeight)
+      : GoogleFonts.roboto(fontSize: fontSize, fontWeight: fontWeight);
 
   static AppTextStyles getDefaultAppStyles() =>
       _isTesting ? _testingTextTheme() : _appTextTheme();
 
   static AppTextStyles _appTextTheme() => AppTextStyles.fromTextTheme(
-        textTheme: GoogleFonts.robotoTextTheme().copyWith(
-          labelLarge: _robotoTextStyle(20.sp, FontWeight.normal),
-          labelMedium: _robotoTextStyle(16.sp, FontWeight.normal),
-          labelSmall: _robotoTextStyle(14.sp, FontWeight.normal),
-          headlineMedium: _robotoTextStyle(20.sp, FontWeight.bold),
-          headlineLarge: _robotoTextStyle(24.sp, FontWeight.bold),
-        ),
-      );
+    textTheme: GoogleFonts.robotoTextTheme().copyWith(
+      labelLarge: _robotoTextStyle(20.sp, FontWeight.normal),
+      labelMedium: _robotoTextStyle(16.sp, FontWeight.normal),
+      labelSmall: _robotoTextStyle(14.sp, FontWeight.normal),
+      headlineMedium: _robotoTextStyle(20.sp, FontWeight.bold),
+      headlineLarge: _robotoTextStyle(24.sp, FontWeight.bold),
+    ),
+  );
 
   static AppTextStyles _testingTextTheme() => AppTextStyles.fromTextTheme(
-        textTheme: TextTheme(
-          labelLarge: _robotoTextStyle(20.sp, FontWeight.normal),
-          labelMedium: _robotoTextStyle(16.sp, FontWeight.normal),
-          labelSmall: _robotoTextStyle(14.sp, FontWeight.normal),
-          headlineMedium: _robotoTextStyle(20.sp, FontWeight.bold),
-          headlineLarge: _robotoTextStyle(24.sp, FontWeight.bold),
-        ),
-      );
+    textTheme: TextTheme(
+      labelLarge: _robotoTextStyle(20.sp, FontWeight.normal),
+      labelMedium: _robotoTextStyle(16.sp, FontWeight.normal),
+      labelSmall: _robotoTextStyle(14.sp, FontWeight.normal),
+      headlineMedium: _robotoTextStyle(20.sp, FontWeight.bold),
+      headlineLarge: _robotoTextStyle(24.sp, FontWeight.bold),
+    ),
+  );
 
   TextTheme getThemeData() => getDefaultAppStyles();
 }
 
 extension TextStyleExtensions on TextStyle {
   TextStyle links() => copyWith(
-        fontWeight: FontWeight.normal,
-        decoration: TextDecoration.underline,
-        decorationColor: color,
-      );
+    fontWeight: FontWeight.normal,
+    decoration: TextDecoration.underline,
+    decorationColor: color,
+  );
 
   TextStyle semibold() => copyWith(fontWeight: _semiboldWeight);
 

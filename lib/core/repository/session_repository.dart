@@ -10,17 +10,14 @@ class SessionRepository {
   final AuthLocalSource _authLocalSource;
   final AuthRemoteSource _authRemoteSource;
 
-  SessionRepository(
-    this._authLocalSource,
-    this._authRemoteSource,
-  );
+  SessionRepository(this._authLocalSource, this._authRemoteSource);
 
   Stream<AuthenticationStatus> get status =>
       _authLocalSource.getUserToken().map(
-            (token) => token == null
-                ? AuthenticationStatus.unauthenticated
-                : AuthenticationStatus.authenticated,
-          );
+        (token) => token == null
+            ? AuthenticationStatus.unauthenticated
+            : AuthenticationStatus.authenticated,
+      );
 
   Stream<User?> getUserInfo() => _authLocalSource.getUser();
 

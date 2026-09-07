@@ -30,10 +30,7 @@ Future initSdks() async {
   await Config.initialize();
   Hive.init(Config.appDirectoryPath);
 
-  await Future.wait([
-    DiProvider.init(),
-    _initFirebaseSdks(),
-  ]);
+  await Future.wait([DiProvider.init(), _initFirebaseSdks()]);
 }
 
 // ignore: avoid-redundant-async
@@ -46,9 +43,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
-        designSize: const Size(360, 690),
-        minTextAdapt: false,
-        splitScreenMode: true,
-        builder: (_, __) => const MainScreen(),
-      );
+    designSize: const Size(360, 690),
+    minTextAdapt: false,
+    splitScreenMode: true,
+    builder: (_, _) => const MainScreen(),
+  );
 }

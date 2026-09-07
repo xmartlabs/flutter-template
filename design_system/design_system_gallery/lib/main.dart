@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
-        designSize: const Size(375, 812),
-        minTextAdapt: false,
-        splitScreenMode: true,
-        builder: (_, __) => _GalleryAppContentScreen(_router),
-      );
+    designSize: const Size(375, 812),
+    minTextAdapt: false,
+    splitScreenMode: true,
+    builder: (_, _) => _GalleryAppContentScreen(_router),
+  );
 }
 
 class _GalleryAppContentScreen extends StatelessWidget {
@@ -28,8 +28,8 @@ class _GalleryAppContentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
-        theme: AppTheme.provideAppTheme(context),
-        routerConfig: _router.config(),
-        builder: (context, child) => child!,
-      );
+    theme: AppTheme.provideAppTheme(context),
+    routerConfig: _router.config(),
+    builder: (context, child) => child!,
+  );
 }

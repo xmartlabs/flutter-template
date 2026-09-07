@@ -31,10 +31,13 @@ class _AppSelectDropdownState<T> extends State<AppSelectDropdown<T>>
   final MenuController _menuController = MenuController();
   final List<MenuItems<T>> _selectedValues = [];
   late AnimationController _animationController;
-  static final Animatable<double> _easeInTween =
-      CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween =
-      Tween<double>(begin: 0.0, end: 0.5);
+  static final Animatable<double> _easeInTween = CurveTween(
+    curve: Curves.easeIn,
+  );
+  static final Animatable<double> _halfTween = Tween<double>(
+    begin: 0.0,
+    end: 0.5,
+  );
 
   // ignore: unused_field
   late Animation<double> _iconTurns;
@@ -59,48 +62,39 @@ class _AppSelectDropdownState<T> extends State<AppSelectDropdown<T>>
 
   @override
   Widget build(BuildContext context) => MenuAnchor(
-        childFocusNode: _buttonFocusNode,
-        menuChildren: widget.items
-            .map(
-              (elem) => CheckboxMenuButton(
-                closeOnActivate: false,
-                value: _selectedValues.contains(elem),
-                onChanged: (value) {
-                  widget.onChanged?.call(elem.value);
-                  setState(() {
-                    if (value!) {
-                      _selectedValues.add(elem);
-                    } else {
-                      _selectedValues.remove(elem);
-                    }
-                  });
-                },
-                child: Container(
-                  width: _calculateWidth(),
-                  constraints: BoxConstraints(
-                    minWidth: 90.w,
-                  ),
-                  child: Text(
-                    elem.label,
-                    style: context.theme.textStyles.bodyMedium,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                ),
+    childFocusNode: _buttonFocusNode,
+    menuChildren: widget.items
+        .map(
+          (elem) => CheckboxMenuButton(
+            closeOnActivate: false,
+            value: _selectedValues.contains(elem),
+            onChanged: (value) {
+              widget.onChanged?.call(elem.value);
+              setState(() {
+                if (value!) {
+                  _selectedValues.add(elem);
+                } else {
+                  _selectedValues.remove(elem);
+                }
+              });
+            },
+            child: Container(
+              width: _calculateWidth(),
+              constraints: BoxConstraints(minWidth: 90.w),
+              child: Text(
+                elem.label,
+                style: context.theme.textStyles.bodyMedium,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
-            )
-            .toList(),
-        controller: _menuController,
-        builder: (
-          BuildContext context,
-          MenuController controller,
-          Widget? child,
-        ) =>
-            Container(
-          constraints: BoxConstraints(
-            minWidth: 90.w,
-            maxWidth: 1.sw,
+            ),
           ),
+        )
+        .toList(),
+    controller: _menuController,
+    builder: (BuildContext context, MenuController controller, Widget? child) =>
+        Container(
+          constraints: BoxConstraints(minWidth: 90.w, maxWidth: 1.sw),
           decoration: BoxDecoration(
             color: context.theme.colorScheme.surface.getShade(100),
             borderRadius: BorderRadius.circular(4.r),
@@ -153,7 +147,7 @@ class _AppSelectDropdownState<T> extends State<AppSelectDropdown<T>>
             ),
           ),
         ),
-      );
+  );
 
   double _calculateWidth() {
     final width = widget.width;
