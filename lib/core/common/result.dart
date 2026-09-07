@@ -1,6 +1,7 @@
 // ignore_for_file: no-object-declaration
 
 import 'package:equatable/equatable.dart';
+
 // Code: https://gist.githubusercontent.com/CassiusPacheco/409e66e220ce563440df00385f39ac98/raw/d0506e4b3dadbcf5a21d9cc23b300ecbcc8c57d6/data_result.dart
 
 /// This abstraction contains either a success data of generic type `S` or a
@@ -71,10 +72,7 @@ abstract class Result<S> extends Equatable {
   /// Folds [error] and [data] into the value of one type. Only the matching
   /// function to the object type will be executed. For example, for a
   /// `SuccessResult` object only the [fnData] function will be executed.
-  T fold<T>(
-    T Function(Object error) fnFailure,
-    T Function(S data) fnData,
-  );
+  T fold<T>(T Function(Object error) fnFailure, T Function(S data) fnData);
 
   @override
   List<Object?> get props => [if (isSuccess) data else error];
@@ -91,8 +89,7 @@ class _SuccessResult<S> extends Result<S> {
   _SuccessResult<T> either<T>(
     Object Function(Object error) fnFailure,
     T Function(S data) fnData,
-  ) =>
-      _SuccessResult<T>(fnData(_value));
+  ) => _SuccessResult<T>(fnData(_value));
 
   @override
   Result<T> then<T>(Result<T> Function(S data) fnData) => fnData(_value);
@@ -102,10 +99,7 @@ class _SuccessResult<S> extends Result<S> {
       _SuccessResult<T>(fnData(_value));
 
   @override
-  T fold<T>(
-    T Function(Object error) fnFailure,
-    T Function(S data) fnData,
-  ) =>
+  T fold<T>(T Function(Object error) fnFailure, T Function(S data) fnData) =>
       fnData(_value);
 }
 
@@ -120,25 +114,17 @@ class _FailureResult<S> extends Result<S> {
   _FailureResult<T> either<T>(
     Object Function(Object error) fnFailure,
     T Function(S data) fnData,
-  ) =>
-      _FailureResult<T>(fnFailure(_value));
+  ) => _FailureResult<T>(fnFailure(_value));
 
   @override
-  _FailureResult<T> map<T>(
-    T Function(S data) fnData,
-  ) =>
+  _FailureResult<T> map<T>(T Function(S data) fnData) =>
       _FailureResult<T>(_value);
 
   @override
-  _FailureResult<T> then<T>(
-    Result<T> Function(S data) fnData,
-  ) =>
+  _FailureResult<T> then<T>(Result<T> Function(S data) fnData) =>
       _FailureResult<T>(_value);
 
   @override
-  T fold<T>(
-    T Function(Object error) fnFailure,
-    T Function(S data) fnData,
-  ) =>
+  T fold<T>(T Function(Object error) fnFailure, T Function(S data) fnData) =>
       fnFailure(_value);
 }

@@ -70,15 +70,14 @@ class HttpServiceDio implements HttpService {
     Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
-  }) =>
-      _processNetworkCall(
-        () => _dio.get(
-          uri,
-          queryParameters: queryParameters,
-          options: options,
-          cancelToken: cancelToken,
-        ),
-      );
+  }) => _processNetworkCall(
+    () => _dio.get(
+      uri,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+    ),
+  );
 
   @override
   Future<Response> delete(
@@ -89,16 +88,15 @@ class HttpServiceDio implements HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-  }) =>
-      _processNetworkCall(
-        () => _dio.delete(
-          uri,
-          data: data,
-          queryParameters: queryParameters,
-          options: options,
-          cancelToken: cancelToken,
-        ),
-      );
+  }) => _processNetworkCall(
+    () => _dio.delete(
+      uri,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+    ),
+  );
 
   @override
   Future<Response> post(
@@ -109,16 +107,15 @@ class HttpServiceDio implements HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-  }) =>
-      _processNetworkCall(
-        () => _dio.post(
-          uri,
-          data: data,
-          queryParameters: queryParameters,
-          options: options,
-          cancelToken: cancelToken,
-        ),
-      );
+  }) => _processNetworkCall(
+    () => _dio.post(
+      uri,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+    ),
+  );
 
   @override
   Future<Response> put(
@@ -129,20 +126,17 @@ class HttpServiceDio implements HttpService {
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
-  }) =>
-      _processNetworkCall(
-        () => _dio.put(
-          uri,
-          data: data,
-          queryParameters: queryParameters,
-          options: options,
-          cancelToken: cancelToken,
-        ),
-      );
+  }) => _processNetworkCall(
+    () => _dio.put(
+      uri,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+    ),
+  );
 
-  Future<Response> _processNetworkCall(
-    Future<Response> Function() call,
-  ) =>
+  Future<Response> _processNetworkCall(Future<Response> Function() call) =>
       call().catchError(
         (exception) => throw NetworkException.getDioException(exception),
       );

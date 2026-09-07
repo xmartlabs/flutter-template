@@ -10,29 +10,28 @@ class GalleryMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GalleryScaffold(
-        title: 'WIDGET CATALOG',
-        showBack: false,
-        child: ListView.separated(
-          shrinkWrap: true,
-          separatorBuilder: (BuildContext context, int index) => Divider(
-            color: context.theme.colorScheme.primary,
-          ),
-          itemCount: _GalleryScreen.values.length,
-          itemBuilder: (BuildContext context, int index) {
-            final element = _GalleryScreen.values[index];
-            return Row(
-              children: [
-                Expanded(
-                  child: TextButton(
-                    child: Text(element.title.toUpperCase()),
-                    onPressed: () => context.router.push(element.route),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      );
+    title: 'WIDGET CATALOG',
+    showBack: false,
+    child: ListView.separated(
+      shrinkWrap: true,
+      separatorBuilder: (BuildContext context, int index) =>
+          Divider(color: context.theme.colorScheme.primary),
+      itemCount: _GalleryScreen.values.length,
+      itemBuilder: (BuildContext context, int index) {
+        final element = _GalleryScreen.values[index];
+        return Row(
+          children: [
+            Expanded(
+              child: TextButton(
+                child: Text(element.title.toUpperCase()),
+                onPressed: () => context.router.push(element.route),
+              ),
+            ),
+          ],
+        );
+      },
+    ),
+  );
 }
 
 enum _GalleryScreen {

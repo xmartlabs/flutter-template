@@ -11,45 +11,45 @@ class GalleryAppButtonScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GalleryScaffold(
-        title: 'BUTTONS',
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 10),
-              FilledButton(
-                onPressed: () => {},
-                child: const Text('PRIMARY FILLED BUTTON'),
-              ),
-              SizedBox(height: 10.h),
-              StrokeButton(
-                onPressed: () => {},
-                child: const Text('PRIMARY STROKE BUTTON'),
-              ),
-              SizedBox(height: 10.h),
-              GhostButton(
-                onPressed: () => {},
-                child: const Text('PRIMARY GHOST BUTTON'),
-              ),
-              SizedBox(height: 10.h),
-              FilledButton(
-                style: context.theme.buttonsStyle.secondaryFilledButton,
-                onPressed: () {},
-                child: const Text('SECONDARY FILLED BUTTON'),
-              ),
-              SizedBox(height: 10.h),
-              StrokeButton(
-                style: context.theme.buttonsStyle.secondaryOutlineButton,
-                onPressed: () {},
-                child: const Text('SECONDARY STROKE BUTTON'),
-              ),
-              SizedBox(height: 10.h),
-              GhostButton(
-                style: context.theme.buttonsStyle.secondaryTextButton,
-                onPressed: () {},
-                child: const Text('SECONDARY GHOST BUTTON'),
-              ),
-            ],
+    title: 'BUTTONS',
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+          const SizedBox(height: 10),
+          FilledButton(
+            onPressed: () => {},
+            child: const Text('PRIMARY FILLED BUTTON'),
           ),
-        ),
-      );
+          SizedBox(height: 10.h),
+          StrokeButton(
+            onPressed: () => {},
+            child: const Text('PRIMARY STROKE BUTTON'),
+          ),
+          SizedBox(height: 10.h),
+          GhostButton(
+            onPressed: () => {},
+            child: const Text('PRIMARY GHOST BUTTON'),
+          ),
+          SizedBox(height: 10.h),
+          FilledButton(
+            style: context.theme.buttonsStyle.secondaryFilledButton,
+            onPressed: () {},
+            child: const Text('SECONDARY FILLED BUTTON'),
+          ),
+          SizedBox(height: 10.h),
+          StrokeButton(
+            style: context.theme.buttonsStyle.secondaryOutlineButton,
+            onPressed: () {},
+            child: const Text('SECONDARY STROKE BUTTON'),
+          ),
+          SizedBox(height: 10.h),
+          GhostButton(
+            style: context.theme.buttonsStyle.secondaryTextButton,
+            onPressed: () {},
+            child: const Text('SECONDARY GHOST BUTTON'),
+          ),
+        ],
+      ),
+    ),
+  );
 }

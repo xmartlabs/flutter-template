@@ -6,27 +6,23 @@ part of 'auth_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SignInResponseImpl _$$SignInResponseImplFromJson(Map<String, dynamic> json) =>
-    _$SignInResponseImpl(
+_SignInResponse _$SignInResponseFromJson(Map<String, dynamic> json) =>
+    _SignInResponse(
       accessToken: json['access_token'] as String,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$SignInResponseImplToJson(
-        _$SignInResponseImpl instance) =>
+Map<String, dynamic> _$SignInResponseToJson(_SignInResponse instance) =>
     <String, dynamic>{
       'access_token': instance.accessToken,
       'user': instance.user.toJson(),
     };
 
-_$SignInRequestImpl _$$SignInRequestImplFromJson(Map<String, dynamic> json) =>
-    _$SignInRequestImpl(
+_SignInRequest _$SignInRequestFromJson(Map<String, dynamic> json) =>
+    _SignInRequest(
       email: json['email'] as String,
       password: json['password'] as String,
     );
 
-Map<String, dynamic> _$$SignInRequestImplToJson(_$SignInRequestImpl instance) =>
-    <String, dynamic>{
-      'email': instance.email,
-      'password': instance.password,
-    };
+Map<String, dynamic> _$SignInRequestToJson(_SignInRequest instance) =>
+    <String, dynamic>{'email': instance.email, 'password': instance.password};

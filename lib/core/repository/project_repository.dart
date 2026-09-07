@@ -13,16 +13,14 @@ class ProjectRepository {
   final Stock<dynamic, List<Project>> _store;
 
   ProjectRepository(this._projectLocalSource, this._projectRemoteSource)
-      : _store = Stock(
-          fetcher: Fetcher.ofFuture(
-            (_) => _projectRemoteSource.getProjects(),
-          ),
-          sourceOfTruth: SourceOfTruth<dynamic, List<Project>>(
-            reader: (_) => _projectLocalSource.getProjects(),
-            writer: (_, value) =>
-                _projectLocalSource.replaceProjects(value ?? []),
-          ),
-        );
+    : _store = Stock(
+        fetcher: Fetcher.ofFuture((_) => _projectRemoteSource.getProjects()),
+        sourceOfTruth: SourceOfTruth<dynamic, List<Project>>(
+          reader: (_) => _projectLocalSource.getProjects(),
+          writer: (_, value) =>
+              _projectLocalSource.replaceProjects(value ?? []),
+        ),
+      );
 
   Stream<List<Project>?> getProjects() => _store
       .stream(null)

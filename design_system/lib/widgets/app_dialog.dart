@@ -21,62 +21,58 @@ class AppDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-        title: Row(
-          children: [
-            Text(title),
-            const Spacer(),
-            IconButton(
-              onPressed: Navigator.of(context).pop,
-              icon: Icon(
-                Icons.close,
-                color: context.theme.customColors.textColor!.getShade(300),
+    title: Row(
+      children: [
+        Text(title),
+        const Spacer(),
+        IconButton(
+          onPressed: Navigator.of(context).pop,
+          icon: Icon(
+            Icons.close,
+            color: context.theme.customColors.textColor!.getShade(300),
+          ),
+        ),
+      ],
+    ),
+    content: content != null ? Text(content!) : null,
+    actionsAlignment: _getAlignment(),
+    actions: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          if (cancelButtonText != null)
+            Expanded(
+              child: TextButton(
+                onPressed: Navigator.of(context).pop,
+                child: Text(
+                  cancelButtonText!,
+                  style: context.theme.customTextStyles.buttonMedium.copyWith(
+                    color: context.theme.customColors.textColor!.getShade(300),
+                  ),
+                ),
               ),
             ),
-          ],
-        ),
-        content: content != null ? Text(content!) : null,
-        actionsAlignment: _getAlignment(),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              if (cancelButtonText != null)
-                Expanded(
-                  child: TextButton(
-                    onPressed: Navigator.of(context).pop,
-                    child: Text(
-                      cancelButtonText!,
-                      style:
-                          context.theme.customTextStyles.buttonMedium.copyWith(
-                        color:
-                            context.theme.customColors.textColor!.getShade(300),
-                      ),
-                    ),
+          if (actionButtonText != null)
+            Expanded(
+              child: FilledButton(
+                child: Text(
+                  actionButtonText!,
+                  style: context.theme.customTextStyles.buttonMedium.copyWith(
+                    color: context.theme.customColors.textColor!.getShade(100),
                   ),
                 ),
-              if (actionButtonText != null)
-                Expanded(
-                  child: FilledButton(
-                    child: Text(
-                      actionButtonText!,
-                      style:
-                          context.theme.customTextStyles.buttonMedium.copyWith(
-                        color:
-                            context.theme.customColors.textColor!.getShade(100),
-                      ),
-                    ),
-                    onPressed: () {
-                      if (onActionPressed != null) {
-                        onActionPressed!();
-                      }
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ),
-            ],
-          ),
+                onPressed: () {
+                  if (onActionPressed != null) {
+                    onActionPressed!();
+                  }
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
         ],
-      );
+      ),
+    ],
+  );
 
   MainAxisAlignment _getAlignment() {
     if (actionButtonText == null) {

@@ -15,6 +15,5 @@ class AuthRemoteSource {
         queryParameters: {'grant_type': 'password'},
         data: SignInRequest(email: email, password: password).toJson(),
         serializer: (data) => SignInResponse.fromJson(data),
-      ))
-          .getDataOrThrow();
+      )).getDataOrThrow();
 }

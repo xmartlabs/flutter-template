@@ -61,9 +61,9 @@ class _AppTextFieldState extends State<AppTextField> {
             child: Text(
               widget.labelText!,
               textAlign: TextAlign.left,
-              style: context.theme.textStyles.labelMedium!
-                  .bold()
-                  .copyWith(color: textColor),
+              style: context.theme.textStyles.labelMedium!.bold().copyWith(
+                color: textColor,
+              ),
             ),
           ),
         SizedBox(height: 5.h),
@@ -75,8 +75,9 @@ class _AppTextFieldState extends State<AppTextField> {
           textAlignVertical: TextAlignVertical.center,
           controller: widget.controller,
           onChanged: widget.onChange,
-          style:
-              context.theme.textStyles.bodyMedium?.copyWith(color: textColor),
+          style: context.theme.textStyles.bodyMedium?.copyWith(
+            color: textColor,
+          ),
           decoration: InputDecoration(
             helperText: widget.helperText,
             hintText: widget.hintText,
