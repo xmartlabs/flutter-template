@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/ui/extensions/context_extensions.dart';
 import 'package:flutter_template/ui/section/error_handler/global_event_handler_cubit.dart';
 
@@ -48,60 +49,44 @@ class _SignInContentScreen extends StatelessWidget {
       );
 }
 
-class _SignInForm extends StatefulWidget {
+class _SignInForm extends HookWidget {
   @override
-  State<_SignInForm> createState() => _SignInFormState();
-}
-
-class _SignInFormState extends State<_SignInForm> {
-  final _emailTextController = TextEditingController();
-  final _passwordTextController = TextEditingController();
-  late SignInCubit _signInCubit;
-
-  @override
-  void dispose() {
-    _emailTextController.dispose();
-    _passwordTextController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _signInCubit = context.read<SignInCubit>();
+  Widget build(BuildContext context) {
+    final signInCubit = context.read<SignInCubit>();
     // TODO: This should be bound
-    _emailTextController.text = _signInCubit.state.email ?? '';
-    _passwordTextController.text = _signInCubit.state.password ?? '';
-  }
+    final emailTextController =
+        useTextEditingController(text: signInCubit.state.email ?? '');
+    final passwordTextController =
+        useTextEditingController(text: signInCubit.state.password ?? '');
 
-  @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _emailTextController,
-              onChanged: (String text) => _signInCubit.changeEmail(text),
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                labelText: context.localizations.mail,
-              ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: emailTextController,
+            onChanged: (String text) => signInCubit.changeEmail(text),
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              labelText: context.localizations.mail,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              obscureText: true,
-              controller: _passwordTextController,
-              onChanged: (String password) =>
-                  _signInCubit.changePassword(password),
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                labelText: context.localizations.password,
-              ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            obscureText: true,
+            controller: passwordTextController,
+            onChanged: (String password) =>
+                signInCubit.changePassword(password),
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              labelText: context.localizations.password,
             ),
           ),
-        ],
-      );
+        ),
+      ],
+    );
+  }
 }
