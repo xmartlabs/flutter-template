@@ -1,0 +1,85 @@
+# PR body template
+
+Fill every placeholder from `verdicts.json` records on this branch. Delete no
+section — if a section has nothing to report, say so explicitly (e.g. "None
+this run.") instead of omitting it.
+
+```markdown
+## Summary
+
+| Package | Manifest | Current → Target | Bump | Urgency | Risk |
+|---|---|---|---|---|---|
+| <package> | <manifest or version_file(s)> | <current> → <latest_compatible or target> | <bump> | <urgency> | <risk> |
+
+## What changed and why
+
+### <package>
+
+- **Why**: <urgency-driving reason — advisory id/summary, deprecation, or
+  "routine currency" for maintenance urgency>
+- **What**: <breaking_changes entries, or "No breaking changes found.">
+- **Reference**: <changelog_url, or migration_guide_source for toolchain
+  candidates>
+
+<repeat per candidate on this branch>
+
+## What was verified
+
+- `./scripts/checks.sh`: <evidence.checks — pass/fail, from the real-branch
+  re-verification, not the stage-2 scratch-branch run>
+- Codegen cleanliness (`ensure_no_change_in_generated_code`):
+  <evidence.codegen_clean — true/false>
+- Relevant log excerpt:
+
+  ```
+  <evidence.log excerpt — the real output, not a paraphrase>
+  ```
+
+<repeat the above three items per candidate if verification was run
+per-candidate rather than once for the whole batch>
+
+## Affected call sites
+
+<for each candidate with non-empty affected_call_sites, list path:line
+entries; if every candidate's list is empty, write "None found by targeted
+search.">
+
+## Docs updated
+
+<dependency-doc-sync's report for this branch: one line per file touched with
+what changed (old string → new string), or "None needed this run.">
+
+## Toolchain blast radius
+
+<toolchain PRs only — omit this section entirely for package-only PRs>
+
+- Native project impacts: <adapter's native_project_impacts>
+- CI impacts: <adapter's ci_impacts>
+- Worked precedent: <adapter's cited prior upgrade PR, if any>
+
+## Human checklist
+
+- [ ] <one item per `safe-with-refactor` candidate: "Review the mechanical
+      fix applied to <package> — see evidence.log for what was replayed.">
+- [ ] <one item per never-auto-update package present in this tier (should
+      only occur in review/breaking tiers): "Manually review the
+      regeneration diff for <package> before merging.">
+- [ ] <any other manual follow-up called out in evidence or
+      breaking_changes>
+
+<if this is a breaking-tier PR, also include:>
+
+## Migration checklist (breaking tier — draft PR)
+
+- [ ] Read the full migration guide: <migration_guide_source or
+      changelog_url per candidate>
+- [ ] Confirm every `affected_call_sites` entry has been updated to the new
+      API shape
+- [ ] Run a native build if toolchain-related (`fastlane android
+      build_dev_debug_apk`) in addition to `./scripts/checks.sh`
+- [ ] Get explicit human sign-off before marking this PR ready for review
+
+---
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+```
