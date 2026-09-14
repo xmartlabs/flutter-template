@@ -16,83 +16,80 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) =>
-            WelcomeCubit(context.read<GlobalEventHandlerCubit>()),
-        child: _WelcomeContentScreen(),
-      );
+    create: (context) => WelcomeCubit(context.read<GlobalEventHandlerCubit>()),
+    child: _WelcomeContentScreen(),
+  );
 }
 
 class _WelcomeContentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<WelcomeCubit, WelcomeBaseState>(
-        builder: (context, state) => Scaffold(
-          appBar: AppBar(
-            title: Text(
-              context.localizations.xmartlabs_projects,
-              style: context.theme.textStyles.titleMedium
-                  ?.copyWith(color: context.theme.colorScheme.onPrimary),
-            ),
-            actions: [
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: WidgetStateProperty.all<Color>(
-                    context.theme.colorScheme.onPrimary,
-                  ),
-                ),
-                onPressed: () => context.read<WelcomeCubit>().logOut(),
-                child: Text(
-                  context.localizations.log_out,
-                  style: context.theme.textStyles.bodyMedium
-                      ?.copyWith(color: context.theme.colorScheme.onPrimary),
+        builder: (context, state) {
+          final onPrimary = context.theme.colorScheme.onPrimary;
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                context.localizations.xmartlabs_projects,
+                style: context.theme.textStyles.titleMedium?.copyWith(
+                  color: onPrimary,
                 ),
               ),
-            ],
-          ),
-          body: ListView.builder(
-            padding: const EdgeInsets.all(8.0),
-            itemCount: state.projects.length,
-            itemBuilder: (context, index) {
-              final project = state.projects[index];
-              return _ProjectWidget(project: project);
-            },
-          ),
-        ),
+              actions: [
+                TextButton(
+                  style: ButtonStyle(
+                    foregroundColor: WidgetStateProperty.all<Color>(onPrimary),
+                  ),
+                  onPressed: () => context.read<WelcomeCubit>().logOut(),
+                  child: Text(
+                    context.localizations.log_out,
+                    style: context.theme.textStyles.bodyMedium?.copyWith(
+                      color: onPrimary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            body: ListView.builder(
+              padding: const EdgeInsets.all(8.0),
+              itemCount: state.projects.length,
+              itemBuilder: (context, index) {
+                final project = state.projects[index];
+                return _ProjectWidget(project: project);
+              },
+            ),
+          );
+        },
       );
 }
 
 class _ProjectWidget extends StatelessWidget {
-  const _ProjectWidget({
-    required this.project,
-  });
+  const _ProjectWidget({required this.project});
 
   final Project project;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () {
-          final uri = Uri.parse(project.url);
-          unawaited(launchUrl(uri));
-        },
-        child: Card(
-          child: Column(
-            children: [
-              AspectRatio(
-                aspectRatio: 16 / 6,
-                child: AspectRatio(
-                  aspectRatio: 16 / 6,
-                  child: Image.network(
-                    project.imageUrl,
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Text(project.name),
-                subtitle: Text(project.description),
-              ),
-            ],
+    onTap: () {
+      final uri = Uri.parse(project.url);
+      unawaited(launchUrl(uri));
+    },
+    child: Card(
+      child: Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 16 / 6,
+            child: AspectRatio(
+              aspectRatio: 16 / 6,
+              child: Image.network(project.imageUrl, fit: BoxFit.fitHeight),
+            ),
           ),
-        ),
-      );
+          ListTile(
+            title: Text(project.name),
+            subtitle: Text(project.description),
+          ),
+        ],
+      ),
+    ),
+  );
 }

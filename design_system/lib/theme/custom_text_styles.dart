@@ -41,8 +41,11 @@ class CustomTextStyles extends ThemeExtension<CustomTextStyles> {
   static CustomTextStyles getCustomTextStyles(CustomColors customColors) =>
       CustomTextStyles(
         tinyText: _robotoTextStyle(10.sp, FontWeight.normal, customColors),
-        customOverline:
-            _robotoTextStyle(10.sp, FontWeight.normal, customColors),
+        customOverline: _robotoTextStyle(
+          10.sp,
+          FontWeight.normal,
+          customColors,
+        ),
         buttonXLarge: _robotoTextStyle(24.sp, _semiboldWeight, customColors),
         buttonLarge: _robotoTextStyle(16.sp, _semiboldWeight, customColors),
         buttonMedium: _robotoTextStyle(14.sp, _semiboldWeight, customColors),
@@ -58,18 +61,17 @@ class CustomTextStyles extends ThemeExtension<CustomTextStyles> {
     double fontSize,
     FontWeight fontWeight,
     CustomColors customColors,
-  ) =>
-      Platform.environment.containsKey('FLUTTER_TEST')
-          ? TextStyle(
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-              color: customColors.textColor!.getShade(500),
-            )
-          : GoogleFonts.roboto(
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-              color: customColors.textColor!.getShade(500),
-            );
+  ) => Platform.environment.containsKey('FLUTTER_TEST')
+      ? TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: customColors.textColor!.getShade(500),
+        )
+      : GoogleFonts.roboto(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: customColors.textColor!.getShade(500),
+        );
 
   @override
   CustomTextStyles copyWith({MaterialColor? primary}) =>

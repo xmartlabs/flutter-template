@@ -65,12 +65,7 @@ class _CrashReportWrappedPrinter extends LogPrinter {
     final trace = Trace.current(4);
     final frames = trace.frames;
     final newFrames = frames.map(
-      (frame) => Frame(
-        frame.uri,
-        frame.line,
-        frame.column,
-        frame.member,
-      ),
+      (frame) => Frame(frame.uri, frame.line, frame.column, frame.member),
     );
     return _PrintableTrace(newFrames);
   }

@@ -17,24 +17,21 @@ class GalleryScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          leading: showBack ?? true
-              ? IconButton(
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: context.theme.colorScheme.primary.getShade(100),
-                  ),
-                  onPressed: () => context.router.maybePop(),
-                )
-              : null,
-          title: Text(title),
-        ),
-        backgroundColor: context.theme.customColors.textColor!.getShade(100),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: child,
-          ),
-        ),
-      );
+    appBar: AppBar(
+      leading: showBack ?? true
+          ? IconButton(
+              icon: Icon(
+                Icons.chevron_left,
+                color: context.theme.colorScheme.primary.getShade(100),
+              ),
+              onPressed: () => context.router.maybePop(),
+            )
+          : null,
+      title: Text(title),
+    ),
+    backgroundColor: context.theme.customColors.textColor!.getShade(100),
+    body: SafeArea(
+      child: Padding(padding: const EdgeInsets.all(8.0), child: child),
+    ),
+  );
 }

@@ -14,9 +14,9 @@ class _AppAuthStatusGuard extends AutoRouteGuard {
     required SessionRepository sessionRepository,
     required AuthenticationStatus requiredAppStatus,
     required PageRouteInfo redirectPage,
-  })  : _sessionRepository = sessionRepository,
-        _requiredAppStatus = requiredAppStatus,
-        _redirectPage = redirectPage;
+  }) : _sessionRepository = sessionRepository,
+       _requiredAppStatus = requiredAppStatus,
+       _redirectPage = redirectPage;
 
   Future<bool> _canNavigate(RouteMatch route) => _sessionRepository.status.first
       .then((value) => value == _requiredAppStatus);
@@ -29,26 +29,27 @@ class _AppAuthStatusGuard extends AutoRouteGuard {
     if (await _canNavigate(resolver.route)) {
       resolver.resolveNext(true);
     } else {
-      unawaited(resolver.redirect(_redirectPage, replace: true));
-      resolver.next(false);
+      resolver
+        ..redirectUntil(_redirectPage, replace: true)
+        ..next(false);
     }
   }
 }
 
 class UnauthenticatedGuard extends _AppAuthStatusGuard {
   UnauthenticatedGuard(SessionRepository sessionRepository)
-      : super(
-          requiredAppStatus: AuthenticationStatus.unauthenticated,
-          redirectPage: const AuthenticatedSectionRoute(),
-          sessionRepository: sessionRepository,
-        );
+    : super(
+        requiredAppStatus: AuthenticationStatus.unauthenticated,
+        redirectPage: const AuthenticatedSectionRoute(),
+        sessionRepository: sessionRepository,
+      );
 }
 
 class AuthenticatedGuard extends _AppAuthStatusGuard {
   AuthenticatedGuard(SessionRepository sessionRepository)
-      : super(
-          requiredAppStatus: AuthenticationStatus.authenticated,
-          redirectPage: const UnauthenticatedSectionRoute(),
-          sessionRepository: sessionRepository,
-        );
+    : super(
+        requiredAppStatus: AuthenticationStatus.authenticated,
+        redirectPage: const UnauthenticatedSectionRoute(),
+        sessionRepository: sessionRepository,
+      );
 }

@@ -14,8 +14,9 @@ class MainScreen extends StatelessWidget {
     final router = DiProvider.get<AppRouter>();
     return MaterialApp.router(
       theme: AppTheme.provideAppTheme(context),
-      routerConfig:
-          router.config(reevaluateListenable: router.authReevaluateListenable),
+      routerConfig: router.config(
+        reevaluateListenable: router.authReevaluateListenable,
+      ),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

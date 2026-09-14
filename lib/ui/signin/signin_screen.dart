@@ -12,10 +12,9 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) =>
-            SignInCubit(context.read<GlobalEventHandlerCubit>()),
-        child: _SignInContentScreen(),
-      );
+    create: (context) => SignInCubit(context.read<GlobalEventHandlerCubit>()),
+    child: _SignInContentScreen(),
+  );
 }
 
 class _SignInContentScreen extends StatelessWidget {
@@ -23,17 +22,16 @@ class _SignInContentScreen extends StatelessWidget {
   Widget build(BuildContext context) =>
       BlocBuilder<SignInCubit, SignInBaseState>(
         builder: (context, state) => Scaffold(
-          appBar: AppBar(
-            title: Text(context.localizations.sign_in),
-          ),
+          appBar: AppBar(title: Text(context.localizations.sign_in)),
           body: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(child: _SignInForm()),
               if (context.read<SignInCubit>().state.error.isNotEmpty)
                 Text(
-                  context.localizations
-                      .error(context.read<SignInCubit>().state.error),
+                  context.localizations.error(
+                    context.read<SignInCubit>().state.error,
+                  ),
                 ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30.0),
@@ -76,32 +74,31 @@ class _SignInFormState extends State<_SignInForm> {
 
   @override
   Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _emailTextController,
-              onChanged: (String text) => _signInCubit.changeEmail(text),
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                labelText: context.localizations.mail,
-              ),
-            ),
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          controller: _emailTextController,
+          onChanged: (String text) => _signInCubit.changeEmail(text),
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            labelText: context.localizations.mail,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              obscureText: true,
-              controller: _passwordTextController,
-              onChanged: (String password) =>
-                  _signInCubit.changePassword(password),
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                labelText: context.localizations.password,
-              ),
-            ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          obscureText: true,
+          controller: _passwordTextController,
+          onChanged: (String password) => _signInCubit.changePassword(password),
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            labelText: context.localizations.password,
           ),
-        ],
-      );
+        ),
+      ),
+    ],
+  );
 }

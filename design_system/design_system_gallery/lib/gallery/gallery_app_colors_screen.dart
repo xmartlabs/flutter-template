@@ -9,43 +9,34 @@ class GalleryAppColorsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GalleryScaffold(
-        title: 'COLORS',
-        child: ListView.separated(
-          separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
-          itemCount: _GalleryColors.values.length,
-          itemBuilder: (BuildContext context, int index) {
-            final element = _GalleryColors.values[index];
-            return Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 50,
-                    color: element.color(context),
-                    child: Center(
-                      child: Text(
-                        element.name.toUpperCase(),
-                        style: context.theme.textStyles.labelMedium,
-                      ),
-                    ),
+    title: 'COLORS',
+    child: ListView.separated(
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+      itemCount: _GalleryColors.values.length,
+      itemBuilder: (BuildContext context, int index) {
+        final element = _GalleryColors.values[index];
+        return Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 50,
+                color: element.color(context),
+                child: Center(
+                  child: Text(
+                    element.name.toUpperCase(),
+                    style: context.theme.textStyles.labelMedium,
                   ),
                 ),
-              ],
-            );
-          },
-        ),
-      );
+              ),
+            ),
+          ],
+        );
+      },
+    ),
+  );
 }
 
-enum _GalleryColors {
-  primary,
-  secondary,
-  success,
-  info,
-  warning,
-  danger,
-  text,
-}
+enum _GalleryColors { primary, secondary, success, info, warning, danger, text }
 
 extension _GalleryScreenExtensions on _GalleryColors {
   Color color(BuildContext context) {

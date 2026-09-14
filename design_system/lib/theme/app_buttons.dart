@@ -38,10 +38,7 @@ class AppButtonsStyle extends ThemeExtension<AppButtonsStyle> {
 
     outlineButton = OutlinedButton.styleFrom(
       shape: roundedRectangleBorder,
-      side: BorderSide(
-        width: 2,
-        color: _colorScheme.primary,
-      ),
+      side: BorderSide(width: 2, color: _colorScheme.primary),
       textStyle: _customTextStyles.buttonLarge,
       elevation: 0.0,
     );
@@ -53,8 +50,9 @@ class AppButtonsStyle extends ThemeExtension<AppButtonsStyle> {
     );
 
     secondaryFilledButton = filledButton.copyWith(
-      backgroundColor:
-          getMaterialStatesColors(_customColors.textColor!.getShade(300)),
+      backgroundColor: getMaterialStatesColors(
+        _customColors.textColor!.getShade(300),
+      ),
       foregroundColor: getMaterialStatesColors(
         _customColors.textColor!.getShade(100),
       ),
@@ -71,9 +69,7 @@ class AppButtonsStyle extends ThemeExtension<AppButtonsStyle> {
     );
 
     secondaryTextButton = textButton.copyWith(
-      backgroundColor: getMaterialStatesColors(
-        Colors.transparent,
-      ),
+      backgroundColor: getMaterialStatesColors(Colors.transparent),
       foregroundColor: getMaterialStatesColors(
         _customColors.textColor!.getShade(300),
       ),
@@ -84,25 +80,20 @@ class AppButtonsStyle extends ThemeExtension<AppButtonsStyle> {
     CustomColors customColors,
     CustomTextStyles customTextStyles,
     ColorScheme colorScheme,
-  ) =>
-      AppButtonsStyle(customColors, customTextStyles, colorScheme);
+  ) => AppButtonsStyle(customColors, customTextStyles, colorScheme);
 
   @override
   AppButtonsStyle copyWith() => AppButtonsStyle.getDefaultButtonTheme(
-        _customColors,
-        _customTextStyles,
-        _colorScheme,
-      );
+    _customColors,
+    _customTextStyles,
+    _colorScheme,
+  );
 
   @override
   AppButtonsStyle lerp(AppButtonsStyle other, double t) {
     if (other is! CustomTextStyles) {
       return this;
     }
-    return AppButtonsStyle(
-      _customColors,
-      _customTextStyles,
-      _colorScheme,
-    );
+    return AppButtonsStyle(_customColors, _customTextStyles, _colorScheme);
   }
 }

@@ -20,14 +20,14 @@ class AppDimension extends ThemeExtension<AppDimension> {
   });
 
   static AppDimension getDefaultDimensions() => AppDimension(
-        spacing2: 2,
-        spacing4: 4,
-        spacing8: 8,
-        spacing12: 12,
-        spacing16: 16,
-        spacing20: 20,
-        spacing24: 24,
-      );
+    spacing2: 2,
+    spacing4: 4,
+    spacing8: 8,
+    spacing12: 12,
+    spacing16: 16,
+    spacing20: 20,
+    spacing24: 24,
+  );
 
   @override
   AppDimension copyWith({MaterialColor? primary}) =>

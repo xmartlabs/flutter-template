@@ -25,30 +25,30 @@ class _AppDropdownMenuState<T> extends State<AppDropdownMenu<T>> {
 
   @override
   Widget build(BuildContext context) => DropdownMenu<T>(
-        initialSelection: widget.initialValue,
-        trailingIcon: Icon(
-          Icons.arrow_drop_down_outlined,
-          color: context.theme.customColors.textColor!.getShade(200),
-        ),
-        controller: _controller,
-        onSelected: (T? value) => widget.onSelected(value),
-        dropdownMenuEntries: widget.dropdownMenuEntries
-            .map<DropdownMenuEntry<T>>(
-              (AppDropdownItems<T> item) => DropdownMenuEntry<T>(
-                value: item.value,
-                label: item.label,
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateColor.resolveWith(
-                    (Set<WidgetState> states) =>
-                        context.theme.colorScheme.surface.getShade(100),
-                  ),
-                  foregroundColor: WidgetStateColor.resolveWith(
-                    (Set<WidgetState> states) =>
-                        context.theme.customColors.textColor!.getShade(400),
-                  ),
-                ),
+    initialSelection: widget.initialValue,
+    trailingIcon: Icon(
+      Icons.arrow_drop_down_outlined,
+      color: context.theme.customColors.textColor!.getShade(200),
+    ),
+    controller: _controller,
+    onSelected: (T? value) => widget.onSelected(value),
+    dropdownMenuEntries: widget.dropdownMenuEntries
+        .map<DropdownMenuEntry<T>>(
+          (AppDropdownItems<T> item) => DropdownMenuEntry<T>(
+            value: item.value,
+            label: item.label,
+            style: ButtonStyle(
+              backgroundColor: WidgetStateColor.resolveWith(
+                (Set<WidgetState> states) =>
+                    context.theme.colorScheme.surface.getShade(100),
               ),
-            )
-            .toList(),
-      );
+              foregroundColor: WidgetStateColor.resolveWith(
+                (Set<WidgetState> states) =>
+                    context.theme.customColors.textColor!.getShade(400),
+              ),
+            ),
+          ),
+        )
+        .toList(),
+  );
 }

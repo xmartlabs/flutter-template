@@ -19,73 +19,67 @@ class SectionRouter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (BuildContext context) => GlobalEventHandlerCubit(),
-        child: BlocListener<GlobalEventHandlerCubit, GlobalEventHandlerState>(
-          listener: _handleStateChanges,
-          child: const AutoRouter(),
-        ),
-      );
+    create: (BuildContext context) => GlobalEventHandlerCubit(),
+    child: BlocListener<GlobalEventHandlerCubit, GlobalEventHandlerState>(
+      listener: _handleStateChanges,
+      child: const AutoRouter(),
+    ),
+  );
 
   void _handleStateChanges(
     BuildContext context,
     GlobalEventHandlerState event,
-  ) =>
-      event.when(
-        idle: () => {},
-        error: (errorType) => _showError(errorType, context),
-        loading: () => {},
-      );
+  ) => switch (event) {
+    IdleGlobalEventHandlerState() => null,
+    ErrorGlobalEventHandlerState(:final error) => _showError(error, context),
+    LoadingGlobalEventHandlerState() => null,
+  };
 
   void _showError(
     GlobalEventHandlerStateError errorType,
     BuildContext context,
-  ) =>
-      switch (errorType) {
-        UnknownError(retry: final retry) => _showDialog(
-            context,
-            context.localizations.error_unknown_error_title,
-            context.localizations.error_unknown_error_description,
-            retry,
-          ),
-        InternetError(retry: final retry) => _showDialog(
-            context,
-            context.localizations.error_no_internet_connection_error_title,
-            context
-                .localizations.error_no_internet_connection_error_description,
-            retry,
-          ),
-        GeneralError(
-          title: final titleLarge,
-          description: final description,
-          retry: final retry
-        ) =>
-          _showDialog(context, titleLarge, description, retry),
-      };
+  ) => switch (errorType) {
+    UnknownError(retry: final retry) => _showDialog(
+      context,
+      context.localizations.error_unknown_error_title,
+      context.localizations.error_unknown_error_description,
+      retry,
+    ),
+    InternetError(retry: final retry) => _showDialog(
+      context,
+      context.localizations.error_no_internet_connection_error_title,
+      context.localizations.error_no_internet_connection_error_description,
+      retry,
+    ),
+    GeneralError(
+      title: final titleLarge,
+      description: final description,
+      retry: final retry,
+    ) =>
+      _showDialog(context, titleLarge, description, retry),
+  };
 
   void _showDialog(
     BuildContext context,
     String? title,
     String description,
     VoidCallback? retry,
-  ) =>
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(
-            title ?? context.localizations.error_unknown_error_title,
+  ) => showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(title ?? context.localizations.error_unknown_error_title),
+      content: Text(description),
+      actions: <Widget>[
+        if (retry != null)
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(context.localizations.error_button_retry),
           ),
-          content: Text(description),
-          actions: <Widget>[
-            if (retry != null)
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(context.localizations.error_button_retry),
-              ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(context.localizations.error_button_ok),
-            ),
-          ],
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(context.localizations.error_button_ok),
         ),
-      );
+      ],
+    ),
+  );
 }

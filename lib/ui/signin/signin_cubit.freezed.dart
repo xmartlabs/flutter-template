@@ -1,6 +1,6 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint
+// coverage:ignore-file
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'signin_cubit.dart';
@@ -9,251 +9,277 @@ part of 'signin_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$SignInBaseState {
-  String? get email => throw _privateConstructorUsedError;
-  String? get password => throw _privateConstructorUsedError;
-  String get error => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? email, String? password, String error)
-        state,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? email, String? password, String error)? state,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? email, String? password, String error)? state,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SignInState value) state,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SignInState value)? state,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SignInState value)? state,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $SignInBaseStateCopyWith<SignInBaseState> get copyWith =>
-      throw _privateConstructorUsedError;
+ String? get email; String? get password; String get error;
+/// Create a copy of SignInBaseState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SignInBaseStateCopyWith<SignInBaseState> get copyWith => _$SignInBaseStateCopyWithImpl<SignInBaseState>(this as SignInBaseState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as SignInBaseState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInBaseState&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.password, _this.password) || other.password == _this.password)&&(identical(other.error, _this.error) || other.error == _this.error));
+}
+
+
+@override
+int get hashCode {
+  final _this = this as SignInBaseState;
+  return Object.hash(runtimeType,_this.email,_this.password,_this.error);
+}
+
+@override
+String toString() {
+  final _this = this as SignInBaseState;
+  return 'SignInBaseState(email: ${_this.email}, password: ${_this.password}, error: ${_this.error})';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SignInBaseStateCopyWith<$Res> {
-  factory $SignInBaseStateCopyWith(
-          SignInBaseState value, $Res Function(SignInBaseState) then) =
-      _$SignInBaseStateCopyWithImpl<$Res, SignInBaseState>;
-  @useResult
-  $Res call({String? email, String? password, String error});
-}
+abstract mixin class $SignInBaseStateCopyWith<$Res>  {
+  factory $SignInBaseStateCopyWith(SignInBaseState value, $Res Function(SignInBaseState) _then) = _$SignInBaseStateCopyWithImpl;
+@useResult
+$Res call({
+ String? email, String? password, String error
+});
 
+
+
+
+}
 /// @nodoc
-class _$SignInBaseStateCopyWithImpl<$Res, $Val extends SignInBaseState>
+class _$SignInBaseStateCopyWithImpl<$Res>
     implements $SignInBaseStateCopyWith<$Res> {
-  _$SignInBaseStateCopyWithImpl(this._value, this._then);
+  _$SignInBaseStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SignInBaseState _self;
+  final $Res Function(SignInBaseState) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? error = null,
-  }) {
-    return _then(_value.copyWith(
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of SignInBaseState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? email = freezed,Object? password = freezed,Object? error = null,}) {
+  return _then(SignInBaseState.state(
+email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SignInBaseState].
+extension SignInBaseStatePatterns on SignInBaseState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SignInState value)?  state,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case SignInState() when state != null:
+return state(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SignInState value)  state,}){
+final _that = this;
+switch (_that) {
+case SignInState():
+return state(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SignInState value)?  state,}){
+final _that = this;
+switch (_that) {
+case SignInState() when state != null:
+return state(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String? email,  String? password,  String error)?  state,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case SignInState() when state != null:
+return state(_that.email,_that.password,_that.error);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String? email,  String? password,  String error)  state,}) {final _that = this;
+switch (_that) {
+case SignInState():
+return state(_that.email,_that.password,_that.error);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String? email,  String? password,  String error)?  state,}) {final _that = this;
+switch (_that) {
+case SignInState() when state != null:
+return state(_that.email,_that.password,_that.error);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$SignInStateImplCopyWith<$Res>
-    implements $SignInBaseStateCopyWith<$Res> {
-  factory _$$SignInStateImplCopyWith(
-          _$SignInStateImpl value, $Res Function(_$SignInStateImpl) then) =
-      __$$SignInStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? email, String? password, String error});
+
+
+class SignInState implements SignInBaseState {
+  const SignInState({required this.email, required this.password, required this.error});
+  
+
+@override final  String? email;
+@override final  String? password;
+@override final  String error;
+
+/// Create a copy of SignInBaseState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SignInStateCopyWith<SignInState> get copyWith => _$SignInStateCopyWithImpl<SignInState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInState&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.error, error) || other.error == error));
 }
 
-/// @nodoc
-class __$$SignInStateImplCopyWithImpl<$Res>
-    extends _$SignInBaseStateCopyWithImpl<$Res, _$SignInStateImpl>
-    implements _$$SignInStateImplCopyWith<$Res> {
-  __$$SignInStateImplCopyWithImpl(
-      _$SignInStateImpl _value, $Res Function(_$SignInStateImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? error = null,
-  }) {
-    return _then(_$SignInStateImpl(
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+@override
+int get hashCode {
+    return Object.hash(runtimeType,email,password,error);
 }
 
-/// @nodoc
-
-class _$SignInStateImpl implements SignInState {
-  const _$SignInStateImpl(
-      {required this.email, required this.password, required this.error});
-
-  @override
-  final String? email;
-  @override
-  final String? password;
-  @override
-  final String error;
-
-  @override
-  String toString() {
+@override
+String toString() {
     return 'SignInBaseState.state(email: $email, password: $password, error: $error)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SignInStateImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, email, password, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SignInStateImplCopyWith<_$SignInStateImpl> get copyWith =>
-      __$$SignInStateImplCopyWithImpl<_$SignInStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? email, String? password, String error)
-        state,
-  }) {
-    return state(email, password, error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? email, String? password, String error)? state,
-  }) {
-    return state?.call(email, password, error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? email, String? password, String error)? state,
-    required TResult orElse(),
-  }) {
-    if (state != null) {
-      return state(email, password, error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SignInState value) state,
-  }) {
-    return state(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SignInState value)? state,
-  }) {
-    return state?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SignInState value)? state,
-    required TResult orElse(),
-  }) {
-    if (state != null) {
-      return state(this);
-    }
-    return orElse();
-  }
 }
 
-abstract class SignInState implements SignInBaseState {
-  const factory SignInState(
-      {required final String? email,
-      required final String? password,
-      required final String error}) = _$SignInStateImpl;
 
-  @override
-  String? get email;
-  @override
-  String? get password;
-  @override
-  String get error;
-  @override
-  @JsonKey(ignore: true)
-  _$$SignInStateImplCopyWith<_$SignInStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+abstract mixin class $SignInStateCopyWith<$Res> implements $SignInBaseStateCopyWith<$Res> {
+  factory $SignInStateCopyWith(SignInState value, $Res Function(SignInState) _then) = _$SignInStateCopyWithImpl;
+@override @useResult
+$Res call({
+ String? email, String? password, String error
+});
+
+
+
+
+}
+/// @nodoc
+class _$SignInStateCopyWithImpl<$Res>
+    implements $SignInStateCopyWith<$Res> {
+  _$SignInStateCopyWithImpl(this._self, this._then);
+
+  final SignInState _self;
+  final $Res Function(SignInState) _then;
+
+/// Create a copy of SignInBaseState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? email = freezed,Object? password = freezed,Object? error = null,}) {
+  return _then(SignInState(
+email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as String?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

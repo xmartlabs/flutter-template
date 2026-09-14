@@ -7,7 +7,7 @@ part 'network_exceptions.freezed.dart';
 
 @freezed
 sealed class NetworkException with _$NetworkException implements Exception {
-  const factory NetworkException.unauthorizedRequest(body) =
+  const factory NetworkException.unauthorizedRequest(dynamic body) =
       UnauthorizedRequest;
 
   const factory NetworkException.badRequest() = BadRequest;
@@ -61,7 +61,7 @@ sealed class NetworkException with _$NetworkException implements Exception {
     }
   }
 
-  static NetworkException getDioException(error) {
+  static NetworkException getDioException(Object error) {
     if (error is Exception) {
       try {
         NetworkException networkExceptions;
@@ -73,12 +73,13 @@ sealed class NetworkException with _$NetworkException implements Exception {
             DioExceptionType.badCertificate ||
             DioExceptionType.unknown ||
             DioExceptionType.receiveTimeout ||
+            DioExceptionType.transformTimeout ||
             DioExceptionType.connectionError =>
               const NetworkException.noInternetConnection(),
             DioExceptionType.badResponse => NetworkException.handleResponse(
-                error.response?.statusCode,
-                error.response?.data,
-              ),
+              error.response?.statusCode,
+              error.response?.data,
+            ),
           };
         } else if (error is SocketException) {
           networkExceptions = const NetworkException.noInternetConnection();

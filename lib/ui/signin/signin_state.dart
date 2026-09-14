@@ -1,7 +1,7 @@
 part of 'signin_cubit.dart';
 
 @freezed
-class SignInBaseState with _$SignInBaseState {
+abstract class SignInBaseState with _$SignInBaseState {
   const factory SignInBaseState.state({
     required String? email,
     required String? password,

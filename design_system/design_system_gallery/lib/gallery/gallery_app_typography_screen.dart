@@ -9,31 +9,30 @@ class GalleryAppTypographyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GalleryScaffold(
-        title: 'TYPOGRAPHY',
-        child: ListView.separated(
-          shrinkWrap: true,
-          separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
-          itemCount: _GalleryTypography.values.length,
-          itemBuilder: (BuildContext context, int index) {
-            final element = _GalleryTypography.values[index];
-            return Row(
-              children: [
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      element.name.toUpperCase(),
-                      style: element.textStyle(context).copyWith(
-                            color: context.theme.customColors.textColor,
-                          ),
-                    ),
-                  ),
+    title: 'TYPOGRAPHY',
+    child: ListView.separated(
+      shrinkWrap: true,
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+      itemCount: _GalleryTypography.values.length,
+      itemBuilder: (BuildContext context, int index) {
+        final element = _GalleryTypography.values[index];
+        return Row(
+          children: [
+            Expanded(
+              child: Center(
+                child: Text(
+                  element.name.toUpperCase(),
+                  style: element
+                      .textStyle(context)
+                      .copyWith(color: context.theme.customColors.textColor),
                 ),
-              ],
-            );
-          },
-        ),
-      );
+              ),
+            ),
+          ],
+        );
+      },
+    ),
+  );
 }
 
 enum _GalleryTypography {

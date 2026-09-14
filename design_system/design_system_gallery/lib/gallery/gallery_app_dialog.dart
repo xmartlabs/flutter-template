@@ -9,16 +9,17 @@ class GalleryDialogScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const GalleryScaffold(
-        title: 'DIALOG',
-        child: AppDialog(
-          title: 'Modal title',
-          content: 'This is place holder text. The basic dialog for modals '
-              'should contain only valuable and relevant information. Simplify '
-              'dialogs by removing unnecessary elements or content that does '
-              'not support user tasks. If you find that the number of required '
-              'elements for your design are making ',
-          cancelButtonText: 'Cancel',
-          actionButtonText: 'Confirm',
-        ),
-      );
+    title: 'DIALOG',
+    child: AppDialog(
+      title: 'Modal title',
+      content:
+          'This is place holder text. The basic dialog for modals '
+          'should contain only valuable and relevant information. Simplify '
+          'dialogs by removing unnecessary elements or content that does '
+          'not support user tasks. If you find that the number of required '
+          'elements for your design are making ',
+      cancelButtonText: 'Cancel',
+      actionButtonText: 'Confirm',
+    ),
+  );
 }

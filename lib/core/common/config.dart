@@ -20,7 +20,8 @@ interface class Config {
   static late String supabaseApiKey;
   static late String appDirectoryPath;
 
-  static final _environment = enumFromString(
+  static final _environment =
+      enumFromString(
         Environments.values,
         const String.fromEnvironment('ENV'),
       ) ??
@@ -34,8 +35,9 @@ interface class Config {
 
   static void _initializeEnvVariables() {
     apiBaseUrl = _EnvConfig.getEnvVariable(_EnvConfig.ENV_KEY_API_BASE_URL)!;
-    supabaseApiKey =
-        _EnvConfig.getEnvVariable(_EnvConfig.ENV_KEY_SUPABASE_API_KEY)!;
+    supabaseApiKey = _EnvConfig.getEnvVariable(
+      _EnvConfig.ENV_KEY_SUPABASE_API_KEY,
+    )!;
   }
 }
 

@@ -39,27 +39,29 @@ class _AppRadioButtonState<T> extends State<AppRadioButton<T>> {
   }
 
   @override
-  Widget build(BuildContext context) => ListView.builder(
-        scrollDirection: widget.scrollDirection!,
-        shrinkWrap: shrinkWrap,
-        itemCount: widget.items.length,
-        itemBuilder: (BuildContext context, int index) {
-          final element = widget.items[index];
-          return SizedBox(
-            width: 1.sw,
-            child: RadioListTile<T>(
-              activeColor: context.theme.colorScheme.primary.getShade(600),
-              title: Text(element.label),
-              value: element.value,
-              groupValue: selectedValue,
-              onChanged: (T? value) {
-                setState(() {
-                  selectedValue = value;
-                });
-                widget.onPressed(value);
-              },
-            ),
-          );
-        },
-      );
+  Widget build(BuildContext context) => RadioGroup<T>(
+    groupValue: selectedValue,
+    onChanged: (T? value) {
+      setState(() {
+        selectedValue = value;
+      });
+      widget.onPressed(value);
+    },
+    child: ListView.builder(
+      scrollDirection: widget.scrollDirection!,
+      shrinkWrap: shrinkWrap,
+      itemCount: widget.items.length,
+      itemBuilder: (BuildContext context, int index) {
+        final element = widget.items[index];
+        return SizedBox(
+          width: 1.sw,
+          child: RadioListTile<T>(
+            activeColor: context.theme.colorScheme.primary.getShade(600),
+            title: Text(element.label),
+            value: element.value,
+          ),
+        );
+      },
+    ),
+  );
 }

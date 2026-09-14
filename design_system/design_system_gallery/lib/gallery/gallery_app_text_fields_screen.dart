@@ -22,45 +22,45 @@ class _GalleryTextFieldsScreenState extends State<GalleryTextFieldsScreen> {
 
   @override
   Widget build(BuildContext context) => GalleryScaffold(
-        title: 'TEXT FIELDS',
-        child: Container(
-          margin: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              AppTextField(
-                controller: labelTextController,
-                labelText: 'Label',
-                helperText: 'Helper text',
-                hintText: 'Text',
-                suffixIcon: Icon(
-                  Icons.close,
-                  color: context.theme.customColors.textColor!.getShade(200),
-                ),
-                prefixIcon: Icon(
-                  Icons.close,
-                  color: context.theme.customColors.textColor!.getShade(200),
-                ),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              SizedBox(height: 10.h),
-              AppTextField(
-                keyboardType: TextInputType.multiline,
-                controller: textAreaTextController,
-                maxLength: 100,
-                labelText: 'Label',
-                hintText: 'Text',
-                currentLength: _characterCount,
-                onChange: (value) {
-                  setState(() {
-                    _characterCount = value.length;
-                  });
-                },
-                minLines: 8,
-                maxLines: 10,
-              ),
-              SizedBox(height: 10.h),
-            ],
+    title: 'TEXT FIELDS',
+    child: Container(
+      margin: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          AppTextField(
+            controller: labelTextController,
+            labelText: 'Label',
+            helperText: 'Helper text',
+            hintText: 'Text',
+            suffixIcon: Icon(
+              Icons.close,
+              color: context.theme.customColors.textColor!.getShade(200),
+            ),
+            prefixIcon: Icon(
+              Icons.close,
+              color: context.theme.customColors.textColor!.getShade(200),
+            ),
+            keyboardType: TextInputType.emailAddress,
           ),
-        ),
-      );
+          SizedBox(height: 10.h),
+          AppTextField(
+            keyboardType: TextInputType.multiline,
+            controller: textAreaTextController,
+            maxLength: 100,
+            labelText: 'Label',
+            hintText: 'Text',
+            currentLength: _characterCount,
+            onChange: (value) {
+              setState(() {
+                _characterCount = value.length;
+              });
+            },
+            minLines: 8,
+            maxLines: 10,
+          ),
+          SizedBox(height: 10.h),
+        ],
+      ),
+    ),
+  );
 }
