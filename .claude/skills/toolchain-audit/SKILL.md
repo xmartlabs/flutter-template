@@ -1,6 +1,6 @@
 ---
 name: toolchain-audit
-description: Use when auditing this repo's SDK/runtime/build-tool versions — the Flutter SDK pin, the Dart SDK constraint, Android build tooling (AGP, Kotlin, Gradle wrapper), Ruby, or CI runner images/variables — for currency against upstream stable releases.
+description: Use when auditing this repo's SDK/runtime/build-tool version pins — whatever components have an adapter under `references/toolchains/` (currently the Flutter SDK pin, the Dart SDK constraint, and Android build tooling: AGP, Kotlin, Gradle wrapper) — for currency against upstream stable releases.
 ---
 
 # Toolchain audit
@@ -33,9 +33,9 @@ always land as their own PR, never bundled into a package-update tier.
 3. **Summarize the real migration path.** For any component behind, pull the
    adapter's `migration_guide_source` and summarize concrete steps and
    breaking changes — not a "see release notes" placeholder. Prefer citing an
-   actual prior upgrade's diff when the adapter documents one (see
-   `toolchains/flutter.md`'s worked example, PR #221) over a generic reading
-   of the guide.
+   actual prior upgrade's diff in this repo, once one exists, over the
+   adapter's illustrative worked example (see `toolchains/flutter.md`) — real
+   evidence always beats a generic reading of the guide.
 
 4. **Emit candidates.** Write one record per component into the same
    `candidates.json` the pipeline shares, per report-schema.md: `kind:
