@@ -8,6 +8,8 @@ description: Use when a dependency-maintenance run needs a fresh inventory of a 
 Stage 1 of the dependency-maintenance pipeline: read-only inventory and
 grading. It never edits a manifest or applies an update — that's
 `dependency-update-audit` and `dependency-update-apply`'s job, downstream.
+See `references/example-output.md` for a worked `candidates.json` +
+printed-summary example if the target output shape is unclear.
 
 ## Workflow
 
