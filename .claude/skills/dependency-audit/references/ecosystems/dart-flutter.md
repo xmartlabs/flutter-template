@@ -1,6 +1,8 @@
 # Dart/Flutter adapter
 
 Filled-in instance of `_template.md` for this repo (`xmartlabs/flutter-template`).
+Its machine-readable sibling, `dart-flutter.json`, is what
+`scripts/fetch_updates.py` actually reads — keep both in sync.
 
 | Slot | Value |
 |---|---|

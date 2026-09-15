@@ -20,30 +20,42 @@ grading. It never edits a manifest or applies an update — that's
 2. **Read every manifest** the adapter's `manifests` slot lists. For a
    multi-package repo, that's every package, not just the root.
 
-3. **Run `outdated_cmd`** per manifest to get current vs. available versions
-   for every dependency and dev dependency.
+3. **Run `scripts/fetch_updates.py`, once per manifest.** This one call
+   replaces running `outdated_cmd` and querying `registry_api`/
+   `advisory_source`/`changelog_convention` by hand:
 
-4. **For each outdated package**, gather evidence before grading it:
-   - Query `registry_api` for the full version list and metadata.
-   - Query `advisory_source` for known vulnerabilities against the currently
-     pinned version.
-   - Locate the changelog via `changelog_convention`.
+   ```
+   python3 scripts/fetch_updates.py --config references/ecosystems/<ecosystem>.json --manifest-dir <dir>
+   ```
 
-5. **Grade each candidate** per `references/report-schema.md`'s rubric:
-   - `urgency` from advisories/deprecation status.
-   - A **provisional** `risk` from bump-type alone (patch → `none`, minor →
-     `low`, major → `medium` as a starting guess) — this is refined later by
-     `dependency-update-audit`, which is the only skill allowed to upgrade it
-     with real evidence.
-   - `tier` derived from that provisional `risk`, per the schema's mapping.
-   - Leave `verdict`, `evidence`, and `affected_call_sites` empty — this skill
-     does not analyze call sites or run verification.
+   It runs the outdated-versions check, hits the registry, batch-queries
+   advisories, and fetches+trims the changelog for every outdated
+   direct/dev dependency, printing one JSON array per manifest. It also
+   computes `urgency`, a provisional `risk`, and `tier` deterministically —
+   see `references/report-schema.md`'s rubric for exactly how, if you need
+   to sanity-check its output. Don't reimplement any of this in bash; if a
+   manifest needs something the script doesn't support, that's a
+   config/script gap to report, not something to work around ad hoc.
 
-6. **Write `candidates.json`** to the session scratchpad (never into the
-   repo), one record per outdated package, in the exact shape defined by
-   `references/report-schema.md`.
+4. **Grade each candidate.** `urgency`/`risk`/`tier` arrive already computed.
+   Your remaining job per candidate: read its `changelog_excerpt` field and
+   write concrete `breaking_changes` bullets from it — a reading-comprehension
+   task the script deliberately leaves to you. If a candidate instead carries
+   a `fetch_error` (network hiccup, or the changelog genuinely has no entry
+   for the target version — both real, not just parsing failures), leave
+   `breaking_changes: []` and note the gap in the printed summary rather than
+   guessing. Leave `verdict`, `evidence`, and `affected_call_sites` empty —
+   this skill does not analyze call sites or run verification.
 
-7. **Print a human-readable summary** grouped by `tier`, and explicitly call
+5. **Write `candidates.json`** to the session scratchpad (never into the
+   repo): the combined records from every manifest's script run, in the
+   exact shape defined by `references/report-schema.md`.
+
+6. **Print a human-readable summary** grouped by `tier`. For any candidate
+   with a non-null `upgradable`, call out both options explicitly — e.g.
+   "10.3.4 available with no manifest edit; 11.1.1 available if you take the
+   breaking changes below" — don't only show the (possibly riskier)
+   `latest_compatible` target and bury the zero-risk one. Also explicitly call
    out, as standing findings (never silently folded into or dropped from the
    normal candidate list):
    - Any package on the ecosystem's `never_auto_list` (see the adapter) that
@@ -55,11 +67,13 @@ grading. It never edits a manifest or applies an update — that's
 ## Constraints
 
 - **Read-only.** Never edit a manifest (`pubspec.yaml` or equivalent) and
-  never run an update/upgrade command. Running the adapter's `outdated_cmd`
-  and `install_cmd` (e.g. `pub get`) is fine — neither mutates a manifest —
-  but never run the ecosystem's upgrade command (e.g. `pub upgrade`).
-- Don't restate `references/report-schema.md` or
-  `references/ecosystems/dart-flutter.md` inline — point at them.
+  never run an update/upgrade command. `scripts/fetch_updates.py` itself only
+  ever runs the adapter's `outdated_cmd` (read-only) — it never runs the
+  ecosystem's upgrade command (e.g. `pub upgrade`) and never writes to the
+  repo; treat any change it reveals in `git status` as a bug to report, not
+  something to work around.
+- Don't restate `references/report-schema.md`, `references/ecosystems/dart-flutter.md`,
+  or `scripts/fetch_updates.py`'s own logic inline — point at them.
 - Honor `.claude/rules/dependencies.md` as the authoritative policy (pin
   style, never-auto list, update-cadence SLA); the adapter file mirrors it,
   it doesn't override it.

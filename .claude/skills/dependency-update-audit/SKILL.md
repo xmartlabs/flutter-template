@@ -37,8 +37,15 @@ leave `verdict` as `null` and record why in `evidence`, or set `verdict:
    changed (not just the package name). Populate `affected_call_sites` with
    real `path:line` hits, or `[]` if a targeted search finds none.
 5. Create an isolated scratch branch (never the human's working branch), edit
-   the manifest to the proposed target, run `install_cmd`, then any
-   `post_update_hooks` (codegen).
+   the manifest to the proposed target using the same scripts
+   `dependency-update-apply` uses —
+   `../dependency-update-apply/scripts/bump_manifest.py` (package
+   candidates, `--pin-style preserve` by default) or
+   `../dependency-update-apply/scripts/bump_toolchain_file.py` (toolchain
+   candidates, once per file in the adapter's `version_file(s)` set) — never
+   a free-form text edit. Both stages applying a bump identically removes one
+   more way two independent runs could diverge. Then run `install_cmd`, then
+   any `post_update_hooks` (codegen).
 6. Run `verification_cmd` — this repo's is `./scripts/checks.sh`: FVM-prefixed
    format/analyze/`dart_code_linter` (`--fatal-style --fatal-performance
    --fatal-warnings`, `check-unused-code --fatal-unused`) and tests, across
@@ -61,6 +68,37 @@ leave `verdict` as `null` and record why in `evidence`, or set `verdict:
 11. Delete/abandon the scratch branch — always, regardless of outcome. This
     skill proposes nothing to the real branch; that's `dependency-update-apply`.
 
+## Batch verification (multi-candidate tiers)
+
+Each candidate above was proven safe **alone**. Bumping several at once can
+still hit a transitive conflict, or break something only visible when they
+all change together — neither shows up one-at-a-time. Run this once, after
+every candidate in a tier has an individual verdict. Skip if fewer than 2
+candidates are `safe`/`safe-with-refactor` — nothing to combine. Toolchain
+candidates are excluded; they always ship solo per
+`.claude/rules/dependencies.md`.
+
+1. One new scratch branch. Apply every `safe`/`safe-with-refactor` candidate
+   in the tier together (same bump scripts as a solo run, just all of them
+   first), then `install_cmd`. If the combined set doesn't even resolve,
+   that's a transitive conflict — record it, skip to step 3.
+2. If it resolves, run `verification_cmd` + codegen-cleanliness as usual.
+3. **Passes** → no verdict changes; note in each candidate's `evidence.log`
+   that it was also confirmed as part of an N-candidate batch, so
+   `dependency-update-apply` doesn't need to redo this.
+   **Fails** → bisect (remove candidates until the failure is attributable)
+   and downgrade only the implicated one(s): `blocked` if resolution itself
+   never succeeded with it included (log which candidate(s) it conflicts
+   with); `needs-refactor` if resolution succeeded but `verification_cmd`
+   only failed with it included (real code needs to change, not just a
+   version bump). Re-run this procedure on the remaining candidates to
+   confirm they still pass together.
+   There's no separate "batch verdict" — every outcome lands on the specific
+   candidate(s) responsible, via the same `verdict`/`evidence` fields as
+   everywhere else. That's also why the report looks the same whether
+   someone audited one dependency or all of them.
+4. Delete/abandon the batch scratch branch regardless of outcome.
+
 ## Red flags — stop and get real evidence
 
 | Rationalization | Reality |
@@ -72,3 +110,4 @@ leave `verdict` as `null` and record why in `evidence`, or set `verdict:
 | "checks.sh passed, good enough" | Codegen-cleanliness is also required. Dirty generated output after passing checks is still a failure. |
 | "Never-auto-update but checks passed" | Still needs the human regen-diff flag — passing checks doesn't exempt it. |
 | "I'll mark it safe now and verify later" | There is no "later." Verify before writing the verdict, not after. |
+| "Each candidate passed alone, the tier is safe" | Bumping them together is a different question — run the batch verification before saying so. |

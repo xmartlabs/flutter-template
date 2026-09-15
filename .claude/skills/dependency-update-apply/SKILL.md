@@ -39,12 +39,29 @@ branch/PR per `.claude/rules/dependencies.md`, even if it's `tier: safe`.
 1. Load the adapter: package candidates use
    `../dependency-audit/references/ecosystems/<ecosystem>.md`; toolchain
    candidates use `../toolchain-audit/references/toolchains/<package>.md`.
-2. Edit the manifest(s). For `kind: "toolchain"`, `manifest` names only one
-   file the component touches — use the adapter's `version_file(s)` slot for
-   the full set (e.g. `flutter.md`: `.fvmrc`, `pubspec.yaml`'s
-   `environment.flutter`/`environment.sdk`, `android/settings.gradle`'s AGP
-   and Kotlin versions, the Gradle wrapper properties file). Preserve
-   exact-pin style — replace the exact version, never loosen to a range.
+2. Edit the manifest(s) with a script — never a free-form text edit, which
+   can silently change a dependency's pin style under pressure:
+   - `kind: "package"`: run `scripts/bump_manifest.py --manifest <path>
+     --package <name> --version <target> --pin-style preserve`. `preserve`
+     (the default) keeps whatever prefix (none, `^`, `~`) and quoting the
+     line already has and replaces only the version digits — it never adds
+     a range operator that wasn't there, and never strips one that was. Use
+     `--pin-style exact` only if `.claude/rules/dependencies.md` explicitly
+     calls for normalizing to an exact pin; don't assume that's the policy.
+   - `kind: "toolchain"`: `manifest` names only one file the component
+     touches — use the adapter's `version_file(s)` slot for the full set
+     (e.g. `flutter.md`: `.fvmrc`, `pubspec.yaml`'s
+     `environment.flutter`/`environment.sdk`, `android/settings.gradle`'s AGP
+     and Kotlin versions, the Gradle wrapper properties file — four
+     different file formats). Run `scripts/bump_toolchain_file.py --file
+     <path> --old-version <current> --new-version <target>` once per file;
+     add `--line-contains <substring>` (e.g. `"com.android.application"` vs
+     `"kotlin.android"`) when a file has more than one unrelated version
+     number, so the script can't match the wrong line.
+   - Either script refuses (nonzero exit, no edit) rather than guessing on
+     zero or multiple matches, or on a map-style dependency declaration
+     (`sdk:`/`path:`/`git:`) — treat a refusal as a real stop, not something
+     to route around with a manual edit.
 3. Run the adapter's `install_cmd`, then any `post_update_hooks` (codegen).
 4. If `verdict` is `safe-with-refactor`, replay the mechanical fix
    `dependency-update-audit` already proved necessary: read that

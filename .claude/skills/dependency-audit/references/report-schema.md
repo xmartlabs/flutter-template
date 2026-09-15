@@ -23,9 +23,10 @@ same records with the audit fields filled in).
 
   // --- versions ---
   "current": "5.4.3+1",
-  "latest_compatible": "5.4.3+1",       // resolvable without loosening manifest constraints
+  "upgradable": null,                   // reachable with ZERO manifest edit (pub's "upgradable"); null/omit when it equals current or latest_compatible -- nothing extra to say
+  "latest_compatible": "5.4.3+1",       // reachable by editing ONLY this package's own pin, every other constraint held fixed (pub's "resolvable")
   "latest": "5.9.0",                    // latest published version, ignoring constraints
-  "bump": "minor",                      // "patch" | "minor" | "major" | "prerelease"
+  "bump": "minor",                      // "patch" | "minor" | "major" | "prerelease" -- classified against latest_compatible, see field rules
 
   // --- why update: urgency (security/deprecation-driven) ---
   "urgency": "medium",                  // "critical" | "high" | "medium" | "low" | "maintenance"
@@ -81,7 +82,21 @@ same records with the audit fields filled in).
 - **`dependency-update-audit` is the only skill allowed to write `verdict` and
   `evidence`.** It may upgrade `risk` (and therefore `tier`) based on what it
   actually finds; it never downgrades urgency. A verdict without evidence
-  citing real command output is invalid — see that skill's red flags.
+  citing real command output is invalid — see that skill's red flags. This
+  includes a **downgrade from its own batch-verification step**: a candidate
+  individually verified `safe` can still end up `needs-refactor` or `blocked`
+  once tested together with the rest of its tier — see that skill's "Batch
+  verification" section. There is no separate "batch verdict" field; a batch
+  failure is always attributed back to the specific candidate(s) responsible,
+  using these same fields.
+
+- **`upgradable` vs. `latest_compatible` are two different honest answers,
+  report both when they differ.** `upgradable` costs nothing (no manifest
+  edit); `latest_compatible` is the furthest you could go by editing just
+  this package's pin, and may carry real breaking changes `upgradable`
+  doesn't. Omit/null `upgradable` when it equals `current` (nothing free
+  available) or `latest_compatible` (no meaningful distinction) — only show
+  it when it actually adds information.
 
 - **`kind: "toolchain"`** records use the same fields; `manifest` points at the
   toolchain's *primary* version file (e.g. `.fvmrc`) as an anchor/label only —
@@ -107,3 +122,22 @@ same records with the audit fields filled in).
   branch. Write it as a specific, reproducible instruction (file, change,
   reason) — "made a small fix" is not evidence any more than "should be fine"
   is a verdict.
+
+- **`dependency-audit`'s `scripts/fetch_updates.py` adds three fields beyond
+  this schema's core shape**, all script-produced and all consumed (not
+  necessarily persisted) downstream:
+  - `changelog_excerpt` — transient. The raw, trimmed changelog text between
+    `current` and the target version. `dependency-audit` reads this and
+    writes `breaking_changes` from it; the excerpt itself doesn't need to
+    survive into the final `candidates.json` once that's done.
+  - `current_source` — `"lockfile"` (the common case) or
+    `"manifest_fallback"` (the outdated check couldn't determine `current`,
+    e.g. no lockfile exists for that manifest, so the script read the
+    manifest-declared version directly instead). Treat `manifest_fallback`
+    as less certain than `lockfile` — it reflects what's *declared*, not
+    necessarily what's actually resolved.
+  - `fetch_error` — present only when a per-package registry/advisory/
+    changelog call failed or came back unparseable. Never treat a missing
+    field as "nothing went wrong" without checking for this one too; a
+    candidate with `fetch_error` set still has whatever it *did* manage to
+    fetch (partial data), so don't discard the whole record.

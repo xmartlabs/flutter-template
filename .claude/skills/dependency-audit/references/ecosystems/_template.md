@@ -4,10 +4,17 @@ An ecosystem adapter is the *only* place package-manager-specific knowledge
 lives. `dependency-audit`, `dependency-update-audit`, and
 `dependency-update-apply` are all written against these slots and never
 hardcode a command, file name, or registry URL. To support a new ecosystem,
-copy this file to `ecosystems/<name>.md`, fill in every slot, and add nothing
-else — no skill file changes.
+copy this file to `ecosystems/<name>.md` **and** copy `_template.json` to
+`ecosystems/<name>.json` — fill in every slot in both, and add nothing else:
+still zero skill-file changes.
 
-See `dart-flutter.md` for a filled-in example.
+The `.md` is the human/LLM-readable prose (this file's shape); the `.json`
+is the machine-readable sibling that `scripts/fetch_updates.py` actually
+reads to do the fetch/enrich work — see that script and `_template.json`
+for its slots, which mirror most of the ones below. Keep both in sync: if
+you change a command or URL here, change it there too.
+
+See `dart-flutter.md` + `dart-flutter.json` for a filled-in example.
 
 ## Required slots
 
@@ -28,6 +35,11 @@ See `dart-flutter.md` for a filled-in example.
 
 ## Notes for adapter authors
 
+- `dependency-audit` doesn't call `outdated_cmd`/`registry_api`/
+  `advisory_source`/`changelog_convention` directly — `scripts/fetch_updates.py`
+  does, reading them from your `.json` sibling. The slots below still need
+  filling in prose here (so a human/LLM understands the ecosystem), but the
+  script is what actually executes against them.
 - Prefer the project's own scripts (`package.json` scripts, `Makefile`
   targets, `scripts/*.sh`) over inventing raw tool invocations — mirror
   whatever `CLAUDE.md` or the repo's CI documents as the real gate.
