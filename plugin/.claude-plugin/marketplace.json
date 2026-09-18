@@ -1,0 +1,14 @@
+{
+  "name": "local-dependency-manager",
+  "owner": {
+    "name": "Federico Correa",
+    "email": "federico.correa@xmartlabs.com"
+  },
+  "plugins": [
+    {
+      "name": "dependency-manager",
+      "source": "./dependency-manager",
+      "description": "Ecosystem-agnostic dependency and toolchain maintenance: audits package/SDK versions, gates proposed updates behind real safety verification, and applies/opens PRs only after explicit human go-ahead."
+    }
+  ]
+}
