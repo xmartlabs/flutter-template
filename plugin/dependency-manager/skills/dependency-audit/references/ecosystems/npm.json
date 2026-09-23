@@ -1,0 +1,29 @@
+{
+  "ecosystem": "npm",
+
+  "outdated_shape": "npm_style_object",
+
+  "outdated_cmd": ["npm", "outdated", "--json"],
+
+  "manifest_filename": "package.json",
+
+  "manifest_version_pattern": "^\\s*\"{name}\"\\s*:\\s*\"\\^?~?([0-9][^\"]*)\"",
+
+  "strip_build_suffix_regex": "(?!)",
+
+  "registry_api": {
+    "url_template": "https://registry.npmjs.org/{name}"
+  },
+
+  "advisory_source": {
+    "ecosystem_name": "npm",
+    "batch_url": "https://api.osv.dev/v1/querybatch",
+    "detail_url_template": "https://api.osv.dev/v1/vulns/{id}"
+  },
+
+  "changelog": {
+    "_note": "npm has no single hosted changelog convention. url_template hits the registry metadata (same as registry_api) so fetch_updates.py's fallback fires and the repository field can be read by hand for a real changelog/releases link.",
+    "url_template": "https://registry.npmjs.org/{name}",
+    "version_header_regex": "(?!)"
+  }
+}

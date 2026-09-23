@@ -1,0 +1,32 @@
+{
+  "ecosystem": "dart-flutter",
+
+  "outdated_shape": "pub",
+
+  "outdated_cmd": ["fvm", "flutter", "pub", "outdated", "--json"],
+
+  "sdk_placeholder_version": "0.0.0",
+
+  "manifest_filename": "pubspec.yaml",
+
+  "manifest_section_headers": ["dependencies:", "dev_dependencies:"],
+
+  "manifest_version_pattern": "^\\s*{name}:\\s*[\"']?\\^?([0-9][^\\s\"'#]*)",
+
+  "strip_build_suffix_regex": "\\+\\d+$",
+
+  "registry_api": {
+    "url_template": "https://pub.dev/api/packages/{name}"
+  },
+
+  "advisory_source": {
+    "ecosystem_name": "Pub",
+    "batch_url": "https://api.osv.dev/v1/querybatch",
+    "detail_url_template": "https://api.osv.dev/v1/vulns/{id}"
+  },
+
+  "changelog": {
+    "url_template": "https://pub.dev/packages/{name}/changelog",
+    "version_header_regex": "<h2 class=\"changelog-version[^\"]*\"[^>]*>\\s*{version}\\b"
+  }
+}

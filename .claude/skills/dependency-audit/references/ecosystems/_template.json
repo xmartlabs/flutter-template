@@ -1,0 +1,30 @@
+{
+  "_comment": "Machine-readable sibling to _template.md. scripts/fetch_updates.py reads exactly this shape via --config. Fill in every field for a new ecosystem; nothing here needs a skill-file edit. See dart-flutter.json for a filled-in example, and _template.md for the human-readable slot descriptions these fields correspond to (outdated_cmd -> outdated_cmd, registry_api -> registry_api, advisory_source -> advisory_source, changelog_convention -> changelog, version_scheme -> strip_build_suffix_regex).",
+
+  "ecosystem": "<name matching the sibling .md file, e.g. dart-flutter>",
+
+  "outdated_cmd": [
+    "<argv list, e.g. [\"fvm\", \"flutter\", \"pub\", \"outdated\", \"--json\"] -- run via subprocess in the manifest directory, must produce JSON on stdout (a non-JSON banner prefix is tolerated -- the script skips to the first '{')>"
+  ],
+
+  "sdk_placeholder_version": "<optional. Some ecosystems report an SDK-constrained pseudo-package (e.g. Dart/Flutter's 'flutter'/'flutter_test' sdk: dependencies) with a sentinel version instead of a real one (pub uses \"0.0.0\"). Packages whose reported latest version equals this value are skipped entirely -- they have no real pub.dev-style version to audit, and the toolchain-audit skill owns the actual SDK version. Omit this field if the ecosystem has no such sentinel.>",
+
+  "manifest_version_pattern": "<regex with a {name} placeholder and one capture group, used as a fallback to read the declared version straight out of the manifest file when outdated_cmd can't determine 'current' (e.g. a package with no lockfile). Applied line-by-line against the manifest.>",
+
+  "strip_build_suffix_regex": "<regex matching a non-semver build suffix to strip before comparing versions, e.g. \\+\\d+$ for pub's +N suffix. Use an regex that never matches anything if the ecosystem has no such suffix.>",
+
+  "registry_api": {
+    "url_template": "<URL with a {name} placeholder returning that package's version list/metadata as JSON, e.g. https://pub.dev/api/packages/{name}>"
+  },
+
+  "advisory_source": {
+    "ecosystem_name": "<the OSV.dev ecosystem name for this package manager, e.g. Pub, npm, PyPI -- see https://ossf.github.io/osv-schema/#affectedpackage-field for the list>",
+    "batch_url": "https://api.osv.dev/v1/querybatch",
+    "detail_url_template": "https://api.osv.dev/v1/vulns/{id}"
+  },
+
+  "changelog": {
+    "url_template": "<URL with a {name} placeholder for that package's changelog/release notes, e.g. https://pub.dev/packages/{name}/changelog>",
+    "version_header_regex": "<regex with a {version} placeholder matching a changelog's per-version heading line, e.g. ^##\\s+\\[?v?{version}\\]? for markdown '## 1.2.3' or '## [1.2.3]' style headers. If the ecosystem's changelog convention doesn't use a parseable heading pattern, the script falls back to 'could not parse, see changelog_url' rather than guessing.>"
+  }
+}

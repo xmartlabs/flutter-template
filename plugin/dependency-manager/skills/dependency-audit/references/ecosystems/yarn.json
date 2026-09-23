@@ -1,0 +1,31 @@
+{
+  "_note": "outdated_cmd's output is {type:'table', data:{head:[...], body:[[...row...]]}}, not a plain array -- a consuming script must map columns by the head row before treating this like npm.json's shape. See yarn.md.",
+
+  "ecosystem": "yarn",
+
+  "outdated_shape": "yarn_table",
+
+  "outdated_cmd": ["yarn", "outdated", "--json"],
+
+  "manifest_filename": "package.json",
+
+  "manifest_version_pattern": "^\\s*\"{name}\"\\s*:\\s*\"\\^?~?([0-9][^\"]*)\"",
+
+  "strip_build_suffix_regex": "(?!)",
+
+  "registry_api": {
+    "url_template": "https://registry.npmjs.org/{name}"
+  },
+
+  "advisory_source": {
+    "ecosystem_name": "npm",
+    "batch_url": "https://api.osv.dev/v1/querybatch",
+    "detail_url_template": "https://api.osv.dev/v1/vulns/{id}"
+  },
+
+  "changelog": {
+    "_note": "Same as npm.json -- no single hosted changelog convention.",
+    "url_template": "https://registry.npmjs.org/{name}",
+    "version_header_regex": "(?!)"
+  }
+}

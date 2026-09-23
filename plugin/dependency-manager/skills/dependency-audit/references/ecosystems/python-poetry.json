@@ -1,0 +1,29 @@
+{
+  "ecosystem": "python-poetry",
+
+  "outdated_shape": "poetry_array",
+
+  "outdated_cmd": ["poetry", "show", "--outdated", "--format", "json"],
+
+  "manifest_filename": "pyproject.toml",
+
+  "manifest_version_pattern": "^\\s*{name}\\s*=\\s*[\"']?\\^?~?([0-9][^\\s\"'#]*)",
+
+  "strip_build_suffix_regex": "\\+[A-Za-z0-9.]+$",
+
+  "registry_api": {
+    "url_template": "https://pypi.org/pypi/{name}/json"
+  },
+
+  "advisory_source": {
+    "ecosystem_name": "PyPI",
+    "batch_url": "https://api.osv.dev/v1/querybatch",
+    "detail_url_template": "https://api.osv.dev/v1/vulns/{id}"
+  },
+
+  "changelog": {
+    "_note": "Same limitation as python-pip.json -- no standardized hosted changelog. See that file's _note.",
+    "url_template": "https://pypi.org/pypi/{name}/json",
+    "version_header_regex": "(?!)"
+  }
+}
