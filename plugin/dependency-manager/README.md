@@ -43,12 +43,36 @@ package manager or language directly:
   new release, what its migration guide looks like, what it breaks when it
   moves.
 
-A `dart-flutter.md`/`dart-flutter.json` pair and a `flutter.md` toolchain
-adapter ship as **worked examples** (pub/Flutter), so a new Flutter repo
-adopting this plugin has a running-start reference to copy and adjust rather
-than starting from a blank template. Adding support for a different
+Seven ecosystem adapters ship as **worked examples**: `dart-flutter` (pub),
+`npm`/`yarn`/`pnpm` (JS/TS — covers any npm-registry framework, React
+included, since the framework is just an ordinary dependency, not a separate
+ecosystem), and `python-pip`/`python-poetry`/`python-uv`. A `flutter.md`
+toolchain adapter ships the same way. Adding support for a genuinely new
 ecosystem is: copy the `_template` file(s), fill in the slots grounded in
-the target repo's actual files, done — no skill file needs to change.
+the target repo's actual files, done — no skill file needs to change, unless
+the new tool's `outdated`-style command emits a JSON shape `scripts/fetch_updates.py`
+doesn't already have a normalizer for (see `_template.json`'s
+`outdated_shape` field) — that's the one case where a script edit is still
+needed, since there's no way to parse an unknown shape from config alone.
+
+### Where adapters live: bundled vs. repo-local
+
+Every skill that reads an adapter checks two locations, in order:
+
+1. **Repo-local**, inside the *target* repo:
+   `.claude/dependency-manager/ecosystems/<name>.{md,json}` and
+   `.claude/dependency-manager/toolchains/<name>.md`. This is where an
+   adapter for an ecosystem this plugin doesn't bundle belongs, and where an
+   override of a bundled adapter belongs too — checked first, so it wins.
+2. **This plugin's own bundled copy**, under `skills/*/references/`.
+
+This split exists because a plugin's installed files
+(`${CLAUDE_PLUGIN_ROOT}`) are a shared, read-only cache — every repo with
+this plugin installed reads the same copy, and it's overwritten on the next
+plugin update. If the agent detects an ecosystem with no adapter in either
+location, it drafts one from the `_template` files and writes it to the
+**repo-local** path only, then stops for human review before trusting it —
+it never creates or edits a file inside `${CLAUDE_PLUGIN_ROOT}`.
 
 The shared data contract every stage reads/writes is
 `skills/dependency-audit/references/report-schema.md` — read that first if
@@ -64,11 +88,16 @@ you're trying to understand the pipeline's output shape.
    a never-auto-update list, and the update-cadence/security SLA. Use
    `examples/dependencies.md` as a starting point if the target repo is
    Dart/Flutter; otherwise write your own following its shape.
-3. If the target repo's ecosystem isn't Dart/Flutter, add an ecosystem
-   adapter (`skills/dependency-audit/references/ecosystems/<name>.md` +
-   `.json`) and, if toolchain auditing is in scope, a toolchain adapter
-   (`skills/toolchain-audit/references/toolchains/<name>.md`) following the
-   `_template` files.
+3. If the target repo's ecosystem isn't already bundled (see the list
+   above), add an ecosystem adapter at
+   `.claude/dependency-manager/ecosystems/<name>.md` + `.json` in the
+   *target repo* (not inside this plugin) and, if toolchain auditing is in
+   scope, a toolchain adapter at
+   `.claude/dependency-manager/toolchains/<name>.md`, following the
+   `_template` files this plugin bundles. You can also just invoke the
+   agent directly — if it detects an ecosystem with no adapter yet, it
+   drafts one at this same repo-local path itself and stops for review
+   before relying on it.
 4. Invoke the `dependency-manager` agent. It reads the rule file and
    adapters itself before doing anything — nothing else to configure.
 

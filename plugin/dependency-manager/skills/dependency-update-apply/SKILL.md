@@ -36,9 +36,13 @@ branch/PR per `.claude/rules/dependencies.md`, even if it's `tier: safe`.
 
 ## Per-candidate procedure
 
-1. Load the adapter: package candidates use
+1. Load the adapter — repo-local first, this plugin's bundled copy as
+   fallback (same resolution `dependency-audit`/`toolchain-audit` already
+   used to grade this candidate): package candidates check
+   `.claude/dependency-manager/ecosystems/<ecosystem>.md` then
    `../dependency-audit/references/ecosystems/<ecosystem>.md`; toolchain
-   candidates use `../toolchain-audit/references/toolchains/<package>.md`.
+   candidates check `.claude/dependency-manager/toolchains/<package>.md`
+   then `../toolchain-audit/references/toolchains/<package>.md`.
 2. Edit the manifest(s) with a script — never a free-form text edit, which
    can silently change a dependency's pin style under pressure:
    - `kind: "package"`: run `scripts/bump_manifest.py --manifest <path>

@@ -1,9 +1,15 @@
 {
   "ecosystem": "dart-flutter",
 
+  "outdated_shape": "pub",
+
   "outdated_cmd": ["fvm", "flutter", "pub", "outdated", "--json"],
 
   "sdk_placeholder_version": "0.0.0",
+
+  "manifest_filename": "pubspec.yaml",
+
+  "manifest_section_headers": ["dependencies:", "dev_dependencies:"],
 
   "manifest_version_pattern": "^\\s*{name}:\\s*[\"']?\\^?([0-9][^\\s\"'#]*)",
 

@@ -14,7 +14,32 @@ reads to do the fetch/enrich work — see that script and `_template.json`
 for its slots, which mirror most of the ones below. Keep both in sync: if
 you change a command or URL here, change it there too.
 
-See `dart-flutter.md` + `dart-flutter.json` for a filled-in example.
+See `dart-flutter.md` + `dart-flutter.json`, `npm.md` + `npm.json`, and
+`python-poetry.md` + `python-poetry.json` for filled-in examples covering
+three different ecosystems.
+
+## Where an adapter lives: two locations, checked in order
+
+1. **Repo-local**, inside the target repo itself:
+   `.claude/dependency-manager/ecosystems/<name>.{md,json}`. This is where an
+   adapter for a repo-specific or not-yet-bundled ecosystem belongs, and
+   where an override of a bundled adapter belongs too — it's checked first,
+   so it wins.
+2. **This plugin's own bundled copy**: `${CLAUDE_PLUGIN_ROOT}/skills/dependency-audit/references/ecosystems/<name>.{md,json}` (this directory) —
+   the worked examples that ship with the plugin (`dart-flutter`, `npm`,
+   `yarn`, `pnpm`, `python-pip`, `python-poetry`, `python-uv`). Used only
+   when no repo-local adapter exists for that ecosystem.
+
+**Never create or edit a file under `${CLAUDE_PLUGIN_ROOT}`.** That
+directory is the plugin's shared install — every repo with this plugin
+installed reads the same copy, and it gets overwritten on the next plugin
+update anyway. If a repo is detected as some ecosystem with no adapter in
+either location (a manifest file matches no `detect` slot anywhere), the
+right move is to draft a new adapter — fill this template from that repo's
+real files and commands — and write it to the **repo-local** path, then stop
+and tell the human it needs review before it's trusted for grading or
+verification. `dependency-audit`'s workflow spells out exactly when this
+triggers.
 
 ## Required slots
 

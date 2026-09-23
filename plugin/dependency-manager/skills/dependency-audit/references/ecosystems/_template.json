@@ -3,13 +3,19 @@
 
   "ecosystem": "<name matching the sibling .md file, e.g. dart-flutter>",
 
+  "outdated_shape": "<which normalizer scripts/fetch_updates.py uses to parse outdated_cmd's stdout into its common internal shape -- one of: 'pub' (an object with a 'packages' array, each package's version fields nested as {\"version\": ...}, a 'kind' of 'direct'/'dev'), 'npm_style_object' (an object keyed by package name, each value carrying current/wanted/latest/dependencyType -- covers npm and pnpm, whose shapes match exactly), 'array_flat' (a flat array of {\"name\", \"version\", \"latest_version\"} objects, no wanted/dev-vs-direct distinction -- covers pip and uv), 'yarn_table' (Yarn Classic's {\"type\": \"table\", \"data\": {\"head\": [...], \"body\": [[...]]}} column-table envelope), 'poetry_array' (a flat array of {\"name\", \"version\", \"latest\"} objects -- unverified shape, see python-poetry.json's _note). A genuinely new shape needs a new normalizer function added to fetch_updates.py -- that's the one case adding an ecosystem still touches script code, since there's no way to parse an unknown JSON shape from config data alone.>",
+
   "outdated_cmd": [
-    "<argv list, e.g. [\"fvm\", \"flutter\", \"pub\", \"outdated\", \"--json\"] -- run via subprocess in the manifest directory, must produce JSON on stdout (a non-JSON banner prefix is tolerated -- the script skips to the first '{')>"
+    "<argv list, e.g. [\"fvm\", \"flutter\", \"pub\", \"outdated\", \"--json\"] -- run via subprocess in the manifest directory, must produce JSON on stdout (a non-JSON banner prefix is tolerated -- the script skips to the first '{' or '[')>"
   ],
 
-  "sdk_placeholder_version": "<optional. Some ecosystems report an SDK-constrained pseudo-package (e.g. Dart/Flutter's 'flutter'/'flutter_test' sdk: dependencies) with a sentinel version instead of a real one (pub uses \"0.0.0\"). Packages whose reported latest version equals this value are skipped entirely -- they have no real pub.dev-style version to audit, and the toolchain-audit skill owns the actual SDK version. Omit this field if the ecosystem has no such sentinel.>",
+  "sdk_placeholder_version": "<optional. Some ecosystems report an SDK-constrained pseudo-package (e.g. Dart/Flutter's 'flutter'/'flutter_test' sdk: dependencies) with a sentinel version instead of a real one (pub uses \"0.0.0\"). Packages whose reported latest version equals this value are skipped entirely -- they have no real pub.dev-style version to audit, and the toolchain-audit skill owns the actual SDK version. Omit this field if the ecosystem has no such sentinel. Only meaningful for outdated_shape 'pub'.>",
 
-  "manifest_version_pattern": "<regex with a {name} placeholder and one capture group, used as a fallback to read the declared version straight out of the manifest file when outdated_cmd can't determine 'current' (e.g. a package with no lockfile). Applied line-by-line against the manifest.>",
+  "manifest_filename": "<the manifest's filename within manifest_dir, e.g. \"pubspec.yaml\", \"package.json\", \"requirements.txt\", \"pyproject.toml\" -- used to compute the reported manifest path and to locate the file for the manifest-fallback version read. Defaults to \"pubspec.yaml\" if omitted, for backward compatibility -- always set this explicitly for a new ecosystem.>",
+
+  "manifest_version_pattern": "<regex with a {name} placeholder and one capture group, used as a fallback to read the declared version straight out of the manifest file when outdated_cmd can't determine 'current' (e.g. a package with no lockfile). Applied line-by-line against the manifest (or against manifest_section_headers's scoped lines, if set).>",
+
+  "manifest_section_headers": "<optional array of literal lines (e.g. [\"dependencies:\", \"dev_dependencies:\"]) that scope manifest_version_pattern's line-by-line search to just the lines inside one of these top-level sections -- prevents an unrelated section from accidentally matching the same package-name pattern. Omit (or set null) for a manifest format with no such literal section-header convention (JSON/TOML dependency blocks, a flat requirements.txt) -- the whole file gets scanned instead, which is fine since the regex itself is anchored on the package name.>",
 
   "strip_build_suffix_regex": "<regex matching a non-semver build suffix to strip before comparing versions, e.g. \\+\\d+$ for pub's +N suffix. Use an regex that never matches anything if the ecosystem has no such suffix.>",
 

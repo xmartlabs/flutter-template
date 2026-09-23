@@ -9,6 +9,16 @@ file changes.
 
 See `flutter.md` for a filled-in example.
 
+## Where an adapter lives: two locations, checked in order
+
+Same mechanism as ecosystem adapters (see
+`../../../dependency-audit/references/ecosystems/_template.md`): a
+repo-local adapter at `.claude/dependency-manager/toolchains/<name>.md` in
+the target repo is checked first and wins if present; this plugin's own
+bundled `${CLAUDE_PLUGIN_ROOT}/skills/toolchain-audit/references/toolchains/<name>.md`
+is the fallback. Never create or edit a file under `${CLAUDE_PLUGIN_ROOT}` —
+a new toolchain adapter always gets drafted at the repo-local path instead.
+
 ## Required slots
 
 | Slot | Meaning |

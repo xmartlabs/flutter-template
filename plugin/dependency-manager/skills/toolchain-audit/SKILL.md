@@ -20,11 +20,18 @@ always land as their own PR, never bundled into a package-update tier.
 
 ## Workflow
 
-1. **Enumerate components.** For each file under `references/toolchains/`,
-   use its `detect` and `version_file(s)` slots to find the component's
-   current pin in this repo. Start with `toolchains/flutter.md` (Flutter SDK,
-   Dart constraint, AGP, Kotlin, Gradle wrapper); add adapters for Ruby and
-   CI runner images the same way once written.
+1. **Enumerate components.** For each adapter — checking this repo's own
+   `.claude/dependency-manager/toolchains/<name>.md` first, then this
+   plugin's bundled `references/toolchains/<name>.md` (a repo-local adapter
+   overrides the bundled one of the same name) — use its `detect` and
+   `version_file(s)` slots to find the component's current pin in this repo.
+   Start with `toolchains/flutter.md` (Flutter SDK, Dart constraint, AGP,
+   Kotlin, Gradle wrapper); add adapters for other components (a language
+   runtime pin, Ruby, CI runner images) the same way once written. If a
+   toolchain component is in play with no adapter in either location, draft
+   one from `references/toolchains/_template.md` at the repo-local path and
+   stop for human review — same procedure as `dependency-audit`, never write
+   into `${CLAUDE_PLUGIN_ROOT}`.
 
 2. **Check currency.** For each component, query its adapter's
    `latest_version_source` for the current stable release and compare against

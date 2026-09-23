@@ -1,0 +1,29 @@
+{
+  "ecosystem": "python-pip",
+
+  "outdated_shape": "array_flat",
+
+  "outdated_cmd": ["pip", "list", "--outdated", "--format=json"],
+
+  "manifest_filename": "requirements.txt",
+
+  "manifest_version_pattern": "^\\s*{name}\\s*==\\s*([0-9][^\\s#]*)",
+
+  "strip_build_suffix_regex": "\\+[A-Za-z0-9.]+$",
+
+  "registry_api": {
+    "url_template": "https://pypi.org/pypi/{name}/json"
+  },
+
+  "advisory_source": {
+    "ecosystem_name": "PyPI",
+    "batch_url": "https://api.osv.dev/v1/querybatch",
+    "detail_url_template": "https://api.osv.dev/v1/vulns/{id}"
+  },
+
+  "changelog": {
+    "_note": "pip/PyPI has no standardized hosted changelog convention. url_template points at the same PyPI JSON API response registry_api uses (info.project_urls often has a Changelog/Repository key) rather than a real changelog page, and version_header_regex deliberately never matches, so fetch_updates.py's documented fallback ('could not parse, see changelog_url') fires for every package here -- read info.project_urls from the registry_api response by hand instead when grading a candidate.",
+    "url_template": "https://pypi.org/pypi/{name}/json",
+    "version_header_regex": "(?!)"
+  }
+}

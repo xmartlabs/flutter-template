@@ -1,0 +1,31 @@
+{
+  "_note": "outdated_cmd's output is an object keyed by package name (not an array like npm.json, not a table envelope like yarn.json) -- each value carries current/latest/wanted/isDeprecated/dependencyType. See pnpm.md.",
+
+  "ecosystem": "pnpm",
+
+  "outdated_shape": "npm_style_object",
+
+  "outdated_cmd": ["pnpm", "outdated", "--format", "json"],
+
+  "manifest_filename": "package.json",
+
+  "manifest_version_pattern": "^\\s*\"{name}\"\\s*:\\s*\"\\^?~?([0-9][^\"]*)\"",
+
+  "strip_build_suffix_regex": "(?!)",
+
+  "registry_api": {
+    "url_template": "https://registry.npmjs.org/{name}"
+  },
+
+  "advisory_source": {
+    "ecosystem_name": "npm",
+    "batch_url": "https://api.osv.dev/v1/querybatch",
+    "detail_url_template": "https://api.osv.dev/v1/vulns/{id}"
+  },
+
+  "changelog": {
+    "_note": "Same as npm.json -- no single hosted changelog convention.",
+    "url_template": "https://registry.npmjs.org/{name}",
+    "version_header_regex": "(?!)"
+  }
+}

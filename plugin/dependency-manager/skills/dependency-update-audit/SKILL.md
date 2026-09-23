@@ -23,9 +23,13 @@ leave `verdict` as `null` and record why in `evidence`, or set `verdict:
 
 ## Per-candidate procedure
 
-1. Load the ecosystem adapter at `../dependency-audit/references/ecosystems/<ecosystem>.md`
-   (interface in `_template.md`): `changelog_convention`, `post_update_hooks`,
-   `verification_cmd`, `never_auto_list`.
+1. Load the ecosystem adapter — check `.claude/dependency-manager/ecosystems/<ecosystem>.md`
+   in this repo first, then this plugin's bundled
+   `../dependency-audit/references/ecosystems/<ecosystem>.md` (interface in
+   `_template.md`): `changelog_convention`, `post_update_hooks`,
+   `verification_cmd`, `never_auto_list`. `dependency-audit` already
+   resolved and, if needed, drafted this adapter in stage 1 — it should
+   exist in one of the two locations by the time this stage runs.
 2. If `package` is on the never-auto-update list in `.claude/rules/dependencies.md`
    (or the adapter's `never_auto_list`), flag it prominently up front. It still
    gets audited below, but the verdict must note a human-reviewed regeneration

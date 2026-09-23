@@ -51,7 +51,7 @@ def load_config(path: Path) -> dict:
         sys.exit(2)
 
 
-def run_outdated_cmd(cmd: list[str], cwd: Path) -> dict:
+def run_outdated_cmd(cmd: list[str], cwd: Path) -> dict | list:
     try:
         proc = subprocess.run(
             cmd, cwd=cwd, capture_output=True, text=True, timeout=180
@@ -63,16 +63,20 @@ def run_outdated_cmd(cmd: list[str], cwd: Path) -> dict:
     stdout = proc.stdout
     # Some tools (e.g. `flutter pub outdated`) prefix JSON output with a
     # non-JSON banner ("A new version of Flutter is available!"). Skip to
-    # the first '{' rather than trusting stdout is pure JSON.
+    # the first '{' or '[' rather than trusting stdout is pure JSON -- some
+    # ecosystems (pip/uv) emit a top-level array, not an object, so both
+    # openers have to be considered and the earliest one wins.
     brace_idx = stdout.find("{")
-    if brace_idx == -1:
+    bracket_idx = stdout.find("[")
+    starts = [i for i in (brace_idx, bracket_idx) if i != -1]
+    if not starts:
         eprint(
-            "fetch_updates: outdated_cmd produced no JSON object on stdout "
-            f"(exit {proc.returncode}). stderr:\n{proc.stderr}"
+            "fetch_updates: outdated_cmd produced no JSON object/array on "
+            f"stdout (exit {proc.returncode}). stderr:\n{proc.stderr}"
         )
         sys.exit(1)
 
-    json_text = stdout[brace_idx:]
+    json_text = stdout[min(starts):]
     try:
         return json.loads(json_text)
     except json.JSONDecodeError as e:
@@ -171,19 +175,23 @@ def http_json(
     return None, last_err
 
 
-DEPENDENCY_SECTION_HEADERS = ("dependencies:", "dev_dependencies:")
-
-
-def dependency_section_lines(text: str) -> list[str]:
-    """Only lines inside a top-level dependencies:/dev_dependencies: block --
-    keeps version matching from colliding with unrelated top-level sections
-    that happen to mention the same key (e.g. environment: also has a
-    `flutter:` line, unrelated to the `flutter:` sdk dependency entry)."""
+def dependency_section_lines(text: str, section_headers: list[str] | None) -> list[str]:
+    """Only lines inside a top-level dependency-block header (e.g. pub's
+    `dependencies:`/`dev_dependencies:`) -- keeps version matching from
+    colliding with unrelated top-level sections that happen to mention the
+    same key (e.g. environment: also has a `flutter:` line, unrelated to the
+    `flutter:` sdk dependency entry). Ecosystems whose manifest has no such
+    literal section-header convention (JSON/TOML dependency blocks, a flat
+    requirements.txt) pass `section_headers=None` via config and get the
+    whole file scanned instead -- the regex itself carries enough of the
+    precision (anchored on the package name) for those formats."""
+    if not section_headers:
+        return text.splitlines()
     lines = text.splitlines()
     out: list[str] = []
     in_section = False
     for line in lines:
-        if line.rstrip("\n") in DEPENDENCY_SECTION_HEADERS:
+        if line.rstrip("\n") in section_headers:
             in_section = True
             continue
         if in_section:
@@ -195,14 +203,17 @@ def dependency_section_lines(text: str) -> list[str]:
 
 
 def manifest_fallback_version(
-    manifest_path: Path, package: str, pattern_template: str
+    manifest_path: Path,
+    package: str,
+    pattern_template: str,
+    section_headers: list[str] | None,
 ) -> str | None:
     try:
         text = manifest_path.read_text()
     except OSError:
         return None
     pattern = pattern_template.replace("{name}", re.escape(package))
-    for line in dependency_section_lines(text):
+    for line in dependency_section_lines(text, section_headers):
         m = re.match(pattern, line)
         if m:
             return m.group(1)
@@ -320,6 +331,158 @@ def version_of(entry: dict, key: str) -> str | None:
     return val.get("version")
 
 
+def to_ver(v: str | None) -> dict | None:
+    """Wrap a plain version string into pub's {"version": ...} shape, so
+    every normalizer below feeds process_package() the one internal record
+    shape it already understands -- process_package/version_of need no
+    per-ecosystem changes."""
+    return {"version": v} if v else None
+
+
+def normalize_pub(outdated: dict | list, config: dict) -> list[dict]:
+    if not isinstance(outdated, dict):
+        eprint("fetch_updates: outdated_shape 'pub' expects a JSON object")
+        sys.exit(1)
+    sdk_placeholder = config.get("sdk_placeholder_version")
+    return [
+        p
+        for p in outdated.get("packages", [])
+        if p.get("kind") in ("direct", "dev")
+        and (sdk_placeholder is None or version_of(p, "latest") != sdk_placeholder)
+    ]
+
+
+def normalize_npm_style_object(outdated: dict | list, config: dict) -> list[dict]:
+    """npm/pnpm `outdated --json`: an object keyed by package name, each
+    value carrying current/wanted/latest/dependencyType (pnpm's field names
+    match npm's exactly for this shape)."""
+    if not isinstance(outdated, dict):
+        eprint("fetch_updates: outdated_shape 'npm_style_object' expects a JSON object")
+        sys.exit(1)
+    out = []
+    for name, info in outdated.items():
+        if not isinstance(info, dict):
+            continue
+        dep_type = str(info.get("dependencyType", ""))
+        kind = "dev" if "dev" in dep_type.lower() else "direct"
+        out.append(
+            {
+                "package": name,
+                "kind": kind,
+                "current": to_ver(info.get("current")),
+                "upgradable": to_ver(info.get("wanted")),
+                "resolvable": to_ver(info.get("latest")),
+                "latest": to_ver(info.get("latest")),
+            }
+        )
+    return out
+
+
+def normalize_array_flat(outdated: dict | list, config: dict) -> list[dict]:
+    """pip/uv `list --outdated --format json`: a flat array of
+    {"name": ..., "version": ..., "latest_version": ...} objects. Neither
+    tool distinguishes a "wanted" (in-range) version from "latest" the way
+    npm does, and neither tags dev-vs-direct -- that split happens at the
+    which-requirements-file-was-scanned level instead, per the adapter."""
+    if not isinstance(outdated, list):
+        eprint("fetch_updates: outdated_shape 'array_flat' expects a JSON array")
+        sys.exit(1)
+    out = []
+    for entry in outdated:
+        name = entry.get("name")
+        if not name:
+            continue
+        out.append(
+            {
+                "package": name,
+                "kind": "direct",
+                "current": to_ver(entry.get("version")),
+                "upgradable": None,
+                "resolvable": to_ver(entry.get("latest_version")),
+                "latest": to_ver(entry.get("latest_version")),
+            }
+        )
+    return out
+
+
+def normalize_yarn_table(outdated: dict | list, config: dict) -> list[dict]:
+    """Yarn Classic `outdated --json`:
+    {"type": "table", "data": {"head": [...], "body": [[...row...], ...]}}.
+    Map columns by the head row rather than hardcoding positions."""
+    if not isinstance(outdated, dict):
+        eprint("fetch_updates: outdated_shape 'yarn_table' expects a JSON object")
+        sys.exit(1)
+    data = outdated.get("data", {})
+    head = [str(h).strip().lower() for h in data.get("head", [])]
+    out = []
+    for row in data.get("body", []):
+        rec = dict(zip(head, row))
+        name = rec.get("package")
+        if not name:
+            continue
+        pkg_type = str(rec.get("package type", ""))
+        kind = "dev" if "dev" in pkg_type.lower() else "direct"
+        out.append(
+            {
+                "package": name,
+                "kind": kind,
+                "current": to_ver(rec.get("current")),
+                "upgradable": to_ver(rec.get("wanted")),
+                "resolvable": to_ver(rec.get("latest")),
+                "latest": to_ver(rec.get("latest")),
+            }
+        )
+    return out
+
+
+def normalize_poetry_array(outdated: dict | list, config: dict) -> list[dict]:
+    """`poetry show --outdated --format json`. UNVERIFIED shape -- field
+    names below are a best-effort guess mirroring the text table's Name/
+    Version/Latest columns, not confirmed against a real installed Poetry
+    version. Re-verify before trusting this in a real repo (see
+    python-poetry.md's own caveat)."""
+    if not isinstance(outdated, list):
+        eprint("fetch_updates: outdated_shape 'poetry_array' expects a JSON array")
+        sys.exit(1)
+    out = []
+    for entry in outdated:
+        name = entry.get("name")
+        if not name:
+            continue
+        out.append(
+            {
+                "package": name,
+                "kind": "direct",
+                "current": to_ver(entry.get("version")),
+                "upgradable": None,
+                "resolvable": to_ver(entry.get("latest")),
+                "latest": to_ver(entry.get("latest")),
+            }
+        )
+    return out
+
+
+OUTDATED_NORMALIZERS = {
+    "pub": normalize_pub,
+    "npm_style_object": normalize_npm_style_object,
+    "array_flat": normalize_array_flat,
+    "yarn_table": normalize_yarn_table,
+    "poetry_array": normalize_poetry_array,
+}
+
+
+def normalize_outdated(outdated: dict | list, config: dict) -> list[dict]:
+    shape = config.get("outdated_shape", "pub")
+    fn = OUTDATED_NORMALIZERS.get(shape)
+    if fn is None:
+        eprint(
+            f"fetch_updates: unknown outdated_shape '{shape}' in config -- "
+            f"known shapes: {sorted(OUTDATED_NORMALIZERS)}"
+        )
+        sys.exit(2)
+    return fn(outdated, config)
+
+
 def process_package(
     entry: dict, config: dict, manifest_dir: Path, manifest_rel_path: str
 ) -> dict:
@@ -333,8 +496,12 @@ def process_package(
     if current is None:
         pattern = config.get("manifest_version_pattern")
         if pattern:
-            manifest_path = manifest_dir / "pubspec.yaml"
-            fallback = manifest_fallback_version(manifest_path, name, pattern)
+            manifest_filename = config.get("manifest_filename", "pubspec.yaml")
+            manifest_path = manifest_dir / manifest_filename
+            section_headers = config.get("manifest_section_headers")
+            fallback = manifest_fallback_version(
+                manifest_path, name, pattern, section_headers
+            )
             if fallback:
                 current = fallback
                 current_source = "manifest_fallback"
@@ -455,25 +622,22 @@ def main() -> None:
         sys.exit(2)
 
     outdated = run_outdated_cmd(config["outdated_cmd"], manifest_dir)
-    sdk_placeholder = config.get("sdk_placeholder_version")
     # Only direct/dev dependencies are manifest-editable audit candidates --
     # transitive-only entries aren't declared in the manifest at all. SDK-
     # constrained pseudo-packages (e.g. Dart/Flutter's `flutter`/`flutter_test`
     # sdk: deps) report a sentinel version and have no real version to audit --
-    # toolchain-audit owns the actual SDK version, not this skill.
-    packages = [
-        p
-        for p in outdated.get("packages", [])
-        if p.get("kind") in ("direct", "dev")
-        and (sdk_placeholder is None or version_of(p, "latest") != sdk_placeholder)
-    ]
+    # toolchain-audit owns the actual SDK version, not this skill. The shape
+    # of `outdated` itself (object, array, table-envelope, ...) is ecosystem-
+    # specific; normalize_outdated() dispatches on config["outdated_shape"].
+    packages = normalize_outdated(outdated, config)
 
+    manifest_filename = config.get("manifest_filename", "pubspec.yaml")
     try:
         manifest_rel_path = str(
-            (manifest_dir / "pubspec.yaml").relative_to(Path.cwd())
+            (manifest_dir / manifest_filename).relative_to(Path.cwd())
         )
     except ValueError:
-        manifest_rel_path = str(manifest_dir / "pubspec.yaml")
+        manifest_rel_path = str(manifest_dir / manifest_filename)
 
     all_records = [
         process_package(entry, config, manifest_dir, manifest_rel_path)

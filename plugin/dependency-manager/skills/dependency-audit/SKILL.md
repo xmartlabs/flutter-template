@@ -13,11 +13,25 @@ printed-summary example if the target output shape is unclear.
 
 ## Workflow
 
-1. **Detect the ecosystem(s).** Use each adapter's `detect` slot under
-   `references/ecosystems/` to identify what's present. This repo is
-   Dart/Flutter — see `references/ecosystems/dart-flutter.md`. A future repo
-   with a `package.json` would be picked up the same way by an `npm.md`
-   adapter, with no change to this skill.
+1. **Detect the ecosystem(s) and locate each adapter.** Use each adapter's
+   `detect` slot to identify what's present, checking two locations in
+   order: this repo's own `.claude/dependency-manager/ecosystems/<name>.{md,json}`
+   first, then this plugin's bundled
+   `${CLAUDE_PLUGIN_ROOT}/skills/dependency-audit/references/ecosystems/<name>.{md,json}`
+   (`references/ecosystems/` relative to this file) — `dart-flutter`, `npm`,
+   `yarn`, `pnpm`, `python-pip`, `python-poetry`, `python-uv` ship there
+   today. A repo-local adapter of the same name overrides the bundled one.
+
+   If a manifest is detected (`pyproject.toml`, `package.json`, etc.) with
+   no adapter in either location, don't fail and don't guess: copy
+   `references/ecosystems/_template.md` + `_template.json`, fill every slot
+   from this repo's real files and commands, and write the result to the
+   **repo-local** path — `.claude/dependency-manager/ecosystems/<name>.{md,json}`.
+   Never write a new or edited adapter into `${CLAUDE_PLUGIN_ROOT}`; it's
+   shared across every repo this plugin is installed in. Stop after writing
+   it and tell the human a new adapter was drafted and needs review before
+   you rely on it for grading or verification — don't continue the audit on
+   an unreviewed adapter in the same run.
 
 2. **Read every manifest** the adapter's `manifests` slot lists. For a
    multi-package repo, that's every package, not just the root.
@@ -27,7 +41,7 @@ printed-summary example if the target output shape is unclear.
    `advisory_source`/`changelog_convention` by hand:
 
    ```
-   python3 scripts/fetch_updates.py --config references/ecosystems/<ecosystem>.json --manifest-dir <dir>
+   python3 scripts/fetch_updates.py --config <resolved adapter .json path from step 1> --manifest-dir <dir>
    ```
 
    It runs the outdated-versions check, hits the registry, batch-queries
