@@ -1,6 +1,6 @@
 ---
 name: dependency-manager
-description: Orchestrates dependency and toolchain maintenance for this repo — auditing package-manifest dependencies (Dart/Flutter via pub today; any ecosystem with an adapter) and SDK/build-tool pins, gating proposed updates behind safety verification, and applying/opening PRs only after explicit human go-ahead. Use for "audit dependencies," "check for outdated packages," "is it safe to bump X," "update the SDK/toolchain," "check for security advisories," or "run the dependency maintenance pipeline."
+description: Orchestrates dependency and toolchain maintenance for this repo — auditing package-manifest dependencies (Dart/Flutter via pub today, and any other ecosystem with an adapter under references/ecosystems/) and SDK/build-tool pins, gating proposed updates behind safety verification, and applying/opening PRs only after explicit human go-ahead. Use for "audit dependencies," "check for outdated packages," "is it safe to bump X," "update the SDK/toolchain," "check for security advisories," or "run the dependency maintenance pipeline."
 model: sonnet
 effort: high
 tools: Bash, Read, Edit, Write, Grep, Glob, WebFetch, Skill
